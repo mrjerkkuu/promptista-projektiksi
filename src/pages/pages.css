@@ -319,19 +319,23 @@
   line-height: 0.9;
 }
 
-.topic--0 .topic__number {
+.topic--0 .topic__number,
+.topic--0 .topic__chevron {
   color: var(--color-topic-0-ink);
 }
 
-.topic--1 .topic__number {
+.topic--1 .topic__number,
+.topic--1 .topic__chevron {
   color: var(--color-topic-1-ink);
 }
 
-.topic--2 .topic__number {
+.topic--2 .topic__number,
+.topic--2 .topic__chevron {
   color: var(--color-topic-2-ink);
 }
 
-.topic--3 .topic__number {
+.topic--3 .topic__number,
+.topic--3 .topic__chevron {
   color: var(--color-topic-3-ink);
 }
 
@@ -349,6 +353,83 @@
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
+}
+
+/* Otsikon painike avaa ja sulkee moduulilistan */
+.topic__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: var(--tap-target-min);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.topic__chevron {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--tap-target-min);
+  height: var(--tap-target-min);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  transition:
+    transform var(--duration-medium) var(--easing-spring),
+    box-shadow var(--duration-fast) var(--easing-standard);
+}
+
+.topic__chevron::before {
+  content: '';
+  width: var(--icon-size);
+  height: var(--icon-size);
+  background: currentColor;
+  -webkit-mask: var(--mask-chevron) center / contain no-repeat;
+  mask: var(--mask-chevron) center / contain no-repeat;
+}
+
+.topic__toggle:hover .topic__chevron {
+  box-shadow: var(--shadow-md);
+}
+
+.topic__toggle[aria-expanded='true'] .topic__chevron {
+  transform: rotate(180deg);
+}
+
+/* Suljettu paneeli on 0 px korkea ja piilossa myös näppäimistöltä
+   (visibility vaihtuu vasta, kun sulkeutuminen on ohi). Negatiivinen
+   marginaali kumoaa .topic-kehyksen gapin, kun paneeli on kiinni. */
+.topic__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-top: calc(-1 * var(--space-3));
+  visibility: hidden;
+  transition:
+    grid-template-rows var(--duration-medium) var(--easing-standard),
+    margin-top var(--duration-medium) var(--easing-standard),
+    visibility 0s linear var(--duration-medium);
+}
+
+.topic__panel--open {
+  grid-template-rows: 1fr;
+  margin-top: 0;
+  visibility: visible;
+  transition:
+    grid-template-rows var(--duration-medium) var(--easing-standard),
+    margin-top var(--duration-medium) var(--easing-standard),
+    visibility 0s;
+}
+
+.topic__panel-inner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Moduulilista valkoisessa kortissa */
