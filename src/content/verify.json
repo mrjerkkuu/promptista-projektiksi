@@ -1,0 +1,11 @@
+{
+  "claude": {
+    "command": "check-claude",
+    "question": "Aja komento. Miltä tulos näytti?",
+    "options": [
+      { "id": "versio", "label": "Versionumero", "correct": true, "explanation": "Asennus onnistui." },
+      { "id": "ei-loydy", "label": "Komentoa ei löydy", "correct": false, "explanation": "Terminaali ei vielä tunne komentoa.", "troubleshooting": "komentoa-ei-tunnisteta" },
+      { "id": "muuta", "label": "Jotain muuta", "correct": false, "explanation": "Katso vianmääritys.", "troubleshooting": "komentoa-ei-tunnisteta" }
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "claude-code",
+  "title": "Claude Code alusta alkaen",
+  "description": "Opit, mikä terminaali on, asennat tarvittavat työkalut ja teet Claude Coden kanssa ensimmäisen oman verkkosivusi. Aiempaa kokemusta ei tarvita.",
+  "topics": [
+    {
+      "id": "perusteet",
+      "title": "Perusteet",
+      "description": "Mitä vibekoodaus on ja mitkä ovat terminaalin, kansioiden ja Gitin perusajatukset.",
+      "modules": [
+        { "id": "mita-on-vibekoodaus", "title": "Mitä vibekoodaus on?", "summary": "Tekoäly kirjoittaa koodin, sinä ohjaat. Mihin se sopii ja mihin ei (vielä)." },
+        { "id": "terminaali", "title": "Terminaali ja komennot", "summary": "Terminaali on tekstiviestikeskustelu tietokoneen kanssa. Kokeile simulaattorissa." },
+        { "id": "kansiot-ja-polut", "title": "Kansiot ja polut", "summary": "Mikä on kansio ja polku, ja miten tiedät, missä kansiossa olet." },
+        { "id": "git-ja-github", "title": "Git ja GitHub", "summary": "Git on pelin tallennuspisteet, GitHub on pilvi, jossa tallennukset säilyvät." },
+        { "id": "chat-vai-agentti", "title": "Chat vai AI-agentti?", "summary": "Chat vastaa, agentti tekee: luo tiedostoja ja ajaa komentoja koneellasi." }
+      ]
+    },
+    {
+      "id": "asennukset",
+      "title": "Asennukset",
+      "description": "Asennat askel kerrallaan kaikki työkalut, joita Claude Coden kanssa tarvitaan, ja varmistat, että ne toimivat.",
+      "modules": [
+        { "id": "terminaalin-avaaminen", "title": "Terminaali", "summary": "Windowsilla asennetaan PowerShell 7, Macilla avataan valmiina oleva Pääte." },
+        { "id": "git-asennus", "title": "Git", "summary": "Asennat Gitin, jolla projektiin tehdään tallennuspisteitä." },
+        { "id": "vs-code", "title": "VS Code", "summary": "Asennat koodieditorin ja opit avaamaan siinä kansion." },
+        { "id": "github-tili", "title": "GitHub-tili", "summary": "Luot GitHub-tilin ja suojaat sen kaksivaiheisella tunnistautumisella." },
+        { "id": "github-cli", "title": "GitHub CLI", "summary": "Asennat gh-työkalun ja kirjaudut sillä GitHubiin." },
+        { "id": "claude-tilaus", "title": "Claude-tilaus", "summary": "Millainen tilaus Claude Codeen tarvitaan ja mistä näet ajantasaiset hinnat." },
+        { "id": "claude-code-asennus", "title": "Claude Code", "summary": "Asennat Claude Coden ja kirjaudut sisään." },
+        { "id": "tarkistuslista", "title": "Tarkistuslista", "summary": "Kaikki versiotarkistukset yhdellä sivulla: onko kaikki valmiina?" }
+      ]
+    },
+    {
+      "id": "periaatteet",
+      "title": "Claude Code -periaatteet",
+      "description": "Miten Claude Codea ohjataan hyvin ja turvallisesti.",
+      "modules": [
+        { "id": "ensimmainen-keskustelu", "title": "Ensimmäinen keskustelu", "summary": "Miten Claude Code käynnistetään kansiossa ja miten sen kanssa puhutaan." },
+        { "id": "hyva-prompti", "title": "Hyvä prompti", "summary": "Kerro mitä, miksi ja millä rajoilla. Huonot ja hyvät esimerkit rinnakkain." },
+        { "id": "plan-mode", "title": "Plan mode", "summary": "Suunnittele ensin, rakenna sitten." },
+        { "id": "claude-md", "title": "CLAUDE.md", "summary": "Projektin muistilappu, jonka Claude lukee joka kerta." },
+        { "id": "luvat-ja-turvallisuus", "title": "Luvat ja turvallisuus", "summary": "Lue, mitä hyväksyt. Salasanat ja avaimet pysyvät poissa keskustelusta ja GitHubista." },
+        { "id": "git-tallennuspisteina", "title": "Git tallennuspisteinä", "summary": "Tallenna ennen isoa muutosta ja opettele palaamaan taaksepäin." },
+        { "id": "konteksti", "title": "Konteksti", "summary": "Mitä Claude muistaa keskustelusta ja milloin kannattaa aloittaa puhtaalta pöydältä." }
+      ]
+    },
+    {
+      "id": "ensimmainen-projekti",
+      "title": "Ensimmäinen projekti",
+      "description": "Teet Claude Coden kanssa oman pienen verkkosivun (HTML, CSS ja JavaScript) ja viet sen GitHubiin.",
+      "modules": [
+        { "id": "projektikansio", "title": "Projektikansio", "summary": "Luot projektille kansion ja aloitat Git-seurannan." },
+        { "id": "suunnittele", "title": "Suunnittele", "summary": "Suunnittelet Clauden kanssa plan modessa, mitä sivulle tulee." },
+        { "id": "rakenna", "title": "Rakenna", "summary": "Claude rakentaa sivun, sinä avaat sen selaimessa ja pyydät muutoksia." },
+        { "id": "githubiin", "title": "GitHubiin", "summary": "Tallennat työn commitiksi ja lähetät sen omaan GitHub-repoon." },
+        { "id": "julkaise", "title": "Bonus: julkaise", "summary": "Valinnainen lisätehtävä: sivusi nettiin omaan osoitteeseen GitHub Pagesilla.", "optional": true }
+      ]
+    }
+  ]
+}

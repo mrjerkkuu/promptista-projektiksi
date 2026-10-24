@@ -1,0 +1,9 @@
+{
+  "luo-projektikansio": {
+    "title": "Luo projektikansio",
+    "goal": "Luo kansio nimeltä projekti ja siirry sinne.",
+    "hint": "Käytä ensin komentoa mkdir projekti ja sitten cd projekti.",
+    "success": "Hienoa! Loit kansion ja siirryit sinne.",
+    "conditions": [{ "type": "dirExists", "path": "~/projekti" }, { "type": "cwdIs", "path": "~/projekti" }]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "ensimmainen-komento": {
+    "title": "Ensimmäinen komento",
+    "description": "Kirjoitit ensimmäisen komentosi terminaaliin.",
+    "icon": "⌨️",
+    "condition": { "type": "commandsRun", "min": 1 }
+  }
+}

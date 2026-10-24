@@ -1,0 +1,122 @@
+{
+  "install-powershell": {
+    "description": "Asentaa PowerShell 7:n Windowsin omalla WinGet-pakettienhallinnalla.",
+    "windows": "winget install --id Microsoft.PowerShell --source winget",
+    "source": "https://learn.microsoft.com/en-us/powershell/scripting/install/install-powershell-on-windows",
+    "verifiedAt": "2026-10-24"
+  },
+  "check-powershell": {
+    "description": "Näyttää PowerShellin version.",
+    "windows": "pwsh -Version",
+    "source": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pwsh",
+    "verifiedAt": "2026-10-24"
+  },
+  "install-git": {
+    "description": "Asentaa Gitin.",
+    "windows": "winget install --id Git.Git -e --source winget",
+    "mac": "xcode-select --install",
+    "source": {
+      "windows": "https://git-scm.com/install/windows",
+      "mac": "https://git-scm.com/install/mac"
+    },
+    "verifiedAt": "2026-10-24"
+  },
+  "install-homebrew": {
+    "description": "Asentaa Homebrew-pakettienhallinnan Macille.",
+    "mac": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
+    "source": "https://brew.sh/",
+    "verifiedAt": "2026-10-24"
+  },
+  "install-gh": {
+    "description": "Asentaa GitHub CLI:n (gh-komennon).",
+    "windows": "winget install --id GitHub.cli --source winget",
+    "mac": "brew install gh",
+    "source": {
+      "windows": "https://github.com/cli/cli/blob/trunk/docs/install_windows.md",
+      "mac": "https://github.com/cli/cli/blob/trunk/docs/install_macos.md"
+    },
+    "verifiedAt": "2026-10-24"
+  },
+  "gh-auth-login": {
+    "description": "Kirjautuu GitHubiin gh-työkalulla. Oletuksena kirjautuminen tehdään selaimessa.",
+    "windows": "gh auth login",
+    "mac": "gh auth login",
+    "source": "https://cli.github.com/manual/gh_auth_login",
+    "verifiedAt": "2026-10-24"
+  },
+  "install-claude-code": {
+    "description": "Asentaa Claude Coden Anthropicin virallisella asennusskriptillä.",
+    "windows": "irm https://claude.ai/install.ps1 | iex",
+    "mac": "curl -fsSL https://claude.ai/install.sh | bash",
+    "source": "https://code.claude.com/docs/en/setup",
+    "verifiedAt": "2026-10-24"
+  },
+  "check-claude": {
+    "description": "Näyttää Claude Coden version.",
+    "windows": "claude --version",
+    "mac": "claude --version",
+    "source": "https://code.claude.com/docs/en/setup",
+    "verifiedAt": "2026-10-24"
+  },
+  "claude-doctor": {
+    "description": "Tarkistaa Claude Coden asennuksen ja kertoo mahdollisista ongelmista.",
+    "windows": "claude doctor",
+    "mac": "claude doctor",
+    "source": "https://code.claude.com/docs/en/setup",
+    "verifiedAt": "2026-10-24"
+  },
+  "start-claude": {
+    "description": "Käynnistää Claude Coden nykyisessä kansiossa. Ensimmäisellä kerralla se pyytää kirjautumaan.",
+    "windows": "claude",
+    "mac": "claude",
+    "source": "https://code.claude.com/docs/en/quickstart",
+    "verifiedAt": "2026-10-24"
+  },
+  "claude-plan-mode": {
+    "description": "Käynnistää Claude Coden suoraan plan modessa.",
+    "windows": "claude --permission-mode plan",
+    "mac": "claude --permission-mode plan",
+    "source": "https://code.claude.com/docs/en/permission-modes",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-config-name": {
+    "description": "Kertoo Gitille nimesi. Nimi näkyy tallennuspisteissä (commiteissa).",
+    "windows": "git config --global user.name \"Etunimi Sukunimi\"",
+    "mac": "git config --global user.name \"Etunimi Sukunimi\"",
+    "source": "https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-config-email": {
+    "description": "Kertoo Gitille sähköpostiosoitteesi. Käytä samaa osoitetta kuin GitHubissa.",
+    "windows": "git config --global user.email sinun.osoite@example.com",
+    "mac": "git config --global user.email sinun.osoite@example.com",
+    "source": "https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-config-default-branch": {
+    "description": "Asettaa uusien projektien päähaaran nimeksi main.",
+    "windows": "git config --global init.defaultBranch main",
+    "mac": "git config --global init.defaultBranch main",
+    "source": "https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup",
+    "verifiedAt": "2026-10-24"
+  },
+  "set-execution-policy": {
+    "description": "Sallii omalle käyttäjällesi paikallisten ja allekirjoitettujen PowerShell-skriptien ajamisen.",
+    "windows": "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser",
+    "source": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies",
+    "verifiedAt": "2026-10-24"
+  },
+  "get-execution-policy": {
+    "description": "Näyttää PowerShellin nykyiset suoritusoikeusasetukset.",
+    "windows": "Get-ExecutionPolicy -List",
+    "source": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies",
+    "verifiedAt": "2026-10-24"
+  },
+  "gh-repo-create": {
+    "description": "Luo GitHubiin uuden julkisen repon nykyisestä kansiosta ja lähettää (push) tallennuspisteet sinne.",
+    "windows": "gh repo create oma-sivu --public --source=. --remote=origin --push",
+    "mac": "gh repo create oma-sivu --public --source=. --remote=origin --push",
+    "source": "https://cli.github.com/manual/gh_repo_create",
+    "verifiedAt": "2026-10-24"
+  }
+}

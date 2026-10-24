@@ -1,0 +1,8 @@
+{
+  "komentoa-ei-tunnisteta": {
+    "title": "Komentoa ei tunnisteta",
+    "os": ["windows", "mac"],
+    "symptom": "Terminaali sanoo, ettei komentoa löydy.",
+    "steps": ["Sulje terminaali ja avaa se uudelleen."]
+  }
+}
