@@ -6,6 +6,7 @@ import { OsPicker } from '../components/OsPicker'
 import { ThemeSelect } from '../components/ThemeSelect'
 import { paths } from '../content'
 import { useProgress } from '../features/progress'
+import { REPO_URL } from '../lib/feedback'
 import './Layout.css'
 
 const NAV_LINKS = [
@@ -95,7 +96,13 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <footer className="site-footer">
-        <p className="site-footer__text">© 2026 Jeremia Vepsäläinen</p>
+        <p className="site-footer__text">
+          © 2026 Jeremia Vepsäläinen <span aria-hidden="true">·</span>{' '}
+          <a href={REPO_URL} target="_blank" rel="noreferrer">
+            GitHub
+            <span className="visually-hidden"> (avautuu uuteen välilehteen)</span>
+          </a>
+        </p>
         <p className="site-footer__text">
           Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.
         </p>
