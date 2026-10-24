@@ -1,0 +1,31 @@
+{
+  "questions": [
+    {
+      "id": "paras",
+      "question": "Mikä näistä on paras prompti?",
+      "options": [
+        { "id": "lyhyt", "text": "”Tee peli.”", "correct": false, "explanation": "Liian lyhyt: Claude joutuu arvaamaan, millaisen pelin haluat ja kenelle." },
+        { "id": "hyva", "text": "”Tee selaimessa toimiva muistipeli 8-vuotiaalle. Kortteja on 12, ja kuvina ovat eläimet. Käytä vain HTML:ää, CSS:ää ja JavaScriptiä.”", "correct": true, "explanation": "Hienoa! Prompti kertoo, mitä, kenelle ja millä rajoilla." },
+        { "id": "kohtelias", "text": "”Olisitko niin ystävällinen ja tekisit jotain kivaa?”", "correct": false, "explanation": "Kohteliaisuus on mukavaa, mutta pyynnöstä puuttuu sisältö." }
+      ]
+    },
+    {
+      "id": "virhe",
+      "question": "Sivullasi on virhe. Miten pyydät korjausta?",
+      "options": [
+        { "id": "korjaa", "text": "”Korjaa.”", "correct": false, "explanation": "Claude ei tiedä, mikä on vialla. Kerro, mitä tapahtui ja mitä odotit." },
+        { "id": "kuvaus", "text": "Kerron, mitä tein, mitä tapahtui ja mitä odotin, ja liitän virheilmoituksen mukaan", "correct": true, "explanation": "Oikein. Näin Claude pääsee suoraan asiaan." },
+        { "id": "alusta", "text": "”Tee koko sivu uudestaan.”", "correct": false, "explanation": "Toimivat osat voivat mennä rikki samalla. Pyydä ensin korjaamaan juuri tämä virhe." }
+      ]
+    },
+    {
+      "id": "rajat",
+      "question": "Miksi promptiin kannattaa kirjoittaa rajat, esimerkiksi ”älä muuta ulkoasua”?",
+      "options": [
+        { "id": "rajat", "text": "Jotta Claude ei muuta asioita, jotka ovat jo hyvin", "correct": true, "explanation": "Juuri niin. Rajat pitävät muutokset siellä, missä haluat ne." },
+        { "id": "nopeus", "text": "Jotta Claude toimisi nopeammin", "correct": false, "explanation": "Rajojen tarkoitus ei ole nopeus vaan se, että lopputulos vastaa toiveitasi." },
+        { "id": "turhaa", "text": "Ei kannata, Claude tietää sen itsekin", "correct": false, "explanation": "Claude ei voi tietää, mistä pidät, ellet kerro sitä." }
+      ]
+    }
+  ]
+}

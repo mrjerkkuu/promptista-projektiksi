@@ -1,3 +1,29 @@
-# Konteksti
+<Term id="konteksti">Konteksti</Term> on kaikki se, mitä Claude pitää mielessään tämän keskustelun aikana: viestisi, sen omat vastaukset, luetut tiedostot ja komentojen tulokset. Se on kuin työpöytä, jolla paperit ovat esillä.
 
-Mitä Claude muistaa keskustelusta ja milloin kannattaa aloittaa puhtaalta pöydältä.
+Työpöytä on rajallisen kokoinen. Kun keskustelu venyy pitkäksi, pöytä täyttyy. Silloin vanhoja asioita tiivistetään tai ne unohtuvat, ja Claude voi alkaa sekoilla.
+
+## Merkit, että konteksti on täynnä tai sotkuinen
+
+- Claude unohtaa aiemmin sovitun asian.
+- Se toistaa samaa virhettä tai kiertää kehää.
+- Olet siirtymässä kokonaan uuteen tehtävään.
+
+## Mitä silloin tehdään?
+
+| Komento | Mitä se tekee |
+|---|---|
+| `/context` | näyttää, kuinka täynnä konteksti on |
+| `/compact` | tiivistää keskustelun ja vapauttaa tilaa |
+| `/clear` | aloittaa uuden keskustelun tyhjästä |
+
+Uusi keskustelu ei ole epäonnistuminen. Se on usein paras tapa jatkaa, kun aihe vaihtuu. Kaikki tärkeä on tallessa tiedostoissa, ja <Term id="claude-md">CLAUDE.md</Term> kertoo Claudelle projektin perusasiat joka kerta uudelleen.
+
+Lähde: [Claude Coden komennot](https://code.claude.com/docs/en/commands).
+
+<ReadMore title="Mitä kontekstissa oikeastaan lasketaan?">
+
+Kielimalli lukee tekstiä pieninä paloina, joita kutsutaan <Term id="tokeni">tokeneiksi</Term>. Kontekstin koko mitataan tokeneina. Pitkät tiedostot ja komentojen pitkät tulosteet vievät paljon tilaa. Siksi kannattaa pyytää Claudea keskittymään vain tarvittaviin tiedostoihin.
+
+</ReadMore>
+
+<Quiz />

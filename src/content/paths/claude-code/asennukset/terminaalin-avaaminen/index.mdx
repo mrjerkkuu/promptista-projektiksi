@@ -1,3 +1,60 @@
-# Terminaali
+<Os only="windows">
 
-Windowsilla asennetaan PowerShell 7, Macilla avataan valmiina oleva Pääte.
+Windowsissa on valmiina vanha Windows PowerShell 5.1. Tässä oppaassa käytetään uudempaa **PowerShell 7:ää**, jota Microsoft suosittelee. Asennat sen nyt <Term id="winget">WinGet</Term>-komennolla, joka on Windowsin oma tapa asentaa ohjelmia.
+
+## 1. Avaa vanha PowerShell
+
+Avaa Käynnistä-valikko, kirjoita `PowerShell` ja valitse **Windows PowerShell**. Avautuu ikkuna, jossa on kehote.
+
+## 2. Asenna PowerShell 7
+
+Kopioi komento, liitä se PowerShell-ikkunaan (Ctrl+V tai hiiren oikea painike) ja paina Enter.
+
+<Command id="install-powershell" />
+
+Jos terminaali kysyy jotain, lue kysymys. Asennuksen ehtojen hyväksyntään vastataan `Y` ja Enter. Windows voi myös kysyä erillisessä ikkunassa, saako ohjelma tehdä muutoksia. Vastaa kyllä.
+
+## 3. Avaa PowerShell 7
+
+Sulje vanha ikkuna. Avaa Käynnistä-valikko, kirjoita `PowerShell 7` ja valitse se. **Käytä tästä eteenpäin aina tätä ohjelmaa.**
+
+<Tip title="Vinkki">
+
+Kiinnitä PowerShell 7 tehtäväpalkkiin: napsauta sitä hiiren oikealla painikkeella ja valitse ”Kiinnitä tehtäväpalkkiin”.
+
+</Tip>
+
+<VerifyStep id="powershell" />
+
+</Os>
+
+<Os only="mac">
+
+Macissa terminaali on valmiina, eikä mitään tarvitse asentaa. Ohjelman nimi on <Term id="paate">Pääte</Term> (englanniksi Terminal).
+
+## Avaa Pääte
+
+Valitse jompikumpi tapa:
+
+- Paina Cmd+välilyönti, jolloin Spotlight-haku aukeaa. Kirjoita `Pääte` (tai `Terminal`) ja paina Enter.
+- Avaa Finder ja siirry kansioon Ohjelmat → Lisäohjelmat. Kaksoisnapsauta Pääte-ohjelmaa.
+
+Avautuu ikkuna, jossa on kehote, esimerkiksi `maija@MacBook ~ %`. Valmista!
+
+<Tip title="Vinkki">
+
+Kiinnitä Pääte Dockiin: kun ohjelma on auki, napsauta sen kuvaketta Dockissa Ctrl-näppäin pohjassa ja valitse Valinnat → Pidä Dockissa.
+
+</Tip>
+
+## Kokeile
+
+Kirjoita Päätteeseen `pwd` ja paina Enter. Pääte vastaa kotikansiosi polulla, esimerkiksi `/Users/maija`. Tätä harjoittelit jo simulaattorissa.
+
+</Os>
+
+<ReadMore title="Miksi juuri tämä terminaali?">
+
+Windowsilla PowerShell 7 on Microsoftin nykyinen, aktiivisesti kehitetty versio, ja sitä käyttävät myös Clauden ja muiden työkalujen ohjeet. Macin Pääte käyttää zsh-nimistä komentotulkkia, joka on ollut macOS:n oletus jo vuosia. Molemmissa toimivat tämän oppaan komennot.
+
+</ReadMore>

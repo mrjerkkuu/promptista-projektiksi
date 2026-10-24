@@ -1,3 +1,43 @@
-# Luvat ja turvallisuus
+Claude Code tekee asioita koneellasi, joten turvallisuus on sinun ja Clauden yhteistyötä. Kolme sääntöä riittää pitkälle.
 
-Lue, mitä hyväksyt. Salasanat ja avaimet pysyvät poissa keskustelusta ja GitHubista.
+## 1. Lue, mitä hyväksyt
+
+Ennen kuin Claude muokkaa tiedostoa tai ajaa komennon, se kysyy lupaa (<Term id="lupa">lupakysely</Term>). Vaihtoehtoja on yleensä kolme:
+
+- **Yes:** salli tämän kerran.
+- **Yes, and don't ask again:** salli myös jatkossa samanlainen toimenpide tässä projektissa.
+- **No:** älä tee, ja kerro Claudelle, mitä haluat sen sijaan.
+
+Jos et ymmärrä, mitä komento tekee, vastaa No ja kysy: ”Mitä tuo komento tekee?” Ole erityisen tarkka komentojen kanssa, jotka poistavat tiedostoja tai koskevat kansioita projektin ulkopuolella.
+
+## 2. Älä anna salasanoja
+
+Älä koskaan kirjoita salasanoja, pankkitunnuksia tai henkilötunnusta keskusteluun. Claude ei tarvitse niitä. Kirjautumiset (GitHub, Claude) tehdään aina selaimessa.
+
+## 3. API-avaimet .env-tiedostoon
+
+Jos projektisi joskus tarvitsee <Term id="api-avain">API-avaimen</Term>, se tallennetaan <Term id="env-tiedosto">.env-tiedostoon</Term>, ei koodiin. Tiedoston nimi lisätään <Term id="gitignore">.gitignore</Term>-tiedostoon, jotta Git ei lähetä sitä GitHubiin:
+
+```
+.env
+```
+
+Julkiseen GitHub-repoon päätynyt avain kannattaa aina olettaa vuotaneeksi. Jos niin käy, mitätöi avain heti palvelun asetuksista ja tee uusi.
+
+<ReadMore title="Estä Claudea lukemasta .env-tiedostoa">
+
+Claude Coden asetuksiin voi lisätä säännön, joka estää lukemasta tiettyjä tiedostoja. Lisää projektin tiedostoon `.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "deny": ["Read(./.env)", "Read(./.env.*)", "Read(./secrets/**)"]
+  }
+}
+```
+
+Lähteet: [Claude Coden luvat](https://code.claude.com/docs/en/permissions) ja [turvallisuus](https://code.claude.com/docs/en/security).
+
+</ReadMore>
+
+<Quiz />

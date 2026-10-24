@@ -1,0 +1,31 @@
+{
+  "questions": [
+    {
+      "id": "mika-terminaali",
+      "question": "Mikä terminaali on?",
+      "options": [
+        { "id": "teksti", "text": "Ohjelma, jossa tietokonetta käytetään kirjoittamalla komentoja", "correct": true, "explanation": "Oikein. Terminaali on kuin tekstiviestikeskustelu tietokoneen kanssa." },
+        { "id": "selain", "text": "Uusi verkkoselain", "correct": false, "explanation": "Selaimella avataan verkkosivuja. Terminaalissa annetaan käskyjä koko tietokoneelle." },
+        { "id": "virus", "text": "Haittaohjelma, jota kannattaa välttää", "correct": false, "explanation": "Ei suinkaan! Terminaali on tavallinen ja turvallinen osa jokaista tietokonetta." }
+      ]
+    },
+    {
+      "id": "kehote",
+      "question": "Mitä kehote (esim. PS C:\\Users\\maija> tai maija@MacBook ~ %) tarkoittaa?",
+      "options": [
+        { "id": "virhe", "text": "Jotain on mennyt pieleen", "correct": false, "explanation": "Kehote ei ole virhe. Se näkyy aina, kun terminaali odottaa uutta komentoa." },
+        { "id": "valmis", "text": "Terminaali on valmis ottamaan vastaan komennon", "correct": true, "explanation": "Juuri niin. Kirjoita komento kehotteen perään ja paina Enter." },
+        { "id": "kirjoita", "text": "Teksti, joka pitää kirjoittaa itse ennen jokaista komentoa", "correct": false, "explanation": "Kehote tulee automaattisesti. Sinä kirjoitat vain komennon." }
+      ]
+    },
+    {
+      "id": "suoritus",
+      "question": "Kirjoitit komennon. Miten saat sen suoritettua?",
+      "options": [
+        { "id": "enter", "text": "Painan Enteriä", "correct": true, "explanation": "Oikein. Enter on kuin viestin lähetyspainike." },
+        { "id": "odota", "text": "Odotan hetken, niin se lähtee itsestään", "correct": false, "explanation": "Terminaali odottaa kärsivällisesti, kunnes painat Enteriä." },
+        { "id": "tuplaklikkaa", "text": "Kaksoisnapsautan komentoa hiirellä", "correct": false, "explanation": "Terminaalissa komento lähetetään Enter-näppäimellä." }
+      ]
+    }
+  ]
+}

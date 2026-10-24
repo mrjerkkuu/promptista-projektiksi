@@ -1,3 +1,28 @@
-# Plan mode
+Rakentaja ei ala muurata ennen kuin piirustukset ovat valmiit. Sama pätee koodiin. <Term id="plan-mode">Plan modessa</Term> Claude tutkii ja ehdottaa, mutta ei vielä muuta yhtään tiedostoa. Sinä luet suunnitelman ja päätät.
 
-Suunnittele ensin, rakenna sitten.
+## Näin pääset plan modeen
+
+- **Shift+Tab:** paina Claude Codessa Shift+Tab, kunnes alareunassa lukee plan mode. Näppäin vaihtaa tilaa kierroksittain: tavallinen tila → muokkaukset hyväksytään automaattisesti → plan mode.
+- **Yksittäinen viesti:** aloita viesti sanalla `/plan`, niin vain se viesti käsitellään suunnittelutilassa.
+- **Suoraan käynnistäessä:**
+
+<Command id="claude-plan-mode" />
+
+Lähde: [Claude Coden lupatilat](https://code.claude.com/docs/en/permission-modes).
+
+## Hyvä työtapa
+
+1. **Kerro tavoite** plan modessa: mitä, miksi ja millä rajoilla.
+2. **Lue suunnitelma.** Onko kaikki mukana? Onko jotain, mitä et halua?
+3. **Pyydä muutoksia:** ”Jätä yhteydenottolomake pois” tai ”Tee tämä yksinkertaisemmin”.
+4. **Hyväksy**, kun suunnitelma on hyvä. Vasta sitten Claude alkaa rakentaa.
+
+Suunnitteluun käytetty hetki säästää paljon korjaamista myöhemmin. Lisäksi opit itse, mistä osista projekti koostuu.
+
+<Tip title="Huomaa">
+
+Tila ”muokkaukset hyväksytään automaattisesti” (accept edits) tarkoittaa, ettei Claude kysy lupaa tiedostomuutoksiin. Aloittelijana pysy tavallisessa tilassa, jotta näet jokaisen muutoksen.
+
+</Tip>
+
+<Quiz />

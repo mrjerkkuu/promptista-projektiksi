@@ -1,3 +1,30 @@
-# Tarkistuslista
+Tällä sivulla on kaikki versiotarkistukset yhdessä paikassa. Aja komennot yksi kerrallaan **uudessa terminaali-ikkunassa** ja valitse, miltä tulos näytti. Jos kaikki on kunnossa, saat merkin *Asennukset kunnossa*.
 
-Kaikki versiotarkistukset yhdellä sivulla: onko kaikki valmiina?
+<Os only="windows">
+
+<VerifyStep id="powershell" />
+
+</Os>
+
+<VerifyStep id="git" />
+
+<VerifyStep id="vscode" />
+
+<VerifyStep id="gh" />
+
+<VerifyStep id="claude" />
+
+## Lopuksi: oletko kirjautunut?
+
+Kirjautumiset eivät näy versiotarkistuksissa. Varmista vielä nämä:
+
+- **GitHub CLI:** komento `gh auth status` kertoo, millä tilillä olet kirjautunut GitHubiin.
+- **Claude Code:** kun käynnistät `claude`-komennon, se ei kysy kirjautumista vaan näyttää kehotteen.
+
+Jos jokin kohta ei toimi, palaa kyseisen työkalun oppituntiin tai katso [vianmääritys](#/vianmaaritys). Mitään ei tarvitse asentaa kahdesti, jos versiotarkistus jo toimii.
+
+<Tip title="Valmista!">
+
+Kun kaikki on kunnossa, työkalupakkisi on valmis. Seuraavaksi opetellaan, miten Claude Codea ohjataan hyvin.
+
+</Tip>

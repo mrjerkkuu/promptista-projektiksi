@@ -1,3 +1,47 @@
-# VS Code
+<Term id="vs-code">VS Code</Term> on ilmainen koodieditori. Claude kirjoittaa koodin, mutta VS Codessa näet projektisi tiedostot kätevästi ja voit kurkata, mitä Claude on tehnyt.
 
-Asennat koodieditorin ja opit avaamaan siinä kansion.
+## 1. Asenna VS Code
+
+<Os only="windows">
+
+1. Mene osoitteeseen [code.visualstudio.com](https://code.visualstudio.com/) ja lataa Windows-versio.
+2. Avaa ladattu asennusohjelma. Se ei tarvitse järjestelmänvalvojan oikeuksia.
+3. Hyväksy oletusasetukset. Asennusohjelma lisää samalla `code`-komennon terminaalin käyttöön.
+
+Lähde: [VS Coden asennusohje Windowsille](https://code.visualstudio.com/docs/setup/windows).
+
+</Os>
+
+<Os only="mac">
+
+1. Mene osoitteeseen [code.visualstudio.com](https://code.visualstudio.com/) ja lataa Mac-versio.
+2. Avaa ladattu tiedosto ja vedä **Visual Studio Code** Ohjelmat-kansioon (Applications).
+3. Käynnistä VS Code Ohjelmat-kansiosta.
+4. Ota `code`-komento käyttöön: paina VS Codessa Cmd+Shift+P, kirjoita `shell command` ja valitse **Shell Command: Install 'code' and optionally 'copilot' commands in PATH**. (Joissakin versioissa vaihtoehdon nimi on Shell Command: Install 'code' command in PATH.)
+
+Lähde: [VS Coden asennusohje Macille](https://code.visualstudio.com/docs/setup/mac).
+
+</Os>
+
+## 2. Käynnistä terminaali uudelleen
+
+Sulje terminaali ja avaa se uudelleen.
+
+<VerifyStep id="vscode" />
+
+## 3. Näin avaat kansion
+
+Kansion voi avata kahdella tavalla:
+
+- **Valikosta:** valitse VS Codessa File → Open Folder… ja valitse kansio.
+- **Terminaalista:** siirry kansioon `cd`-komennolla ja aja alla oleva komento. Piste tarkoittaa ”tämä kansio”.
+
+<Command id="code-open-folder" />
+
+VS Code saattaa kysyä, luotatko kansion tiedostojen tekijöihin (”Do you trust the authors…”). Omissa projekteissasi voit vastata kyllä.
+
+<ReadMore title="Saako VS Coden suomeksi?">
+
+Saa. Paina Cmd+Shift+P (Mac) tai Ctrl+Shift+P (Windows), kirjoita `Configure Display Language` ja valitse suomi, jos se on tarjolla, tai asenna suomen kielipaketti. Tässä oppaassa valikoiden nimet ovat englanniksi, koska se on VS Coden oletus.
+
+</ReadMore>

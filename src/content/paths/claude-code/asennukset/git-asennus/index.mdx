@@ -1,3 +1,59 @@
-# Git
+<Term id="git">Git</Term> tekee projektistasi tallennuspisteitä. Claude Code käyttää sitä myös itse, joten se asennetaan ensimmäisten joukossa.
 
-Asennat Gitin, jolla projektiin tehdään tallennuspisteitä.
+## 1. Asenna Git
+
+<Os only="windows">
+
+Aja komento PowerShell 7:ssä:
+
+<Command id="install-git" />
+
+<ReadMore title="Asennus ilman komentoa">
+
+Gitin virallinen sivu kertoo, että WinGet-paketti ei ole Git for Windows -projektin itsensä ylläpitämä, joten se voi olla hieman jäljessä uusimmasta versiosta. Jos haluat, voit asentaa Gitin myös lataamalla asennusohjelman osoitteesta [git-scm.com/install/windows](https://git-scm.com/install/windows). Oletusasetukset sopivat hyvin.
+
+</ReadMore>
+
+</Os>
+
+<Os only="mac">
+
+Macissa Git tulee Applen komentorivityökalujen mukana. Aja komento Päätteessä:
+
+<Command id="install-git" />
+
+Näytölle aukeaa ikkuna. Valitse Asenna (Install) ja hyväksy ehdot. Asennus voi kestää useita minuutteja. Jos Pääte sanoo työkalujen olevan jo asennettuina (”already installed”), Git on valmiina.
+
+<ReadMore title="Toinen tapa: Homebrew">
+
+Jos käytät <Term id="homebrew">Homebrew’ta</Term>, voit asentaa Gitin myös komennolla `brew install git`. Gitin virallisella sivulla on molemmat vaihtoehdot. Kumpi tahansa riittää.
+
+</ReadMore>
+
+</Os>
+
+## 2. Käynnistä terminaali uudelleen
+
+Sulje terminaali ja avaa se uudelleen, jotta se löytää juuri asennetun ohjelman.
+
+<VerifyStep id="git" />
+
+## 3. Kerro Gitille nimesi
+
+Git liittää jokaiseen tallennuspisteeseen tekijän nimen ja sähköpostiosoitteen. Kirjoita omat tietosi lainausmerkkien sisään ja sähköpostiosoitteen paikalle. Käytä samaa sähköpostiosoitetta, jolla luot GitHub-tilin.
+
+<Command id="git-config-name" />
+
+<Command id="git-config-email" />
+
+Aseta vielä uusien projektien päähaaran nimeksi `main`, jota GitHub käyttää:
+
+<Command id="git-config-default-branch" />
+
+Nämä komennot eivät tulosta mitään, kun ne onnistuvat. Ne tarvitsee ajaa vain kerran.
+
+<Tip title="Huomaa">
+
+Nimesi ja sähköpostiosoitteesi näkyvät julkisesti, jos julkaiset projektin GitHubissa. GitHub tarjoaa tähän myös yksityisyyttä suojaavan osoitteen (asetuksissa kohdassa Emails).
+
+</Tip>

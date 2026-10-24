@@ -1,3 +1,41 @@
-# Terminaali ja komennot
+<Term id="terminaali">Terminaali</Term> on kuin tekstiviestikeskustelu tietokoneen kanssa. Sinä kirjoitat viestin eli <Term id="komento">komennon</Term> ja painat Enteriä. Tietokone tekee pyydetyn asian ja vastaa tekstillä.
 
-Terminaali on tekstiviestikeskustelu tietokoneen kanssa. Kokeile simulaattorissa.
+Hiirellä napsauttelu ja terminaali ovat kaksi tapaa käyttää samaa tietokonetta. Terminaali tuntuu aluksi oudolta, mutta sillä on kaksi etua: ohjelmia voi asentaa yhdellä rivillä, ja Claude Code toimii juuri terminaalissa.
+
+<Os only="windows">
+
+Windowsilla terminaaliohjelma on <Term id="powershell">PowerShell</Term>. Se näyttää tältä:
+
+```
+PS C:\Users\maija>
+```
+
+</Os>
+
+<Os only="mac">
+
+Macilla terminaaliohjelma on nimeltään <Term id="paate">Pääte</Term> (englanniksi Terminal). Se näyttää tältä:
+
+```
+maija@MacBook ~ %
+```
+
+</Os>
+
+Rivin alku on <Term id="kehote">kehote</Term>. Se tarkoittaa: ”Olen valmis, kirjoita komento.” Kehotetta ei kirjoiteta itse, vaan komento kirjoitetaan sen perään.
+
+## Kolme asiaa, jotka kannattaa tietää
+
+- Kirjoitusasulla on väliä. `git --version` toimii, `git--version` ei.
+- Jos et ymmärrä vastausta, se ei haittaa. Lue rauhassa, usein viimeinen rivi kertoo olennaisen.
+- Harjoitusterminaali alla on täysin turvallinen: se ei koske oikeisiin tiedostoihisi.
+
+<Terminal mission="ensimmaiset-komennot" />
+
+<ReadMore title="Voiko terminaalilla rikkoa jotain?">
+
+Tavalliset komennot, kuten tässä oppaassa käytettävät, ovat turvallisia. Vaaralliset komennot, esimerkiksi tiedostojen poistaminen, vaativat yleensä erillisen käskyn. Siksi on hyvä tapa lukea, mitä komento tekee, ennen kuin painat Enteriä. Jokaisen tämän oppaan komennon yläpuolella kerrotaan, mitä se tekee.
+
+</ReadMore>
+
+<Quiz />

@@ -31,9 +31,12 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajetaan taustalla heti a
 - **Vaihe 4 valmis:** komponentit `src/components/` (Os, Command, Term, ReadMore, Quiz, VerifyStep, Tip, yhteinen ChoiceList), `mdxComponents.ts`, `moduleContext.ts`, testit (`components.test.tsx`, content mockattuna).
 - **Vaihe 5 valmis:** `src/AppShell.tsx` (reitit), `src/layout/Layout.tsx`, sivut `src/pages/` (Home, Path, Module, Glossary, Troubleshooting, Settings, Badges [yksinkertainen], NotFound). MDX ladataan laiskasti (`ModuleEntry.Content`). Testit: `App.test.tsx`.
 
+- **Vaihe 6 valmis:** `src/features/terminal-sim/shell.ts` (+25 testiä), `src/components/Terminal.tsx` (+testit), `missions.json` (4 missiota).
+- **Vaihe 7 valmis:** `src/features/badges/` (ehdot + derive), `BadgeToaster`, `Badge`, `ProgressBar`, merkkisivu, `badges.json` (9 merkkiä). Samalla kirjoitettiin lopulliset `verify.json` (5 varmistusta) ja `troubleshooting.json` (15 kohtaa) sekä lisää komentoja `commands.json`:iin.
+
 ## Seuraavaksi
 
-Vaihe 6: terminaalisimulaattori (`src/features/terminal-sim/`: puhtaat funktiot `fs.ts` + `shell.ts`, missioiden tarkistus, `<Terminal mission>`-komponentti, testit).
+Vaihe 8: tietopaketit (25 kpl `index.mdx`), visat (`quiz.json`), sanasto (`glossary.json`). Lisää validointiin: MDX ei saa sisältää `#`-pääotsikkoa. Lisää testi: merkki-ilmoitus näkyy, kun moduulin 0.2 simulaattorissa ajetaan komento.
 
 ## Avoimet ongelmat
 

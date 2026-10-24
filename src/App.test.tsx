@@ -28,7 +28,9 @@ describe('sivut', () => {
   it('jatka-painike vie seuraavaan keskeneräiseen moduuliin', () => {
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ ...createDefaultProgress(), os: 'windows', modules: { 'claude-code/mita-on-vibekoodaus': { visited: true, read: true } } }),
+      JSON.stringify({ ...createDefaultProgress(), os: 'windows', modules: { 'claude-code/mita-on-vibekoodaus': { visited: true, read: true } },
+        quizAnswers: { 'claude-code/mita-on-vibekoodaus': { 'kuka-kirjoittaa': 'tekoaly', tarkistus: 'tarkista', rooli: 'kertominen' } },
+      }),
     )
     renderAt('/')
     expect(screen.getByRole('link', { name: /Jatka siitä mihin jäit: 0.2/ })).toHaveAttribute('href', '/polku/claude-code/terminaali')
@@ -43,13 +45,33 @@ describe('sivut', () => {
 
   it('moduulisivu lataa tietopaketin ja merkitsee sen luetuksi', async () => {
     const user = userEvent.setup()
-    renderAt('/polku/claude-code/git-ja-github')
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('0.4 Git ja GitHub')
+    renderAt('/polku/claude-code/kansiot-ja-polut')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('0.3 Kansiot ja polut')
     expect(screen.getByText('Kesken', { exact: false })).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Olen lukenut tämän' }))
     expect(screen.getByText('Tämä aihe on valmis!')).toBeInTheDocument()
-    expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!).modules['claude-code/git-ja-github']).toEqual({ visited: true, read: true })
-    expect(screen.getByRole('link', { name: /Seuraava/ })).toHaveAttribute('href', '/polku/claude-code/chat-vai-agentti')
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!).modules['claude-code/kansiot-ja-polut']).toEqual({ visited: true, read: true })
+    expect(screen.getByRole('link', { name: /Seuraava/ })).toHaveAttribute('href', '/polku/claude-code/git-ja-github')
+  })
+
+  it('simulaattorissa ajettu komento antaa merkin ja ilmoituksen', async () => {
+    const user = userEvent.setup()
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), os: 'mac' }))
+    renderAt('/polku/claude-code/terminaali')
+    const input = await screen.findByRole('textbox', { name: /Komento/ })
+    await user.type(input, 'help{Enter}')
+    expect(await screen.findByText('Uusi merkki: Ensimmäinen komento!')).toBeInTheDocument()
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!).badges['ensimmainen-komento']).toBeDefined()
+    await user.click(screen.getByRole('button', { name: /Sulje/ }))
+    expect(screen.queryByText('Uusi merkki: Ensimmäinen komento!')).not.toBeInTheDocument()
+  })
+
+  it('tietopaketin ulkoiset linkit avautuvat uuteen välilehteen ja sisäiset reitittimellä', async () => {
+    renderAt('/polku/claude-code/claude-tilaus')
+    const external = await screen.findByRole('link', { name: /claude.com\/pricing/ })
+    expect(external).toHaveAttribute('target', '_blank')
+    renderAt('/polku/claude-code/julkaise')
+    expect(await screen.findByRole('link', { name: 'vianmääritys' })).toHaveAttribute('href', '/vianmaaritys/pages-ei-nay')
   })
 
   it('tuntematon osoite näyttää 404-sivun', () => {

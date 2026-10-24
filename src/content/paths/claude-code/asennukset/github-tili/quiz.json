@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "miksi-2fa",
+      "question": "Mitä hyötyä kaksivaiheisesta tunnistautumisesta on?",
+      "options": [
+        { "id": "suoja", "text": "Pelkkä salasana ei riitä tilillesi pääsemiseen", "correct": true, "explanation": "Oikein. Tarvitaan myös puhelimesi, joten varastettu salasana ei yksin riitä." },
+        { "id": "nopeus", "text": "Kirjautuminen nopeutuu", "correct": false, "explanation": "Kirjautumiseen tulee yksi vaihe lisää. Vastineeksi tilisi on paljon paremmin suojattu." },
+        { "id": "pakko", "text": "Ilman sitä GitHubia ei voi käyttää lainkaan", "correct": false, "explanation": "Tärkein syy ei ole pakko vaan tilisi turvallisuus." }
+      ]
+    },
+    {
+      "id": "palautuskoodit",
+      "question": "Mihin palautuskoodeja tarvitaan?",
+      "options": [
+        { "id": "puhelin", "text": "Niillä pääset tilillesi, jos puhelin katoaa", "correct": true, "explanation": "Juuri näin. Säilytä ne turvallisessa paikassa muualla kuin puhelimessa." },
+        { "id": "salasana", "text": "Ne korvaavat salasanan joka kirjautumisessa", "correct": false, "explanation": "Palautuskoodit ovat varakeino hätätilanteisiin, eivät jokapäiväiseen käyttöön." },
+        { "id": "turhat", "text": "Niitä ei tarvita, ne voi ohittaa", "correct": false, "explanation": "Ilman palautuskoodeja kadonnut puhelin voi tarkoittaa, että menetät pääsyn tilillesi." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "ero",
+      "question": "Mikä on chatin ja agentin tärkein ero?",
+      "options": [
+        { "id": "tekee", "text": "Agentti voi tehdä asioita koneellasi, chat vain vastaa", "correct": true, "explanation": "Oikein. Agentti luo tiedostoja ja ajaa komentoja, kun annat siihen luvan." },
+        { "id": "fiksumpi", "text": "Agentti on aina fiksumpi kuin chat", "correct": false, "explanation": "Taustalla voi olla sama tekoäly. Ero on siinä, mitä se pystyy tekemään." },
+        { "id": "ei-eroa", "text": "Eroa ei ole, nimi vain on eri", "correct": false, "explanation": "Ero on suuri: chat kirjoittaa vastauksen, agentti tekee työn." }
+      ]
+    },
+    {
+      "id": "lupa",
+      "question": "Claude Code haluaa muokata tiedostoa. Mitä tapahtuu?",
+      "options": [
+        { "id": "kysyy", "text": "Se näyttää muutoksen ja kysyy lupaa", "correct": true, "explanation": "Juuri niin. Sinä päätät. Lue aina, mitä hyväksyt." },
+        { "id": "salaa", "text": "Se tekee muutoksen salaa", "correct": false, "explanation": "Oletuksena Claude Code kysyy lupaa ennen tiedostojen muokkaamista ja komentojen ajamista." },
+        { "id": "ei-voi", "text": "Se ei pysty muokkaamaan tiedostoja", "correct": false, "explanation": "Pystyy, ja juuri siksi se on agentti. Muokkaus tehdään kuitenkin luvallasi." }
+      ]
+    }
+  ]
+}

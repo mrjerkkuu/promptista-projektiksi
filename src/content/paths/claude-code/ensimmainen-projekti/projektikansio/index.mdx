@@ -1,3 +1,47 @@
-# Projektikansio
+Nyt alkaa oikea projekti! Teet Clauden kanssa oman <Term id="staattinen-sivu">staattisen verkkosivun</Term>: pelkkiä <Term id="html">HTML</Term>-, <Term id="css">CSS</Term>- ja <Term id="javascript">JavaScript</Term>-tiedostoja, jotka selain avaa sellaisenaan. Ensin tarvitaan kansio.
 
-Luot projektille kansion ja aloitat Git-seurannan.
+## 1. Harjoittele ensin
+
+<Terminal mission="projektikansio-harjoitus" />
+
+## 2. Tee sama oikeasti
+
+Avaa oma terminaalisi ja aja komennot yksi kerrallaan. Ensimmäinen vie sinut kotikansioon, loput luovat kansiot ja siirtyvät niihin:
+
+```
+cd ~
+mkdir projektit
+cd projektit
+mkdir oma-sivu
+cd oma-sivu
+```
+
+Tarkista komennolla `pwd`, että olet kansiossa `oma-sivu`.
+
+<Os only="windows">
+
+<Tip title="Miksi ei Tiedostot-kansioon?">
+
+Windowsissa Tiedostot-kansio (Documents) on usein OneDrive-pilvisynkronoinnin piirissä, mikä voi sotkea Gitin toimintaa. Kotikansioon tehty `projektit`-kansio on varmempi paikka.
+
+</Tip>
+
+</Os>
+
+## 3. Aloita Git-seuranta
+
+<Command id="git-init" />
+
+Git vastaa, että se loi tyhjän repon (”Initialized empty Git repository”). Kansiossa on nyt piilotettu `.git`-kansio, johon tallennuspisteet tallentuvat. Siihen ei tarvitse koskea.
+
+## 4. Avaa kansio VS Codessa
+
+<Command id="code-open-folder" />
+
+Kansio on vielä tyhjä, mutta pian sinne alkaa ilmestyä tiedostoja.
+
+<ReadMore title="Miksi juuri tämä rakenne?">
+
+Kun kaikki projektit ovat samassa `projektit`-kansiossa, ne on helppo löytää. Jokainen projekti on oma kansionsa ja oma Git-repo. Kun Claude Code käynnistetään projektin kansiossa, se työskentelee vain tämän projektin parissa.
+
+</ReadMore>

@@ -1,3 +1,39 @@
-# CLAUDE.md
+Claude ei muista edellisiä keskusteluja. Jokainen uusi keskustelu alkaa puhtaalta pöydältä. Miten Claude sitten tietää, millainen projektisi on? Vastaus on <Term id="claude-md">CLAUDE.md</Term>.
 
-Projektin muistilappu, jonka Claude lukee joka kerta.
+CLAUDE.md on projektikansiossa oleva tekstitiedosto, jonka Claude Code lukee **jokaisen keskustelun alussa**. Se on kuin muistilappu jääkaapin ovessa: pysyvät ohjeet, joita ei tarvitse toistaa joka kerta.
+
+## Mitä sinne kirjoitetaan?
+
+- Mikä projekti on ja kenelle se on tarkoitettu.
+- Tekniset rajat, esimerkiksi ”vain HTML, CSS ja JavaScript, ei kirjastoja”.
+- Toiveet tavoista: ”vastaa suomeksi”, ”selitä muutokset lyhyesti”.
+- Asiat, joita ei saa tehdä: ”älä koskaan muuta kuvat-kansion tiedostoja”.
+
+Esimerkki:
+
+```markdown
+# Oma sivu
+
+Esittelysivu käsityöharrastuksestani. Lukijat ovat kavereitani.
+
+## Säännöt
+- Vain HTML, CSS ja JavaScript. Ei kirjastoja, ei build-vaihetta.
+- Sivun pitää toimia hyvin puhelimella.
+- Vastaa minulle suomeksi ja selitä muutokset lyhyesti.
+```
+
+Tiedosto kirjoitetaan <Term id="markdown">Markdown</Term>-muodossa, mutta tavallinen teksti toimii myös.
+
+## Näin luot sen
+
+- **Komennolla:** kirjoita Claude Codessa `/init`. Claude tutkii projektin ja tekee CLAUDE.md:n pohjan. Jos tiedosto on jo olemassa, Claude ehdottaa parannuksia.
+- **Pyytämällä:** ”Lisää CLAUDE.md:hen sääntö, että sivun pitää toimia puhelimella.”
+- **Itse:** avaa tiedosto VS Codessa ja muokkaa.
+
+Lähde: [Claude Coden muisti ja CLAUDE.md](https://code.claude.com/docs/en/memory).
+
+<Tip title="Vinkki">
+
+Huomasitko, että toistat samaa ohjetta keskustelusta toiseen? Lisää se CLAUDE.md:hen.
+
+</Tip>

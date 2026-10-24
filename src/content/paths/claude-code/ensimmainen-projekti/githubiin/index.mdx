@@ -1,3 +1,41 @@
-# GitHubiin
+Sivu toimii koneellasi. Nyt tehdään ensimmäinen tallennuspiste ja viedään työ GitHubiin talteen.
 
-Tallennat työn commitiksi ja lähetät sen omaan GitHub-repoon.
+## 1. Tee ensimmäinen commit
+
+Aja komennot projektikansiossa (voit käyttää Claude Coden rinnalla toista terminaali-ikkunaa):
+
+<Command id="git-status" />
+
+Näet listan uusista tiedostoista. Valitse ne kaikki mukaan ja tee commit:
+
+<Command id="git-add-all" />
+
+<Command id="git-commit" />
+
+Ensimmäinen tallennuspiste on tehty!
+
+## 2. Luo GitHub-repo ja lähetä työ sinne
+
+Yksi komento luo GitHubiin uuden repon nimeltä `oma-sivu`, yhdistää sen kansioosi ja lähettää commitit sinne:
+
+<Command id="gh-repo-create" />
+
+<Tip type="warning" title="Julkinen tarkoittaa julkista">
+
+`--public` tekee reposta julkisen: kuka tahansa voi nähdä sen. Se on tarpeen, jos haluat julkaista sivun ilmaiseksi (seuraava bonustehtävä). Älä siis laita repoon mitään salaista. Jos haluat yksityisen repon, vaihda komennossa `--public` tilalle `--private`.
+
+</Tip>
+
+## 3. Katso tulos
+
+<Command id="gh-browse" />
+
+Selain avaa reposi GitHubissa. Näet siellä tiedostosi ja commit-viestisi.
+
+## Jatkossa
+
+Kun teet muutoksia, tallenna ja lähetä ne näin: `git add -A`, `git commit -m "Mitä muuttui"` ja lopuksi:
+
+<Command id="git-push" />
+
+Voit myös pyytää Claudea: ”Tee commit ja lähetä muutokset GitHubiin.”

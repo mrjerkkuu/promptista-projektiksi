@@ -1,3 +1,52 @@
-# GitHub CLI
+<Term id="gh">GitHub CLI</Term> on GitHubin oma terminaalityökalu, jonka komento on `gh`. Sen avulla kirjaudut GitHubiin kerran, ja sen jälkeen voit luoda repoja ja lähettää työsi GitHubiin suoraan terminaalista.
 
-Asennat gh-työkalun ja kirjaudut sillä GitHubiin.
+## 1. Asenna GitHub CLI
+
+<Os only="windows">
+
+<Command id="install-gh" />
+
+</Os>
+
+<Os only="mac">
+
+Macin virallinen asennustapa käyttää <Term id="homebrew">Homebrew</Term>-pakettienhallintaa:
+
+<Command id="install-gh" />
+
+Jos Pääte vastaa `zsh: command not found: brew`, asenna ensin Homebrew. Komento kysyy Macisi salasanaa: kirjoita se ja paina Enter. Salasana ei näy kirjoittaessa, ja se on normaalia. Lue asennuksen lopussa näkyvä ”Next steps” -osio ja aja sen komennot.
+
+<Command id="install-homebrew" />
+
+<ReadMore title="Asennus ilman Homebrew’ta">
+
+GitHub tarjoaa myös Mac-asennuspaketin (.pkg) osoitteessa [github.com/cli/cli/releases/latest](https://github.com/cli/cli/releases/latest). Virallisen ohjeen mukaan paketti on toistaiseksi allekirjoittamaton, joten macOS voi varoittaa siitä. Homebrew on siksi suositeltavampi tapa.
+
+</ReadMore>
+
+</Os>
+
+## 2. Käynnistä terminaali uudelleen
+
+<Os only="windows">Jos käytät Windows Terminalia, avaa kokonaan uusi ikkuna. Uusi välilehti ei riitä.</Os>
+
+<VerifyStep id="gh" />
+
+## 3. Kirjaudu GitHubiin
+
+<Command id="gh-auth-login" />
+
+gh kysyy muutaman kysymyksen. Valitse nuolinäppäimillä ja vahvista Enterillä:
+
+1. **Where do you use GitHub?** → GitHub.com
+2. **What is your preferred protocol?** → HTTPS
+3. **Authenticate Git with your GitHub credentials?** → Yes
+4. **How would you like to authenticate?** → Login with a web browser
+
+gh näyttää kertakäyttöisen koodin (esim. `ABCD-1234`). Paina Enter, jolloin selain aukeaa. Kirjaudu GitHubiin, syötä koodi ja hyväksy. Kun terminaali kertoo ”Logged in as” ja käyttäjänimesi, olet valmis.
+
+<Tip>
+
+Jos jokin menee pieleen, katso vianmäärityksestä [GitHub-kirjautuminen gh-työkalulla ei onnistu](#/vianmaaritys/gh-kirjautuminen).
+
+</Tip>

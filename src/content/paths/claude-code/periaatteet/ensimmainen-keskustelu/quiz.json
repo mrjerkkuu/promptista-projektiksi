@@ -1,0 +1,31 @@
+{
+  "questions": [
+    {
+      "id": "missa",
+      "question": "Missä kansiossa Claude Code työskentelee?",
+      "options": [
+        { "id": "kaynnistys", "text": "Siinä kansiossa, jossa käynnistit sen", "correct": true, "explanation": "Oikein. Siksi siirrytään ensin projektin kansioon cd-komennolla ja käynnistetään Claude vasta sitten." },
+        { "id": "koko-kone", "text": "Aina koko tietokoneella", "correct": false, "explanation": "Claude Code työskentelee siinä kansiossa, jossa se käynnistettiin." },
+        { "id": "pilvi", "text": "Vain pilvessä, ei omalla koneella", "correct": false, "explanation": "Claude Code muokkaa tiedostoja omalla koneellasi. Siksi se kysyy lupaa." }
+      ]
+    },
+    {
+      "id": "keskeytys",
+      "question": "Claude lähti tekemään jotain, mitä et tarkoittanut. Mitä teet?",
+      "options": [
+        { "id": "esc", "text": "Painan Esc ja kerron tarkemmin, mitä haluan", "correct": true, "explanation": "Juuri niin. Esc pysäyttää työn, ja voit ohjata Clauden oikeaan suuntaan." },
+        { "id": "sulje", "text": "Suljen tietokoneen virtanapista", "correct": false, "explanation": "Turhan järeä keino. Esc riittää, ja tehty työ säilyy." },
+        { "id": "odota", "text": "Odotan ja toivon parasta", "correct": false, "explanation": "Sinä olet ohjaimissa. Keskeytä ja tarkenna, se on täysin normaalia." }
+      ]
+    },
+    {
+      "id": "exit",
+      "question": "Miten lopetat Claude Coden?",
+      "options": [
+        { "id": "lopeta", "text": "Kirjoitan Claudelle: lopeta", "correct": false, "explanation": "Tavallinen viesti menee Claudelle keskusteluna. Ohjelma lopetetaan komennolla /exit." },
+        { "id": "exit", "text": "Kirjoitan /exit ja painan Enter", "correct": true, "explanation": "Oikein. Kauttaviivalla alkavat komennot ovat Claude Coden omia komentoja." },
+        { "id": "help", "text": "Kirjoitan /help", "correct": false, "explanation": "/help näyttää ohjeen. Lopetus tehdään komennolla /exit." }
+      ]
+    }
+  ]
+}

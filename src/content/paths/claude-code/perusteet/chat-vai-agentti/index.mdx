@@ -1,3 +1,26 @@
-# Chat vai AI-agentti?
+Olet ehkä jo kokeillut tekoälyä selaimessa: kirjoitat kysymyksen, ja tekoäly vastaa. Se on **chat**. Claude Code on **<Term id="agentti">agentti</Term>**, ja ero on iso.
 
-Chat vastaa, agentti tekee: luo tiedostoja ja ajaa komentoja koneellasi.
+## Chat vastaa, agentti tekee
+
+| | Chat selaimessa | Agentti (Claude Code) |
+|---|---|---|
+| Mitä se tekee? | kirjoittaa vastauksen | lukee ja luo tiedostoja, ajaa komentoja |
+| Koodi | sinä kopioit sen itse oikeaan paikkaan | se kirjoittaa koodin suoraan projektiisi |
+| Virheet | sinä kerrot virheen ja kopioit korjauksen | se voi ajaa sivun, huomata virheen ja korjata sen |
+| Missä? | selaimessa | terminaalissa, sinun kansiossasi |
+
+Chatissa sinä olet välikäsi, joka siirtää tekstiä edestakaisin. Agentti tekee työn itse, ja sinä ohjaat ja tarkistat.
+
+## Kuka päättää?
+
+Koska agentti tekee asioita koneellasi, se kysyy lupaa. Ennen kuin Claude Code muokkaa tiedostoa tai ajaa komennon, se näyttää, mitä aikoo tehdä, ja odottaa vastaustasi. Tätä kutsutaan <Term id="lupa">lupakyselyksi</Term>. Lue aina, mitä hyväksyt. Tähän palataan oppitunnilla 2.5.
+
+Claude Code työskentelee siinä kansiossa, jossa käynnistät sen. Siksi jokaiselle projektille tehdään oma kansio, ja Claude käynnistetään aina projektin kansiossa.
+
+<ReadMore title="Miksi agentin kanssa pitää olla tarkempi?">
+
+Chatissa huono vastaus on vain huono vastaus. Agentti taas voi muuttaa monta tiedostoa kerralla. Siksi kannattaa suunnitella ensin (plan mode, oppitunti 2.3) ja tehdä tallennuspisteitä usein (Git, oppitunti 2.6). Silloin rohkeakin kokeilu on turvallista.
+
+</ReadMore>
+
+<Quiz />

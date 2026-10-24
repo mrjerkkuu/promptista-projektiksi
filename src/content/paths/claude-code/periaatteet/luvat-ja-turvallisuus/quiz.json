@@ -1,0 +1,31 @@
+{
+  "questions": [
+    {
+      "id": "outo-komento",
+      "question": "Claude pyytää lupaa ajaa komennon, jota et ymmärrä. Mitä teet?",
+      "options": [
+        { "id": "kysy", "text": "Vastaan No ja kysyn, mitä komento tekee", "correct": true, "explanation": "Oikein. Hyväksy vasta, kun tiedät, mitä hyväksyt." },
+        { "id": "hyvaksy", "text": "Hyväksyn, Claude tietää kyllä", "correct": false, "explanation": "Claude on yleensä oikeassa, mutta sinä vastaat koneestasi. Lue ja kysy." },
+        { "id": "aina", "text": "Valitsen ”don't ask again”, ettei tarvitse lukea", "correct": false, "explanation": "Silloin samanlaiset komennot ajetaan jatkossa kysymättä. Valitse se vain toimenpiteille, jotka ymmärrät." }
+      ]
+    },
+    {
+      "id": "salasana",
+      "question": "Claude tarvitsee pääsyn GitHubiin. Mitä teet?",
+      "options": [
+        { "id": "anna", "text": "Kirjoitan GitHub-salasanani keskusteluun", "correct": false, "explanation": "Älä koskaan kirjoita salasanoja keskusteluun." },
+        { "id": "gh", "text": "Kirjaudun itse gh-työkalulla selaimessa", "correct": true, "explanation": "Juuri näin. Kirjautuminen tehdään selaimessa, ja salasana pysyy vain sinulla." },
+        { "id": "kaveri", "text": "Pyydän kaverin tunnukset lainaan", "correct": false, "explanation": "Älä käytä muiden tunnuksia. Kirjaudu omalla tililläsi." }
+      ]
+    },
+    {
+      "id": "api-avain",
+      "question": "Mihin API-avain kuuluu?",
+      "options": [
+        { "id": "koodi", "text": "Suoraan koodiin, niin se löytyy helposti", "correct": false, "explanation": "Koodi menee GitHubiin, ja silloin avain päätyy julkiseksi." },
+        { "id": "env", "text": ".env-tiedostoon, joka on lisätty .gitignoreen", "correct": true, "explanation": "Oikein. Näin avain pysyy omalla koneellasi eikä päädy GitHubiin." },
+        { "id": "readme", "text": "README-tiedostoon, jotta muutkin voivat käyttää sitä", "correct": false, "explanation": "API-avain on kuin salasana: sitä ei jaeta." }
+      ]
+    }
+  ]
+}

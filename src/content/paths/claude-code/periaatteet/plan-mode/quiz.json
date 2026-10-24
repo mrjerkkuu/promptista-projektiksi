@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "mika",
+      "question": "Mitä Claude tekee plan modessa?",
+      "options": [
+        { "id": "suunnittelee", "text": "Tutkii ja ehdottaa suunnitelman, mutta ei muuta tiedostoja", "correct": true, "explanation": "Oikein. Sinä luet suunnitelman ja päätät, rakennetaanko." },
+        { "id": "rakentaa", "text": "Rakentaa kaiken mahdollisimman nopeasti", "correct": false, "explanation": "Päinvastoin: plan modessa ei vielä rakenneta mitään." },
+        { "id": "poistaa", "text": "Poistaa vanhat suunnitelmat", "correct": false, "explanation": "Plan mode ei poista mitään. Se on suunnittelua ennen tekemistä." }
+      ]
+    },
+    {
+      "id": "nappain",
+      "question": "Millä näppäimillä vaihdat Claude Codessa plan modeen?",
+      "options": [
+        { "id": "ctrl-p", "text": "Ctrl+P", "correct": false, "explanation": "Ei tämä. Tila vaihdetaan näppäinyhdistelmällä Shift+Tab." },
+        { "id": "shift-tab", "text": "Shift+Tab (tarvittaessa useamman kerran)", "correct": true, "explanation": "Juuri niin. Paina, kunnes alareunassa lukee plan mode." },
+        { "id": "enter", "text": "Enter kolme kertaa", "correct": false, "explanation": "Enter lähettää viestin. Tila vaihdetaan näppäinyhdistelmällä Shift+Tab." }
+      ]
+    }
+  ]
+}

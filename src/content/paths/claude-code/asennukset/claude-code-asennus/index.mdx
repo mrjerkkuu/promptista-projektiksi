@@ -1,3 +1,61 @@
-# Claude Code
+Nyt asennetaan itse pääosa: <Term id="claude-code">Claude Code</Term>. Asennus tehdään Anthropicin virallisella asennuskomennolla. Järjestelmänvalvojan oikeuksia ei tarvita.
 
-Asennat Claude Coden ja kirjaudut sisään.
+## 1. Asenna Claude Code
+
+<Os only="windows">
+
+Aja komento **PowerShell 7:ssä**:
+
+<Command id="install-claude-code" />
+
+Claude Code toimii parhaiten, kun Git on asennettu ensin. Sen teit jo oppitunnilla 1.2.
+
+</Os>
+
+<Os only="mac">
+
+Aja komento Päätteessä:
+
+<Command id="install-claude-code" />
+
+Claude Code vaatii macOS 13:n tai uudemman.
+
+</Os>
+
+Asennus voi kestää hetken. Odota, kunnes kehote palaa näkyviin.
+
+## 2. Avaa uusi terminaali-ikkuna
+
+Sulje terminaali ja avaa uusi ikkuna. Sitten tarkistetaan, että asennus onnistui.
+
+<VerifyStep id="claude" />
+
+## 3. Kirjaudu sisään
+
+Käynnistä Claude Code kirjoittamalla:
+
+<Command id="start-claude" />
+
+Ensimmäisellä kerralla Claude Code ohjaa kirjautumaan:
+
+1. Valitse kirjautumistapa, joka vastaa tilaustasi (Claude-tilaus tai Console-tili).
+2. Selain aukeaa. Kirjaudu samalla tilillä, jolla teit tilauksen, ja hyväksy.
+3. Palaa terminaaliin. Kun näet tervetulotekstin ja kehotteen, olet sisällä.
+
+Voit lopettaa kirjoittamalla `/exit` ja painamalla Enter. Seuraavalla kerralla kirjautumista ei kysytä.
+
+<Tip title="Claude kysyy, luotatko kansioon?">
+
+Claude Code voi kysyä, luotatko kansioon, jossa käynnistit sen. Kun kyse on omasta kansiostasi, voit vastata kyllä. Tutustumme kansioihin ja lupiin tarkemmin aihealueella 2.
+
+</Tip>
+
+<ReadMore title="Jos jokin ei toimi">
+
+Komento `claude doctor` tarkistaa asennuksen ja kertoo mahdollisista ongelmista:
+
+<Command id="claude-doctor" />
+
+Tiliä voi vaihtaa tai kirjautua uudelleen kirjoittamalla Claude Codessa `/login`. Katso myös [vianmääritys](#/vianmaaritys/claude-kirjautuminen).
+
+</ReadMore>

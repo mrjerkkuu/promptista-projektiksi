@@ -148,6 +148,7 @@ export function validateContent(contentDir: string): ValidationResult {
         if (hasQuiz) parseFile(quizSchema, quizFile, errors)
 
         const source = fs.readFileSync(mdxFile, 'utf8')
+        if (/^# /m.test(stripCode(source))) errors.push(rel(mdxFile) + ': älä käytä #-pääotsikkoa (sivu näyttää otsikon path.jsonista), aloita väliotsikot ##-tasolta')
         const tags = findTags(source)
         let quizTags = 0
         for (const tag of tags) {

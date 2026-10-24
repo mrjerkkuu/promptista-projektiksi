@@ -1,0 +1,31 @@
+{
+  "questions": [
+    {
+      "id": "commit",
+      "question": "Mikä on commit?",
+      "options": [
+        { "id": "tallennus", "text": "Tallennuspiste, johon voi myöhemmin palata", "correct": true, "explanation": "Oikein. Commit on kuin pelin tallennuspiste, ja siinä on mukana viesti muutoksesta." },
+        { "id": "poisto", "text": "Komento, joka poistaa vanhat tiedostot", "correct": false, "explanation": "Commit ei poista mitään. Se tallentaa tilannekuvan tiedostoista." },
+        { "id": "julkaisu", "text": "Sivun julkaiseminen nettiin", "correct": false, "explanation": "Julkaisu on eri asia. Commit tehdään omalla koneella, eikä se näy kenellekään muulle." }
+      ]
+    },
+    {
+      "id": "ero",
+      "question": "Mikä on Gitin ja GitHubin ero?",
+      "options": [
+        { "id": "sama", "text": "Ne ovat sama asia eri nimillä", "correct": false, "explanation": "Nimet ovat samankaltaiset, mutta Git on ohjelma ja GitHub verkkopalvelu." },
+        { "id": "ero", "text": "Git on ohjelma koneellasi, GitHub on verkkopalvelu, jossa tallennukset säilyvät", "correct": true, "explanation": "Juuri näin. Git tekee tallennuspisteet, GitHub säilyttää ne pilvessä." },
+        { "id": "maksu", "text": "Git on maksullinen, GitHub ilmainen", "correct": false, "explanation": "Git on ilmainen ohjelma. Myös GitHubin perusominaisuudet ovat ilmaisia." }
+      ]
+    },
+    {
+      "id": "push",
+      "question": "Mitä push tekee?",
+      "options": [
+        { "id": "lahettaa", "text": "Lähettää commitit GitHubiin", "correct": true, "explanation": "Oikein. Pushin jälkeen työsi on tallessa myös pilvessä." },
+        { "id": "lataa", "text": "Lataa uuden version Gitistä", "correct": false, "explanation": "Push lähettää omia muutoksiasi, se ei lataa ohjelmia." },
+        { "id": "commit", "text": "Tekee uuden commitin", "correct": false, "explanation": "Commit tehdään ensin erikseen. Push lähettää valmiit commitit." }
+      ]
+    }
+  ]
+}

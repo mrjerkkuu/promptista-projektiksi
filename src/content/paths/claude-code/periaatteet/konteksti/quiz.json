@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "mika",
+      "question": "Mitä konteksti tarkoittaa?",
+      "options": [
+        { "id": "muisti", "text": "Kaikki, mitä Claude pitää mielessään tämän keskustelun aikana", "correct": true, "explanation": "Oikein. Viestit, tiedostot ja komentojen tulokset vievät kaikki tilaa kontekstissa." },
+        { "id": "kaikki", "text": "Kaikki keskustelut, joita olet koskaan käynyt Clauden kanssa", "correct": false, "explanation": "Claude ei muista aiempia keskusteluja. Siksi pysyvät ohjeet kirjoitetaan CLAUDE.md:hen." },
+        { "id": "kansio", "text": "Kansio, jossa projekti on", "correct": false, "explanation": "Kansio on projektin paikka. Konteksti on keskustelun ”työpöytä”." }
+      ]
+    },
+    {
+      "id": "uusi",
+      "question": "Siirryt kokonaan uuteen tehtävään, ja Claude on alkanut kiertää kehää. Mitä teet?",
+      "options": [
+        { "id": "clear", "text": "Aloitan uuden keskustelun komennolla /clear", "correct": true, "explanation": "Juuri niin. Puhdas konteksti auttaa usein heti." },
+        { "id": "jatka", "text": "Jatkan samaa keskustelua loputtomiin", "correct": false, "explanation": "Liian pitkä keskustelu täyttää kontekstin, ja Clauden työ heikkenee." },
+        { "id": "asenna", "text": "Asennan Claude Coden uudelleen", "correct": false, "explanation": "Asennuksessa ei ole vikaa. Uusi keskustelu riittää." }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,59 @@
-# Rakenna
+Suunnitelma on valmis, joten rakennetaan!
 
-Claude rakentaa sivun, sinä avaat sen selaimessa ja pyydät muutoksia.
+## 1. Hyväksy suunnitelma
+
+Kun Claude kysyy, aloitetaanko suunnitelman toteuttaminen, valitse vaihtoehto, jossa muutokset hyväksytään yksi kerrallaan. Näin näet jokaisen tiedoston ennen kuin se tallennetaan. Claude luo tiedostot, esimerkiksi `index.html`, `style.css` ja `CLAUDE.md`, ja kysyy jokaisen kohdalla lupaa.
+
+Seuraa samalla VS Codessa, kuinka tiedostot ilmestyvät kansioon.
+
+## 2. Avaa sivu selaimessa
+
+<Os only="windows">
+
+Avaa **uusi** PowerShell-ikkuna, siirry projektikansioon (`cd ~\projektit\oma-sivu`) ja aja:
+
+<Command id="open-file-windows" />
+
+</Os>
+
+<Os only="mac">
+
+Avaa **uusi** Pääte-ikkuna, siirry projektikansioon (`cd ~/projektit/oma-sivu`) ja aja:
+
+<Command id="open-file-mac" />
+
+Toinen tapa: avaa kansio Finderissa ja kaksoisnapsauta tiedostoa `index.html`.
+
+</Os>
+
+Sivu aukeaa selaimeen. Onneksi olkoon, teit juuri verkkosivun!
+
+## 3. Viimeistele keskustelemalla
+
+Nyt alkaa hauskin osa. Katso sivua ja kerro Claudelle, mitä haluat muuttaa:
+
+```
+Tee otsikosta isompi ja lisää sen alle pieni koiran kuva -emoji.
+```
+
+```
+Kun avaan sivun puhelimella, faktat menevät päällekkäin. Korjaa se.
+```
+
+Päivitä selain muutosten jälkeen: Windowsilla F5, Macilla Cmd+R.
+
+<Tip title="Pienin askelin">
+
+Pyydä yksi muutos kerrallaan ja tarkista tulos ennen seuraavaa. Jos jokin menee pieleen, voit palata komennolla `/rewind`. Kun sivu näyttää hyvältä, siirry seuraavaan oppituntiin ja tallenna työsi.
+
+</Tip>
+
+<ReadMore title="Mitä tiedostot sisältävät?">
+
+- `index.html` on sivun runko ja sisältö: otsikot, tekstit ja kuvat.
+- `style.css` määrää ulkoasun: värit, fontit ja asettelun.
+- `script.js` (jos sellainen tehtiin) lisää toimintoja, esimerkiksi painikkeita.
+
+Voit pyytää Claudea selittämään: ”Selitä index.html rivi riviltä aloittelijalle.”
+
+</ReadMore>

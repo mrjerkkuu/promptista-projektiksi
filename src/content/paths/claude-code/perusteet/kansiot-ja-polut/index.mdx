@@ -1,3 +1,55 @@
-# Kansiot ja polut
+Tietokoneen tiedostot ovat järjestyksessä kuin mapit hyllyssä. <Term id="kansio">Kansio</Term> on mappi, ja sen sisällä voi olla <Term id="tiedosto">tiedostoja</Term> ja toisia kansioita.
 
-Mikä on kansio ja polku, ja miten tiedät, missä kansiossa olet.
+<Term id="polku">Polku</Term> on kansion osoite. Se kertoo reitin kansiosta toiseen, kuten katuosoite:
+
+<Os only="windows">
+
+```
+C:\Users\maija\Documents
+```
+
+Kenoviiva `\` erottaa kansiot toisistaan.
+
+</Os>
+
+<Os only="mac">
+
+```
+/Users/maija/Documents
+```
+
+Kauttaviiva `/` erottaa kansiot toisistaan.
+
+</Os>
+
+Oma <Term id="kotikansio">kotikansiosi</Term> on yllä kohdassa `maija`. Terminaalissa sitä merkitään lyhyesti aaltoviivalla `~`.
+
+## Missä kansiossa olen?
+
+Terminaali on aina jossakin kansiossa, ihan kuin olisit kävelemässä talossa huoneesta toiseen. Komennot koskevat sitä kansiota, jossa olet. Siksi on tärkeää tietää, missä olet.
+
+| Komento | Mitä se tekee |
+|---|---|
+| `pwd` | kertoo, missä kansiossa olet |
+| `ls` | listaa, mitä kansiossa on (Windowsilla myös `dir`) |
+| `cd kansio` | siirtyy kansioon |
+| `cd ..` | siirtyy yhden kansion ylöspäin |
+| `mkdir nimi` | luo uuden kansion |
+
+Kokeile näitä alla. Ensimmäisessä harjoituksessa liikut kansioiden välillä, toisessa luot oman kansion.
+
+<Terminal mission="kansioissa-liikkuminen" />
+
+<Terminal mission="luo-projektikansio" />
+
+<Tip title="Vinkki">
+
+Kansioiden nimissä kannattaa välttää välilyöntejä ja ääkkösiä. Nimi `oma-sivu` on terminaalissa helpompi kuin `Oma sivu`.
+
+</Tip>
+
+<ReadMore title="Entä jos kansion nimessä on välilyönti?">
+
+Silloin nimi kirjoitetaan lainausmerkkien sisään, esimerkiksi `cd "Oma kansio"`. Muuten terminaali luulee, että kyseessä on kaksi eri sanaa.
+
+</ReadMore>

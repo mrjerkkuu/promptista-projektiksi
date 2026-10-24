@@ -1,3 +1,40 @@
-# Git tallennuspisteinä
+Muistatko pelin tallennuspisteet? Nyt otetaan ne käyttöön. Kultainen sääntö: **tee commit ennen jokaista isoa muutosta.** Jos muutos epäonnistuu, palaat helposti takaisin.
 
-Tallenna ennen isoa muutosta ja opettele palaamaan taaksepäin.
+## Tallennuspiste kolmella komennolla
+
+Aja komennot projektikansiossa:
+
+<Command id="git-status" />
+
+<Command id="git-add-all" />
+
+<Command id="git-commit" />
+
+Vaihda lainausmerkkien sisään oma viestisi, joka kertoo, mitä muuttui, esimerkiksi ”Lisätty galleria”.
+
+Voit myös pyytää Claudea: ”Tee commit, jonka viesti kuvaa tämän päivän muutokset.” Claude kysyy lupaa ennen kuin ajaa Git-komennot.
+
+## Historian katsominen
+
+<Command id="git-log" />
+
+Uusin tallennuspiste on ylimpänä. Lista sulkeutuu q-näppäimellä, jos se ei mahdu kerralla näkyviin.
+
+## Näin palaat takaisin
+
+- **Yksi tiedosto:** palauta tiedosto viimeisimmän commitin mukaiseksi. Tallentamattomat muutokset siinä tiedostossa katoavat.
+
+<Command id="git-restore" />
+
+- **Clauden muutos:** kirjoita Claude Codessa `/rewind` tai paina Esc kahdesti tyhjässä kehotteessa. Voit palata aiempaan kohtaan keskustelussa ja koodissa.
+- **Pyydä apua:** ”Palauta sivu siihen tilaan, jossa se oli edellisessä commitissa.”
+
+<Tip title="Huomaa">
+
+Clauden `/rewind` on kätevä, mutta se ei korvaa Gitiä. Virallisen ohjeen mukaan se ei esimerkiksi seuraa tiedostoja, joita on muutettu terminaalikomennoilla. Commit on varmin tallennuspiste.
+
+</Tip>
+
+Lähteet: [git commit](https://git-scm.com/docs/git-commit), [git restore](https://git-scm.com/docs/git-restore), [Claude Coden checkpointit](https://code.claude.com/docs/en/checkpointing).
+
+<Quiz />

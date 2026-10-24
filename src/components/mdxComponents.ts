@@ -1,5 +1,6 @@
 import type { MDXComponents } from 'mdx/types'
 import { Command } from './Command'
+import { MdxLink } from './MdxLink'
 import { Os } from './Os'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
@@ -13,6 +14,7 @@ import { VerifyStep } from './VerifyStep'
  * MDX_COMPONENTS (src/schemas/content.ts) samoina.
  */
 export const mdxComponents: MDXComponents = {
+  a: MdxLink,
   Command,
   Os,
   Quiz,

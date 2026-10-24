@@ -61,7 +61,7 @@ function makeFixture(): string {
   })
   write(
     'paths/polku/aihe/moduuli/index.mdx',
-    '# M\n\n<Term id="git">Git</Term> <Command id="check-git" /> <Terminal mission="m-1" /> <VerifyStep id="git" />\n<Os only="mac">x</Os>\n<Quiz />\n',
+    '## M\n\n<Term id="git">Git</Term> <Command id="check-git" /> <Terminal mission="m-1" /> <VerifyStep id="git" />\n<Os only="mac">x</Os>\n<Quiz />\n',
   )
   write('paths/polku/aihe/moduuli/quiz.json', {
     questions: [1, 2].map((n) => ({
@@ -173,6 +173,12 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
     const result = validateContent(d)
     expect(result.errors).toEqual([])
     expect(result.warnings.join()).toMatch(/check-git/)
+  })
+
+  it('#-pääotsikko on kielletty', () => {
+    const d = fixture()
+    replaceIn(mdx(d), '## M', '# M')
+    expect(validateContent(d).errors.join()).toMatch(/pääotsikkoa/)
   })
 
   it('rikkinäinen JSON', () => {

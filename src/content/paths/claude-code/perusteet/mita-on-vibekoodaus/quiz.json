@@ -1,0 +1,31 @@
+{
+  "questions": [
+    {
+      "id": "kuka-kirjoittaa",
+      "question": "Kuka vibekoodauksessa kirjoittaa koodin?",
+      "options": [
+        { "id": "tekoaly", "text": "Tekoäly kirjoittaa, sinä ohjaat ja tarkistat", "correct": true, "explanation": "Juuri niin. Sinä kerrot, mitä haluat, ja arvioit tuloksen." },
+        { "id": "sina", "text": "Sinä kirjoitat kaiken itse", "correct": false, "explanation": "Silloin kyse olisi perinteisestä ohjelmoinnista. Vibekoodauksessa tekoäly kirjoittaa koodin." },
+        { "id": "kukaan", "text": "Koodi syntyy itsestään ilman ohjeita", "correct": false, "explanation": "Tekoäly tarvitsee aina sinun ohjeesi. Mitä selkeämmin kerrot, sitä parempi tulos." }
+      ]
+    },
+    {
+      "id": "tarkistus",
+      "question": "Tekoäly vastaa varmalla äänellä. Mitä teet?",
+      "options": [
+        { "id": "luota", "text": "Luotan vastaukseen, koska se kuulostaa varmalta", "correct": false, "explanation": "Varma sävy ei takaa oikeaa vastausta. Tekoäly voi olla väärässä." },
+        { "id": "tarkista", "text": "Kokeilen ja tarkistan tuloksen itse", "correct": true, "explanation": "Hyvä! Avaa sivu, kokeile toimintoja ja kysy tarvittaessa lisää." },
+        { "id": "luovu", "text": "En käytä tekoälyä ollenkaan", "correct": false, "explanation": "Tekoäly on hyödyllinen työkalu. Riittää, että tarkistat sen tuottaman työn." }
+      ]
+    },
+    {
+      "id": "rooli",
+      "question": "Mikä on vibekoodaajan tärkein taito?",
+      "options": [
+        { "id": "konekieli", "text": "Konekielen ulkoa osaaminen", "correct": false, "explanation": "Sitä ei tarvita. Tekoäly hoitaa koodin kirjoittamisen." },
+        { "id": "kertominen", "text": "Selkeä kertominen: mitä, miksi ja millä rajoilla", "correct": true, "explanation": "Oikein! Hyvä ohje on puoli työtä." },
+        { "id": "nopeus", "text": "Nopea kirjoittaminen näppäimistöllä", "correct": false, "explanation": "Nopeudesta ei ole haittaa, mutta ajatuksen selkeys on paljon tärkeämpää." }
+      ]
+    }
+  ]
+}

@@ -74,3 +74,16 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
     - "Ensimmäinen commit" myönnetään, kun moduuli 3.4 (GitHubiin) on valmis, koska ensimmäinen commit tehdään siinä (suunnitelman luku 5).
 34. **Merkkien kuvakkeet ovat placeholder-emojeja** (`aria-hidden`). Design korvaa ne myöhemmin.
 35. **Varmistuksen väärä vaihtoehto voi ohjata eri vianmäärityskohtaan Windowsilla ja Macilla** (`troubleshooting: { windows, mac }`), koska esim. ”brew puuttuu” koskee vain Macia.
+
+## Vaihe 8: sisältö
+
+36. **Komennot tarkistettiin taustalla ajetulla tarkistuksella kahdessa erässä** (tulokset: `docs/komentojen-tarkistus.md`). Kaikilla `commands.json`:n komennoilla on `source` ja `verifiedAt: "2026-10-24"`, paitsi Macin `open index.html` (`open-file-mac`): Applen virallinen sivu näyttää vain muodon `open -a`, joten komento on merkitty TODO:ksi. Rinnalla neuvotaan avaamaan tiedosto Finderista.
+37. **Perusnavigointikomennot (`cd`, `mkdir`, `pwd`) ovat tietopaketeissa tavallisina koodilohkoina**, ei `<Command>`-komponentteina. Ne eivät ole asennuskomentoja (luku 12 koskee asennuskomentoja), ja ne opetetaan ensin simulaattorissa. Macin zsh-/BSD-komennoille ei myöskään löytynyt Applen virallista lähdettä.
+38. **Gitin asennus Macilla: `xcode-select --install`** (git-scm.com:n listaama tapa, ei vaadi Homebrew’ta). Homebrew mainitaan vaihtoehtona. **GitHub CLI Macilla: `brew install gh`** (virallinen ensisijainen tapa). Homebrew’n asennus on samalla sivulla, ja .pkg-paketti mainitaan "Lue lisää" -osiossa (virallisen ohjeen mukaan allekirjoittamaton).
+39. **VS Code asennetaan lataamalla** (virallisella Windows-sivulla ei ole winget-komentoa). Siksi `<Command>`-komentoa ei ole, vaan on linkki viralliseen ohjeeseen.
+40. **`git add -A` eikä `git add .`**, koska `-A` on dokumentoitu valitsin (git-scm.com/docs/git-add). `gh repo create oma-sivu --public --source=. --remote=origin --push` on koottu manuaalin dokumentoiduista valitsimista. Sama yhdistelmä ei ole sivulla sellaisenaan (merkitty tarkistuslistaan).
+41. **Projektikansio on `~/projektit/oma-sivu`**, ei Tiedostot-kansio, koska Windowsin Documents on usein OneDrive-synkronoinnin piirissä.
+42. **Visat on 12 moduulissa** (0.1, 0.2, 0.4, 0.5, 1.4, 1.6, 2.1, 2.2, 2.3, 2.5, 2.6, 2.7). Moduuleissa 0.3 ja 3.1 on simulaattoriharjoitus, ja asennusmoduuleissa on varmistukset.
+43. **Tietopakettien ulkoiset linkit avautuvat uuteen välilehteen** (`MdxLink`), ja sisäiset linkit kirjoitetaan muodossa `#/vianmaaritys/...`, jolloin ne kulkevat reitittimen kautta.
+44. **Sanaston "Lue lisää" -linkit** osoittavat virallisiin ohjeisiin (Anthropic, GitHub, Microsoft, Apple, MDN) tai Wikipediaan. Linkkejä ei ole tarkistettu yksitellen (ks. tarkistuslista).
+45. **Uusi build-sääntö:** tietopaketeissa ei saa käyttää `#`-pääotsikkoa.
