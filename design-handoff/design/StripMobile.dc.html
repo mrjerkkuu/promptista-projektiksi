@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Kaikki näkymät 360 px</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 3848px; min-height: 5400px; box-sizing: border-box; padding: 48px; display: flex; gap: 64px; align-items: flex-start; background: var(--surface-2);">
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Etusivu · kesken</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppHome" state="progress" hint-size="360px,2400px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Polkusivu · kesken</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppPath" state="progress" hint-size="360px,5000px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Moduuli 1.2 Git · Windows</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="git" os="Windows" read="unread" hint-size="360px,4000px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Moduuli 0.2 · luettu, visa kesken</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="terminal" os="Windows" read="read" hint-size="360px,4600px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Sanasto</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppGlossary" hint-size="360px,5000px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Vianmääritys · Windows</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppTrouble" os="Windows" open="powershell-skripti" hint-size="360px,3000px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Merkit · 1/9</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppBadges" earned="1" hint-size="360px,2400px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Asetukset</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppSettings" state="default" hint-size="360px,2400px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Sivua ei löytynyt</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppNotFound" hint-size="360px,1100px"></dc-import></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3848,"height":5400}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

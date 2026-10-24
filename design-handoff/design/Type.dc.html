@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Typografia, mitat ja liike</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 1440px; height: 1900px; box-sizing: border-box; padding: 64px; display: flex; flex-direction: column; gap: 48px; background: var(--bg);">
+
+  <!-- Fonttiperheet -->
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <h2 class="pp-serif" style="margin: 0; font-size: 36px; font-weight: 600;">Typografia</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+      <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+        <span class="pp-overline" style="color: var(--ink-2);">Otsikot</span>
+        <div class="pp-serif" style="font-size: 72px; line-height: 1; font-weight: 600;">Aa Ää Öö Åå</div>
+        <div class="pp-serif" style="font-size: 22px; font-weight: 500;">Hyvä alku on puoliksi tehty.</div>
+        <div style="font-size: 14px; color: var(--ink-2);">Fraunces · lämmin serif · OFL · muuttuva (opsz 9–144) · 500–600</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+        <span class="pp-overline" style="color: var(--ink-2);">Leipäteksti</span>
+        <div style="font-size: 72px; line-height: 1; font-weight: 600;">Aa Ää Öö Åå</div>
+        <div style="font-size: 22px;">Kopioi komento ja paina Enter.</div>
+        <div style="font-size: 14px; color: var(--ink-2);">Figtree · ystävällinen geometrinen sans · OFL · 400–700</div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+        <span class="pp-overline" style="color: var(--ink-2);">Komennot ja numerot</span>
+        <div class="pp-mono" style="font-size: 72px; line-height: 1;">8/22</div>
+        <div class="pp-mono" style="font-size: 20px;">git --version · cd Työpöytä</div>
+        <div style="font-size: 14px; color: var(--ink-2);">DM Mono · OFL · 400–500 · ä, ö ja å tuettu</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Asteikko -->
+  <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 12px 32px;">
+    <sc-for list="{{scale}}" as="r" hint-placeholder-count="10">
+      <div style="display: grid; grid-template-columns: 140px minmax(0, 1fr) 320px; gap: 24px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line);">
+        <span class="pp-mono" style="font-size: 13px; color: var(--ink-2);">{{r.name}}</span>
+        <span class="{{r.cls}}" style="font-size: {{r.size}}px; line-height: {{r.lh}}px; font-weight: {{r.w}};">{{r.sample}}</span>
+        <span class="pp-mono" style="font-size: 13px; color: var(--ink-2); line-height: 1.5;">{{r.spec}}</span>
+      </div>
+    </sc-for>
+  </section>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+    <!-- Mitat -->
+    <section style="display: flex; flex-direction: column; gap: 24px;">
+      <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 class="pp-serif" style="margin: 0; font-size: 24px; font-weight: 600;">Välistys · 4 px:n perusyksikkö</h3>
+        <div style="display: flex; align-items: flex-end; gap: 14px;">
+          <sc-for list="{{space}}" as="s" hint-placeholder-count="9">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+              <div style="width: {{s.px}}px; height: {{s.px}}px; background: var(--t0); border: 1px solid var(--t0-line); border-radius: 4px;"></div>
+              <span class="pp-mono" style="font-size: 12px; color: var(--ink-2);">{{s.px}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin: 0; font-size: 14px; color: var(--ink-2);">Kortin sisäväli 24 (mobiili 20) · kehyksen sisäväli 40 (mobiili 20) · osioiden väli 64 (mobiili 40) · sivun reunat 40 / 16.</p>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 class="pp-serif" style="margin: 0; font-size: 24px; font-weight: 600;">Pyöristykset</h3>
+        <div style="display: flex; gap: 16px; align-items: flex-end;">
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="width: 72px; height: 56px; background: var(--t1); border: 1px solid var(--t1-line); border-radius: 8px;"></div><span class="pp-mono" style="font-size: 12px; color: var(--ink-2);">8 · chip</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="width: 88px; height: 64px; background: var(--t1); border: 1px solid var(--t1-line); border-radius: 12px;"></div><span class="pp-mono" style="font-size: 12px; color: var(--ink-2);">12 · koodi</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="width: 104px; height: 76px; background: var(--t1); border: 1px solid var(--t1-line); border-radius: 16px;"></div><span class="pp-mono" style="font-size: 12px; color: var(--ink-2);">16 · kortti</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="width: 136px; height: 96px; background: var(--t1); border: 1px solid var(--t1-line); border-radius: 28px;"></div><span class="pp-mono" style="font-size: 12px; color: var(--ink-2);">28 · kehys</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><div style="width: 120px; height: 48px; background: var(--t1); border: 1px solid var(--t1-line); border-radius: 999px;"></div><span class="pp-mono" style="font-size: 12px; color: var(--ink-2);">999 · pilleri</span></div>
+        </div>
+        <p style="margin: 0; font-size: 14px; color: var(--ink-2);">Sisäkkäiset muodot: sisempi säde = ulompi säde − sisäväli (esim. kehys 28, kortti 16–20).</p>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 class="pp-serif" style="margin: 0; font-size: 24px; font-weight: 600;">Reunat ja varjot</h3>
+        <div style="display: flex; gap: 20px; background: var(--bg); border-radius: 16px; padding: 24px;">
+          <div style="flex: 1; height: 80px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 13px;" class="pp-mono">viiva 1 px</div>
+          <div style="flex: 1; height: 80px; background: var(--surface); border-radius: 16px; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; font-size: 13px;" class="pp-mono">shadow-sm</div>
+          <div style="flex: 1; height: 80px; background: var(--surface); border-radius: 16px; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; font-size: 13px;" class="pp-mono">shadow-md</div>
+          <div style="flex: 1; height: 80px; background: var(--surface); border-radius: 16px; box-shadow: var(--shadow-lg); display: flex; align-items: center; justify-content: center; font-size: 13px;" class="pp-mono">shadow-lg</div>
+        </div>
+        <p style="margin: 0; font-size: 14px; color: var(--ink-2);">Oletuksena reunaviiva. sm = aktiivinen pilleri, md = kortin hover, lg = vain ilmoitukset.</p>
+      </div>
+    </section>
+
+    <!-- Liike -->
+    <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+      <h3 class="pp-serif" style="margin: 0; font-size: 24px; font-weight: 600;">Liike · lempeä ja jousimainen</h3>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+        <div style="background: var(--bg); border-radius: 12px; padding: 14px 16px;"><div class="pp-mono" style="font-size: 13px; font-weight: 500;">--ease-spring</div><div class="pp-mono" style="font-size: 12px; color: var(--ink-2);">cubic-bezier(.34, 1.56, .64, 1)</div><div style="font-size: 13px; color: var(--ink-2);">Pieni ylitys: nousut, pomppaus</div></div>
+        <div style="background: var(--bg); border-radius: 12px; padding: 14px 16px;"><div class="pp-mono" style="font-size: 13px; font-weight: 500;">--ease-soft</div><div class="pp-mono" style="font-size: 12px; color: var(--ink-2);">cubic-bezier(.22, 1, .36, 1)</div><div style="font-size: 13px; color: var(--ink-2);">Pehmeä hidastus: täyttyminen, ilmestyminen</div></div>
+      </div>
+      <sc-for list="{{motion}}" as="m" hint-placeholder-count="7">
+        <div style="display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-top: 1px solid var(--line);">
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-weight: 600; font-size: 15px;">{{m.name}}</span>
+            <span class="pp-mono" style="font-size: 12px; color: var(--ink-2);">{{m.spec}}</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 14px; line-height: 1.5;">{{m.desc}}</span>
+            <span style="font-size: 13px; color: var(--ink-2);">Vähennetty liike: {{m.reduced}}</span>
+          </div>
+        </div>
+      </sc-for>
+      <div style="background: var(--t0); border-radius: 16px; padding: 16px 20px; font-size: 14px; line-height: 1.55; color: var(--ink);">
+        <strong>Vähennetty liike:</strong> kun <span class="pp-mono">prefers-reduced-motion: reduce</span> on päällä tai asetuksista on valittu ”Vähennä liikettä”, kaikki animaatiot ja siirtymät poistetaan. Tilamuutokset näkyvät silti heti värinä, ikonina ja tekstinä.
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      scale: [
+        { name: 'Display', cls: 'pp-serif', size: 64, lh: 68, w: 600, sample: 'Promptista projektiksi', spec: 'Fraunces 600 · 64/68 · mobiili 40/44' },
+        { name: 'H1', cls: 'pp-serif', size: 48, lh: 54, w: 600, sample: 'Asenna Git', spec: 'Fraunces 600 · 48/54 · mobiili 32/38' },
+        { name: 'H2', cls: 'pp-serif', size: 36, lh: 42, w: 600, sample: 'Jatka siitä, mihin jäit', spec: 'Fraunces 600 · 36/42 · mobiili 26/32' },
+        { name: 'H3', cls: 'pp-serif', size: 24, lh: 30, w: 600, sample: 'Varmista, että asennus onnistui', spec: 'Fraunces 600 · 24/30 · mobiili 21/28' },
+        { name: 'Lead', cls: '', size: 20, lh: 32, w: 400, sample: 'Etene omaan tahtiisi. Edistymisesi tallentuu tähän selaimeen.', spec: 'Figtree 400 · 20/32 · mobiili 18/28' },
+        { name: 'Body', cls: '', size: 17, lh: 28, w: 400, sample: 'Git muistaa projektisi jokaisen tallennetun version.', spec: 'Figtree 400 · 17/28 · mobiili 16/26' },
+        { name: 'Small', cls: '', size: 14, lh: 20, w: 500, sample: 'Noin 8 minuuttia · Windows', spec: 'Figtree 500 · 14/20' },
+        { name: 'Overline', cls: 'pp-overline', size: 12, lh: 16, w: 600, sample: 'Jatka siitä, mihin jäit', spec: 'Figtree 600 · 12/16 · +0,12 em · versaali' },
+        { name: 'Stat', cls: 'pp-mono', size: 48, lh: 48, w: 400, sample: '36 %', spec: 'DM Mono 400 · 48/48 · mobiili 36/36' },
+        { name: 'Code', cls: 'pp-mono', size: 15, lh: 24, w: 400, sample: 'winget install --id Git.Git -e --source winget', spec: 'DM Mono 400 · 15/24 · mobiili 14/22' }
+      ],
+      space: [4, 8, 12, 16, 24, 32, 48, 64, 96].map((px) => ({ px })),
+      motion: [
+        { name: 'Kortin nousu', spec: '400 ms · spring', desc: 'Hoverissa kortti nousee 4 px ja saa shadow-md-varjon. Ei skaalausta.', reduced: 'ei nousua, vain reunaviiva tummenee' },
+        { name: 'Edistymispalkki', spec: '1100 ms · soft', desc: 'Palkki täyttyy vasemmalta, kun näkymä avautuu tai arvo kasvaa (scaleX 0 → 1).', reduced: 'palkki on heti lopullisessa leveydessä' },
+        { name: 'Merkin pomppaus', spec: '800 ms · spring', desc: 'Merkki kasvaa 0,4 → 1,12 → 0,96 → 1. Ilmoitus liukuu alhaalta 24 px.', reduced: 'merkki ja ilmoitus ilmestyvät suoraan' },
+        { name: 'Maskotin reaktio', spec: '2 × 800 ms', desc: 'Iloitseva Nuppu heiluu ±7° kahdesti. Levossa hidas 4 px kellunta 4,5 s:n jaksoissa.', reduced: 'staattinen asento, ei kelluntaa' },
+        { name: 'Visapalaute', spec: '500 ms · soft', desc: 'Selitys nousee 10 px ja häivyttyy esiin. Valinnan väri vaihtuu 200 ms:ssa.', reduced: 'selitys näkyy heti' },
+        { name: 'Kopioi-kuittaus', spec: '600 ms · spring', desc: 'Painike vaihtuu tilaan ”Kopioitu!” pienellä pomppauksella ja palaa 2 s:n kuluttua.', reduced: 'teksti ja ikoni vaihtuvat ilman pomppausta' },
+        { name: 'Avattava osio', spec: '450 ms · soft', desc: 'Nuoli kääntyy 180°, sisältö nousee esiin.', reduced: 'avautuu heti' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

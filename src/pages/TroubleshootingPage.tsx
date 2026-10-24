@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Command } from '../components/Command'
+import { Nuppu } from '../components/Nuppu'
 import { troubleshooting } from '../content'
 import { useProgress } from '../features/progress'
 import { InlineText } from '../lib/InlineText'
@@ -23,12 +24,17 @@ export function TroubleshootingPage() {
   }, [entryId])
 
   return (
-    <>
-      <h1>Vianmääritys</h1>
-      <p>
-        Jumissa? Se on täysin normaalia, ja jokainen koodaaja törmää näihin. Etsi alta ongelma, joka muistuttaa omaasi. Jos mikään ei auta, voit
-        myös kopioida virheilmoituksen Claudelle ja kysyä, mitä se tarkoittaa.
-      </p>
+    <div className="reading">
+      <header className="page-header">
+        <div className="page-header__text">
+          <h1>Vianmääritys</h1>
+          <p>
+            Jumissa? Se on täysin normaalia, ja jokainen koodaaja törmää näihin. Etsi alta ongelma, joka muistuttaa omaasi. Jos mikään ei auta,
+            voit myös kopioida virheilmoituksen Claudelle ja kysyä, mitä se tarkoittaa.
+          </p>
+        </div>
+        <Nuppu pose="miettii" size={100} />
+      </header>
       {progress.os !== null && (
         <label className="checkbox">
           <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} /> Näytä myös muiden käyttöjärjestelmien
@@ -37,10 +43,27 @@ export function TroubleshootingPage() {
       )}
       <div className="troubleshooting">
         {entries.map(([id, entry]) => (
-          <details key={id} id={`vika-${id}`} className="read-more troubleshooting__entry" open={id === entryId || undefined}>
+          <details
+            key={id}
+            id={`vika-${id}`}
+            className={`read-more troubleshooting__entry${id === entryId ? ' troubleshooting__entry--active' : ''}`}
+            open={id === entryId || undefined}
+          >
             <summary className="read-more__summary">
-              {entry.title}
-              <span className="muted troubleshooting__os"> ({entry.os.map((o) => OS_LABEL[o]).join(', ')})</span>
+              <span className="troubleshooting__heading">
+                <span className="troubleshooting__title">{entry.title}</span>
+                {/* Käyttöjärjestelmät chippeinä; ruudunlukija kuulee saman kuin ennen: ”(Windows, Mac)”. */}
+                <span className="troubleshooting__os">
+                  <span className="visually-hidden"> (</span>
+                  {entry.os.map((o, i) => (
+                    <Fragment key={o}>
+                      {i > 0 && <span className="visually-hidden">, </span>}
+                      <span className="chip troubleshooting__chip">{OS_LABEL[o]}</span>
+                    </Fragment>
+                  ))}
+                  <span className="visually-hidden">)</span>
+                </span>
+              </span>
             </summary>
             <div className="read-more__body">
               <p>
@@ -63,6 +86,6 @@ export function TroubleshootingPage() {
           </details>
         ))}
       </div>
-    </>
+    </div>
   )
 }

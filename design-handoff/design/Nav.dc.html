@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Yläpalkki</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="position: relative; width: 100%; background: transparent;">
+  <a href="#sisalto" class="pp-skip {{skipCls}}">Siirry sisältöön</a>
+  <header style="width: 100%; box-sizing: border-box; padding: 12px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; color: var(--ink);">
+    <a href="AppHome.dc.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); min-height: 44px; flex: 1 0 auto;">
+      <dc-import name="Mascot" pose="wave" size="{{logo}}" hint-size="40px,40px"></dc-import>
+      <span class="pp-serif" style="font-size: 20px; font-weight: 600; line-height: 1.1; color: var(--ink);">Promptista projektiksi</span>
+    </a>
+    <nav aria-label="Päävalikko" style="max-width: 100%; overflow-x: auto;">
+      <div style="display: flex; gap: 2px; padding: 4px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; width: max-content;">
+        <sc-for list="{{items}}" as="it" hint-placeholder-count="6">
+          <a class="pp-pill" href="{{it.href}}" aria-current="{{it.current}}" style="padding: 0 14px;">{{it.label}}</a>
+        </sc-for>
+      </div>
+    </nav>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-left: auto;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span id="nav-os-l" style="font-size: 14px; font-weight: 600;">Ohjeet:</span>
+        <div class="pp-seg" role="group" aria-labelledby="nav-os-l">
+          <sc-for list="{{oses}}" as="o" hint-placeholder-count="2">
+            <button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="min-height: 40px; padding: 0 14px; font-size: 14px;">{{o.name}}</button>
+          </sc-for>
+        </div>
+      </div>
+      <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600;">Teema
+        <span class="pp-select-wrap">
+          <select class="pp-select" style="min-height: 40px; font-size: 14px;">
+            <option>Laitteen mukaan</option>
+            <option>Vaalea</option>
+            <option>Tumma</option>
+          </select>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </span>
+      </label>
+      <sc-if value="{{showProgress}}" hint-placeholder-val="{{ false }}">
+        <span class="pp-mono" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; background: var(--accent-soft); font-size: 14px;">{{progress}} %</span>
+      </sc-if>
+    </div>
+  </header>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["home","path","glossary","trouble","badges","settings"],"default":"home"},"os":{"editor":"enum","options":["none","Windows","Mac"],"default":"Windows"},"showSkip":{"editor":"boolean","default":false},"showProgress":{"editor":"boolean","default":false},"progress":{"editor":"int","default":36},"$preview":{"width":1280,"height":100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { os: null };
+  }
+  renderVals() {
+    // Vanhat luonnokset käyttävät "topics"; se vastaa Oppimispolkua.
+    const raw = this.props.active ?? 'home';
+    const active = raw === 'topics' ? 'path' : raw;
+    const base = [
+      { id: 'home', label: 'Etusivu', href: 'AppHome.dc.html' },
+      { id: 'path', label: 'Oppimispolku', href: 'AppPath.dc.html' },
+      { id: 'glossary', label: 'Sanasto', href: 'AppGlossary.dc.html' },
+      { id: 'trouble', label: 'Vianmääritys', href: 'AppTrouble.dc.html' },
+      { id: 'badges', label: 'Merkit', href: 'AppBadges.dc.html' },
+      { id: 'settings', label: 'Asetukset', href: 'AppSettings.dc.html' }
+    ];
+    const os = this.state.os ?? (this.props.os ?? 'Windows');
+    return {
+      logo: 40,
+      skipCls: this.props.showSkip ? 'is-visible' : '',
+      showProgress: this.props.showProgress ?? false,
+      progress: this.props.progress ?? 36,
+      items: base.map((b) => ({ ...b, current: b.id === active ? 'page' : 'false' })),
+      oses: ['Windows', 'Mac'].map((n) => ({ name: n, pressed: os === n ? 'true' : 'false', pick: () => this.setState({ os: n }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

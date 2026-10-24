@@ -13,11 +13,40 @@
   height: 100%;
   background: var(--color-progress-fill);
   border-radius: var(--radius-pill);
-  transition: width var(--duration-medium) var(--easing-standard);
+  transform-origin: left center;
+  animation: progress-fill var(--duration-slow) var(--easing-standard) both;
+  transition: width var(--duration-slow) var(--easing-standard);
 }
 
 .progress__text {
-  margin: var(--space-1) 0 0;
-  font-size: var(--font-size-sm);
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-caption);
   color: var(--color-text-muted);
+}
+
+/* Aiheosio polkusivulla: täyttö aiheen värillä, teksti tekstin värillä. */
+.progress--topic .progress__text {
+  color: var(--color-text);
+}
+
+.progress--topic-0 .progress__fill {
+  background: var(--color-topic-0-ink);
+}
+
+.progress--topic-1 .progress__fill {
+  background: var(--color-topic-1-ink);
+}
+
+.progress--topic-2 .progress__fill {
+  background: var(--color-topic-2-ink);
+}
+
+.progress--topic-3 .progress__fill {
+  background: var(--color-topic-3-ink);
+}
+
+@keyframes progress-fill {
+  from {
+    transform: scaleX(0);
+  }
 }

@@ -5,6 +5,7 @@ import { createShell, execute, isMissionComplete, prompt, type Line, type ShellS
 import { InlineText } from '../lib/InlineText'
 import { OS_LABEL } from '../lib/os'
 import type { Mission, Os } from '../schemas/content'
+import { Icon } from './Icon'
 import './Terminal.css'
 
 interface TerminalProps {
@@ -26,6 +27,18 @@ interface SessionProps {
   mission: Mission
   os: Os
   osChosen: boolean
+}
+
+/** Yläpalkin nimi käyttöjärjestelmän mukaan. */
+const SHELL_NAME: Record<Os, string> = {
+  windows: 'PowerShell',
+  mac: 'Pääte (zsh)',
+}
+
+/** Monirivinen tuloste (help, dir, pwd Windowsilla) on taulukko: se vierii vaakasuunnassa eikä rivity. */
+function lineClass(line: Line): string {
+  const table = line.kind === 'output' && line.text.includes('\n')
+  return `terminal__line terminal__line--${line.kind}${table ? ' terminal__line--table' : ''}`
 }
 
 interface HistoryEntry {
@@ -100,23 +113,29 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
           <InlineText text={mission.goal} />
         </p>
         {mission.hint && (
-          <details>
-            <summary>Näytä vihje</summary>
-            <p>
-              <InlineText text={mission.hint} />
-            </p>
+          <details className="read-more terminal__hint">
+            <summary className="read-more__summary">Näytä vihje</summary>
+            <div className="read-more__body">
+              <p>
+                <InlineText text={mission.hint} />
+              </p>
+            </div>
           </details>
         )}
         {!osChosen && <p className="muted">Harjoitus on nyt {OS_LABEL[os]}-tyylinen. Valitse oma käyttöjärjestelmäsi yläpalkista.</p>}
       </div>
 
       <div className="terminal__window">
+        <div className="terminal__bar">
+          <Icon name="terminal" />
+          {SHELL_NAME[os]}
+        </div>
         <div className="terminal__screen" ref={screen} role="log" aria-label="Terminaalin tulosteet">
           {entries.length === 0 && <p className="terminal__line terminal__line--hint">Kirjoita komento alle ja paina Enter. Komento help näyttää ohjeen.</p>}
           {entries.map((entry, i) => (
             <div key={i}>
               {entry.lines.map((line, j) => (
-                <p key={j} className={`terminal__line terminal__line--${line.kind}`}>
+                <p key={j} className={lineClass(line)}>
                   {line.kind === 'input' && <span className="terminal__prompt">{entry.prompt}</span>}
                   {line.text}
                 </p>

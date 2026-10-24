@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Termi-tooltip</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 100%; box-sizing: border-box; padding: {{pad}}px; background: {{bg}}; min-height: {{minh}}px;">
+  <p style="margin: 0; font-size: 17px; line-height: 1.75; color: var(--ink); max-width: 640px;">
+    Git tallentaa projektistasi versioita vähän kuin pelin tallennuspisteitä. Kaikki versiot säilyvät projektin
+    <span style="position: relative; display: inline-block;">
+      <button type="button" class="pp-term" aria-expanded="{{expanded}}" aria-controls="term-repo" onClick="{{toggle}}" onMouseEnter="{{show}}" onMouseLeave="{{hide}}" onFocus="{{show}}" onBlur="{{hide}}" onKeyDown="{{key}}">repossa</button>
+      <sc-if value="{{open}}" hint-placeholder-val="{{ true }}">
+        <span id="term-repo" role="note" class="pp-anim-rise" style="position: absolute; z-index: 10; top: calc(100% + 10px); left: -12px; width: min(320px, 80vw); display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 16px; box-shadow: var(--shadow-md); text-align: left; line-height: 1.5;">
+          <span aria-hidden="true" style="position: absolute; top: -7px; left: 28px; width: 12px; height: 12px; background: var(--surface); border-left: 1px solid var(--line-strong); border-top: 1px solid var(--line-strong); transform: rotate(45deg);"></span>
+          <span style="font-size: 15px; color: var(--ink); overflow-wrap: anywhere;"><strong class="pp-serif" style="font-size: 17px;">repo:</strong> Lyhenne sanasta repositorio: yhden projektin kansio, jonka historiaa Git seuraa.</span>
+          <a href="AppGlossary.dc.html" style="font-size: 14px; font-weight: 600;">Katso sanastosta</a>
+        </span>
+      </sc-if>
+    </span>.
+    Selitys avautuu hiirellä viemällä, napauttamalla tai Enterillä ja sulkeutuu Escillä.
+  </p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"defaultOpen":{"editor":"boolean","default":true},"framed":{"editor":"boolean","default":true},"$preview":{"width":720,"height":300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: props.defaultOpen ?? true, pinned: false };
+  }
+  renderVals() {
+    const framed = this.props.framed ?? true;
+    const open = this.state.open;
+    return {
+      pad: framed ? 32 : 0,
+      bg: framed ? 'var(--bg)' : 'transparent',
+      minh: framed ? 300 : 0,
+      open,
+      expanded: open ? 'true' : 'false',
+      toggle: () => this.setState({ open: !(this.state.open && this.state.pinned), pinned: !this.state.pinned }),
+      show: () => this.setState({ open: true }),
+      hide: () => { if (!this.state.pinned) this.setState({ open: false }); },
+      key: (e) => { if (e.key === 'Escape') this.setState({ open: false, pinned: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

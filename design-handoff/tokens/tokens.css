@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Promptista projektiksi – tokens.css (design v2, 24.10.2026)
+
+   Korvaa tiedoston src/styles/tokens.css. Kaikki nykyiset token-nimet on
+   säilytetty, joten komponenttien CSS toimii ilman nimimuutoksia. Uudet tokenit
+   on merkitty kommentilla UUSI.
+
+   Tumma paletti on kirjoitettu kahdesti, kuten ennenkin:
+   1) prefers-color-scheme: dark (ellei käyttäjä ole valinnut vaaleaa)
+   2) [data-theme="dark"]
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ---------- Typografia ---------- */
+  /* Fontit hostataan itse (@fontsource, ks. CLAUDE-CODE-OHJE.md). Ei CDN:ää. */
+  --font-body: 'Figtree Variable', 'Figtree', 'Segoe UI', system-ui, sans-serif;
+  --font-heading: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-mono: 'DM Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  --font-size-xs: 0.8125rem;   /* 13 px */
+  --font-size-sm: 0.9375rem;   /* 15 px */
+  --font-size-md: 1.0625rem;   /* 17 px, leipäteksti */
+  --font-size-lg: 1.25rem;     /* 20 px */
+  --font-size-xl: 1.5rem;      /* 24 px, h3 */
+  --font-size-2xl: 2rem;       /* 32 px, h2 työpöydällä */
+  --font-size-3xl: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);   /* UUSI: h1 32 → 52 px */
+  --font-size-display: clamp(2.25rem, 1.4rem + 3.6vw, 4rem); /* UUSI: etusivun h1 36 → 64 px */
+  --font-size-overline: 0.75rem; /* UUSI: versaaliotsake 12 px */
+  --letter-spacing-overline: 0.12em; /* UUSI */
+
+  --line-height-body: 1.6;
+  --line-height-heading: 1.15;
+  --line-height-code: 1.55;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;   /* UUSI */
+  --font-weight-bold: 600;
+
+  /* ---------- Välistys (ennallaan) ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;   /* UUSI */
+
+  /* ---------- Mitat ---------- */
+  --content-max-width: 48rem;   /* oli 46rem; design 780 px */
+  --page-max-width: 75rem;      /* oli 64rem; design 1200 px */
+  --page-gutter: 1rem;          /* mobiili 16 px; työpöydällä 2.5rem, ks. base.css */
+  --tap-target-min: 2.75rem;    /* 44 px */
+  --progress-height: 0.625rem;
+  --badge-size: 3.5rem;
+  --terminal-height: 16rem;
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;     /* UUSI (oli kovakoodattu) */
+  --border-width: 1px;
+  --os-block-border-width: 1.5px; /* UUSI: ”Vain X” -lohkon katkoviiva (ei enää fokus-tokenia) */
+  --term-underline-width: 2px;
+
+  /* ---------- Pyöristykset ---------- */
+  --radius-sm: 8px;     /* oli 4px: kentät, inline-koodi, chipit */
+  --radius-md: 16px;    /* oli 8px: kortit, ilmoitukset, vaihtoehdot */
+  --radius-lg: 28px;    /* oli 14px: isot kehykset, osiot */
+  --radius-pill: 999px; /* painikkeet, navigaatio, tilamerkinnät */
+
+  /* ---------- Liike ---------- */
+  --duration-fast: 200ms;
+  --duration-medium: 400ms;
+  --duration-slow: 1100ms;      /* UUSI: edistymispalkin täyttyminen */
+  --duration-badge: 800ms;
+  --duration-toast: 7s;         /* korjattu vastaamaan koodin 7 s */
+  --easing-standard: cubic-bezier(0.22, 1, 0.36, 1);  /* pehmeä hidastus */
+  --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* UUSI: pieni ylitys, nousut ja pomppaus */
+
+  /* ---------- Kerrokset ---------- */
+  --z-popover: 20;
+  --z-toast: 30;
+  --z-skip-link: 50; /* UUSI */
+
+  /* ---------- Varjot (vähän, lämpimät) ---------- */
+  --shadow-sm: 0 1px 2px rgba(74, 52, 30, 0.07);
+  --shadow-md: 0 12px 28px -14px rgba(74, 52, 30, 0.28);
+  --shadow-lg: 0 24px 48px -20px rgba(74, 52, 30, 0.35); /* UUSI: vain merkki-ilmoitus */
+
+  /* ---------- Värit: vaalea ---------- */
+  --color-bg: #FBF6EE;              /* lämmin kerma */
+  --color-surface: #FFFDF9;
+  --color-surface-muted: #F3EBDF;
+  --color-text: #2A2420;
+  --color-text-muted: #5E5249;
+  --color-border: #8C7B6B;          /* kenttien ja vaihtoehtojen reunat, ≥ 3:1 */
+  --color-border-subtle: #E6DACB;   /* korttien reunat, erottimet */
+  --color-primary: #C4461A;         /* lämmin oranssi */
+  --color-primary-hover: #A63912;
+  --color-on-primary: #FFFFFF;
+  --color-primary-soft: #FBE3D6;    /* UUSI: termin hover, valittu pilleri */
+  --color-link: #B23E14;
+  --color-focus: #24507A;           /* sininen, koska korostus on oranssi */
+  --color-success: #2E7148;
+  --color-success-bg: #DCEFDC;
+  --color-success-border: #A7D2B1;  /* UUSI */
+  --color-error: #A5352B;
+  --color-error-bg: #F8DEDA;
+  --color-error-border: #EBB2AA;    /* UUSI */
+  --color-on-error: #FFFFFF;
+  --color-info-bg: #E6EEF6;
+  --color-info-border: #C3D5E8;     /* UUSI */
+  --color-info-icon: #24507A;       /* UUSI */
+  --color-warning-bg: #FCEDC7;
+  --color-warning-border: #E6C677;  /* UUSI */
+  --color-warning-icon: #6E520B;    /* UUSI */
+  --color-badge: #6E520B;
+  --color-badge-bg: #F7E8B4;
+  --color-badge-border: #E3CD82;    /* UUSI: ilmoituksen reuna */
+  --color-badge-locked: #7A6C60;
+  --color-progress-track: #E6DACB;
+  --color-progress-fill: #2E7148;
+  --color-code-bg: #F3EBDF;         /* koodilohkot: vaalea, ei musta */
+  --color-code-text: #2A2420;
+  --color-code-muted: #5E5249;
+  --color-term-bg: #FFFDF9;
+  --color-term-bar: #DCE9F6;        /* UUSI: terminaalin yläpalkki */
+  --color-term-text: #2A2420;
+  --color-term-prompt: #C4461A;
+  --color-term-error: #A5352B;
+  --color-term-hint: #24507A;
+
+  /* UUSI: aihealueiden värit (pohja / reuna / tumma sävy tekstille ja täytölle) */
+  --color-topic-0-bg: #DCE9F6; --color-topic-0-border: #BCD3EA; --color-topic-0-ink: #24507A; /* Perusteet */
+  --color-topic-1-bg: #F7E8B4; --color-topic-1-border: #E3CD82; --color-topic-1-ink: #6E520B; /* Asennukset */
+  --color-topic-2-bg: #F6D6E0; --color-topic-2-border: #E8B5C5; --color-topic-2-ink: #843150; /* Periaatteet */
+  --color-topic-3-bg: #FAD3BF; --color-topic-3-border: #EDB295; --color-topic-3-ink: #8A3D1D; /* Projekti */
+}
+
+/* ---------- Tumma: laitteen asetus ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 24px 48px -20px rgba(0, 0, 0, 0.7);
+    --color-bg: #211C18;
+    --color-surface: #2B2520;
+    --color-surface-muted: #352E28;
+    --color-text: #F4ECE1;
+    --color-text-muted: #D3C6B6;
+    --color-border: #8A7B6C;
+    --color-border-subtle: #433A32;
+    --color-primary: #F0874F;
+    --color-primary-hover: #F59E6E;
+    --color-on-primary: #211C18;
+    --color-primary-soft: #4A2E20;
+    --color-link: #F49A69;
+    --color-focus: #B9D4EE;
+    --color-success: #8ED3A0;
+    --color-success-bg: #24392B;
+    --color-success-border: #3C5E46;
+    --color-error: #F2A196;
+    --color-error-bg: #462823;
+    --color-error-border: #6A3A33;
+    --color-on-error: #211C18;
+    --color-info-bg: #26323D;
+    --color-info-border: #3B4D5D;
+    --color-info-icon: #B9D4EE;
+    --color-warning-bg: #3F3622;
+    --color-warning-border: #5E5232;
+    --color-warning-icon: #EBD58A;
+    --color-badge: #EBD58A;
+    --color-badge-bg: #423A24;
+    --color-badge-border: #5E5232;
+    --color-badge-locked: #AE9F8E;
+    --color-progress-track: #433A32;
+    --color-progress-fill: #8ED3A0;
+    --color-code-bg: #352E28;
+    --color-code-text: #F4ECE1;
+    --color-code-muted: #D3C6B6;
+    --color-term-bg: #2B2520;
+    --color-term-bar: #2C3A47;
+    --color-term-text: #F4ECE1;
+    --color-term-prompt: #F0874F;
+    --color-term-error: #F2A196;
+    --color-term-hint: #B9D4EE;
+    --color-topic-0-bg: #2C3A47; --color-topic-0-border: #3F5466; --color-topic-0-ink: #B9D4EE;
+    --color-topic-1-bg: #423A24; --color-topic-1-border: #5E5232; --color-topic-1-ink: #EBD58A;
+    --color-topic-2-bg: #45303A; --color-topic-2-border: #634452; --color-topic-2-ink: #F0B8CB;
+    --color-topic-3-bg: #48322A; --color-topic-3-border: #66473B; --color-topic-3-ink: #F4B597;
+  }
+}
+
+/* ---------- Tumma: käyttäjän valinta ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 48px -20px rgba(0, 0, 0, 0.7);
+  --color-bg: #211C18;
+  --color-surface: #2B2520;
+  --color-surface-muted: #352E28;
+  --color-text: #F4ECE1;
+  --color-text-muted: #D3C6B6;
+  --color-border: #8A7B6C;
+  --color-border-subtle: #433A32;
+  --color-primary: #F0874F;
+  --color-primary-hover: #F59E6E;
+  --color-on-primary: #211C18;
+  --color-primary-soft: #4A2E20;
+  --color-link: #F49A69;
+  --color-focus: #B9D4EE;
+  --color-success: #8ED3A0;
+  --color-success-bg: #24392B;
+  --color-success-border: #3C5E46;
+  --color-error: #F2A196;
+  --color-error-bg: #462823;
+  --color-error-border: #6A3A33;
+  --color-on-error: #211C18;
+  --color-info-bg: #26323D;
+  --color-info-border: #3B4D5D;
+  --color-info-icon: #B9D4EE;
+  --color-warning-bg: #3F3622;
+  --color-warning-border: #5E5232;
+  --color-warning-icon: #EBD58A;
+  --color-badge: #EBD58A;
+  --color-badge-bg: #423A24;
+  --color-badge-border: #5E5232;
+  --color-badge-locked: #AE9F8E;
+  --color-progress-track: #433A32;
+  --color-progress-fill: #8ED3A0;
+  --color-code-bg: #352E28;
+  --color-code-text: #F4ECE1;
+  --color-code-muted: #D3C6B6;
+  --color-term-bg: #2B2520;
+  --color-term-bar: #2C3A47;
+  --color-term-text: #F4ECE1;
+  --color-term-prompt: #F0874F;
+  --color-term-error: #F2A196;
+  --color-term-hint: #B9D4EE;
+  --color-topic-0-bg: #2C3A47; --color-topic-0-border: #3F5466; --color-topic-0-ink: #B9D4EE;
+  --color-topic-1-bg: #423A24; --color-topic-1-border: #5E5232; --color-topic-1-ink: #EBD58A;
+  --color-topic-2-bg: #45303A; --color-topic-2-border: #634452; --color-topic-2-ink: #F0B8CB;
+  --color-topic-3-bg: #48322A; --color-topic-3-border: #66473B; --color-topic-3-ink: #F4B597;
+}
+
+/* ---------- Vähennetty liike: kestot nollaan (kuten ennenkin) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-medium: 0ms;
+    --duration-slow: 0ms;
+    --duration-badge: 0ms;
+  }
+}

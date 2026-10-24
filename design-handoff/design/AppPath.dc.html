@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Claude Code alusta alkaen – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4cqi, 40px) 32px; display: flex; flex-direction: column; gap: clamp(24px, 4cqi, 40px);">
+  <dc-import name="Nav" active="path" os="Windows" hint-size="100%,120px"></dc-import>
+
+  <main id="sisalto" tabindex="-1" style="max-width: 900px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(24px, 4cqi, 40px); outline: none;">
+    <header style="display: flex; flex-direction: column; gap: 14px;">
+      <h1 class="pp-serif" style="margin: 0; font-size: clamp(32px, 5cqi, 52px); line-height: 1.08; font-weight: 600;">Claude Code alusta alkaen</h1>
+      <p style="margin: 0; font-size: clamp(16px, 2cqi, 19px); line-height: 1.6; color: var(--ink-2);">Opit, mikä terminaali on, asennat tarvittavat työkalut ja teet Claude Coden kanssa ensimmäisen oman verkkosivusi. Aiempaa kokemusta ei tarvita.</p>
+      <div style="display: flex; flex-direction: column; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;">
+        <span class="pp-bar" role="progressbar" aria-valuenow="{{pct}}" aria-valuemin="0" aria-valuemax="100" aria-label="Koko polku" style="display: block;"><span style="width: {{pct}}%; background: var(--success);"></span></span>
+        <span style="font-size: 14px; color: var(--ink-2);"><span class="pp-mono">{{done}}/24</span> valmiina (<span class="pp-mono">{{pct}} %</span>)</span>
+      </div>
+      <p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2);">Suositeltu järjestys on alla, mutta voit aloittaa mistä tahansa. Valinnainen bonustehtävä ei vaikuta edistymiseen.</p>
+    </header>
+
+    <sc-for list="{{topics}}" as="t" hint-placeholder-count="4">
+      <section aria-labelledby="t-{{t.num}}" style="background: var(--{{t.key}}); border: 1px solid var(--{{t.key}}-line); border-radius: 28px; padding: clamp(16px, 3cqi, 28px); display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+          <span class="pp-mono" aria-hidden="true" style="font-size: clamp(40px, 6cqi, 56px); line-height: .9; color: var(--{{t.key}}-ink);">{{t.num}}</span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+            <h2 id="t-{{t.num}}" class="pp-serif" style="margin: 0; font-size: clamp(22px, 3cqi, 28px); line-height: 1.2; font-weight: 600;"><span class="pp-sr">{{t.num}}. </span>{{t.name}}</h2>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2);">{{t.desc}}</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span class="pp-bar" role="progressbar" aria-valuenow="{{t.pct}}" aria-valuemin="0" aria-valuemax="100" aria-label="{{t.name}}" style="display: block; background: var(--track);"><span style="width: {{t.pct}}%; background: var(--{{t.key}}-ink);"></span></span>
+          <span style="font-size: 14px; color: var(--ink);"><span class="pp-mono">{{t.done}}/{{t.total}}</span> valmiina (<span class="pp-mono">{{t.pct}} %</span>)</span>
+        </div>
+        <ol style="margin: 0; padding: 4px 18px; list-style: none; background: var(--surface); border-radius: 20px;">
+          <sc-for list="{{t.mods}}" as="m" hint-placeholder-count="5">
+            <li style="display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; align-items: flex-start; padding: 14px 0; border-bottom: {{m.border}};">
+              <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                <a href="AppModule.dc.html" style="font-weight: 600; font-size: 17px; line-height: 1.35; overflow-wrap: anywhere;"><sc-if value="{{m.bonus}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="color: var(--t3-ink); text-decoration: none;">★ </span></sc-if>{{m.title}}</a>
+                <span style="font-size: 14px; line-height: 1.5; color: var(--ink-2);"><sc-if value="{{m.bonus}}" hint-placeholder-val="{{ false }}"><strong style="color: var(--ink);">Valinnainen. </strong></sc-if>{{m.sum}}</span>
+              </div>
+              <span class="pp-status {{m.cls}}"><span aria-hidden="true">{{m.sym}}</span>{{m.label}}</span>
+            </li>
+          </sc-for>
+        </ol>
+      </section>
+    </sc-for>
+  </main>
+
+  <footer style="padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; color: var(--ink-2); text-align: center;">Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["progress","done"],"default":"progress"},"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":3400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const all = (this.props.state ?? 'progress') === 'done';
+    const D = 'done', K = 'doing', E = 'todo';
+    const ST = { done: ['pp-status-done', '✓', 'Valmis'], doing: ['pp-status-doing', '◐', 'Kesken'], todo: ['pp-status-todo', '○', 'Ei aloitettu'] };
+    const raw = [
+      ['t0', '0', 'Perusteet', 'Mitä vibekoodaus on ja mitkä ovat terminaalin, kansioiden ja Gitin perusajatukset.', [
+        ['0.1 Mitä vibekoodaus on?', 'Tekoäly kirjoittaa koodin, sinä ohjaat. Mihin se sopii ja mihin ei (vielä).', D],
+        ['0.2 Terminaali ja komennot', 'Terminaali on tekstiviestikeskustelu tietokoneen kanssa. Kokeile simulaattorissa.', D],
+        ['0.3 Kansiot ja polut', 'Mikä on kansio ja polku, ja miten tiedät, missä kansiossa olet.', D],
+        ['0.4 Git ja GitHub', 'Git on pelin tallennuspisteet, GitHub on pilvi, jossa tallennukset säilyvät.', D],
+        ['0.5 Chat vai AI-agentti?', 'Chat vastaa, agentti tekee: luo tiedostoja ja ajaa komentoja koneellasi.', D]]],
+      ['t1', '1', 'Asennukset', 'Asennat askel kerrallaan kaikki työkalut, joita Claude Coden kanssa tarvitaan, ja varmistat, että ne toimivat.', [
+        ['1.1 Terminaali', 'Windowsilla asennetaan PowerShell 7, Macilla avataan valmiina oleva Pääte.', D],
+        ['1.2 Git', 'Asennat Gitin, jolla projektiin tehdään tallennuspisteitä.', D],
+        ['1.3 VS Code', 'Asennat koodieditorin ja opit avaamaan siinä kansion.', D],
+        ['1.4 GitHub-tili', 'Luot GitHub-tilin ja suojaat sen kaksivaiheisella tunnistautumisella.', D],
+        ['1.5 GitHub CLI', 'Asennat gh-työkalun ja kirjaudut sillä GitHubiin.', D],
+        ['1.6 Claude-tilaus', 'Millainen tilaus Claude Codeen tarvitaan ja mistä näet ajantasaiset hinnat.', D],
+        ['1.7 Claude Code', 'Asennat Claude Coden ja kirjaudut sisään.', D],
+        ['1.8 Tarkistuslista', 'Kaikki versiotarkistukset yhdellä sivulla: onko kaikki valmiina?', D]]],
+      ['t2', '2', 'Claude Code -periaatteet', 'Miten Claude Codea ohjataan hyvin ja turvallisesti.', [
+        ['2.1 Ensimmäinen keskustelu', 'Miten Claude Code käynnistetään kansiossa ja miten sen kanssa puhutaan.', K],
+        ['2.2 Hyvä prompti', 'Kerro mitä, miksi ja millä rajoilla. Huonot ja hyvät esimerkit rinnakkain.', E],
+        ['2.3 Plan mode', 'Suunnittele ensin, rakenna sitten.', E],
+        ['2.4 CLAUDE.md', 'Projektin muistilappu, jonka Claude lukee joka kerta.', E],
+        ['2.5 Luvat ja turvallisuus', 'Lue, mitä hyväksyt. Salasanat ja avaimet pysyvät poissa keskustelusta ja GitHubista.', K],
+        ['2.6 Git tallennuspisteinä', 'Tallenna ennen isoa muutosta ja opettele palaamaan taaksepäin.', E],
+        ['2.7 Konteksti', 'Mitä Claude muistaa keskustelusta ja milloin kannattaa aloittaa puhtaalta pöydältä.', E]]],
+      ['t3', '3', 'Ensimmäinen projekti', 'Teet Claude Coden kanssa oman pienen verkkosivun (HTML, CSS ja JavaScript) ja viet sen GitHubiin.', [
+        ['3.1 Projektikansio', 'Luot projektille kansion ja aloitat Git-seurannan.', E],
+        ['3.2 Suunnittele', 'Suunnittelet Clauden kanssa plan modessa, mitä sivulle tulee.', E],
+        ['3.3 Rakenna', 'Claude rakentaa sivun, sinä avaat sen selaimessa ja pyydät muutoksia.', E],
+        ['3.4 GitHubiin', 'Tallennat työn commitiksi ja lähetät sen omaan GitHub-repoon.', E],
+        ['3.5 Bonus: julkaise', 'Valinnainen lisätehtävä: sivusi nettiin omaan osoitteeseen GitHub Pagesilla.', E, true]]]
+    ];
+    let doneAll = 0;
+    const topics = raw.map(([key, num, name, desc, mods]) => {
+      const ms = mods.map(([title, sum, st, bonus], i) => {
+        const s = all ? D : st;
+        const [cls, sym, label] = ST[s];
+        return { title, sum, bonus: !!bonus, cls, sym, label, done: s === D, border: i === mods.length - 1 ? '0' : '1px solid var(--line)' };
+      });
+      const req = ms.filter((m) => !m.bonus);
+      const done = req.filter((m) => m.done).length;
+      doneAll += done;
+      return { key, num, name, desc, mods: ms, done, total: req.length, pct: Math.round((done / req.length) * 100) };
+    });
+    return {
+      theme: this.props.theme ?? 'light',
+      topics,
+      done: doneAll,
+      pct: Math.round((doneAll / 24) * 100)
+    };
+  }
+}
+</script>
+</body>
+</html>

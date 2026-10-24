@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Tumma teema 360 px</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" data-theme="dark" style="width: 1728px; min-height: 5000px; box-sizing: border-box; padding: 48px; display: flex; gap: 64px; align-items: flex-start; background: #17130F;">
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Etusivu</span><div style="width: 360px; border-radius: 24px; overflow: hidden;"><dc-import name="AppHome" state="progress" theme="dark" hint-size="360px,2400px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Moduuli: terminaali ja visa</span><div style="width: 360px; border-radius: 24px; overflow: hidden;"><dc-import name="AppModule" module="terminal" os="Windows" read="read" theme="dark" hint-size="360px,4600px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Merkit 1/9</span><div style="width: 360px; border-radius: 24px; overflow: hidden;"><dc-import name="AppBadges" earned="1" theme="dark" hint-size="360px,2400px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Asetukset · nollauksen vahvistus</span><div style="width: 360px; border-radius: 24px; overflow: hidden;"><dc-import name="AppSettings" state="confirm" theme="dark" hint-size="360px,2500px"></dc-import></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1728,"height":5000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

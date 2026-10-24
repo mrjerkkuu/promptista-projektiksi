@@ -5,6 +5,7 @@ import { copyText } from '../lib/clipboard'
 import { formatDate, sourceLabel } from '../lib/format'
 import { OS_LABEL, OS_LIST } from '../lib/os'
 import type { Command as CommandData, Os } from '../schemas/content'
+import { Icon } from './Icon'
 import './Command.css'
 
 interface CommandProps {
@@ -24,7 +25,12 @@ export function Command({ id }: CommandProps) {
   const variants = OS_LIST.filter((os) => command[os] !== undefined && (progress.os === null || progress.os === os))
   if (variants.length === 0) {
     const other = OS_LIST.find((os) => command[os] !== undefined)!
-    return <p className="muted">Tätä komentoa tarvitaan vain {OS_LABEL[other]}-koneilla.</p>
+    return (
+      <p className="muted command__not-needed">
+        <Icon name="info" />
+        Tätä komentoa tarvitaan vain {OS_LABEL[other]}-koneilla.
+      </p>
+    )
   }
 
   return (
@@ -34,7 +40,8 @@ export function Command({ id }: CommandProps) {
         <CommandLine
           key={os}
           text={command[os]!}
-          label={progress.os === null ? OS_LABEL[os] : undefined}
+          os={os}
+          showOs={progress.os === null}
           source={sourceFor(command, os)}
           verifiedAt={command.verifiedAt}
         />
@@ -45,12 +52,14 @@ export function Command({ id }: CommandProps) {
 
 interface CommandLineProps {
   text: string
-  label?: string
+  os: Os
+  /** Ei käyttöjärjestelmävalintaa: versio otsikoidaan. */
+  showOs: boolean
   source: string
   verifiedAt: string
 }
 
-function CommandLine({ text, label, source, verifiedAt }: CommandLineProps) {
+function CommandLine({ text, os, showOs, source, verifiedAt }: CommandLineProps) {
   const [status, setStatus] = useState<'idle' | 'copied' | 'failed'>('idle')
   const timer = useRef<number | undefined>(undefined)
   useEffect(() => () => window.clearTimeout(timer.current), [])
@@ -64,12 +73,20 @@ function CommandLine({ text, label, source, verifiedAt }: CommandLineProps) {
 
   return (
     <div className="command__variant">
-      {label && <p className="command__os">{label}</p>}
+      {showOs && (
+        <p className="command__os">
+          <span className="chip">
+            <Icon name={os} />
+            {OS_LABEL[os]}
+          </span>
+        </p>
+      )}
       <div className="command__box">
         <pre className="command__code">
           <code>{text}</code>
         </pre>
-        <button type="button" className="button button--small command__copy" onClick={handleCopy}>
+        <button type="button" className={`command__copy${status === 'copied' ? ' command__copy--copied' : ''}`} onClick={handleCopy}>
+          <Icon name={status === 'copied' ? 'check' : 'copy'} />
           {status === 'copied' ? 'Kopioitu!' : 'Kopioi'}
           <span className="visually-hidden"> komento {text}</span>
         </button>
@@ -78,7 +95,12 @@ function CommandLine({ text, label, source, verifiedAt }: CommandLineProps) {
         <span aria-live="polite" className="visually-hidden">
           {status === 'copied' ? 'Komento kopioitu leikepöydälle.' : status === 'failed' ? 'Kopiointi ei onnistunut. Valitse komento ja kopioi se itse.' : ''}
         </span>
-        {status === 'failed' && <span className="command__error">Kopiointi ei onnistunut, valitse teksti ja kopioi se itse. </span>}
+        {status === 'failed' && (
+          <span className="command__error">
+            <Icon name="error" />
+            Kopiointi ei onnistunut, valitse teksti ja kopioi se itse.{' '}
+          </span>
+        )}
         Lähde:{' '}
         <a href={source} target="_blank" rel="noreferrer">
           {sourceLabel(source)}

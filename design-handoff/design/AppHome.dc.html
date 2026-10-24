@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Etusivu – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4cqi, 40px) 32px; display: flex; flex-direction: column; gap: clamp(24px, 4cqi, 48px);">
+  <dc-import name="Nav" active="home" os="{{os}}" show-skip="{{skip}}" hint-size="100%,120px"></dc-import>
+
+  <sc-if value="{{storageOff}}" hint-placeholder-val="{{ false }}">
+    <div class="pp-notice pp-notice-warning" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg><span>Selaimesi ei salli tallennusta (esimerkiksi yksityinen selausikkuna). Sivu toimii, mutta edistymisesi ei säily, kun suljet välilehden. Voit siirtää edistymisen talteen <a href="AppSettings.dc.html">asetuksista</a>.</span></div>
+  </sc-if>
+  <sc-if value="{{storageBroken}}" hint-placeholder-val="{{ false }}">
+    <div class="pp-notice pp-notice-warning" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg><span>Aiemmin tallennettua edistymistä ei voitu lukea, joten aloitetaan alusta. Jos sinulla on siirtokoodi, voit tuoda sen <a href="AppSettings.dc.html">asetuksista</a>.</span></div>
+  </sc-if>
+
+  <main id="sisalto" tabindex="-1" style="display: flex; flex-direction: column; gap: clamp(32px, 5cqi, 56px); outline: none;">
+    <!-- Hero -->
+    <section style="display: flex; flex-wrap: wrap; gap: clamp(20px, 3cqi, 32px); align-items: stretch; background: var(--surface-2); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4cqi, 40px);">
+      <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+        <h1 class="pp-serif" style="margin: 0; font-size: clamp(36px, 6cqi, 64px); line-height: 1.04; font-weight: 600;">Promptista projektiksi</h1>
+        <p style="margin: 0; font-size: clamp(17px, 2cqi, 20px); line-height: 1.6; color: var(--ink-2); max-width: 560px;">Opettele tekemään omia verkkosivuja ja sovelluksia tekoälyn kanssa. Et tarvitse aiempaa kokemusta: aloitetaan siitä, mikä terminaali on, ja päädytään siihen, että sinulla on oma projekti netissä.</p>
+        <sc-if value="{{showCta}}" hint-placeholder-val="{{ true }}">
+          <div><a class="pp-btn pp-btn-primary" href="AppModule.dc.html" style="flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 26px; border-radius: 24px; text-align: left; max-width: 100%;">
+            <span style="font-size: 13px; font-weight: 600; opacity: .92;">{{ctaLabel}}</span>
+            <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 18px;">{{ctaModule}}<svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a></div>
+        </sc-if>
+        <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+          <div class="pp-notice pp-notice-success pp-anim-pop" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.7 2.7L16 9.5"></path></svg><span>Olet käynyt koko polun läpi. Mahtavaa työtä!</span></div>
+        </sc-if>
+      </div>
+      <div style="flex: 1 1 320px; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: clamp(20px, 3cqi, 28px); display: flex; flex-direction: column; align-items: center; gap: 14px;">
+        <dc-import name="Mascot" pose="{{pose}}" size="{{msize}}" hint-size="150px,150px"></dc-import>
+        <sc-if value="{{isFirst}}" hint-placeholder-val="{{ false }}">
+          <div style="align-self: stretch;"><dc-import name="OsPicker" variant="large" initial="none" framed="{{no}}" hint-size="100%,170px"></dc-import></div>
+        </sc-if>
+        <sc-if value="{{notFirst}}" hint-placeholder-val="{{ true }}">
+          <p style="margin: 0; text-align: center; font-size: 16px; line-height: 1.55; color: var(--ink-2);">Näet ohjeet <strong style="color: var(--ink);">{{os}}-koneelle</strong>. Voit vaihtaa valintaa yläpalkista.</p>
+        </sc-if>
+      </div>
+    </section>
+
+    <!-- Oppimispolut -->
+    <section aria-labelledby="paths-h" style="display: flex; flex-direction: column; gap: 16px;">
+      <h2 id="paths-h" class="pp-serif" style="margin: 0; font-size: clamp(26px, 3.4cqi, 36px); font-weight: 600;">Oppimispolut</h2>
+      <article class="pp-lift" style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 3cqi, 32px); display: flex; flex-direction: column; gap: 14px;">
+        <h3 class="pp-serif" style="margin: 0; font-size: clamp(22px, 3cqi, 28px); font-weight: 600; line-height: 1.2;"><a href="AppPath.dc.html" style="color: var(--ink);">Claude Code alusta alkaen</a></h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 720px;">Opit, mikä terminaali on, asennat tarvittavat työkalut ja teet Claude Coden kanssa ensimmäisen oman verkkosivusi. Aiempaa kokemusta ei tarvita.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;" aria-label="Aiheet">
+          <span style="display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 12px 0 4px; border-radius: 999px; background: var(--t0); font-size: 13px; font-weight: 600;"><span class="pp-mono" style="width: 22px; height: 22px; border-radius: 50%; background: var(--surface); color: var(--t0-ink); display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">0</span>Perusteet</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 12px 0 4px; border-radius: 999px; background: var(--t1); font-size: 13px; font-weight: 600;"><span class="pp-mono" style="width: 22px; height: 22px; border-radius: 50%; background: var(--surface); color: var(--t1-ink); display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">1</span>Asennukset</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 12px 0 4px; border-radius: 999px; background: var(--t2); font-size: 13px; font-weight: 600;"><span class="pp-mono" style="width: 22px; height: 22px; border-radius: 50%; background: var(--surface); color: var(--t2-ink); display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">2</span>Claude Code -periaatteet</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 12px 0 4px; border-radius: 999px; background: var(--t3); font-size: 13px; font-weight: 600;"><span class="pp-mono" style="width: 22px; height: 22px; border-radius: 50%; background: var(--surface); color: var(--t3-ink); display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">3</span>Ensimmäinen projekti</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 4px;">
+          <span class="pp-bar" role="progressbar" aria-valuenow="{{pct}}" aria-valuemin="0" aria-valuemax="100" aria-label="Claude Code alusta alkaen: edistyminen" style="display: block;"><span style="width: {{pct}}%; background: var(--success);"></span></span>
+          <span style="font-size: 14px; color: var(--ink-2);"><span class="pp-mono">{{done}}/24</span> valmiina (<span class="pp-mono">{{pct}} %</span>)</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- Näin tämä toimii -->
+    <section aria-labelledby="how-h" style="display: flex; flex-direction: column; gap: 16px;">
+      <h2 id="how-h" class="pp-serif" style="margin: 0; font-size: clamp(26px, 3.4cqi, 36px); font-weight: 600;">Näin tämä toimii</h2>
+      <ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px;">
+        <li style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;"><span class="pp-mono" style="font-size: 32px; line-height: 1; color: var(--t0-ink);">1</span><span style="font-size: 15px; line-height: 1.55;">Jokainen aihe on lyhyt tietopaketti ja jotain tekemistä: komento, harjoitus tai visa.</span></li>
+        <li style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;"><span class="pp-mono" style="font-size: 32px; line-height: 1; color: var(--t1-ink);">2</span><span style="font-size: 15px; line-height: 1.55;">Suositeltu järjestys on valmiina, mutta voit hypätä mihin tahansa aiheeseen.</span></li>
+        <li style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;"><span class="pp-mono" style="font-size: 32px; line-height: 1; color: var(--t2-ink);">3</span><span style="font-size: 15px; line-height: 1.55;">Edistymisesi tallentuu vain tähän selaimeen. Kirjautumista ei tarvita.</span></li>
+        <li style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;"><span class="pp-mono" style="font-size: 32px; line-height: 1; color: var(--t3-ink);">4</span><span style="font-size: 15px; line-height: 1.55;">Jos jokin menee pieleen, katso <a href="AppTrouble.dc.html">vianmääritys</a>. Outo sana? <a href="AppGlossary.dc.html">Sanasto</a> auttaa.</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer style="padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; color: var(--ink-2); text-align: center;">Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["first","os","progress","done","bonus"],"default":"progress"},"os":{"editor":"enum","options":["Windows","Mac"],"default":"Windows"},"storage":{"editor":"enum","options":["ok","off","broken"],"default":"ok"},"skip":{"editor":"boolean","default":false},"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.props.state ?? 'progress';
+    const first = s === 'first';
+    const done = { first: 0, os: 0, progress: 13, done: 24, bonus: 24 }[s];
+    const cta = {
+      first: ['Aloita tästä', '0.1 Mitä vibekoodaus on?'],
+      os: ['Aloita tästä', '0.1 Mitä vibekoodaus on?'],
+      progress: ['Jatka siitä mihin jäit', '2.1 Ensimmäinen keskustelu'],
+      bonus: ['Pakolliset tehty – kokeile vielä bonusta', '★ 3.5 Bonus: julkaise'],
+      done: ['', '']
+    }[s];
+    const storage = this.props.storage ?? 'ok';
+    return {
+      theme: this.props.theme ?? 'light',
+      skip: this.props.skip ?? false,
+      os: first ? 'none' : (this.props.os ?? 'Windows'),
+      no: false,
+      storageOff: storage === 'off',
+      storageBroken: storage === 'broken',
+      isFirst: first,
+      notFirst: !first,
+      showCta: s !== 'done',
+      isDone: s === 'done',
+      ctaLabel: cta[0],
+      ctaModule: cta[1],
+      pose: s === 'done' || s === 'bonus' ? 'cheer' : (first ? 'wave' : 'point'),
+      msize: 150,
+      done,
+      pct: Math.round((done / 24) * 100)
+    };
+  }
+}
+</script>
+</body>
+</html>

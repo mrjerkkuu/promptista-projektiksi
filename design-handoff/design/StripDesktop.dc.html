@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Ensikäynti työpöydällä</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 2720px; min-height: 4600px; box-sizing: border-box; padding: 48px; display: flex; gap: 64px; align-items: flex-start; background: var(--surface-2);">
+  <div style="flex: none; width: 1280px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Etusivu · ensikäynti · fokus ohituslinkissä</span><div style="width: 1280px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppHome" state="first" skip="{{yes}}" hint-size="1280px,1500px"></dc-import></div></div>
+  <div style="flex: none; width: 1280px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Moduuli 1.2 Git · ei käyttöjärjestelmää</span><div style="width: 1280px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="git" os="none" hint-size="1280px,4400px"></dc-import></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2720,"height":4600}}'>
+class Component extends DCLogic {
+  renderVals() { return { yes: true }; }
+}
+</script>
+</body>
+</html>

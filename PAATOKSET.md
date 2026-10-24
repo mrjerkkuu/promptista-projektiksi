@@ -112,3 +112,19 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 54. **Node-versio:** `engines.node >= 22.22.0` (react-router 8:n vaatimus). CI:ssä käytetään uusinta LTS-versiota (`lts/*`).
 55. **LICENSE:** tekijänoikeuden haltijaksi merkittiin gitin asetuksissa oleva nimi (Jeremia Vepsäläinen).
 56. **Tarkistettiin, että uuden polun lisääminen toimii ilman koodimuutoksia:** väliaikainen `paths/lovable/`-kansio löytyi automaattisesti ja meni buildista läpi, minkä jälkeen se poistettiin.
+
+## Design v2 (design-handoff/, 24.10.2026)
+
+57. **Uusi ulkoasu toteutettiin `design-handoff/CLAUDE-CODE-OHJE.md`:n luvun 4 mukaan.** Toiminnallisuus, reitit, tallennus (`pp-progress-v1`, skeema ja ID:t) ja merkkien ehdot ovat ennallaan. Tallennukseen ei tehty muutoksia.
+58. **`tokens.css` on design-paketin versio**, ja loppuun on lisätty sovelluksen omat mittatokenit (fonttikoot 14/16/18/22 px, h2-asteikko, painikkeen korkeus, kuvakekoot, polkusivun leveys, Nupun kelluntakesto). Värejä ei lisätty. Kontrastitesti kattaa nyt myös `KONTRASTIT.md`:n parit ja sovelluksen omat käytöt (esim. aihechipin numero valkoisella).
+59. **Fontit (Fraunces, Figtree, DM Mono) tulevat npm-paketeista** (`@fontsource…`) ja buildataan sivuston omiksi tiedostoiksi. Ei CDN-pyyntöjä.
+60. **Ilmoitusten kuvake on `::before` + `mask-image`**, joten ilmoitusten markup ei muuttunut. Kuvake on absoluuttisesti sijoitettu eikä flex-elementti, koska osa ilmoituksista on `<p>`-elementtejä, joissa on tekstiä ja linkkejä samalla rivillä.
+61. **Nuppu ja merkkien kuvakkeet ovat SVG-tiedostoja `src/assets/`-kansiossa** ja upotetaan sellaisenaan (`?raw`), jotta värit tulevat CSS-muuttujista. Merkin kuvake valitaan tiedostonimestä (= merkin ID). Uusi merkki ilman SVG:tä näyttää `badges.json`:n emojin, joten uuden merkin lisääminen ei vaadi koodimuutosta. Merkkien aihevärit ovat `Badge.tsx`:n taulukossa (oletus aihe 1).
+62. **Teksti säilyi ruudunlukijalle samana:** etusivun CTA:n kaksoispiste ja vianmäärityksen sulut ja pilkut ovat `visually-hidden`-tekstinä, polkusivun aiheen numero on h2:ssa piilotettuna. Testit tarkistavat samat nimet kuin ennen.
+63. **Moduulisivun tilarivi näkyy otsikon yläpuolella (`order: -1`), mutta DOM:ssa se on h1:n jälkeen**, koska fokus siirtyy sivun vaihtuessa h1:een ja ruudunlukija lukee tilan sen jälkeen.
+64. **Merkki-ilmoituksen näkymisaika luetaan tokenista `--duration-toast`** (7 s). Jos tokenia ei voi lukea (testit ilman CSS:ää), käytetään 7 000 ms.
+65. **Vähennetty liike:** tokenien kestot menevät nollaan kuten ennenkin, ja `base.css` estää lisäksi kaikki animaatiot ja siirtymät (myös Nupun toistuvan kellunnan).
+66. **Nuppu kelluu vain etusivulla ja merkkisivulla** (ei nukkuessa). Muualla, myös yläpalkissa, se on paikallaan. Designin 4,5 s:n kellunta nyki, koska 4 px:n liike oli niin hidas, että selain pyöristi sijainnin kokonaisiin pikseleihin. Nyt Nuppu tekee nopean pompahduksen (noin 0,5 s) 2,4 s:n välein ja seisoo välillä paikallaan. Kelluvalla Nupulla on oma piirtokerros (`will-change: transform`).
+69. **Linkkikortin nousu hoverissa tehdään `top`-siirtymällä, ei `transform`illa.** Transform-animaatio sumensi etusivun polkukortin tekstin animaation ajaksi.
+70. **Nuppu on vaalea myös tummassa teemassa.** `Nuppu.css` ohjaa SVG:n käyttämät värimuuttujat Nupun omiin tokeneihin (`--color-nuppu-*`), joita tumma teema ei korvaa. Tummassa teemassa Nupulla on lisäksi ohut vaalea ääriviiva (tarra, `drop-shadow`-ketju), jotta tummat kädet, jalat ja varsi erottuvat tummasta taustasta.
+71. **Alatunnisteessa on tekijänoikeusrivi** ”© 2026 Jeremia Vepsäläinen” (sama kuin LICENSE-tiedostossa).

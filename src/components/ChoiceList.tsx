@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react'
+import { Icon } from './Icon'
 import './ChoiceList.css'
 
 export interface Choice {
   id: string
-  label: string
+  label: ReactNode
   correct: boolean
   explanation: string
   /** Lisäsisältö palautteeseen, esim. linkki vianmääritykseen. */
@@ -43,9 +44,10 @@ export function ChoiceList({ labelledBy, options, selectedId, onSelect, revealAl
                 onClick={() => onSelect(o.id)}
               >
                 <span className="choices__marker" aria-hidden="true">
-                  {state === 'correct' ? '✓' : state === 'wrong' ? '✗' : '○'}
+                  {state === 'correct' && <Icon name="check" />}
+                  {state === 'wrong' && <Icon name="cross" />}
                 </span>
-                <span>{o.label}</span>
+                <span className="choices__label">{o.label}</span>
                 {isSelected && <span className="visually-hidden">{o.correct ? ' (oikein)' : ' (väärin)'}</span>}
               </button>
               {revealAll && !isSelected && <p className="choices__explanation choices__explanation--muted">{o.explanation}</p>}
@@ -55,7 +57,7 @@ export function ChoiceList({ labelledBy, options, selectedId, onSelect, revealAl
       </ul>
       <div className="choices__feedback" aria-live="polite">
         {selected && (
-          <div className={`notice ${selected.correct ? 'notice--success' : 'notice--error'}`}>
+          <div key={selected.id} className={`notice notice--rise ${selected.correct ? 'notice--success' : 'notice--error'}`}>
             <p>
               <strong>{selected.correct ? 'Oikein!' : 'Ei aivan.'}</strong> {selected.explanation}
             </p>

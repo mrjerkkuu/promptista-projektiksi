@@ -8,11 +8,19 @@
   color: inherit;
   background: none;
   border: none;
+  border-radius: calc(var(--radius-sm) / 2);
   padding: 0;
   cursor: help;
   text-decoration: underline dotted;
+  text-decoration-color: var(--color-primary);
   text-decoration-thickness: var(--term-underline-width);
-  text-underline-offset: 0.2em;
+  text-underline-offset: 5px;
+  transition: background-color var(--duration-fast) var(--easing-standard);
+}
+
+.term__button:hover,
+.term__button[aria-expanded='true'] {
+  background: var(--color-primary-soft);
 }
 
 .term__popover {
@@ -23,16 +31,40 @@
   display: block;
   width: max-content;
   max-width: min(20rem, calc(100vw - 2 * var(--page-gutter)));
-  margin-top: var(--space-1);
-  padding: var(--space-3);
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   background: var(--color-surface);
   color: var(--color-text);
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   font-size: var(--font-size-sm);
-  line-height: var(--line-height-body);
+  line-height: 1.5;
   font-weight: var(--font-weight-normal);
+  overflow-wrap: anywhere;
+}
+
+/* Pieni nuoli sanaa kohti */
+.term__popover::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: var(--space-5);
+  width: 12px;
+  height: 12px;
+  background: var(--color-surface);
+  border-left: var(--border-width) solid var(--color-border);
+  border-top: var(--border-width) solid var(--color-border);
+  transform: rotate(45deg);
+}
+
+.term__popover strong {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-md);
+}
+
+.term__popover a {
+  font-weight: var(--font-weight-bold);
 }
 
 .term__popover[hidden] {

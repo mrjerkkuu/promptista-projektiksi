@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Sivua ei löytynyt – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4cqi, 40px) 32px; display: flex; flex-direction: column; gap: clamp(24px, 4cqi, 40px);">
+  <dc-import name="Nav" active="none" os="Windows" hint-size="100%,120px"></dc-import>
+  <main id="sisalto" tabindex="-1" style="max-width: 760px; width: 100%; margin: 0 auto; outline: none;">
+    <section style="background: var(--surface-2); border: 1px solid var(--line); border-radius: 28px; padding: clamp(24px, 5cqi, 56px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px;">
+      <dc-import name="Mascot" pose="think" size="{{m}}" hint-size="160px,160px"></dc-import>
+      <span class="pp-mono" style="font-size: 14px; color: var(--ink-2);">404</span>
+      <h1 class="pp-serif" style="margin: 0; font-size: clamp(32px, 5cqi, 48px); line-height: 1.1; font-weight: 600;">Sivua ei löytynyt</h1>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--ink-2);">Etsimääsi sivua ei ole olemassa. Ehkä linkki on vanhentunut.</p>
+      <a class="pp-btn pp-btn-primary" href="AppHome.dc.html">Palaa etusivulle</a>
+    </section>
+  </main>
+  <footer style="padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; color: var(--ink-2); text-align: center;">Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light', m: 160 }; }
+}
+</script>
+</body>
+</html>

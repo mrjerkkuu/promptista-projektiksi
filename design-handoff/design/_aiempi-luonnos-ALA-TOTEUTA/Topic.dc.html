@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Aihealue 1: Asennukset – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 48px; display: flex; flex-direction: column; gap: clamp(24px, 4vw, 40px);">
+  <dc-import name="Nav" active="topics" hint-size="100%,76px"></dc-import>
+
+  <main style="display: flex; flex-direction: column; gap: clamp(24px, 4vw, 40px);">
+    <!-- Aihealuevalitsin -->
+    <nav aria-label="Aihealueet" style="overflow-x: auto;">
+      <div style="display: flex; gap: 8px; width: max-content;">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+          <a href="Topic.dc.html" aria-current="{{t.current}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px 0 8px; border-radius: 999px; background: {{t.bg}}; border: 1.5px solid {{t.border}}; color: var(--ink); text-decoration: none; font-size: 15px; font-weight: {{t.weight}};">
+            <span class="pp-mono" style="width: 30px; height: 30px; border-radius: 50%; background: var(--{{t.key}}); border: 1px solid var(--{{t.key}}-line); color: var(--{{t.key}}-ink); display: flex; align-items: center; justify-content: center; font-size: 14px;">{{t.num}}</span>{{t.name}}
+          </a>
+        </sc-for>
+      </div>
+    </nav>
+
+    <!-- Otsake -->
+    <section style="display: flex; flex-wrap: wrap; gap: 24px 40px; align-items: flex-end; background: var(--t1); border: 1px solid var(--t1-line); border-radius: 28px; padding: clamp(20px, 4vw, 40px);">
+      <div style="flex: 2 1 420px; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+        <span class="pp-overline" style="color: var(--t1-ink);">Aihealue 1</span>
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span class="pp-mono" style="font-size: clamp(56px, 9vw, 96px); line-height: 0.9; color: var(--t1-ink);">1</span>
+          <h1 class="pp-serif" style="margin: 0; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; font-weight: 600;">Asennukset</h1>
+        </div>
+        <p style="margin: 0; font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: var(--ink-2); max-width: 560px;">Asennat kaikki työkalut, joita Claude Code tarvitsee. Jokainen asennus varmistetaan, joten tiedät aina, että onnistuit.</p>
+      </div>
+      <div style="flex: 1 1 260px; background: var(--surface); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+        <span class="pp-overline" style="color: var(--ink-2);">Edistyminen</span>
+        <div class="pp-mono" style="font-size: 44px; line-height: 1;">3<span style="font-size: 22px; color: var(--ink-2);">/6</span></div>
+        <span style="font-size: 14px; color: var(--ink-2);">moduulia valmiina · n. 25 min jäljellä</span>
+        <span class="pp-bar" style="display: block; margin-top: 4px;" role="progressbar" aria-label="Aihealue 1: 3/6 moduulia" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"><span style="width: 50%; background: var(--t1-ink);"></span></span>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
+      <!-- Moduulilista -->
+      <section aria-labelledby="mods-h" style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+        <h2 id="mods-h" class="pp-serif" style="margin: 0 0 4px; font-size: clamp(22px, 2.6vw, 28px); font-weight: 600;">Moduulit</h2>
+        <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+          <sc-for list="{{mods}}" as="m" hint-placeholder-count="6">
+            <li>
+              <a href="Module.dc.html" class="pp-lift" style="display: flex; align-items: center; gap: 16px; padding: 16px 18px; border-radius: 16px; background: var(--surface); border: {{m.border}}; color: var(--ink); text-decoration: none;">
+                <span style="flex: none; width: 44px; height: 44px; border-radius: 50%; background: {{m.iconBg}}; color: {{m.iconColor}}; display: flex; align-items: center; justify-content: center;">
+                  <sc-if value="{{m.done}}" hint-placeholder-val="{{ false }}"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 22px; height: 22px; stroke-width: 2.6;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+                  <sc-if value="{{m.doing}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 20 20" aria-hidden="true" style="width: 20px; height: 20px;"><circle cx="10" cy="10" r="8" style="fill: none; stroke: currentColor; stroke-width: 2"></circle><path d="M10 2 A8 8 0 0 1 10 18 Z" style="fill: currentColor"></path></svg></sc-if>
+                  <sc-if value="{{m.todo}}" hint-placeholder-val="{{ true }}"><span class="pp-mono" style="font-size: 14px;">{{m.n}}</span></sc-if>
+                </span>
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                  <span style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+                    <span class="pp-mono" style="font-size: 14px; color: var(--ink-2);">{{m.id}}</span>
+                    <span style="font-size: 17px; font-weight: 600;">{{m.title}}</span>
+                  </span>
+                  <span style="font-size: 14px; line-height: 1.45; color: var(--ink-2);">{{m.desc}}</span>
+                </span>
+                <span style="flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+                  <span style="display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border-radius: 999px; background: {{m.chipBg}}; color: {{m.chipColor}}; font-size: 12px; font-weight: 600; white-space: nowrap;">{{m.status}}</span>
+                  <span class="pp-mono pp-hide-sm" style="font-size: 13px; color: var(--ink-2);">{{m.time}}</span>
+                </span>
+              </a>
+            </li>
+          </sc-for>
+        </ol>
+      </section>
+
+      <!-- Sivupalsta -->
+      <aside style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+          <h2 class="pp-serif" style="margin: 0; font-size: 20px; font-weight: 600;">Tämän osion merkit</h2>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;">
+            <sc-for list="{{badges}}" as="b" hint-placeholder-count="4">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+                <span style="width: 52px; height: 52px; border-radius: 50%; background: {{b.bg}}; border: 2px {{b.borderStyle}} {{b.border}}; color: {{b.color}}; display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 22px; height: 22px;"><path d="{{b.icon}}"></path></svg></span>
+                <span style="font-size: 11px; line-height: 1.3; color: var(--ink-2);">{{b.label}}</span>
+              </div>
+            </sc-for>
+          </div>
+          <a href="Badges.dc.html" style="font-size: 14px; font-weight: 600;">Kaikki merkit →</a>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <h2 class="pp-serif" style="margin: 0; font-size: 20px; font-weight: 600;">Tarvitset</h2>
+          <ul style="margin: 0; padding-left: 20px; font-size: 15px; line-height: 1.7;">
+            <li>Windows 10 tai 11 -koneen</li>
+            <li>internetyhteyden</li>
+            <li>sähköpostiosoitteen GitHub-tiliä varten</li>
+            <li>noin tunnin, voi tehdä osissa</li>
+          </ul>
+        </div>
+        <div style="background: var(--surface-2); border-radius: 20px; padding: 16px 20px; display: flex; align-items: center; gap: 12px;">
+          <dc-import name="Mascot" pose="think" size="{{ms}}" hint-size="64px,64px"></dc-import>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <strong style="font-size: 15px;">Jumissa?</strong>
+            <a href="Glossary.dc.html" style="font-size: 14px;">Yleisimmät ongelmat ja ratkaisut</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = {
+      done: { status: '✓ Valmis', chipBg: 'var(--success-soft)', chipColor: 'var(--success)', iconBg: 'var(--success-soft)', iconColor: 'var(--success)', border: '1px solid var(--line)' },
+      doing: { status: 'Kesken · 2/4', chipBg: 'var(--t1)', chipColor: 'var(--ink)', iconBg: 'var(--t1)', iconColor: 'var(--t1-ink)', border: '2px solid var(--t1-ink)' },
+      next: { status: 'Seuraavaksi', chipBg: 'var(--accent-soft)', chipColor: 'var(--ink)', iconBg: 'var(--surface-2)', iconColor: 'var(--ink)', border: '1px solid var(--line)' },
+      todo: { status: 'Ei aloitettu', chipBg: 'var(--surface-2)', chipColor: 'var(--ink-2)', iconBg: 'var(--surface-2)', iconColor: 'var(--ink-2)', border: '1px solid var(--line)' }
+    };
+    const m = (n, title, desc, time, st) => ({ n, id: '1.' + n, title, desc, time, ...S[st], done: st === 'done', doing: st === 'doing', todo: st === 'next' || st === 'todo' });
+    const topicTabs = [
+      { key: 't0', num: '0', name: 'Perusteet' },
+      { key: 't1', num: '1', name: 'Asennukset' },
+      { key: 't2', num: '2', name: 'Periaatteet' },
+      { key: 't3', num: '3', name: 'Projekti' }
+    ];
+    return {
+      theme: this.props.theme ?? 'light',
+      ms: 64,
+      tabs: topicTabs.map((t) => {
+        const cur = t.key === 't1';
+        return { ...t, current: cur ? 'page' : 'false', bg: cur ? 'var(--surface)' : 'transparent', border: cur ? 'var(--ink)' : 'var(--line)', weight: cur ? 600 : 500 };
+      }),
+      mods: [
+        m(1, 'Mikä on paketinhallinta?', 'Sovelluskauppa komentoriville: winget Windowsissa, Homebrew Macissa.', '5 min', 'done'),
+        m(2, 'Asenna PowerShell 7', 'Uudempi ja ystävällisempi versio Windowsin komentorivistä.', '8 min', 'done'),
+        m(3, 'Luo GitHub-tili', 'Paikka, jossa projektisi asuu verkossa.', '6 min', 'done'),
+        m(4, 'Asenna Git', 'Tallennuspisteet projektillesi.', '8 min', 'doing'),
+        m(5, 'Asenna Node.js', 'Tarvitaan, jotta projektisi pyörii omalla koneellasi.', '7 min', 'next'),
+        m(6, 'Asenna Claude Code ja kirjaudu', 'Tekoälyavustaja, jonka kanssa rakennat projektin.', '10 min', 'todo')
+      ],
+      badges: [
+        { label: 'Paketti­taituri', bg: 'var(--t1)', border: 'var(--t1-line)', borderStyle: 'solid', color: 'var(--t1-ink)', icon: 'M4 8l8-4 8 4-8 4zM4 8v8l8 4 8-4V8M12 12v8' },
+        { label: 'GitHub-tili', bg: 'var(--t1)', border: 'var(--t1-line)', borderStyle: 'solid', color: 'var(--t1-ink)', icon: 'M7 20c0-4 2-6 5-6s5 2 5 6M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z' },
+        { label: 'Git asennettu', bg: 'var(--surface-2)', border: 'var(--line-strong)', borderStyle: 'dashed', color: 'var(--ink-3)', icon: 'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v9H5z' },
+        { label: 'Valmiina!', bg: 'var(--surface-2)', border: 'var(--line-strong)', borderStyle: 'dashed', color: 'var(--ink-3)', icon: 'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v9H5z' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

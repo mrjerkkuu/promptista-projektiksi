@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Etusivu – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 48px; display: flex; flex-direction: column; gap: clamp(32px, 5vw, 56px);">
+
+  <dc-import name="Nav" active="home" hint-size="100%,76px"></dc-import>
+
+  <main style="display: flex; flex-direction: column; gap: clamp(32px, 5vw, 56px);">
+    <!-- Hero -->
+    <section style="display: flex; flex-wrap: wrap; gap: clamp(20px, 3vw, 32px); align-items: stretch; background: var(--surface-2); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4vw, 40px);">
+      <div style="flex: 1 1 420px; display: flex; flex-direction: column; justify-content: center; gap: 20px; min-width: 0;">
+        <span class="pp-overline" style="color: var(--ink-2);">Suomenkielinen opas · ilmainen · ei kirjautumista</span>
+        <h1 class="pp-serif" style="margin: 0; font-size: clamp(36px, 5.6vw, 64px); line-height: 1.04; font-weight: 600;">Ensimmäinen oma projektisi tekoälyn kanssa.</h1>
+        <p style="margin: 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.6; color: var(--ink-2); max-width: 540px;">Asennetaan yhdessä kaikki tarvittava, opitaan muutama perusidea ja tehdään sivu, joka on oikeasti verkossa. Koodaustaustaa ei tarvita.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <a class="pp-btn pp-btn-primary" href="Os.dc.html">Aloita alusta <svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a class="pp-btn pp-btn-secondary" href="Glossary.dc.html">Mikä on komentorivi?</a>
+        </div>
+        <span style="font-size: 14px; color: var(--ink-2);"><span class="pp-mono">4</span> aihealuetta · <span class="pp-mono">22</span> lyhyttä moduulia · Windows ja Mac</span>
+      </div>
+      <div style="flex: 1 1 320px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0;">
+        <div style="align-self: stretch; position: relative; background: var(--t0); border-radius: 16px; padding: 14px 16px; font-size: 15px; line-height: 1.5; color: var(--ink);">
+          Hei, olen <strong>Nuppu</strong>! Kokeillaanko heti yhtä komentoa? Se ei riko mitään.
+          <span aria-hidden="true" style="position: absolute; bottom: -8px; left: 50%; width: 16px; height: 16px; background: var(--t0); transform: translateX(-50%) rotate(45deg);"></span>
+        </div>
+        <dc-import name="Mascot" pose="{{heroPose}}" size="{{heroSize}}" hint-size="180px,180px"></dc-import>
+        <div style="align-self: stretch; display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--line-strong); border-radius: 14px; padding: 8px 8px 8px 16px;">
+          <span class="pp-mono" style="flex: 1; font-size: 15px;"><span style="color: var(--accent);">&gt;</span> pwd</span>
+          <button type="button" class="pp-btn pp-btn-primary pp-btn-sm" onClick="{{tryIt}}" style="width: auto;">Kokeile</button>
+        </div>
+        <div aria-live="polite" style="align-self: stretch;">
+          <sc-if value="{{tried}}" hint-placeholder-val="{{ false }}">
+            <div class="pp-anim-rise" style="font-size: 14px; line-height: 1.5; color: var(--ink);"><span class="pp-mono" style="color: var(--ink-2);">C:\Users\sinä</span><br><strong style="color: var(--success);">Tuossa!</strong> pwd kertoo, missä kansiossa olet. Juuri noin helppoa.</div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jatka + tilastot -->
+    <section aria-labelledby="continue-h" style="display: flex; flex-wrap: wrap; gap: 20px;">
+      <div style="flex: 3 1 440px; min-width: 0; background: var(--t1); border: 1px solid var(--t1-line); border-radius: 28px; padding: clamp(20px, 3vw, 32px); display: flex; flex-direction: column; gap: 16px;">
+        <span id="continue-h" class="pp-overline" style="color: var(--t1-ink);">Jatka siitä, mihin jäit</span>
+        <div style="display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;">
+          <span class="pp-mono" style="font-size: clamp(40px, 6vw, 64px); line-height: 1; color: var(--t1-ink);">1.4</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <h2 class="pp-serif" style="margin: 0; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.1; font-weight: 600;">Asenna Git</h2>
+            <span style="font-size: 15px; color: var(--ink-2);">Aihealue 1 · Asennukset</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--ink);"><span>Vaihe 2/4: Asennus</span><span class="pp-mono">n. 6 min jäljellä</span></div>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;" aria-hidden="true">
+            <span style="height: 10px; border-radius: 999px; background: var(--t1-ink);"></span><span style="height: 10px; border-radius: 999px; background: var(--t1-ink);"></span><span style="height: 10px; border-radius: 999px; background: var(--track);"></span><span style="height: 10px; border-radius: 999px; background: var(--track);"></span>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: auto;">
+          <a class="pp-btn pp-btn-primary" href="Module.dc.html">Jatka <svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a class="pp-btn pp-btn-ghost" href="Topic.dc.html" style="color: var(--ink);">Näytä koko aihealue</a>
+        </div>
+      </div>
+      <div style="flex: 2 1 320px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+        <sc-for list="{{stats}}" as="s" hint-placeholder-count="4">
+          <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+              <span class="pp-overline" style="color: var(--ink-2);">{{s.label}}</span>
+              <span style="width: 30px; height: 30px; border-radius: 10px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--ink); flex: none;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="{{s.icon}}"></path></svg></span>
+            </div>
+            <div class="pp-mono" style="font-size: clamp(32px, 4vw, 44px); line-height: 1.1; margin-top: 4px;">{{s.value}}<span style="font-size: 0.45em; color: var(--ink-2);">{{s.unit}}</span></div>
+            <div style="font-size: 13px; color: var(--ink-2);">{{s.caption}}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Aihealueet -->
+    <section aria-labelledby="topics-h" style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px;">
+        <h2 id="topics-h" class="pp-serif" style="margin: 0; font-size: clamp(26px, 3.4vw, 36px); font-weight: 600;">Polku neljässä osassa</h2>
+        <span style="font-size: 15px; color: var(--ink-2);">Etene järjestyksessä – tai hyppää suoraan siihen, mitä tarvitset.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+        <sc-for list="{{topics}}" as="t" hint-placeholder-count="4">
+          <a href="Topic.dc.html" class="pp-lift" style="display: flex; flex-direction: column; gap: 12px; min-height: 290px; padding: 24px; border-radius: 28px; background: var(--{{t.key}}); border: 1px solid var(--{{t.key}}-line); color: var(--ink); text-decoration: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+              <span class="pp-overline" style="color: var(--{{t.key}}-ink);">Aihealue {{t.num}}</span>
+              <span style="display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface); color: {{t.statusColor}}; font-size: 12px; font-weight: 600;">{{t.status}}</span>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 12px;">
+              <span class="pp-mono" style="font-size: 56px; line-height: 1; color: var(--{{t.key}}-ink);">{{t.num}}</span>
+              <span class="pp-serif" style="font-size: 24px; line-height: 1.15; font-weight: 600;">{{t.name}}</span>
+            </div>
+            <p style="margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-2);">{{t.desc}}</p>
+            <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; justify-content: space-between; font-size: 13px;"><span class="pp-mono">{{t.done}}/{{t.total}} moduulia</span><span class="pp-mono">{{t.time}}</span></div>
+              <span class="pp-bar" style="display: block;" role="progressbar" aria-label="{{t.name}}: {{t.done}}/{{t.total}} moduulia" aria-valuenow="{{t.pct}}" aria-valuemin="0" aria-valuemax="100"><span style="width: {{t.pct}}%; background: var(--{{t.key}}-ink);"></span></span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+
+  <footer style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2);">
+    <span>Promptista projektiksi · avoin lähdekoodi · tietosi pysyvät vain tässä selaimessa.</span>
+    <span style="display: flex; flex-wrap: wrap; gap: 16px;"><a href="Glossary.dc.html">Sanasto</a><a href="Glossary.dc.html">Vianmääritys</a><a href="Settings.dc.html">Asetukset</a></span>
+  </footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":2000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tried: false };
+  }
+  renderVals() {
+    const t = (key, num, name, desc, done, total, time) => {
+      const pct = Math.round((done / total) * 100);
+      const status = done === total ? '✓ Valmis' : (done > 0 ? 'Kesken' : 'Ei aloitettu');
+      const statusColor = done === total ? 'var(--success)' : (done > 0 ? 'var(--ink)' : 'var(--ink-2)');
+      return { key, num, name, desc, done, total, time, pct, status, statusColor };
+    };
+    return {
+      theme: this.props.theme ?? 'light',
+      tried: this.state.tried,
+      heroPose: this.state.tried ? 'cheer' : 'wave',
+      heroSize: 180,
+      tryIt: () => this.setState({ tried: true }),
+      stats: [
+        { label: 'Moduulit', value: '8', unit: '/22', caption: 'valmiina', icon: 'M5 12.5l4.5 4.5L19 7.5' },
+        { label: 'Merkit', value: '5', unit: '/12', caption: 'kerätty', icon: 'M12 4l2.4 5 5.4.6-4 3.7 1.1 5.3L12 16l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6z' },
+        { label: 'Visat', value: '14', unit: '/17', caption: 'oikein ensimmäisellä', icon: 'M9 9a3 3 0 1 1 4 2.8c-.6.3-1 .9-1 1.6V14M12 18h.01' },
+        { label: 'Matka', value: '36', unit: ' %', caption: 'koko oppaasta', icon: 'M6 21V4M6 4h11l-2 4 2 4H6' }
+      ],
+      topics: [
+        t('t0', '0', 'Perusteet', 'Komentorivi, kansiot ja polut – rauhassa ja ilman hätää.', 5, 5, 'n. 40 min'),
+        t('t1', '1', 'Asennukset', 'PowerShell 7, Git, GitHub-tili, Node.js ja Claude Code.', 3, 6, 'n. 50 min'),
+        t('t2', '2', 'Claude Code -periaatteet', 'Miten pyydät, tarkistat ja korjaat yhdessä tekoälyn kanssa.', 0, 5, 'n. 45 min'),
+        t('t3', '3', 'Ensimmäinen projekti', 'Oma sivu Vitellä ja Reactilla – ja julkaisu verkkoon.', 0, 6, 'n. 90 min')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

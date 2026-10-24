@@ -3,11 +3,28 @@ import { Link } from 'react-router'
 import { troubleshooting, verifySteps } from '../content'
 import { useProgress } from '../features/progress'
 import { resolveOsText } from '../lib/os'
+import type { Os, OsText } from '../schemas/content'
 import { ChoiceList } from './ChoiceList'
 import { Command } from './Command'
+import { Icon } from './Icon'
 
 interface VerifyStepProps {
   id: string
+}
+
+/** Ilman käyttöjärjestelmävalintaa eroavat vaihtoehdot näytetään kahtena rivinä. */
+function optionLabel(label: OsText, os: Os | null) {
+  if (typeof label === 'string' || os !== null) return resolveOsText(label, os)
+  return (
+    <span className="choices__split">
+      <span>
+        <strong>Windows:</strong> {label.windows}
+      </span>
+      <span>
+        <strong>Mac:</strong> {label.mac}
+      </span>
+    </span>
+  )
 }
 
 /** Asennuksen varmistus: aja tarkistuskomento ja kerro, miltä tulos näytti. Väärä valinta ohjaa vianmääritykseen. */
@@ -19,7 +36,14 @@ export function VerifyStep({ id }: VerifyStepProps) {
 
   return (
     <section className="card verify" aria-labelledby={headingId}>
-      <h3 id={headingId}>Varmistus: {step.title}</h3>
+      <div className="verify__header">
+        <span className="verify__icon" aria-hidden="true">
+          <Icon name="shield" />
+        </span>
+        <h3 id={headingId} className="verify__title">
+          Varmistus: {step.title}
+        </h3>
+      </div>
       <p>{step.question}</p>
       <Command id={step.command} />
       <ChoiceList
@@ -31,7 +55,7 @@ export function VerifyStep({ id }: VerifyStepProps) {
           const entry = entryId ? troubleshooting[entryId] : undefined
           return {
             id: o.id,
-            label: resolveOsText(o.label, progress.os),
+            label: optionLabel(o.label, progress.os),
             correct: o.correct,
             explanation: o.explanation,
             extra: entry && (

@@ -1,17 +1,5 @@
-.read-more {
-  border: var(--border-width) solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--space-4);
-  background: var(--color-surface);
-}
-
-.read-more__summary {
-  cursor: pointer;
-  padding: var(--space-3) var(--space-4);
-  font-weight: var(--font-weight-bold);
-  min-height: var(--tap-target-min);
-}
-
+/* Avattavan osion tyylit (.read-more, __summary, __body) ovat base.css:ssä,
+   koska samaa korttia käyttävät myös vianmääritys ja terminaalin vihje. */
 .read-more__body {
-  padding: 0 var(--space-4) var(--space-2);
+  line-height: var(--line-height-body);
 }

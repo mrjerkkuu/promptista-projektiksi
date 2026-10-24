@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Asetukset – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" data-theme="{{activeTheme}}" data-motion="{{motionAttr}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 48px; display: flex; flex-direction: column; gap: clamp(24px, 4vw, 40px);">
+  <dc-import name="Nav" active="settings" hint-size="100%,76px"></dc-import>
+
+  <main style="max-width: 820px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+    <header style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px;">
+      <h1 class="pp-serif" style="margin: 0; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; font-weight: 600;">Asetukset</h1>
+      <p style="margin: 0; font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: var(--ink-2);">Kaikki asetukset ja edistymisesi tallentuvat vain tähän selaimeen. Tiliä ei tarvita.</p>
+    </header>
+
+    <section aria-labelledby="s-os" style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 3vw, 28px); display: flex; flex-direction: column; gap: 14px;">
+      <h2 id="s-os" class="pp-serif" style="margin: 0; font-size: 22px; font-weight: 600;">Käyttöjärjestelmä</h2>
+      <p style="margin: 0; font-size: 15px; color: var(--ink-2);">Ohjeet ja komennot näytetään tämän valinnan mukaan.</p>
+      <dc-import name="OsPicker" variant="compact" framed="{{no}}" hint-size="100%,52px"></dc-import>
+    </section>
+
+    <section aria-labelledby="s-look" style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 3vw, 28px); display: flex; flex-direction: column; gap: 20px;">
+      <h2 id="s-look" class="pp-serif" style="margin: 0; font-size: 22px; font-weight: 600;">Ulkoasu ja liike</h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 2px;"><span id="theme-l" style="font-weight: 600;">Teema</span><span style="font-size: 14px; color: var(--ink-2);">Järjestelmä seuraa laitteesi asetusta.</span></div>
+        <div class="pp-seg" role="group" aria-labelledby="theme-l">
+          <sc-for list="{{themes}}" as="t" hint-placeholder-count="3">
+            <button type="button" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="height: 1px; background: var(--line);"></div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 2px; flex: 1 1 260px;"><label for="motion" style="font-weight: 600;">Vähennä liikettä</label><span style="font-size: 14px; color: var(--ink-2);">Poistaa animaatiot, kuten merkkien pomppauksen ja maskotin heilunnan.</span></div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 14px; font-weight: 600; min-width: 44px; text-align: right;">{{motionLabel}}</span>
+          <input id="motion" class="pp-switch" type="checkbox" role="switch" checked="{{reduced}}" onChange="{{toggleMotion}}">
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="s-data" style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 3vw, 28px); display: flex; flex-direction: column; gap: 14px;">
+      <h2 id="s-data" class="pp-serif" style="margin: 0; font-size: 22px; font-weight: 600;">Edistymisen siirto</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2);">Vaihdatko konetta tai selainta? Vie edistymisesi tiedostoon ja tuo se uudessa paikassa.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <button type="button" class="pp-btn pp-btn-secondary"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Vie tiedostoon</button>
+        <label class="pp-btn pp-btn-secondary" style="cursor: pointer;"><input type="file" accept="application/json" class="pp-sr"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V9M7 14l5-5 5 5M5 4h14"></path></svg>Tuo tiedostosta</label>
+      </div>
+      <span class="pp-mono" style="font-size: 13px; color: var(--ink-2);">promptista-projektiksi-edistyminen.json · 8 moduulia · 5 merkkiä</span>
+    </section>
+
+    <section aria-labelledby="s-reset" style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 3vw, 28px); display: flex; flex-direction: column; gap: 14px;">
+      <h2 id="s-reset" class="pp-serif" style="margin: 0; font-size: 22px; font-weight: 600;">Aloita alusta</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2);">Nollaus poistaa merkit ja suoritukset tästä selaimesta. Asennetut ohjelmat jäävät koneellesi.</p>
+      <sc-if value="{{notConfirming}}" hint-placeholder-val="{{ true }}">
+        <div><button type="button" class="pp-btn pp-btn-danger" onClick="{{askReset}}" style="width: auto;">Nollaa edistyminen</button></div>
+      </sc-if>
+      <sc-if value="{{confirming}}" hint-placeholder-val="{{ false }}">
+        <div role="alertdialog" aria-labelledby="rc-h" class="pp-anim-rise" style="background: var(--error-soft); border-radius: 20px; padding: 18px 20px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+          <dc-import name="Mascot" pose="think" size="{{ms}}" hint-size="72px,72px"></dc-import>
+          <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 4px;">
+            <strong id="rc-h" style="font-size: 17px;">Haluatko varmasti nollata?</strong>
+            <span style="font-size: 15px; line-height: 1.55;">Menetät <span class="pp-mono">5</span> merkkiä ja <span class="pp-mono">8</span> suoritettua moduulia. Tätä ei voi perua – vie edistyminen ensin, jos haluat säilyttää sen.</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" class="pp-btn pp-btn-secondary pp-btn-sm" onClick="{{cancelReset}}" style="width: auto;">Peruuta</button>
+            <button type="button" class="pp-btn pp-btn-sm" onClick="{{cancelReset}}" style="width: auto; background: var(--error); color: var(--surface);">Kyllä, nollaa</button>
+          </div>
+        </div>
+      </sc-if>
+    </section>
+  </main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { themeChoice: 'system', reduced: false, confirming: false };
+  }
+  renderVals() {
+    const base = this.props.theme ?? 'light';
+    const choice = this.state.themeChoice;
+    const opts = [['light', 'Vaalea'], ['dark', 'Tumma'], ['system', 'Järjestelmä']];
+    return {
+      no: false,
+      ms: 72,
+      activeTheme: choice === 'system' ? base : choice,
+      themes: opts.map(([id, label]) => ({ label, pressed: choice === id ? 'true' : 'false', pick: () => this.setState({ themeChoice: id }) })),
+      reduced: this.state.reduced,
+      motionAttr: this.state.reduced ? 'reduced' : 'full',
+      motionLabel: this.state.reduced ? 'Päällä' : 'Pois',
+      toggleMotion: () => this.setState({ reduced: !this.state.reduced }),
+      confirming: this.state.confirming,
+      notConfirming: !this.state.confirming,
+      askReset: () => this.setState({ confirming: true }),
+      cancelReset: () => this.setState({ confirming: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

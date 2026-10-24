@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Vianmääritys – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4cqi, 40px) 32px; display: flex; flex-direction: column; gap: clamp(24px, 4cqi, 40px);">
+  <dc-import name="Nav" active="trouble" os="{{os}}" hint-size="100%,120px"></dc-import>
+  <main id="sisalto" tabindex="-1" style="max-width: 820px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; outline: none;">
+    <header style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4cqi, 36px);">
+      <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+        <h1 class="pp-serif" style="margin: 0; font-size: clamp(34px, 5cqi, 52px); line-height: 1.05; font-weight: 600;">Vianmääritys</h1>
+        <p style="margin: 0; font-size: clamp(16px, 2cqi, 18px); line-height: 1.6; color: var(--ink-2);">Jumissa? Se on täysin normaalia, ja jokainen koodaaja törmää näihin. Etsi alta ongelma, joka muistuttaa omaasi. Jos mikään ei auta, voit myös kopioida virheilmoituksen Claudelle ja kysyä, mitä se tarkoittaa.</p>
+      </div>
+      <dc-import name="Mascot" pose="think" size="{{m}}" hint-size="100px,100px"></dc-import>
+    </header>
+
+    <sc-if value="{{hasOs}}" hint-placeholder-val="{{ true }}">
+      <label style="display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.5; padding: 4px 0;"><input type="checkbox" class="pp-check" checked="{{showAll}}" onChange="{{toggle}}" style="margin-top: 1px;">Näytä myös muiden käyttöjärjestelmien ongelmat (nyt näytetään: {{showing}})</label>
+    </sc-if>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <sc-for list="{{entries}}" as="e" hint-placeholder-count="13">
+        <details id="{{e.id}}" class="pp-details" open="{{e.open}}" style="background: var(--surface); border: {{e.border}}; border-radius: 16px;">
+          <summary style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; min-height: 56px; color: var(--ink);">
+            <span style="flex: 1; min-width: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px;">
+              <span style="font-weight: 600; font-size: 17px; line-height: 1.4; overflow-wrap: anywhere;">{{e.title}}</span>
+              <span style="display: inline-flex; gap: 4px;"><sc-for list="{{e.oses}}" as="o" hint-placeholder-count="2"><span style="display: inline-flex; align-items: center; min-height: 22px; padding: 0 8px; border-radius: 999px; background: var(--surface-2); font-size: 12px; font-weight: 600; color: var(--ink-2);">{{o}}</span></sc-for></span>
+            </span>
+            <svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true" style="margin-top: 3px;"><path d="M6 9l6 6 6-6"></path></svg>
+          </summary>
+          <div class="pp-details-body" style="padding: 0 16px 18px; display: flex; flex-direction: column; gap: 12px; font-size: 16px; line-height: 1.6;">
+            <p style="margin: 0;"><strong>Oire:</strong> {{e.symptom}}</p>
+            <strong>Näin korjaat:</strong>
+            <ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; overflow-wrap: anywhere;">
+              <sc-for list="{{e.steps}}" as="s" hint-placeholder-count="3"><li>{{s}}</li></sc-for>
+            </ol>
+            <sc-for list="{{e.cmds}}" as="c" hint-placeholder-count="0">
+              <dc-import name="CommandBlock" os="{{c.os}}" only="{{c.only}}" caption="{{c.caption}}" win="{{c.cmd}}" mac="{{c.cmd}}" source="{{c.source}}" framed="{{no}}" show-states="{{no}}" hint-size="100%,130px"></dc-import>
+            </sc-for>
+          </div>
+        </details>
+      </sc-for>
+    </div>
+  </main>
+  <footer style="padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; color: var(--ink-2); text-align: center;">Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"os":{"editor":"enum","options":["none","Windows","Mac"],"default":"Windows"},"open":{"editor":"enum","options":["","powershell-skripti","mac-tyokalut","code-komento"],"default":"powershell-skripti"},"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":2400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { showAll: false };
+  }
+  renderVals() {
+    const os = this.props.os ?? 'Windows';
+    const openId = this.props.open ?? 'powershell-skripti';
+    const B = ['Windows', 'Mac'], W = ['Windows'], M = ['Mac'];
+    const gen = { symptom: 'Kuvaus oireesta kuten sovelluksessa.', steps: ['Ratkaisuvaiheet kuten sovelluksessa.'], cmds: [] };
+    const E = (id, title, oses, extra) => ({ id, title, oses, ...(extra || gen) });
+    const all = [
+      E('ei-tunnisteta', 'Komentoa ei tunnisteta', B),
+      E('ei-loyda', 'Asensin ohjelman, mutta terminaali ei löydä sitä', B),
+      E('powershell-skripti', 'PowerShell ei suostu ajamaan skriptiä', W, {
+        symptom: 'Virheilmoituksessa lukee cannot be loaded because running scripts is disabled on this system. Windows estää oletuksena joidenkin skriptien ajamisen turvallisuussyistä.',
+        steps: ['Tarkista ensin nykyiset asetukset alla olevalla Get-ExecutionPolicy-komennolla.', 'Salli paikallisten ja allekirjoitettujen skriptien ajaminen omalle käyttäjällesi alla olevalla Set-ExecutionPolicy-komennolla. Järjestelmänvalvojan oikeuksia ei tarvita, koska muutos koskee vain sinua.', 'Jos PowerShell kysyy vahvistusta, vastaa Y ja paina Enter.', 'Muutos tulee voimaan heti. Aja sitten uudelleen komento, joka ei aiemmin toiminut.'],
+        cmds: [
+          { os: 'Windows', only: 'Windows', caption: 'Näyttää PowerShellin nykyiset suoritusoikeusasetukset.', cmd: 'Get-ExecutionPolicy -List', source: 'learn.microsoft.com' },
+          { os: 'Windows', only: 'Windows', caption: 'Sallii omalle käyttäjällesi paikallisten ja allekirjoitettujen PowerShell-skriptien ajamisen.', cmd: 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser', source: 'learn.microsoft.com' }
+        ] }),
+      E('winget', 'winget-komentoa ei löydy', W),
+      E('vanha-powershell', 'Avasin vanhan Windows PowerShellin', W),
+      E('mac-tyokalut', 'Macissa aukeaa ikkuna komentorivityökalujen asentamisesta', M, {
+        symptom: 'Kun ajat git-komennon, näytölle aukeaa ikkuna, joka pyytää asentamaan komentorivityökalut.',
+        steps: ['Valitse ikkunasta Asenna (Install) ja hyväksy ehdot.', 'Odota rauhassa: asennus voi kestää useita minuutteja.', 'Sulje Pääte ja avaa se uudelleen. Aja sitten git --version.'],
+        cmds: [] }),
+      E('brew', 'brew-komentoa ei löydy asennuksen jälkeen [paikkamerkki]', M),
+      E('code-komento', 'code-komento ei toimi', B, {
+        symptom: 'Terminaali ei tunnista komentoa code, vaikka VS Code on asennettu.',
+        steps: ['Windowsissa: sulje kaikki terminaali-ikkunat ja avaa uusi. Asennus lisää komennon PATHiin, mutta auki olleet ikkunat eivät huomaa sitä.', 'Macissa: avaa VS Code, paina Cmd+Vaihto+P ja kirjoita komentopalettiin Shell Command: Install ’code’ command in PATH. Valitse se listasta ja anna salasanasi, jos Mac kysyy sitä. Sulje sen jälkeen Pääte kokonaan (Cmd+Q) ja avaa se uudelleen, jotta uusi asetus tulee voimaan.'],
+        cmds: [] }),
+      E('gh-kirjautuminen', 'GitHub-kirjautuminen gh-työkalulla ei onnistu', B),
+      E('push', 'git push tai gh repo create ei onnistu', B),
+      E('claude-kirjautuminen', 'Claude Code ei kirjaudu tai valittaa tilauksesta', B),
+      E('liitto', 'Kopioitu komento ei liity terminaaliin', B),
+      E('ei-halunnut', 'Claude teki muutoksen, jota en halunnut', B),
+      E('pages', 'GitHub Pages -sivu ei näy tai näyttää vanhaa versiota', B),
+      E('muu', 'Jotain muuta meni pieleen', B)
+    ];
+    const showAll = this.state.showAll;
+    const entries = all
+      .filter((e) => os === 'none' || showAll || e.oses.includes(os) || e.id === openId)
+      .map((e) => ({ ...e, open: e.id === openId, border: e.id === openId ? '2px solid var(--info-ink)' : '1px solid var(--line)' }));
+    return {
+      theme: this.props.theme ?? 'light',
+      os, no: false, m: 100,
+      hasOs: os !== 'none',
+      showAll,
+      showing: showAll ? 'Windows ja Mac' : os,
+      toggle: () => this.setState({ showAll: !this.state.showAll }),
+      entries
+    };
+  }
+}
+</script>
+</body>
+</html>

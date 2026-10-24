@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Maskotti Nuppu</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: {{size}}px; height: {{size}}px; display: flex; align-items: center; justify-content: center; color: var(--ink); font-family: var(--font-sans);">
+<sc-if value="{{isWave}}" hint-placeholder-val="{{ true }}">
+<svg class="pp-mascot" viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="Nuppu-maskotti vilkuttaa" style="stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--line); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--t1)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--t0)"></path>
+<ellipse cx="72" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<ellipse cx="128" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<circle cx="84" cy="102" r="4.5" style="fill: var(--ink); stroke: none"></circle>
+<circle cx="116" cy="102" r="4.5" style="fill: var(--ink); stroke: none"></circle>
+<path d="M90 116 Q100 125 110 116"></path>
+<path d="M46 116 C 36 122 32 130 34 138"></path>
+<path d="M154 106 C 166 96 172 84 170 70"></path>
+<path d="M180 62 L188 55 M182 77 L191 77" style="stroke: var(--accent)"></path>
+</svg>
+</sc-if>
+<sc-if value="{{isCheer}}" hint-placeholder-val="{{ false }}">
+<svg class="pp-mascot-cheer" viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="Nuppu-maskotti iloitsee" style="stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--line); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--t1)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--t0)"></path>
+<ellipse cx="72" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<ellipse cx="128" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<path d="M78 104 Q84 96 90 104 M110 104 Q116 96 122 104"></path>
+<path d="M88 114 Q100 132 112 114 Z" style="fill: var(--surface-2)"></path>
+<path d="M46 108 C 34 98 30 86 32 72 M154 108 C 166 98 170 86 168 72"></path>
+<path d="M26 50 L26 62 M20 56 L32 56 M176 40 L176 52 M170 46 L182 46" style="stroke: var(--accent)"></path>
+<circle cx="150" cy="34" r="2.5" style="fill: var(--accent); stroke: none"></circle>
+<circle cx="48" cy="36" r="2.5" style="fill: var(--accent); stroke: none"></circle>
+</svg>
+</sc-if>
+<sc-if value="{{isThink}}" hint-placeholder-val="{{ false }}">
+<svg class="pp-mascot" viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="Nuppu-maskotti miettii" style="stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--line); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--t1)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--t0)"></path>
+<ellipse cx="72" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<ellipse cx="128" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<circle cx="88" cy="98" r="4.5" style="fill: var(--ink); stroke: none"></circle>
+<circle cx="120" cy="98" r="4.5" style="fill: var(--ink); stroke: none"></circle>
+<path d="M92 121 Q100 118 108 121"></path>
+<path d="M46 116 C 36 122 32 130 34 138"></path>
+<path d="M154 118 C 144 128 128 130 116 126"></path>
+<circle cx="160" cy="52" r="3"></circle>
+<circle cx="172" cy="38" r="4.5"></circle>
+<circle cx="188" cy="20" r="7"></circle>
+</svg>
+</sc-if>
+<sc-if value="{{isPoint}}" hint-placeholder-val="{{ false }}">
+<svg class="pp-mascot" viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="Nuppu-maskotti osoittaa" style="stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--line); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--t1)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--t0)"></path>
+<ellipse cx="74" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<ellipse cx="128" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<circle cx="90" cy="102" r="4.5" style="fill: var(--ink); stroke: none"></circle>
+<circle cx="122" cy="102" r="4.5" style="fill: var(--ink); stroke: none"></circle>
+<path d="M94 116 Q104 124 114 116"></path>
+<path d="M46 116 C 36 122 32 130 34 138"></path>
+<path d="M155 112 L188 102 M188 102 L180 96 M188 102 L182 110"></path>
+</svg>
+</sc-if>
+<sc-if value="{{isRest}}" hint-placeholder-val="{{ false }}">
+<svg class="pp-mascot" viewBox="0 0 200 200" width="100%" height="100%" role="img" aria-label="Nuppu-maskotti lepää" style="stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--line); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--surface)"></path>
+<path d="M100 56 C 102 48 108 42 112 36"></path>
+<path d="M104 46 C 94 38 80 40 76 48 C 86 56 98 54 104 46 Z" style="fill: var(--t1)"></path>
+<path d="M112 36 C 120 26 134 26 140 32 C 132 42 120 42 112 36 Z" style="fill: var(--t0)"></path>
+<ellipse cx="72" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<ellipse cx="128" cy="116" rx="8" ry="5" style="fill: var(--t2); stroke: none"></ellipse>
+<path d="M78 104 Q84 109 90 104 M110 104 Q116 109 122 104"></path>
+<path d="M96 121 Q100 123 104 121"></path>
+<path d="M46 116 C 36 122 32 130 34 138 M154 116 C 164 122 168 130 166 138"></path>
+<path d="M156 48 L168 48 L156 60 L168 60 M174 26 L182 26 L174 34 L182 34" style="stroke: var(--ink-3); stroke-width: 3"></path>
+</svg>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"pose":{"editor":"enum","options":["wave","cheer","think","point","rest"],"default":"wave"},"size":{"editor":"int","min":40,"max":400,"default":280},"$preview":{"width":320,"height":320}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const pose = this.props.pose ?? 'wave';
+    return {
+      size: this.props.size ?? 280,
+      isWave: pose === 'wave',
+      isCheer: pose === 'cheer',
+      isThink: pose === 'think',
+      isPoint: pose === 'point',
+      isRest: pose === 'rest'
+    };
+  }
+}
+</script>
+</body>
+</html>

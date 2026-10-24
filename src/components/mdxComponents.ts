@@ -4,6 +4,7 @@ import { MdxLink } from './MdxLink'
 import { Os } from './Os'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
+import { TableWrap } from './TableWrap'
 import { Term } from './Term'
 import { Terminal } from './Terminal'
 import { Tip } from './Tip'
@@ -15,6 +16,7 @@ import { VerifyStep } from './VerifyStep'
  */
 export const mdxComponents: MDXComponents = {
   a: MdxLink,
+  table: TableWrap,
   Command,
   Os,
   Quiz,

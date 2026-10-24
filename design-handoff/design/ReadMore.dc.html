@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Lue lisää -osio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 100%; box-sizing: border-box; padding: 28px; background: var(--bg); display: flex; flex-direction: column; gap: 12px;">
+  <details class="pp-details" style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px;">
+    <summary style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 18px; font-weight: 600; font-size: 16px; color: var(--ink);">
+      <span style="width: 28px; height: 28px; border-radius: 50%; background: var(--t0); color: var(--t0-ink); display: flex; align-items: center; justify-content: center; flex: none;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px; stroke-width: 2.2;"><path d="M12 5v14M5 12h14"></path></svg></span>
+      <span style="flex: 1;">Lue lisää: mistä nimi Git tulee?</span>
+      <svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+    </summary>
+    <div class="pp-details-body" style="padding: 0 18px 18px 58px; font-size: 15px; line-height: 1.65; color: var(--ink);">Nimellä ei ole virallista merkitystä. Gitin tekijä Linus Torvalds on kertonut nimenneensä sen leikillään itsensä mukaan.</div>
+  </details>
+
+  <details class="pp-details" open style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px;">
+    <summary style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 18px; font-weight: 600; font-size: 16px; color: var(--ink);">
+      <span style="width: 28px; height: 28px; border-radius: 50%; background: var(--t0); color: var(--t0-ink); display: flex; align-items: center; justify-content: center; flex: none;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px; stroke-width: 2.2;"><path d="M5 12h14"></path></svg></span>
+      <span style="flex: 1;">Lue lisää: miksi Claude Code tarvitsee Gitiä?</span>
+      <svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+    </summary>
+    <div class="pp-details-body" style="padding: 0 18px 20px 58px; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.65; color: var(--ink);">
+      <p style="margin: 0;">Claude Code muokkaa tiedostojasi puolestasi. Git on turvaverkko: jos muutos ei miellytä, palaat edelliseen tallennuspisteeseen yhdellä komennolla. Siksi asennamme Gitin ennen Claude Codea.</p>
+      <div style="background: var(--t0); border-radius: 12px; padding: 12px 16px; font-size: 14px;"><strong>Vertaus:</strong> Git on kuin ”kumoa”-painike, joka muistaa koko projektin historian – ei vain viimeistä muutosta.</div>
+    </div>
+  </details>
+  <p style="margin: 4px 0 0; font-size: 13px; color: var(--ink-2);">Natiivi &lt;details&gt;: toimii näppäimistöllä ja ruudunlukijalla ilman JavaScriptiä. Ylempi suljettuna, alempi auki.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":720,"height":380}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

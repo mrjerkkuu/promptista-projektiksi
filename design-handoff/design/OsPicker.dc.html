@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Windows/Mac-valitsin</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 100%; box-sizing: border-box; padding: {{pad}}px; background: {{bg}}; display: flex; flex-direction: column; gap: 20px;">
+  <sc-if value="{{showLarge}}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <h2 id="os-large-h" class="pp-serif" style="margin: 0; font-size: 22px; font-weight: 600; line-height: 1.25;">Kumpaa tietokonetta käytät?</h2>
+      <div role="group" aria-labelledby="os-large-h" style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <sc-for list="{{opts}}" as="o" hint-placeholder-count="2">
+          <button type="button" class="pp-btn pp-btn-sm {{o.btnCls}}" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="min-height: 48px; padding: 0 20px; font-size: 16px;">
+            <svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="{{o.icon}}"></path></svg>{{o.name}}
+            <sc-if value="{{o.selected}}" hint-placeholder-val="{{ false }}"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px; stroke-width: 2.6;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+          </button>
+        </sc-for>
+      </div>
+      <sc-if value="{{showHelp}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2);">{{help}}</p></sc-if>
+    </div>
+  </sc-if>
+  <sc-if value="{{showCards}}" hint-placeholder-val="{{ false }}">
+    <div role="group" aria-label="Valitse käyttöjärjestelmä" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+      <sc-for list="{{opts}}" as="o" hint-placeholder-count="2">
+        <button type="button" class="pp-lift" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="text-align: left; display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 20px; background: {{o.bg}}; border: 2px solid {{o.border}}; color: var(--ink); min-height: 180px;">
+          <span style="width: 56px; height: 56px; border-radius: 16px; background: var(--surface-2); display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 30px; height: 30px; stroke-width: 1.6;"><path d="{{o.icon}}"></path></svg></span>
+          <span class="pp-serif" style="font-size: 26px; font-weight: 600; line-height: 1.1;">{{o.name}}</span>
+          <span style="font-size: 14px; line-height: 1.5; color: var(--ink-2);">{{o.hint}}</span>
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{showCompact}}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+      <span id="os-compact-l" style="font-size: 14px; font-weight: 600;">Ohjeet:</span>
+      <div class="pp-seg" role="group" aria-labelledby="os-compact-l">
+        <sc-for list="{{opts}}" as="o" hint-placeholder-count="2">
+          <button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="min-height: 40px; padding: 0 14px; font-size: 14px;">{{o.name}}</button>
+        </sc-for>
+      </div>
+      <sc-if value="{{noneSel}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; color: var(--ink-2);">ei valintaa</span></sc-if>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":{"editor":"enum","options":["both","large","compact","cards"],"default":"both"},"initial":{"editor":"enum","options":["none","Windows","Mac"],"default":"none"},"help":{"editor":"text","default":"Näytämme ohjeet vain valitsemallesi käyttöjärjestelmälle. Voit vaihtaa valintaa myöhemmin yläpalkista."},"framed":{"editor":"boolean","default":true},"$preview":{"width":720,"height":420}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { os: props.initial ?? 'none' };
+  }
+  renderVals() {
+    const framed = this.props.framed ?? true;
+    const variant = this.props.variant ?? 'both';
+    const help = this.props.help ?? 'Näytämme ohjeet vain valitsemallesi käyttöjärjestelmälle. Voit vaihtaa valintaa myöhemmin yläpalkista.';
+    const list = [
+      { name: 'Windows', hint: 'Koneessa on Käynnistä-valikko ja tehtäväpalkki alareunassa.', icon: 'M3 5h18v14H3zM3 9h18' },
+      { name: 'Mac', hint: 'Koneessa on Apple-valikko vasemmassa yläkulmassa ja Dock alareunassa.', icon: 'M5 6h14v10H5zM2 19h20' }
+    ];
+    return {
+      pad: framed ? 28 : 0,
+      bg: framed ? 'var(--bg)' : 'transparent',
+      showLarge: variant === 'large' || variant === 'both',
+      showCompact: variant === 'compact' || variant === 'both',
+      showCards: variant === 'cards',
+      help, showHelp: !!help,
+      noneSel: this.state.os === 'none',
+      opts: list.map((o) => {
+        const selected = this.state.os === o.name;
+        return {
+          ...o, selected,
+          pressed: selected ? 'true' : 'false',
+          btnCls: selected ? 'pp-btn-primary' : 'pp-btn-secondary',
+          bg: selected ? 'var(--accent-soft)' : 'var(--surface)',
+          border: selected ? 'var(--accent)' : 'var(--line)',
+          pick: () => this.setState({ os: o.name })
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

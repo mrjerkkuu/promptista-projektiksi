@@ -10,27 +10,57 @@
   margin-top: 0;
 }
 
+.terminal__hint {
+  margin-bottom: var(--space-3);
+}
+
+/* Vaalea ikkuna */
 .terminal__window {
   background: var(--color-term-bg);
   color: var(--color-term-text);
-  border-radius: var(--radius-md);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-code);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: calc(var(--radius-md) + 4px);
   margin-bottom: var(--space-3);
   overflow: hidden;
+}
+
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-term-bar);
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+  color: var(--color-text);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+}
+
+.terminal__bar .icon {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .terminal__screen {
   height: var(--terminal-height);
   overflow: auto;
-  padding: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-code);
 }
 
 .terminal__line {
   margin: 0;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* Taulukkotuloste vierii omassa laatikossaan. */
+.terminal__line--table {
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
 }
 
 .terminal__line--error {
@@ -44,7 +74,6 @@
 
 .terminal__prompt {
   color: var(--color-term-prompt);
-  white-space: pre;
 }
 
 .terminal__form {
@@ -52,25 +81,31 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
-  border-top: var(--border-width) solid var(--color-code-muted);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  background: var(--color-bg);
+  border-top: var(--border-width) solid var(--color-border-subtle);
 }
 
+/* Kehote saa rivittyä (pitkät polut). */
 .terminal__prompt--input {
   max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .terminal__input {
-  flex: 1;
+  flex: 1 1 8rem;
   min-width: 8rem;
   min-height: var(--tap-target-min);
+  padding: 0 var(--space-3);
   font-family: var(--font-mono);
-  color: var(--color-term-text);
-  background: transparent;
-  border: var(--border-width) solid var(--color-code-muted);
-  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: calc(var(--radius-sm) + 4px);
 }
 
 .terminal__run {

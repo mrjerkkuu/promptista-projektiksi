@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Sanasto ja vianmääritys – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 48px; display: flex; flex-direction: column; gap: clamp(24px, 4vw, 40px);">
+  <dc-import name="Nav" active="glossary" hint-size="100%,76px"></dc-import>
+
+  <main style="display: flex; flex-direction: column; gap: clamp(24px, 4vw, 40px);">
+    <header style="display: flex; flex-direction: column; gap: 16px;">
+      <h1 class="pp-serif" style="margin: 0; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; font-weight: 600;">Sanasto ja vianmääritys</h1>
+      <p style="margin: 0; font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: var(--ink-2); max-width: 620px;">Kaikki oppaan termit selkokielellä – ja ratkaisut tavallisimpiin kompastuskiviin.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+        <div style="position: relative; flex: 1 1 320px; max-width: 520px;">
+          <label for="gl-search" class="pp-sr">Hae termiä</label>
+          <svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; left: 16px; top: 14px; color: var(--ink-2);"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4"></path></svg>
+          <input id="gl-search" class="pp-input" type="search" placeholder="Hae termiä, esim. polku" value="{{q}}" onChange="{{search}}" style="padding-left: 46px;">
+        </div>
+        <nav aria-label="Osiot" style="display: flex; gap: 8px;">
+          <a class="pp-btn pp-btn-secondary pp-btn-sm" href="#sanasto" style="width: auto;">Sanasto <span class="pp-mono" style="color: var(--ink-2);">{{total}}</span></a>
+          <a class="pp-btn pp-btn-secondary pp-btn-sm" href="#vianmaaritys" style="width: auto;">Vianmääritys <span class="pp-mono" style="color: var(--ink-2);">5</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+      <!-- Sanasto -->
+      <section id="sanasto" aria-labelledby="gl-h" style="flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <h2 id="gl-h" class="pp-serif" style="margin: 0; font-size: clamp(24px, 3vw, 30px); font-weight: 600;">Sanasto</h2>
+          <span class="pp-mono" style="font-size: 14px; color: var(--ink-2);" aria-live="polite">{{countLabel}}</span>
+        </div>
+        <sc-if value="{{hasResults}}" hint-placeholder-val="{{ true }}">
+          <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 12px;">
+            <sc-for list="{{terms}}" as="t" hint-placeholder-count="10">
+              <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;">
+                <dt style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+                  <span class="pp-serif" style="font-size: 19px; font-weight: 600;">{{t.name}}</span>
+                  <span class="pp-mono" title="Aihealue {{t.num}}" style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--{{t.key}}); border: 1px solid var(--{{t.key}}-line); color: var(--{{t.key}}-ink); display: flex; align-items: center; justify-content: center; font-size: 12px;" aria-label="Aihealue {{t.num}}">{{t.num}}</span>
+                </dt>
+                <dd style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink);">{{t.def}}</dd>
+              </div>
+            </sc-for>
+          </dl>
+        </sc-if>
+        <sc-if value="{{noResults}}" hint-placeholder-val="{{ false }}">
+          <div class="pp-anim-rise" style="background: var(--surface-2); border-radius: 28px; padding: 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;">
+            <dc-import name="Mascot" pose="rest" size="{{m}}" hint-size="120px,120px"></dc-import>
+            <h3 class="pp-serif" style="margin: 0; font-size: 22px; font-weight: 600;">Sanaa ”{{q}}” ei löytynyt</h3>
+            <p style="margin: 0; font-size: 15px; color: var(--ink-2); max-width: 360px;">Kokeile lyhyempää hakusanaa. Puuttuuko jokin termi? Kerro siitä projektin GitHub-sivulla.</p>
+            <button type="button" class="pp-btn pp-btn-secondary pp-btn-sm" onClick="{{clear}}" style="width: auto;">Tyhjennä haku</button>
+          </div>
+        </sc-if>
+      </section>
+
+      <!-- Vianmääritys -->
+      <section id="vianmaaritys" aria-labelledby="tr-h" style="flex: 2 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+        <h2 id="tr-h" class="pp-serif" style="margin: 0; font-size: clamp(24px, 3vw, 30px); font-weight: 600;">Vianmääritys</h2>
+        <div style="display: flex; gap: 12px; align-items: center; background: var(--t0); border-radius: 16px; padding: 14px 16px;">
+          <dc-import name="Mascot" pose="point" size="{{ms}}" hint-size="56px,56px"></dc-import>
+          <span style="font-size: 15px; line-height: 1.5;">Punainen teksti ei tarkoita, että jokin meni rikki. Etsi virheen ensimmäinen rivi tästä listasta.</span>
+        </div>
+        <sc-for list="{{issues}}" as="i" hint-placeholder-count="5">
+          <details class="pp-details" open="{{i.open}}" style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px;">
+            <summary style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; color: var(--ink);">
+              <span style="flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0;">
+                <span style="display: flex; gap: 6px; flex-wrap: wrap;"><span style="display: inline-flex; align-items: center; min-height: 24px; padding: 0 8px; border-radius: 999px; background: var(--{{i.key}}); color: var(--ink); font-size: 12px; font-weight: 600;">{{i.tag}}</span><span style="display: inline-flex; align-items: center; min-height: 24px; padding: 0 8px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); font-size: 12px; font-weight: 600;">{{i.os}}</span></span>
+                <span style="font-weight: 600; font-size: 16px; line-height: 1.4;">{{i.title}}</span>
+              </span>
+              <svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true" style="margin-top: 30px;"><path d="M6 9l6 6 6-6"></path></svg>
+            </summary>
+            <div class="pp-details-body" style="padding: 0 18px 18px; display: flex; flex-direction: column; gap: 10px;">
+              <sc-if value="{{i.hasErr}}" hint-placeholder-val="{{ false }}"><code class="pp-mono" style="display: block; background: var(--error-soft); color: var(--ink); border-radius: 12px; padding: 10px 14px; font-size: 13px; line-height: 1.5; word-break: break-word;">{{i.err}}</code></sc-if>
+              <p style="margin: 0; font-size: 15px; line-height: 1.6;">{{i.fix}}</p>
+            </div>
+          </details>
+        </sc-for>
+      </section>
+    </div>
+  </main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: '' };
+  }
+  renderVals() {
+    const T = (key, name, def) => ({ key, num: key.slice(1), name, def });
+    const all = [
+      T('t0', 'Komentorivi', 'Tapa käyttää tietokonetta kirjoittamalla komentoja hiiren sijaan.'),
+      T('t0', 'Pääte eli terminaali', 'Ikkuna, jossa komentorivi toimii. Windowsissa PowerShell, Macissa Pääte.'),
+      T('t0', 'Polku', 'Kansion osoite, esimerkiksi C:\\Users\\aino\\Projektit.'),
+      T('t1', 'PowerShell', 'Windowsin komentorivi. Oppaassa käytetään versiota 7.'),
+      T('t1', 'Paketinhallinta', 'Sovelluskauppa komentoriville: winget Windowsissa, Homebrew Macissa.'),
+      T('t1', 'Git', 'Ohjelma, joka tallentaa projektistasi versioita kuin pelin tallennuspisteitä.'),
+      T('t1', 'Repositorio eli repo', 'Kansio, jonka kaikista muutoksista Git pitää kirjaa.'),
+      T('t1', 'GitHub', 'Verkkopalvelu, jossa repot säilyvät ja josta sivusi voi julkaista.'),
+      T('t1', 'Node.js', 'Ohjelma, jolla JavaScript-koodi toimii omalla koneellasi.'),
+      T('t1', 'Claude Code', 'Tekoälyavustaja, joka työskentelee komentorivillä projektisi kansiossa.'),
+      T('t2', 'Prompti', 'Pyyntö tai ohje, jonka kirjoitat tekoälylle.'),
+      T('t3', 'Commit', 'Tallennuspiste ja lyhyt kuvaus siitä, mitä muutit.'),
+      T('t3', 'Localhost', 'Oma koneesi verkko-osoitteena. Sivusi näkyy siellä ensin vain sinulle.')
+    ];
+    const q = this.state.q;
+    const terms = all.filter((t) => t.name.toLowerCase().includes(q.trim().toLowerCase()));
+    const I = (key, tag, os, title, err, fix, open) => ({ key, tag, os, title, err, hasErr: !!err, fix, open });
+    return {
+      theme: this.props.theme ?? 'light',
+      m: 120,
+      ms: 56,
+      q,
+      total: all.length,
+      terms,
+      hasResults: terms.length > 0,
+      noResults: terms.length === 0,
+      countLabel: q ? terms.length + ' / ' + all.length : all.length + ' termiä',
+      search: (e) => this.setState({ q: e.target.value }),
+      clear: () => this.setState({ q: '' }),
+      issues: [
+        I('t1', 'Asennukset', 'Windows', '”git” ei tunnistettu asennuksen jälkeen', "git : The term 'git' is not recognized as the name of a cmdlet…", 'Asennus todennäköisesti onnistui, mutta auki oleva PowerShell ei tiedä siitä vielä. Sulje kaikki PowerShell-ikkunat ja avaa uusi. Jos virhe jatkuu, aja asennuskomento uudelleen.', true),
+        I('t1', 'Asennukset', 'Windows', '”winget” ei tunnistettu', "winget : The term 'winget' is not recognized…", 'Päivitä Sovellusten asennusohjelma Microsoft Storesta ja avaa PowerShell uudelleen.', false),
+        I('t1', 'Asennukset', 'Mac', 'Pääte ei löydä komentoa brew', 'zsh: command not found: brew', 'Homebrew-asennuksen lopussa näkyy kaksi komentoa kohdassa ”Next steps”. Suorita ne, sulje Pääte ja avaa se uudelleen.', false),
+        I('t0', 'Perusteet', 'Molemmat', 'Näen punaista tekstiä – rikoinko jotain?', '', 'Et rikkonut. Punainen teksti on ilmoitus, ei vahinko. Lue ensimmäinen rivi ja etsi se tältä sivulta.', false),
+        I('t1', 'Asennukset', 'Molemmat', 'Claude Code pyytää kirjautumaan uudelleen', '', 'Kirjaudu samalla tilillä kuin aiemmin. Kirjautumissivu avautuu selaimeen, ja sen jälkeen voit palata päätteeseen.', false)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

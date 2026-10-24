@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Windows, Mac ja ei valintaa 360 px</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 1304px; min-height: 3700px; box-sizing: border-box; padding: 48px; display: flex; gap: 64px; align-items: flex-start; background: var(--surface-2);">
+  <sc-for list="{{cols}}" as="c" hint-placeholder-count="3">
+    <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;">
+      <span class="pp-serif" style="font-size: 28px; font-weight: 600;">{{c.title}}</span>
+      <div class="pp-page" style="width: 360px; box-sizing: border-box; padding: 16px; border-radius: 24px; background: var(--bg); box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 22px;">
+        <span class="pp-overline" style="color: var(--ink-2);">Yläpalkki</span>
+        <dc-import name="Nav" active="path" os="{{c.os}}" hint-size="328px,190px"></dc-import>
+        <span class="pp-overline" style="color: var(--ink-2);">Komento, joka eroaa (install-git)</span>
+        <dc-import name="CommandBlock" os="{{c.os}}" framed="{{no}}" show-states="{{no}}" hint-size="328px,200px"></dc-import>
+        <span class="pp-overline" style="color: var(--ink-2);">Vain Windows -komento</span>
+        <dc-import name="CommandBlock" os="{{c.os}}" only="Windows" caption="Näyttää PowerShellin nykyiset suoritusoikeusasetukset." win="Get-ExecutionPolicy -List" source="learn.microsoft.com" framed="{{no}}" show-states="{{no}}" hint-size="328px,120px"></dc-import>
+        <span class="pp-overline" style="color: var(--ink-2);">Terminaali: kehote, polku, tuloste ja virhe</span>
+        <dc-import name="Terminal" os="{{c.os}}" preset="{{c.term}}" framed="{{no}}" hint-size="328px,640px"></dc-import>
+        <span class="pp-overline" style="color: var(--ink-2);">Varmistuksen vaihtoehdot ja vianmäärityslinkki</span>
+        <dc-import name="VerifyStep" os="{{c.os}}" preset="wrong" framed="{{no}}" hint-size="328px,820px"></dc-import>
+      </div>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1304,"height":3700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      no: false,
+      cols: [
+        { title: 'Windows', os: 'Windows', term: 'used' },
+        { title: 'Mac', os: 'Mac', term: 'hint' },
+        { title: 'Ei valintaa', os: 'none', term: 'error' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

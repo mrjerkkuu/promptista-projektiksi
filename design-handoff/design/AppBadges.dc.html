@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Merkit – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4cqi, 40px) 32px; display: flex; flex-direction: column; gap: clamp(24px, 4cqi, 40px);">
+  <dc-import name="Nav" active="badges" os="Windows" hint-size="100%,120px"></dc-import>
+  <main id="sisalto" tabindex="-1" style="display: flex; flex-direction: column; gap: 28px; outline: none;">
+    <header style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4cqi, 36px);">
+      <dc-import name="Mascot" pose="{{pose}}" size="{{m}}" hint-size="120px,120px"></dc-import>
+      <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+        <h1 class="pp-serif" style="margin: 0; font-size: clamp(34px, 5cqi, 52px); line-height: 1.05; font-weight: 600;">Merkit</h1>
+        <p style="margin: 0; font-size: clamp(16px, 2cqi, 19px); line-height: 1.6; color: var(--ink-2);">Merkkejä saat, kun etenet polulla, teet harjoituksia ja saat asennukset kuntoon. Olet ansainnut <strong class="pp-mono" style="color: var(--ink); font-weight: 500;">{{n}}/9</strong> merkkiä.</p>
+      </div>
+    </header>
+
+    <section aria-labelledby="b-path" style="display: flex; flex-direction: column; gap: 14px;">
+      <h2 id="b-path" class="pp-serif" style="margin: 0; font-size: clamp(24px, 3cqi, 30px); font-weight: 600;">Polun merkit</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: 12px;">
+        <sc-for list="{{pathB}}" as="b" hint-placeholder-count="8">
+          <article style="display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 20px; border: 1px solid var(--line); background: var(--surface);">
+            <span style="flex: none; width: 56px; height: 56px; border-radius: 50%; background: {{b.bg}}; border: 2px {{b.bs}} {{b.bc}}; color: {{b.fg}}; display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 26px; height: 26px; stroke-width: 1.7;"><path d="{{b.icon}}"></path></svg></span>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+              <h3 style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{b.tc}}; overflow-wrap: anywhere;">{{b.name}}</h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-2);">{{b.desc}}</p>
+              <span style="font-size: 13px; font-weight: 600; color: {{b.sc}};">{{b.status}}</span>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-labelledby="b-bonus" style="display: flex; flex-direction: column; gap: 14px;">
+      <h2 id="b-bonus" class="pp-serif" style="margin: 0; font-size: clamp(24px, 3cqi, 30px); font-weight: 600;">Bonusmerkit</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: 12px;">
+        <sc-for list="{{bonusB}}" as="b" hint-placeholder-count="1">
+          <article style="display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 20px; border: 1px solid var(--line); background: var(--surface);">
+            <span style="flex: none; width: 56px; height: 56px; border-radius: 50%; background: {{b.bg}}; border: 2px {{b.bs}} {{b.bc}}; color: {{b.fg}}; display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 26px; height: 26px; stroke-width: 1.7;"><path d="{{b.icon}}"></path></svg></span>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+              <h3 style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3; color: {{b.tc}};">{{b.name}} <span style="font-weight: 400; color: var(--ink-2);">(bonus)</span></h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-2);">{{b.desc}}</p>
+              <span style="font-size: 13px; font-weight: 600; color: {{b.sc}};">{{b.status}}</span>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  <footer style="padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; color: var(--ink-2); text-align: center;">Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"earned":{"editor":"enum","options":["0","1","9"],"default":"1"},"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const n = parseInt(this.props.earned ?? '1', 10);
+    const raw = [
+      ['t0', 'Ensimmäinen komento', 'Kirjoitit ensimmäisen komentosi terminaaliin. Siitä se lähtee!', 'M3 6h18v12H3zM7 10h.01M11 10h.01M15 10h.01M7 14h10'],
+      ['t0', 'Kansiomestari', 'Liikuit kansiosta toiseen ja loit oman kansion terminaalissa.', 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'],
+      ['t0', 'Perusteet hallussa', 'Kävit läpi kaikki perusteet: vibekoodauksen, terminaalin, kansiot, Gitin ja agentit.', 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM15.5 8.5l-2 5-5 2 2-5z'],
+      ['t1', 'Asennukset kunnossa', 'Git, VS Code, GitHub CLI ja Claude Code on asennettu ja tarkistettu.', 'M3 8h18v11H3zM8 8V5h8v3M3 13h18'],
+      ['t2', 'Promptiseppä', 'Tiedät, miten hyvä prompti kerrotaan: mitä, miksi ja millä rajoilla.', 'M4 20l4-1 11-11-3-3L5 16zM14 6l3 3'],
+      ['t2', 'Turvallinen ohjaaja', 'Osaat suunnitella ennen rakentamista, pitää salaisuudet salassa ja palata tallennuspisteeseen.', 'M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z'],
+      ['t3', 'Ensimmäinen commit', 'Tallensit oman projektisi ja veit sen GitHubiin.', 'M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6'],
+      ['t3', 'Vibekoodaaja', 'Kävit koko polun läpi ja teit ensimmäisen oman projektisi. Onneksi olkoon!', 'M8 4h8v5a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8'],
+      ['t3', 'Julkaistu!', 'Sivusi on netissä omassa osoitteessaan. Lähetä linkki kaverille!', 'M12 3c4 2 6 6 6 10l-3 3H9l-3-3c0-4 2-8 6-10zM12 9h.01M9 16l-2 5 5-2M15 16l2 5-5-2']
+    ];
+    const list = raw.map(([k, name, desc, icon], i) => {
+      const got = i < n;
+      return {
+        name, desc, icon,
+        bg: got ? 'var(--' + k + ')' : 'var(--surface-2)',
+        bc: got ? 'var(--' + k + '-line)' : 'var(--line-strong)',
+        bs: got ? 'solid' : 'dashed',
+        fg: got ? 'var(--' + k + '-ink)' : 'var(--ink-3)',
+        tc: got ? 'var(--ink)' : 'var(--ink-2)',
+        status: got ? '✓ Ansaittu 20.10.2026' : 'Ei vielä ansaittu',
+        sc: got ? 'var(--success)' : 'var(--ink-2)'
+      };
+    });
+    return {
+      theme: this.props.theme ?? 'light',
+      n, m: 120,
+      pose: n === 0 ? 'rest' : (n === 9 ? 'cheer' : 'wave'),
+      pathB: list.slice(0, 8),
+      bonusB: list.slice(8)
+    };
+  }
+}
+</script>
+</body>
+</html>

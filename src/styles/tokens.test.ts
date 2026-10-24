@@ -21,7 +21,7 @@ function block(selector: string): string {
 
 function colors(source: string): Record<string, string> {
   const result: Record<string, string> = {}
-  for (const m of source.matchAll(/--(color-[a-z-]+):\s*(#[0-9a-fA-F]{6})/g)) result[m[1]] = m[2]
+  for (const m of source.matchAll(/--(color-[a-z0-9-]+):\s*(#[0-9a-fA-F]{6})/g)) result[m[1]] = m[2]
   return result
 }
 
@@ -71,6 +71,40 @@ const PAIRS: [string, string, number][] = [
   ['color-border', 'color-surface', 3],
   ['color-progress-fill', 'color-progress-track', 3],
   ['color-code-muted', 'color-code-bg', 3],
+  // Design v2 (design-handoff/tokens/KONTRASTIT.md)
+  ['color-success', 'color-bg', 4.5],
+  ['color-success', 'color-surface', 4.5],
+  ['color-error', 'color-error-bg', 4.5],
+  ['color-error', 'color-surface', 4.5],
+  ['color-badge-locked', 'color-surface', 4.5],
+  ['color-text-muted', 'color-primary-soft', 4.5],
+  ['color-text', 'color-primary-soft', 4.5],
+  ['color-text', 'color-term-bar', 4.5],
+  ['color-topic-0-ink', 'color-topic-0-bg', 4.5],
+  ['color-topic-1-ink', 'color-topic-1-bg', 4.5],
+  ['color-topic-2-ink', 'color-topic-2-bg', 4.5],
+  ['color-topic-3-ink', 'color-topic-3-bg', 4.5],
+  ['color-text', 'color-topic-0-bg', 4.5],
+  ['color-text', 'color-topic-1-bg', 4.5],
+  ['color-text', 'color-topic-2-bg', 4.5],
+  ['color-text', 'color-topic-3-bg', 4.5],
+  ['color-text-muted', 'color-topic-1-bg', 4.5],
+  ['color-text-muted', 'color-topic-2-bg', 4.5],
+  ['color-text-muted', 'color-topic-3-bg', 4.5],
+  ['color-border', 'color-bg', 3],
+  ['color-progress-fill', 'color-bg', 3],
+  ['color-primary', 'color-bg', 3],
+  ['color-info-icon', 'color-info-bg', 3],
+  ['color-warning-icon', 'color-warning-bg', 3],
+  // Sovelluksen omat käytöt, joita KONTRASTIT.md ei listaa.
+  ['color-text-muted', 'color-topic-0-bg', 4.5], // aiheen kuvaus polkusivulla
+  ['color-topic-0-ink', 'color-surface', 4.5], // aihechipin numero
+  ['color-topic-1-ink', 'color-surface', 4.5],
+  ['color-topic-2-ink', 'color-surface', 4.5],
+  ['color-topic-3-ink', 'color-surface', 4.5],
+  ['color-term-prompt', 'color-bg', 4.5], // syöttörivin kehote
+  ['color-surface', 'color-success', 3], // vaihtoehdon ✓-ikoni
+  ['color-surface', 'color-error', 3], // vaihtoehdon ✗-ikoni
 ]
 
 describe('tumma teema', () => {

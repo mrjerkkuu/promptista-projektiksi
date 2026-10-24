@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Valitse käyttöjärjestelmä – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 48px; display: flex; flex-direction: column; gap: clamp(24px, 4vw, 48px);">
+  <header style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 0;">
+    <a href="Home.dc.html" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); min-height: 44px;">
+      <dc-import name="Mascot" pose="wave" size="{{logo}}" hint-size="44px,44px"></dc-import>
+      <span class="pp-serif" style="font-size: 20px; font-weight: 600;">Promptista projektiksi</span>
+    </a>
+    <span class="pp-mono pp-hide-sm" style="font-size: 14px; color: var(--ink-2);">Ennen aloitusta · 1/1</span>
+  </header>
+
+  <main style="max-width: 760px; width: 100%; margin: 0 auto; background: var(--surface-2); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 5vw, 48px); display: flex; flex-direction: column; gap: 24px;">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;">
+      <dc-import name="Mascot" pose="think" size="{{m}}" hint-size="140px,140px"></dc-import>
+      <h1 class="pp-serif" style="margin: 0; font-size: clamp(30px, 4.6vw, 48px); line-height: 1.1; font-weight: 600;">Kummalla koneella teet tätä?</h1>
+      <p style="margin: 0; font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: var(--ink-2); max-width: 520px;">Näytämme vain sinun koneesi ohjeet, jotta mikään ylimääräinen ei häiritse. Voit vaihtaa valintaa myöhemmin asetuksista.</p>
+    </div>
+
+    <dc-import name="OsPicker" variant="cards" framed="{{no}}" hint-size="100%,200px"></dc-import>
+
+    <details class="pp-details" style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px;">
+      <summary style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 18px; font-weight: 600; color: var(--ink);">
+        <span style="flex: 1;">En ole varma, kumpi minulla on</span>
+        <svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+      </summary>
+      <div class="pp-details-body" style="padding: 0 18px 18px; font-size: 15px; line-height: 1.65;">Jos koneen valmistaja on Apple, se on Mac. Lähes kaikki muut kannettavat ja pöytäkoneet ovat Windows-koneita. Chromebookeille ja Linuxille ei vielä ole ohjeita.</div>
+    </details>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+      <span style="font-size: 14px; color: var(--ink-2);">Valinta tallentuu vain tähän selaimeen.</span>
+      <a class="pp-btn pp-btn-primary" href="Home.dc.html">Jatka <svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.theme ?? 'light', logo: 44, m: 140, no: false };
+  }
+}
+</script>
+</body>
+</html>

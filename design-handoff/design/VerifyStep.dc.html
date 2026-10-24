@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Asennuksen varmistus</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 100%; box-sizing: border-box; padding: {{pad}}px; background: {{bg}};">
+  <sc-if value="{{isError}}" hint-placeholder-val="{{ false }}">
+    <div class="pp-notice pp-notice-error" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg><span>Varmistusta ”git” ei löytynyt.</span></div>
+  </sc-if>
+  <sc-if value="{{notError}}" hint-placeholder-val="{{ true }}">
+  <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4cqi, 32px); display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <span style="flex: none; width: 44px; height: 44px; border-radius: 14px; background: var(--t1); border: 1px solid var(--t1-line); color: var(--t1-ink); display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 22px; height: 22px;"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
+      <h3 class="pp-serif" style="margin: 0; font-size: 22px; font-weight: 600; line-height: 1.25;">Varmistus: {{tool}}</h3>
+    </div>
+    <p style="margin: 0; font-size: 16px; line-height: 1.6;">Aja komento terminaalissa. Miltä tulos näytti?</p>
+    <dc-import name="CommandBlock" os="{{os}}" caption="{{caption}}" win="{{cmd}}" mac="{{cmd}}" source="git-scm.com" framed="{{no}}" show-states="{{no}}" hint-size="100%,120px"></dc-import>
+    <div role="group" aria-label="Miltä tulos näytti?" style="display: flex; flex-direction: column; gap: 8px;">
+      <sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
+        <button type="button" class="pp-opt {{o.cls}}" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}">
+          <span class="pp-mark" aria-hidden="true">
+            <sc-if value="{{o.ok}}" hint-placeholder-val="{{ false }}"><svg class="pp-icon" viewBox="0 0 24 24" style="width: 16px; height: 16px; stroke-width: 3;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+            <sc-if value="{{o.bad}}" hint-placeholder-val="{{ false }}"><svg class="pp-icon" viewBox="0 0 24 24" style="width: 15px; height: 15px; stroke-width: 3;"><path d="M7 7l10 10M17 7L7 17"></path></svg></sc-if>
+          </span>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 4px; font-size: 16px; line-height: 1.45;">
+            <sc-if value="{{o.single}}" hint-placeholder-val="{{ true }}"><span>{{o.text}}</span></sc-if>
+            <sc-if value="{{o.split}}" hint-placeholder-val="{{ false }}">
+              <span><strong>Windows:</strong> {{o.win}}</span>
+              <span><strong>Mac:</strong> {{o.mac}}</span>
+            </sc-if>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+    <div aria-live="polite">
+      <sc-if value="{{isOk}}" hint-placeholder-val="{{ false }}">
+        <div class="pp-notice pp-notice-success pp-anim-rise"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.7 2.7L16 9.5"></path></svg><span><strong>Oikein!</strong> Git on asennettu ja toimii.</span></div>
+      </sc-if>
+      <sc-if value="{{isBad}}" hint-placeholder-val="{{ false }}">
+        <div class="pp-notice pp-notice-error pp-anim-rise"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>
+          <span style="display: flex; flex-direction: column; gap: 6px;"><span><strong>Ei aivan.</strong> {{badText}}</span><a href="AppTrouble.dc.html" style="font-weight: 600;">Vianmääritys: {{badLink}}</a></span>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"os":{"editor":"enum","options":["none","Windows","Mac"],"default":"Windows"},"preset":{"editor":"enum","options":["empty","correct","wrong"],"default":"wrong"},"error":{"editor":"boolean","default":false},"framed":{"editor":"boolean","default":true},"$preview":{"width":720,"height":760}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const p = props.preset ?? 'wrong';
+    this.state = { picked: p === 'correct' ? 0 : (p === 'wrong' ? 1 : null) };
+  }
+  renderVals() {
+    const os = this.props.os ?? 'Windows';
+    const framed = this.props.framed ?? true;
+    const O = (win, mac, badText, linkWin, linkMac) => ({ win, mac, badText, linkWin, linkMac });
+    const base = [
+      O('git version ja numero, esimerkiksi git version 2.56.0', null),
+      O('Virheilmoitus, jossa lukee ”not recognized”', 'zsh: command not found: git', 'Terminaali ei löydä Gitiä. Useimmiten auttaa, kun suljet terminaalin ja avaat sen uudelleen.', 'Komentoa ei tunnisteta', 'Komentoa ei tunnisteta'),
+      O('Asennus ei mennyt loppuun asti', 'Näytölle aukesi ikkuna komentorivityökalujen asentamisesta', 'Asennus on vielä kesken.', 'Jotain muuta meni pieleen', 'Macissa aukeaa ikkuna komentorivityökalujen asentamisesta'),
+      O('Jotain muuta', null, 'Katsotaan yhdessä, mitä tapahtui.', 'Jotain muuta meni pieleen', 'Jotain muuta meni pieleen')
+    ];
+    const picked = this.state.picked;
+    const opts = base.map((o, i) => {
+      const differs = o.mac !== null;
+      const split = os === 'none' && differs;
+      const text = os === 'Mac' && differs ? o.mac : o.win;
+      const sel = picked === i;
+      return {
+        text, win: o.win, mac: o.mac,
+        single: !split, split,
+        ok: sel && i === 0, bad: sel && i !== 0,
+        cls: sel ? (i === 0 ? 'is-correct' : 'is-wrong') : '',
+        pressed: sel ? 'true' : 'false',
+        pick: () => this.setState({ picked: i })
+      };
+    });
+    const sel = picked !== null ? base[picked] : null;
+    const err = this.props.error ?? false;
+    return {
+      pad: framed ? 28 : 0,
+      bg: framed ? 'var(--bg)' : 'transparent',
+      isError: err, notError: !err,
+      os, no: false,
+      tool: 'Git',
+      cmd: 'git --version',
+      caption: 'Näyttää Gitin version.',
+      opts,
+      isOk: picked === 0,
+      isBad: picked !== null && picked !== 0,
+      badText: sel ? sel.badText : '',
+      badLink: sel ? (os === 'Mac' ? sel.linkMac : sel.linkWin) : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

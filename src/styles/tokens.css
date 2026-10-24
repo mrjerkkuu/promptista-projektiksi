@@ -1,31 +1,45 @@
-/*
- * Design tokenit. KAIKKI värit, fontit, välistykset, pyöristykset, varjot ja
- * liikkeet määritellään tässä tiedostossa. Komponenttien tyylit käyttävät vain
- * näitä muuttujia, joten ulkoasun voi vaihtaa koskematta komponentteihin.
- *
- * Tämä on neutraali placeholder-teema (ks. SUUNNITELMA.md luku 11).
- */
+/* ==========================================================================
+   Promptista projektiksi – tokens.css (design v2, 24.10.2026)
+
+   KAIKKI värit, fontit, välistykset, pyöristykset, varjot ja liikkeet
+   määritellään tässä tiedostossa. Komponenttien tyylit käyttävät vain näitä
+   muuttujia. Design-paketin (design-handoff/tokens/tokens.css) uudet tokenit on
+   merkitty kommentilla UUSI; sovelluksen omat lisäykset ovat lopussa.
+
+   Tumma paletti on kirjoitettu kahdesti, kuten ennenkin:
+   1) prefers-color-scheme: dark (ellei käyttäjä ole valinnut vaaleaa)
+   2) [data-theme="dark"]
+   ========================================================================== */
 
 :root {
-  /* Typografia. Järjestelmäfontit: ei pyyntöjä kolmansille osapuolille.
-     Oma fontti lisätään myöhemmin itse hostattuna (ks. PAATOKSET.md). */
-  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-heading: var(--font-body);
-  --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
 
-  --font-size-xs: 0.8125rem;
-  --font-size-sm: 0.9375rem;
-  --font-size-md: 1.0625rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 2rem;
+  /* ---------- Typografia ---------- */
+  /* Fontit hostataan itse (@fontsource, ks. CLAUDE-CODE-OHJE.md). Ei CDN:ää. */
+  --font-body: 'Figtree Variable', 'Figtree', 'Segoe UI', system-ui, sans-serif;
+  --font-heading: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-mono: 'DM Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  --font-size-xs: 0.8125rem;   /* 13 px */
+  --font-size-sm: 0.9375rem;   /* 15 px */
+  --font-size-md: 1.0625rem;   /* 17 px, leipäteksti */
+  --font-size-lg: 1.25rem;     /* 20 px */
+  --font-size-xl: 1.5rem;      /* 24 px, h3 */
+  --font-size-2xl: 2rem;       /* 32 px, h2 työpöydällä */
+  --font-size-3xl: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);   /* UUSI: h1 32 → 52 px */
+  --font-size-display: clamp(2.25rem, 1.4rem + 3.6vw, 4rem); /* UUSI: etusivun h1 36 → 64 px */
+  --font-size-overline: 0.75rem; /* UUSI: versaaliotsake 12 px */
+  --letter-spacing-overline: 0.12em; /* UUSI */
+
   --line-height-body: 1.6;
-  --line-height-heading: 1.25;
-  --line-height-code: 1.45;
-  --font-weight-normal: 400;
-  --font-weight-bold: 650;
+  --line-height-heading: 1.15;
+  --line-height-code: 1.55;
 
-  /* Välistykset */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;   /* UUSI */
+  --font-weight-bold: 600;
+
+  /* ---------- Välistys (ennallaan) ---------- */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -33,150 +47,245 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
   --space-7: 3rem;
+  --space-8: 4rem;   /* UUSI */
 
-  /* Mitat */
-  --content-max-width: 46rem;
-  --page-max-width: 64rem;
-  --page-gutter: 1rem;
-  --tap-target-min: 2.75rem;
+  /* ---------- Mitat ---------- */
+  --content-max-width: 48rem;   /* oli 46rem; design 780 px */
+  --page-max-width: 75rem;      /* oli 64rem; design 1200 px */
+  --page-gutter: 1rem;          /* mobiili 16 px; työpöydällä 2.5rem, ks. base.css */
+  --tap-target-min: 2.75rem;    /* 44 px */
   --progress-height: 0.625rem;
   --badge-size: 3.5rem;
   --terminal-height: 16rem;
   --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;     /* UUSI (oli kovakoodattu) */
   --border-width: 1px;
+  --os-block-border-width: 1.5px; /* UUSI: ”Vain X” -lohkon katkoviiva (ei enää fokus-tokenia) */
   --term-underline-width: 2px;
 
-  /* Pyöristykset */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 14px;
-  --radius-pill: 999px;
+  /* ---------- Pyöristykset ---------- */
+  --radius-sm: 8px;     /* oli 4px: kentät, inline-koodi, chipit */
+  --radius-md: 16px;    /* oli 8px: kortit, ilmoitukset, vaihtoehdot */
+  --radius-lg: 28px;    /* oli 14px: isot kehykset, osiot */
+  --radius-pill: 999px; /* painikkeet, navigaatio, tilamerkinnät */
 
-  /* Liike */
-  --duration-fast: 120ms;
-  --duration-medium: 250ms;
-  --duration-badge: 600ms;
-  --duration-toast: 5s;
-  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  /* ---------- Liike ---------- */
+  --duration-fast: 200ms;
+  --duration-medium: 400ms;
+  --duration-slow: 1100ms;      /* UUSI: edistymispalkin täyttyminen */
+  --duration-badge: 800ms;
+  --duration-toast: 7s;         /* korjattu vastaamaan koodin 7 s */
+  --easing-standard: cubic-bezier(0.22, 1, 0.36, 1);  /* pehmeä hidastus */
+  --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* UUSI: pieni ylitys, nousut ja pomppaus */
 
-  /* Kerrokset */
+  /* ---------- Kerrokset ---------- */
   --z-popover: 20;
   --z-toast: 30;
+  --z-skip-link: 50; /* UUSI */
 
-  /* Värit – vaalea teema (oletus) */
-  --color-bg: #f7f7f5;
-  --color-surface: #ffffff;
-  --color-surface-muted: #efefec;
-  --color-text: #1d1f23;
-  --color-text-muted: #50555e;
-  --color-border: #8d9096;
-  --color-border-subtle: #d4d6da;
-  --color-primary: #2f4f8a;
-  --color-primary-hover: #243e6e;
-  --color-on-primary: #ffffff;
-  --color-link: #2a4b85;
-  --color-focus: #b8590b;
-  --color-success: #1f6b3a;
-  --color-success-bg: #e3f2e8;
-  --color-error: #a3261d;
-  --color-error-bg: #fbe7e5;
-  --color-on-error: #ffffff;
-  --color-info-bg: #e7edf7;
-  --color-warning-bg: #fdf3d8;
-  --color-badge: #7a5000;
-  --color-badge-bg: #fbefd2;
-  --color-badge-locked: #6b6f76;
-  --color-progress-track: #d4d6da;
-  --color-progress-fill: #2f6d4a;
-  --color-code-bg: #1f2329;
-  --color-code-text: #eef0f3;
-  --color-code-muted: #b4bac4;
-  --color-term-bg: #1f2329;
-  --color-term-text: #eef0f3;
-  --color-term-prompt: #8fd19e;
-  --color-term-error: #ffb4a9;
-  --color-term-hint: #c1ceff;
+  /* ---------- Varjot (vähän, lämpimät) ---------- */
+  --shadow-sm: 0 1px 2px rgba(74, 52, 30, 0.07);
+  --shadow-md: 0 12px 28px -14px rgba(74, 52, 30, 0.28);
+  --shadow-lg: 0 24px 48px -20px rgba(74, 52, 30, 0.35); /* UUSI: vain merkki-ilmoitus */
 
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
-  --shadow-md: 0 4px 14px rgb(0 0 0 / 0.16);
+  /* ---------- Värit: vaalea ---------- */
+  --color-bg: #FBF6EE;              /* lämmin kerma */
+  --color-surface: #FFFDF9;
+  --color-surface-muted: #F3EBDF;
+  --color-text: #2A2420;
+  --color-text-muted: #5E5249;
+  --color-border: #8C7B6B;          /* kenttien ja vaihtoehtojen reunat, ≥ 3:1 */
+  --color-border-subtle: #E6DACB;   /* korttien reunat, erottimet */
+  --color-primary: #C4461A;         /* lämmin oranssi */
+  --color-primary-hover: #A63912;
+  --color-on-primary: #FFFFFF;
+  --color-primary-soft: #FBE3D6;    /* UUSI: termin hover, valittu pilleri */
+  --color-link: #B23E14;
+  --color-focus: #24507A;           /* sininen, koska korostus on oranssi */
+  --color-success: #2E7148;
+  --color-success-bg: #DCEFDC;
+  --color-success-border: #A7D2B1;  /* UUSI */
+  --color-error: #A5352B;
+  --color-error-bg: #F8DEDA;
+  --color-error-border: #EBB2AA;    /* UUSI */
+  --color-on-error: #FFFFFF;
+  --color-info-bg: #E6EEF6;
+  --color-info-border: #C3D5E8;     /* UUSI */
+  --color-info-icon: #24507A;       /* UUSI */
+  --color-warning-bg: #FCEDC7;
+  --color-warning-border: #E6C677;  /* UUSI */
+  --color-warning-icon: #6E520B;    /* UUSI */
+  --color-badge: #6E520B;
+  --color-badge-bg: #F7E8B4;
+  --color-badge-border: #E3CD82;    /* UUSI: ilmoituksen reuna */
+  --color-badge-locked: #7A6C60;
+  --color-progress-track: #E6DACB;
+  --color-progress-fill: #2E7148;
+  --color-code-bg: #F3EBDF;         /* koodilohkot: vaalea, ei musta */
+  --color-code-text: #2A2420;
+  --color-code-muted: #5E5249;
+  --color-term-bg: #FFFDF9;
+  --color-term-bar: #DCE9F6;        /* UUSI: terminaalin yläpalkki */
+  --color-term-text: #2A2420;
+  --color-term-prompt: #C4461A;
+  --color-term-error: #A5352B;
+  --color-term-hint: #24507A;
 
-  color-scheme: light;
+  /* UUSI: aihealueiden värit (pohja / reuna / tumma sävy tekstille ja täytölle) */
+  --color-topic-0-bg: #DCE9F6; --color-topic-0-border: #BCD3EA; --color-topic-0-ink: #24507A; /* Perusteet */
+  --color-topic-1-bg: #F7E8B4; --color-topic-1-border: #E3CD82; --color-topic-1-ink: #6E520B; /* Asennukset */
+  --color-topic-2-bg: #F6D6E0; --color-topic-2-border: #E8B5C5; --color-topic-2-ink: #843150; /* Periaatteet */
+  --color-topic-3-bg: #FAD3BF; --color-topic-3-border: #EDB295; --color-topic-3-ink: #8A3D1D; /* Projekti */
 }
 
-/* Tumma paletti. Sama arvosarja kahdesti: käyttöjärjestelmän asetus
-   (ellei käyttäjä ole valinnut vaaleaa) ja käyttäjän oma valinta. */
+/* ---------- Tumma: laitteen asetus ---------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-bg: #15171a;
-    --color-surface: #1e2125;
-    --color-surface-muted: #2a2e33;
-    --color-text: #eceef1;
-    --color-text-muted: #b3b8c0;
-    --color-border: #7c828b;
-    --color-border-subtle: #3d4248;
-    --color-primary: #8fb0ef;
-    --color-primary-hover: #a9c3f5;
-    --color-on-primary: #10141c;
-    --color-link: #9dbcf5;
-    --color-focus: #f0a35e;
-    --color-success: #8fd6a7;
-    --color-success-bg: #1d3426;
-    --color-error: #ffaca3;
-    --color-error-bg: #3d1f1c;
-    --color-on-error: #1a0b09;
-    --color-info-bg: #1f2a3d;
-    --color-warning-bg: #3a3220;
-    --color-badge: #f2c66d;
-    --color-badge-bg: #3a3020;
-    --color-badge-locked: #9aa0a8;
-    --color-progress-track: #3d4248;
-    --color-progress-fill: #7cc796;
-    --color-code-bg: #0e1013;
-    --color-term-bg: #0e1013;
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-    --shadow-md: 0 4px 14px rgb(0 0 0 / 0.5);
-
     color-scheme: dark;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 24px 48px -20px rgba(0, 0, 0, 0.7);
+    --color-bg: #211C18;
+    --color-surface: #2B2520;
+    --color-surface-muted: #352E28;
+    --color-text: #F4ECE1;
+    --color-text-muted: #D3C6B6;
+    --color-border: #8A7B6C;
+    --color-border-subtle: #433A32;
+    --color-primary: #F0874F;
+    --color-primary-hover: #F59E6E;
+    --color-on-primary: #211C18;
+    --color-primary-soft: #4A2E20;
+    --color-link: #F49A69;
+    --color-focus: #B9D4EE;
+    --color-success: #8ED3A0;
+    --color-success-bg: #24392B;
+    --color-success-border: #3C5E46;
+    --color-error: #F2A196;
+    --color-error-bg: #462823;
+    --color-error-border: #6A3A33;
+    --color-on-error: #211C18;
+    --color-info-bg: #26323D;
+    --color-info-border: #3B4D5D;
+    --color-info-icon: #B9D4EE;
+    --color-warning-bg: #3F3622;
+    --color-warning-border: #5E5232;
+    --color-warning-icon: #EBD58A;
+    --color-badge: #EBD58A;
+    --color-badge-bg: #423A24;
+    --color-badge-border: #5E5232;
+    --color-badge-locked: #AE9F8E;
+    --color-progress-track: #433A32;
+    --color-progress-fill: #8ED3A0;
+    --color-code-bg: #352E28;
+    --color-code-text: #F4ECE1;
+    --color-code-muted: #D3C6B6;
+    --color-term-bg: #2B2520;
+    --color-term-bar: #2C3A47;
+    --color-term-text: #F4ECE1;
+    --color-term-prompt: #F0874F;
+    --color-term-error: #F2A196;
+    --color-term-hint: #B9D4EE;
+    --color-topic-0-bg: #2C3A47; --color-topic-0-border: #3F5466; --color-topic-0-ink: #B9D4EE;
+    --color-topic-1-bg: #423A24; --color-topic-1-border: #5E5232; --color-topic-1-ink: #EBD58A;
+    --color-topic-2-bg: #45303A; --color-topic-2-border: #634452; --color-topic-2-ink: #F0B8CB;
+    --color-topic-3-bg: #48322A; --color-topic-3-border: #66473B; --color-topic-3-ink: #F4B597;
   }
 }
 
+/* ---------- Tumma: käyttäjän valinta ---------- */
 :root[data-theme="dark"] {
-  --color-bg: #15171a;
-  --color-surface: #1e2125;
-  --color-surface-muted: #2a2e33;
-  --color-text: #eceef1;
-  --color-text-muted: #b3b8c0;
-  --color-border: #7c828b;
-  --color-border-subtle: #3d4248;
-  --color-primary: #8fb0ef;
-  --color-primary-hover: #a9c3f5;
-  --color-on-primary: #10141c;
-  --color-link: #9dbcf5;
-  --color-focus: #f0a35e;
-  --color-success: #8fd6a7;
-  --color-success-bg: #1d3426;
-  --color-error: #ffaca3;
-  --color-error-bg: #3d1f1c;
-  --color-on-error: #1a0b09;
-  --color-info-bg: #1f2a3d;
-  --color-warning-bg: #3a3220;
-  --color-badge: #f2c66d;
-  --color-badge-bg: #3a3020;
-  --color-badge-locked: #9aa0a8;
-  --color-progress-track: #3d4248;
-  --color-progress-fill: #7cc796;
-  --color-code-bg: #0e1013;
-  --color-term-bg: #0e1013;
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-md: 0 4px 14px rgb(0 0 0 / 0.5);
-
   color-scheme: dark;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 48px -20px rgba(0, 0, 0, 0.7);
+  --color-bg: #211C18;
+  --color-surface: #2B2520;
+  --color-surface-muted: #352E28;
+  --color-text: #F4ECE1;
+  --color-text-muted: #D3C6B6;
+  --color-border: #8A7B6C;
+  --color-border-subtle: #433A32;
+  --color-primary: #F0874F;
+  --color-primary-hover: #F59E6E;
+  --color-on-primary: #211C18;
+  --color-primary-soft: #4A2E20;
+  --color-link: #F49A69;
+  --color-focus: #B9D4EE;
+  --color-success: #8ED3A0;
+  --color-success-bg: #24392B;
+  --color-success-border: #3C5E46;
+  --color-error: #F2A196;
+  --color-error-bg: #462823;
+  --color-error-border: #6A3A33;
+  --color-on-error: #211C18;
+  --color-info-bg: #26323D;
+  --color-info-border: #3B4D5D;
+  --color-info-icon: #B9D4EE;
+  --color-warning-bg: #3F3622;
+  --color-warning-border: #5E5232;
+  --color-warning-icon: #EBD58A;
+  --color-badge: #EBD58A;
+  --color-badge-bg: #423A24;
+  --color-badge-border: #5E5232;
+  --color-badge-locked: #AE9F8E;
+  --color-progress-track: #433A32;
+  --color-progress-fill: #8ED3A0;
+  --color-code-bg: #352E28;
+  --color-code-text: #F4ECE1;
+  --color-code-muted: #D3C6B6;
+  --color-term-bg: #2B2520;
+  --color-term-bar: #2C3A47;
+  --color-term-text: #F4ECE1;
+  --color-term-prompt: #F0874F;
+  --color-term-error: #F2A196;
+  --color-term-hint: #B9D4EE;
+  --color-topic-0-bg: #2C3A47; --color-topic-0-border: #3F5466; --color-topic-0-ink: #B9D4EE;
+  --color-topic-1-bg: #423A24; --color-topic-1-border: #5E5232; --color-topic-1-ink: #EBD58A;
+  --color-topic-2-bg: #45303A; --color-topic-2-border: #634452; --color-topic-2-ink: #F0B8CB;
+  --color-topic-3-bg: #48322A; --color-topic-3-border: #66473B; --color-topic-3-ink: #F4B597;
 }
 
+/* ---------- Sovelluksen lisäykset ----------
+   Design-paketin mittoja, joille paketissa ei ollut tokenia. Ei värejä:
+   kaikki värit ovat yllä. */
+:root {
+  --font-size-caption: 0.875rem;  /* 14 px: murupolku, tiivistelmät, palkin teksti */
+  --font-size-base: 1rem;         /* 16 px: painikkeet, korttien teksti */
+  --font-size-md-lg: 1.125rem;    /* 18 px: merkki-ilmoituksen otsikko, CTA:n moduuli */
+  --font-size-h3: 1.375rem;       /* 22 px */
+  --font-size-h2: clamp(1.5rem, 1.2rem + 1.2vw, 1.875rem); /* 24 → 30 px */
+  --font-size-number: 2rem;       /* 32 px: ”Näin tämä toimii” -numerot */
+  --font-size-topic-number: clamp(2.5rem, 2rem + 2vw, 3.5rem); /* 40 → 56 px: aiheen numero */
+
+  --border-width-strong: 1.5px;   /* kentät, vaihtoehdot, painikkeet */
+  --button-height: 3rem;          /* 48 px */
+  --icon-size: 1.25rem;           /* 20 px */
+  --icon-size-sm: 1rem;           /* 16 px */
+  --notice-icon-size: 1.375rem;   /* 22 px */
+  --choice-mark-size: 1.75rem;    /* 28 px */
+  --wide-content-max-width: 56.25rem; /* 900 px: polkusivu */
+  /* Nuppu on vaalea molemmissa teemoissa: vaalean teeman arvot, joita tumma
+     teema ei korvaa (Nuppu.css ohjaa SVG:n muuttujat näihin). */
+  --color-nuppu-ink: #2A2420;
+  --color-nuppu-ink-muted: #5E5249;
+  --color-nuppu-body: #FFFDF9;
+  --color-nuppu-mouth: #F3EBDF;
+  --color-nuppu-shadow: #E6DACB;
+  --color-nuppu-leaf-1: #F7E8B4;
+  --color-nuppu-leaf-0: #DCE9F6;
+  --color-nuppu-cheek: #F6D6E0;
+  --color-nuppu-accent: #C4461A;
+
+  --duration-float: 2.4s;         /* Nupun pomppujen väli (etusivu, merkit); itse pomppu vie jakson alusta noin 0,5 s */
+}
+
+/* ---------- Vähennetty liike: kestot nollaan (kuten ennenkin) ---------- */
 @media (prefers-reduced-motion: reduce) {
   :root {
     --duration-fast: 0ms;
     --duration-medium: 0ms;
+    --duration-slow: 0ms;
     --duration-badge: 0ms;
   }
 }

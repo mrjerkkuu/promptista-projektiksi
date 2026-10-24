@@ -1,0 +1,81 @@
+.nuppu {
+  display: inline-block;
+  flex: none;
+  transform-origin: 50% 90%;
+
+  /* SVG:t käyttävät sovelluksen värimuuttujia. Ne ohjataan tässä Nupun
+     omiin, teemasta riippumattomiin tokeneihin, joten Nuppu on aina vaalea. */
+  --color-text: var(--color-nuppu-ink);
+  --color-text-muted: var(--color-nuppu-ink-muted);
+  --color-surface: var(--color-nuppu-body);
+  --color-surface-muted: var(--color-nuppu-mouth);
+  --color-border-subtle: var(--color-nuppu-shadow);
+  --color-topic-0-bg: var(--color-nuppu-leaf-0);
+  --color-topic-1-bg: var(--color-nuppu-leaf-1);
+  --color-topic-2-bg: var(--color-nuppu-cheek);
+  --color-primary: var(--color-nuppu-accent);
+  --nuppu-sticker: drop-shadow(1.5px 0 0 var(--color-nuppu-body)) drop-shadow(-1.5px 0 0 var(--color-nuppu-body))
+    drop-shadow(0 1.5px 0 var(--color-nuppu-body)) drop-shadow(0 -1.5px 0 var(--color-nuppu-body));
+}
+
+.nuppu svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tumma teema: vaalea ääriviiva koko hahmon ympäri (tarra), jotta tummat
+   kädet, jalat ja varsi erottuvat tummasta taustasta. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .nuppu svg {
+    filter: var(--nuppu-sticker);
+  }
+}
+
+:root[data-theme='dark'] .nuppu svg {
+  filter: var(--nuppu-sticker);
+}
+
+/* Kellunta vain, kun se on pyydetty (etusivu, merkit). Oma piirtokerros
+   (will-change) pitää hitaan liikkeen tasaisena: muuten selain pyöristää
+   sijainnin kokonaisiin pikseleihin ja liike nykii. */
+.nuppu--float {
+  will-change: transform;
+  animation: nuppu-float var(--duration-float) ease-in-out infinite;
+}
+
+/* Iloitseva Nuppu heiluu kahdesti eikä kellu. */
+.nuppu--iloitsee {
+  animation: nuppu-wiggle var(--duration-badge) var(--easing-spring) 2;
+}
+
+/* Nopea pompahdus jakson alussa (noin 0,5 s), sitten paikallaan jakson loppuun.
+   Pomppujen väli = --duration-float. */
+@keyframes nuppu-float {
+  0%,
+  15%,
+  22%,
+  100% {
+    transform: translateY(0);
+  }
+  /* ylös, alas ja pieni jälkipomppu */
+  8% {
+    transform: translateY(-4px);
+  }
+  18% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes nuppu-wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-7deg);
+  }
+  75% {
+    transform: rotate(7deg);
+  }
+}

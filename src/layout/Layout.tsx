@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { NavLink, useLocation } from 'react-router'
+import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { ThemeSelect } from '../components/ThemeSelect'
 import { paths } from '../content'
@@ -53,9 +54,10 @@ export function Layout({ children }: { children: ReactNode }) {
       <header className="site-header">
         <div className="site-header__inner">
           <NavLink to="/" className="site-header__brand">
-            Promptista projektiksi
+            <Nuppu pose="vilkuttaa" size={40} />
+            <span className="site-header__name">Promptista projektiksi</span>
           </NavLink>
-          <nav aria-label="Päävalikko">
+          <nav aria-label="Päävalikko" className="site-header__nav">
             <ul className="site-nav">
               {NAV_LINKS.map((l) => (
                 <li key={l.to}>
@@ -88,7 +90,8 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <footer className="site-footer">
-        <p>
+        <p className="site-footer__text">© 2026 Jeremia Vepsäläinen</p>
+        <p className="site-footer__text">
           Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.
         </p>
       </footer>

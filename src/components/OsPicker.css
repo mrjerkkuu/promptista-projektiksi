@@ -4,8 +4,11 @@
 
 .os-picker__question {
   display: block;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
   font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-lg);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
   margin-bottom: var(--space-3);
 }
 
@@ -15,6 +18,17 @@
   gap: var(--space-3);
 }
 
+/* Iso valitsin: painikkeet eivät veny koko levyisiksi mobiilissa. */
+.os-picker .os-picker__option {
+  width: auto;
+  padding: 0 var(--space-5);
+}
+
+.os-picker__check {
+  stroke-width: 2.6;
+}
+
+/* Kompakti: ”Ohjeet:” + segmenttivalitsin */
 .os-picker--compact {
   display: flex;
   align-items: center;
@@ -23,10 +37,41 @@
   margin: 0;
 }
 
-.os-picker--compact .os-picker__options {
-  gap: var(--space-2);
+.os-picker__label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
 }
 
-.os-picker__label {
-  font-size: var(--font-size-sm);
+.os-picker--compact .os-picker__options {
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+}
+
+.os-picker__segment {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target-min);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--easing-standard);
+}
+
+.os-picker__segment:hover {
+  color: var(--color-text);
+}
+
+.os-picker__segment[aria-pressed='true'] {
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-sm);
 }

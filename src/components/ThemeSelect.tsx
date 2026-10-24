@@ -14,13 +14,15 @@ export function ThemeSelect() {
   return (
     <div className="theme-select">
       <label htmlFor={id}>Teema </label>
-      <select id={id} value={progress.theme} onChange={(e) => dispatch({ type: 'setTheme', theme: themeSchema.parse(e.target.value) })}>
-        {themeSchema.options.map((t) => (
-          <option key={t} value={t}>
-            {THEME_LABEL[t]}
-          </option>
-        ))}
-      </select>
+      <span className="select">
+        <select id={id} value={progress.theme} onChange={(e) => dispatch({ type: 'setTheme', theme: themeSchema.parse(e.target.value) })}>
+          {themeSchema.options.map((t) => (
+            <option key={t} value={t}>
+              {THEME_LABEL[t]}
+            </option>
+          ))}
+        </select>
+      </span>
     </div>
   )
 }

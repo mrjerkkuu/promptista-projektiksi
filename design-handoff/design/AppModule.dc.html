@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Moduulisivu – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4cqi, 40px) 32px; display: flex; flex-direction: column; gap: clamp(20px, 3cqi, 32px);">
+  <dc-import name="Nav" active="path" os="{{os}}" hint-size="100%,120px"></dc-import>
+
+  <sc-if value="{{storageOff}}" hint-placeholder-val="{{ false }}">
+    <div class="pp-notice pp-notice-warning" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg><span>Selaimesi ei salli tallennusta (esimerkiksi yksityinen selausikkuna). Sivu toimii, mutta edistymisesi ei säily, kun suljet välilehden. Voit siirtää edistymisen talteen <a href="AppSettings.dc.html">asetuksista</a>.</span></div>
+  </sc-if>
+
+  <main id="sisalto" tabindex="-1" style="max-width: 780px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; outline: none; font-size: 17px; line-height: 1.65;">
+    <sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+      <div role="status" style="min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--ink-2); font-size: 16px;">
+        <dc-import name="Mascot" pose="think" size="{{m}}" hint-size="96px,96px"></dc-import>
+        Ladataan tietopakettia…
+      </div>
+    </sc-if>
+
+    <sc-if value="{{loaded}}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <nav aria-label="Murupolku" style="font-size: 14px; line-height: 1.5; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px;"><a href="AppPath.dc.html">Claude Code alusta alkaen</a><span aria-hidden="true">›</span><span>{{crumb}}</span></nav>
+      <header style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 6px;">
+        <div style="display: flex; align-items: center; gap: 10px;"><span class="pp-mono" style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--{{tkey}}); border: 1px solid var(--{{tkey}}-line); color: var(--{{tkey}}-ink); font-size: 14px;" aria-hidden="true">{{tnum}}</span><span class="pp-status {{stCls}}"><span aria-hidden="true">{{stSym}}</span>{{stLabel}}</span></div>
+        <h1 class="pp-serif" style="margin: 0; font-size: clamp(32px, 5cqi, 52px); line-height: 1.08; font-weight: 600; overflow-wrap: anywhere;">{{title}}</h1>
+      </header>
+
+      <sc-if value="{{noOs}}" hint-placeholder-val="{{ false }}">
+        <div class="pp-notice pp-notice-info" style="flex-direction: column; gap: 4px; padding: 18px 20px;">
+          <dc-import name="OsPicker" variant="large" initial="none" framed="{{no}}" help="Kun valitset käyttöjärjestelmän, näet vain sinua koskevat ohjeet." hint-size="100%,150px"></dc-import>
+        </div>
+      </sc-if>
+
+      <!-- ===== 1.2 Git ===== -->
+      <sc-if value="{{isGit}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <p style="margin: 0;"><button type="button" class="pp-term">Git</button> tekee projektistasi tallennuspisteitä. Claude Code käyttää sitä myös itse, joten se asennetaan ensimmäisten joukossa.</p>
+        <h2 class="pp-serif" style="margin: 10px 0 0; font-size: clamp(24px, 3cqi, 30px); line-height: 1.2; font-weight: 600;">1. Asenna Git</h2>
+        <sc-if value="{{showWin}}" hint-placeholder-val="{{ true }}">
+          <div class="{{osCls}}" style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-if value="{{noOs}}" hint-placeholder-val="{{ false }}"><span class="pp-oslabel"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M3 5h18v14H3zM3 9h18"></path></svg>Vain Windows</span></sc-if>
+            <p style="margin: 0;">Aja komento PowerShell 7:ssä:</p>
+            <dc-import name="CommandBlock" os="Windows" caption="Asentaa Gitin." framed="{{no}}" show-states="{{no}}" hint-size="100%,120px"></dc-import>
+            <details class="pp-details" style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px;"><summary style="display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 16px; font-weight: 600; font-size: 16px;"><span style="flex: 1;">Asennus ilman komentoa</span><svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><div class="pp-details-body" style="padding: 0 16px 16px; font-size: 16px;">Lataa asennusohjelma Gitin sivulta ja hyväksy oletusasetukset.</div></details>
+          </div>
+        </sc-if>
+        <sc-if value="{{showMac}}" hint-placeholder-val="{{ false }}">
+          <div class="{{osCls}}" style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-if value="{{noOs}}" hint-placeholder-val="{{ false }}"><span class="pp-oslabel"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M5 6h14v10H5zM2 19h20"></path></svg>Vain Mac</span></sc-if>
+            <p style="margin: 0;">Macissa Git tulee Applen komentorivityökalujen mukana. Aja komento Päätteessä:</p>
+            <dc-import name="CommandBlock" os="Mac" caption="Asentaa Gitin." framed="{{no}}" show-states="{{no}}" hint-size="100%,120px"></dc-import>
+            <p style="margin: 0;">Näytölle aukeaa ikkuna. Valitse Asenna (Install) ja hyväksy ehdot. Asennus voi kestää useita minuutteja. Jos Pääte sanoo työkalujen olevan jo asennettuina (”already installed”), Git on valmiina.</p>
+            <details class="pp-details" open="{{macOpen}}" style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px;"><summary style="display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 16px; font-weight: 600; font-size: 16px;"><span style="flex: 1;">Toinen tapa: Homebrew</span><svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="pp-details-body" style="padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; font-size: 16px;">
+                <p style="margin: 0;">Jos käytät Homebrew’ta, asenna se ensin:</p>
+                <dc-import name="CommandBlock" os="Mac" only="Mac" caption="Asentaa Homebrew’n, Macin pakettienhallinnan." mac="{{brew}}" source="brew.sh" framed="{{no}}" show-states="{{no}}" hint-size="100%,150px"></dc-import>
+              </div>
+            </details>
+          </div>
+        </sc-if>
+        <h2 class="pp-serif" style="margin: 10px 0 0; font-size: clamp(24px, 3cqi, 30px); line-height: 1.2; font-weight: 600;">2. Käynnistä terminaali uudelleen</h2>
+        <p style="margin: 0;">Sulje terminaali ja avaa se uudelleen, jotta se löytää juuri asennetun ohjelman.</p>
+        <dc-import name="VerifyStep" os="{{os}}" preset="{{verifyPreset}}" framed="{{no}}" hint-size="100%,640px"></dc-import>
+        <h2 class="pp-serif" style="margin: 10px 0 0; font-size: clamp(24px, 3cqi, 30px); line-height: 1.2; font-weight: 600;">3. Kerro Gitille nimesi</h2>
+        <p style="margin: 0;">Git liittää jokaiseen tallennuspisteeseen tekijän nimen ja sähköpostiosoitteen. Kirjoita omat tietosi lainausmerkkien sisään ja sähköpostiosoitteen paikalle. Käytä samaa sähköpostiosoitetta, jolla luot GitHub-tilin.</p>
+        <dc-import name="CommandBlock" os="{{os}}" caption="Kertoo Gitille nimesi. Nimi näkyy tallennuspisteissä (commiteissa)." win="{{nameCmd}}" mac="{{nameCmd}}" framed="{{no}}" show-states="{{no}}" hint-size="100%,140px"></dc-import>
+        <div class="pp-notice pp-notice-info"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span style="display: flex; flex-direction: column; gap: 2px;"><strong>Huomaa</strong>Nimesi ja sähköpostiosoitteesi näkyvät julkisesti, jos julkaiset projektin GitHubissa. GitHub tarjoaa tähän myös yksityisyyttä suojaavan osoitteen (asetuksissa kohdassa Emails).</span></div>
+      </div>
+      </sc-if>
+
+      <!-- ===== 0.2 Terminaali ===== -->
+      <sc-if value="{{isTerm}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <p style="margin: 0;"><button type="button" class="pp-term">Terminaali</button> on kuin tekstiviestikeskustelu tietokoneen kanssa. Sinä kirjoitat viestin eli <button type="button" class="pp-term">komennon</button> ja painat Enteriä. Tietokone tekee pyydetyn asian ja vastaa tekstillä.</p>
+        <sc-if value="{{showWin}}" hint-placeholder-val="{{ true }}">
+          <div class="{{osCls}}" style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-if value="{{noOs}}" hint-placeholder-val="{{ false }}"><span class="pp-oslabel"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M3 5h18v14H3zM3 9h18"></path></svg>Vain Windows</span></sc-if>
+            <p style="margin: 0;">Windowsilla terminaaliohjelma on <button type="button" class="pp-term">PowerShell</button>. Se näyttää tältä:</p>
+            <pre class="pp-pre">PS C:\Users\maija&gt;</pre>
+          </div>
+        </sc-if>
+        <sc-if value="{{showMac}}" hint-placeholder-val="{{ false }}">
+          <div class="{{osCls}}" style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-if value="{{noOs}}" hint-placeholder-val="{{ false }}"><span class="pp-oslabel"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M5 6h14v10H5zM2 19h20"></path></svg>Vain Mac</span></sc-if>
+            <p style="margin: 0;">Macilla terminaaliohjelma on <button type="button" class="pp-term">Pääte</button>. Se näyttää tältä:</p>
+            <pre class="pp-pre">maija@MacBook ~ %</pre>
+          </div>
+        </sc-if>
+        <p style="margin: 0;">Rivin alku on <button type="button" class="pp-term">kehote</button>. Se tarkoittaa: ”Olen valmis, kirjoita komento.” Kehotetta ei kirjoiteta itse, vaan komento kirjoitetaan sen perään.</p>
+        <h2 class="pp-serif" style="margin: 10px 0 0; font-size: clamp(24px, 3cqi, 30px); line-height: 1.2; font-weight: 600;">Kolme asiaa, jotka kannattaa tietää</h2>
+        <ul style="margin: 0; padding-left: 22px;">
+          <li>Kirjoitusasulla on väliä. <code class="pp-code">git --version</code> toimii, <code class="pp-code">git--version</code> ei.</li>
+          <li>Jos et ymmärrä vastausta, se ei haittaa. Lue rauhassa, usein viimeinen rivi kertoo olennaisen.</li>
+          <li>Harjoitusterminaali alla on täysin turvallinen: se ei koske oikeisiin tiedostoihisi.</li>
+        </ul>
+        <dc-import name="Terminal" os="{{os}}" preset="{{termPreset}}" framed="{{no}}" hint-size="100%,640px"></dc-import>
+        <details class="pp-details" style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px;"><summary style="display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 16px; font-weight: 600; font-size: 16px;"><span style="flex: 1;">Voiko terminaalilla rikkoa jotain?</span><svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><div class="pp-details-body" style="padding: 0 16px 16px; font-size: 16px;">Tavallisilla komennoilla, kuten pwd ja ls, ei voi rikkoa mitään. Kun komento muuttaa tai poistaa jotain, tässä oppaassa kerrotaan siitä aina erikseen.</div></details>
+        <dc-import name="Quiz" set="terminal" preset="{{quizPreset}}" framed="{{no}}" hint-size="100%,900px"></dc-import>
+      </div>
+      </sc-if>
+
+      <!-- ===== 3.5 Bonus ===== -->
+      <sc-if value="{{isBonus}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <p style="margin: 0;">Tämä on valinnainen lisätehtävä. Se ei vaikuta polun edistymiseen, mutta siitä saa bonusmerkin.</p>
+        <p style="margin: 0;">Julkaiset sivusi <button type="button" class="pp-term">GitHub Pages</button> -palvelulla omaan osoitteeseen, jonka voit jakaa kenelle tahansa.</p>
+      </div>
+      </sc-if>
+
+      <!-- Valmista? -->
+      <section aria-labelledby="ready-h" style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4cqi, 28px); display: flex; flex-direction: column; gap: 14px;">
+        <h2 id="ready-h" class="pp-serif" style="margin: 0; font-size: 26px; line-height: 1.2; font-weight: 600;">Valmista?</h2>
+        <sc-if value="{{rRead}}" hint-placeholder-val="{{ false }}"><div class="pp-notice pp-notice-info"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span>Merkitsit tämän luetuksi. Aihe on valmis, kun olet vastannut visan kaikkiin kysymyksiin oikein.</span></div></sc-if>
+        <sc-if value="{{rDone}}" hint-placeholder-val="{{ false }}"><div class="pp-notice pp-notice-success"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.7 2.7L16 9.5"></path></svg><span>Tämä aihe on valmis!</span></div></sc-if>
+        <div>
+          <sc-if value="{{rUnread}}" hint-placeholder-val="{{ true }}"><button type="button" class="pp-btn pp-btn-primary" aria-pressed="false" onClick="{{markRead}}">Olen lukenut tämän</button></sc-if>
+          <sc-if value="{{rMarked}}" hint-placeholder-val="{{ false }}"><button type="button" class="pp-btn pp-btn-secondary pp-btn-sm" aria-pressed="true" onClick="{{unmark}}">Luettu ✓ (peru merkintä)</button></sc-if>
+        </div>
+      </section>
+
+      <nav aria-label="Moduulit" style="display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; border-top: 1px solid var(--line);">
+        <span style="max-width: 48%;"><sc-if value="{{hasPrev}}" hint-placeholder-val="{{ true }}"><a href="AppModule.dc.html" style="display: flex; flex-direction: column; text-decoration: none; font-size: 16px; line-height: 1.4;"><span style="font-size: 13px; color: var(--ink-2);">← Edellinen</span><span style="text-decoration: underline;">{{prev}}</span></a></sc-if></span>
+        <span style="max-width: 48%; text-align: right;"><a href="{{nextHref}}" style="display: flex; flex-direction: column; text-decoration: none; font-size: 16px; line-height: 1.4;"><span style="font-size: 13px; color: var(--ink-2);">{{nextLabel}}</span><span style="text-decoration: underline;">{{next}}</span></a></span>
+      </nav>
+    </div>
+    </sc-if>
+  </main>
+
+  <footer style="padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; color: var(--ink-2); text-align: center;">Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"module":{"editor":"enum","options":["git","terminal","bonus"],"default":"git"},"os":{"editor":"enum","options":["none","Windows","Mac"],"default":"Windows"},"read":{"editor":"enum","options":["unread","read","done"],"default":"unread"},"storage":{"editor":"enum","options":["ok","off"],"default":"ok"},"loading":{"editor":"boolean","default":false},"macOpen":{"editor":"boolean","default":false},"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":3200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { read: props.read ?? 'unread' };
+  }
+  renderVals() {
+    const mod = this.props.module ?? 'git';
+    const os = this.props.os ?? 'Windows';
+    const r = this.state.read;
+    const M = {
+      git: { title: '1.2 Git', crumb: '1. Asennukset', tkey: 't1', tnum: '1', prev: '1.1 Terminaali', next: '1.3 VS Code' },
+      terminal: { title: '0.2 Terminaali ja komennot', crumb: '0. Perusteet', tkey: 't0', tnum: '0', prev: '0.1 Mitä vibekoodaus on?', next: '0.3 Kansiot ja polut' },
+      bonus: { title: '★ 3.5 Bonus: julkaise', crumb: '3. Ensimmäinen projekti', tkey: 't3', tnum: '3', prev: '3.4 GitHubiin', next: null }
+    }[mod];
+    const done = r === 'done';
+    const loading = this.props.loading ?? false;
+    return {
+      theme: this.props.theme ?? 'light',
+      os, no: false, m: 96,
+      storageOff: (this.props.storage ?? 'ok') === 'off',
+      loading, loaded: !loading,
+      ...M,
+      isGit: mod === 'git', isTerm: mod === 'terminal', isBonus: mod === 'bonus',
+      noOs: os === 'none',
+      osCls: os === 'none' ? 'pp-osblock' : '',
+      showWin: os !== 'Mac',
+      showMac: os !== 'Windows',
+      macOpen: this.props.macOpen ?? false,
+      brew: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+      nameCmd: 'git config --global user.name "Etunimi Sukunimi"',
+      stCls: done ? 'pp-status-done' : 'pp-status-doing',
+      stSym: done ? '✓' : '◐',
+      stLabel: done ? 'Valmis' : 'Kesken',
+      verifyPreset: r === 'unread' ? 'empty' : (done ? 'correct' : 'wrong'),
+      termPreset: r === 'unread' ? 'empty' : (done ? 'doneBefore' : 'used'),
+      quizPreset: r === 'unread' ? 'empty' : (done ? 'passed' : 'partial'),
+      rUnread: r === 'unread', rMarked: r !== 'unread',
+      rRead: r === 'read', rDone: done,
+      markRead: () => this.setState({ read: 'read' }),
+      unmark: () => this.setState({ read: 'unread' }),
+      hasPrev: true,
+      nextLabel: M.next ? 'Seuraava →' : 'Polun loppu',
+      next: M.next || 'Takaisin polun etusivulle',
+      nextHref: M.next ? 'AppModule.dc.html' : 'AppPath.dc.html'
+    };
+  }
+}
+</script>
+</body>
+</html>

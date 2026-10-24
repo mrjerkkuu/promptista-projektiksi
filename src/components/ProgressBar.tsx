@@ -4,12 +4,14 @@ import './ProgressBar.css'
 interface ProgressBarProps {
   label: string
   count: ProgressCount
+  /** Aihealueen numero: täyttö aiheen värillä (polkusivun aiheosiot). */
+  topic?: number
 }
 
 /** Edistymispalkki. Luku kerrotaan myös tekstinä, ei pelkkänä palkkina. */
-export function ProgressBar({ label, count }: ProgressBarProps) {
+export function ProgressBar({ label, count, topic }: ProgressBarProps) {
   return (
-    <div className="progress">
+    <div className={topic === undefined ? 'progress' : `progress progress--topic progress--topic-${topic % 4}`}>
       <div
         className="progress__track"
         role="progressbar"
@@ -22,7 +24,10 @@ export function ProgressBar({ label, count }: ProgressBarProps) {
         <div className="progress__fill" style={{ width: `${count.percent}%` }} />
       </div>
       <p className="progress__text">
-        {count.complete}/{count.total} valmiina ({count.percent} %)
+        <span className="mono">
+          {count.complete}/{count.total}
+        </span>{' '}
+        valmiina (<span className="mono">{count.percent} %</span>)
       </p>
     </div>
   )

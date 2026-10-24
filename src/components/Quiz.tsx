@@ -4,6 +4,7 @@ import { isQuizPassed, useProgress } from '../features/progress'
 import type { QuizQuestion } from '../schemas/content'
 import { useModuleKey } from './moduleContext'
 import { ChoiceList } from './ChoiceList'
+import { Nuppu } from './Nuppu'
 
 /**
  * Moduulin visa (quiz.json). Välitön palaute jokaiselle vaihtoehdolle,
@@ -24,7 +25,12 @@ export function Quiz() {
         <QuizQuestionView key={q.id} moduleKey={module.key} question={q} number={i + 1} />
       ))}
       <div aria-live="polite">
-        {passed && <p className="notice notice--success">Visa läpäisty! Kaikki vastaukset ovat oikein.</p>}
+        {passed && (
+          <p className="notice notice--success notice--mascot notice--rise">
+            <Nuppu pose="iloitsee" size={56} />
+            Visa läpäisty! Kaikki vastaukset ovat oikein.
+          </p>
+        )}
       </div>
     </section>
   )

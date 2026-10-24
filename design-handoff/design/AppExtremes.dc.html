@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Sisällön ääripäät</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 820px; margin: 0 auto; padding: 24px clamp(16px, 4cqi, 40px) 40px; display: flex; flex-direction: column; gap: 28px; font-size: 17px; line-height: 1.65;">
+
+  <span class="pp-overline" style="color: var(--ink-2);">A · Etusivun pisin painike (50 merkkiä)</span>
+  <div><a class="pp-btn pp-btn-primary" href="#" style="flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 26px; border-radius: 24px; text-align: left; max-width: 100%;"><span style="font-size: 13px; font-weight: 600; opacity: .92;">Jatka siitä mihin jäit</span><span style="font-size: 18px;">2.1 Ensimmäinen keskustelu →</span></a></div>
+
+  <span class="pp-overline" style="color: var(--ink-2);">B · Murupolku, pisin ja lyhin moduulin otsikko</span>
+  <nav aria-label="Murupolku" style="font-size: 14px; line-height: 1.5; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px;"><a href="#">Claude Code alusta alkaen</a><span aria-hidden="true">›</span><span>2. Claude Code -periaatteet</span></nav>
+  <h1 class="pp-serif" style="margin: 0; font-size: clamp(32px, 5cqi, 52px); line-height: 1.08; font-weight: 600;">0.2 Terminaali ja komennot</h1>
+  <h1 class="pp-serif" style="margin: 0; font-size: clamp(32px, 5cqi, 52px); line-height: 1.08; font-weight: 600;">1.2 Git <span class="pp-status pp-status-done" style="vertical-align: middle;"><span aria-hidden="true">✓</span>Valmis</span></h1>
+  <h2 class="pp-serif" style="margin: 0; font-size: clamp(24px, 3cqi, 30px); line-height: 1.2; font-weight: 600;">2. Ota käyttöön kaksivaiheinen tunnistautuminen</h2>
+
+  <span class="pp-overline" style="color: var(--ink-2);">C · Aiheen pisin kuvaus ja moduulilistan pisin tiivistelmä</span>
+  <section style="background: var(--t1); border: 1px solid var(--t1-line); border-radius: 28px; padding: clamp(16px, 3cqi, 28px); display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; align-items: flex-start; gap: 14px;"><span class="pp-mono" style="font-size: clamp(40px, 6cqi, 56px); line-height: .9; color: var(--t1-ink);">1</span><div style="flex: 1; min-width: 0;"><h2 class="pp-serif" style="margin: 0; font-size: clamp(22px, 3cqi, 28px); font-weight: 600;">Asennukset</h2><p style="margin: 0; font-size: 15px; color: var(--ink-2);">Asennat askel kerrallaan kaikki työkalut, joita Claude Coden kanssa tarvitaan, ja varmistat, että ne toimivat.</p></div></div>
+    <ol style="margin: 0; padding: 4px 18px; list-style: none; background: var(--surface); border-radius: 20px;">
+      <li style="display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; padding: 14px 0;"><div style="flex: 1 1 240px; min-width: 0;"><a href="#" style="font-weight: 600;">2.5 Luvat ja turvallisuus</a><div style="font-size: 14px; color: var(--ink-2);">Lue, mitä hyväksyt. Salasanat ja avaimet pysyvät poissa keskustelusta ja GitHubista.</div></div><span class="pp-status pp-status-todo"><span aria-hidden="true">○</span>Ei aloitettu</span></li>
+    </ol>
+  </section>
+
+  <span class="pp-overline" style="color: var(--ink-2);">D · Pisin komento (95), pisin Windows-komento (68), lyhin (6), pisin kuvaus (120)</span>
+  <dc-import name="CommandBlock" os="Mac" only="Mac" caption="Asentaa Homebrew’n, Macin pakettienhallinnan." mac="{{brew}}" source="brew.sh" framed="{{no}}" show-states="{{no}}" hint-size="100%,150px"></dc-import>
+  <dc-import name="CommandBlock" os="Windows" only="Windows" caption="Sallii omalle käyttäjällesi paikallisten ja allekirjoitettujen PowerShell-skriptien ajamisen." win="Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser" source="learn.microsoft.com" framed="{{no}}" show-states="{{no}}" hint-size="100%,150px"></dc-import>
+  <dc-import name="CommandBlock" os="none" caption="Palauttaa tiedoston siihen muotoon, jossa se oli viimeisimmässä tallennuspisteessä. Tallentamattomat muutokset katoavat." win="claude" mac="claude" source="code.claude.com" checked="" framed="{{no}}" show-states="{{no}}" hint-size="100%,260px"></dc-import>
+
+  <span class="pp-overline" style="color: var(--ink-2);">E · Koodilohkon pisin rivi (95) ja taulukko: vierittyvät sivusuunnassa</span>
+  <pre class="pp-pre">Tee minulle verkkosivu, jossa on muistipeli. Älä vielä kirjoita koodia, vaan kerro ensin suunnitelma.</pre>
+  <div class="pp-table-wrap"><table class="pp-table"><thead><tr><th scope="col">Kysymys</th><th scope="col">Chat selaimessa</th><th scope="col">Agentti (Claude Code)</th></tr></thead><tbody><tr><td>Virheet</td><td>sinä kerrot virheen ja kopioit korjauksen</td><td>se voi ajaa sivun, huomata virheen ja korjata sen</td></tr></tbody></table></div>
+
+  <span class="pp-overline" style="color: var(--ink-2);">F · Visan pisin kysymys (81) ja vaihtoehto (133), lyhin vaihtoehto (6)</span>
+  <dc-import name="Quiz" set="extreme" preset="passed" framed="{{no}}" hint-size="100%,820px"></dc-import>
+
+  <span class="pp-overline" style="color: var(--ink-2);">G · Varmistus ilman käyttöjärjestelmää: pitkät yhdistelmävaihtoehdot</span>
+  <dc-import name="VerifyStep" os="none" preset="wrong" framed="{{no}}" hint-size="100%,820px"></dc-import>
+
+  <span class="pp-overline" style="color: var(--ink-2);">H · Terminaalin pisin tuloste (≈ 220 merkkiä)</span>
+  <dc-import name="Terminal" os="Windows" preset="error" framed="{{no}}" hint-size="100%,620px"></dc-import>
+
+  <span class="pp-overline" style="color: var(--ink-2);">I · Vianmäärityksen pisin otsikko (57) ja ratkaisuvaihe (276)</span>
+  <details class="pp-details" open="{{yes}}" style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px;">
+    <summary style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; min-height: 56px;"><span style="flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 4px 10px;"><span style="font-weight: 600; font-size: 17px; line-height: 1.4;">Macissa aukeaa ikkuna komentorivityökalujen asentamisesta</span><span style="display: inline-flex; align-items: center; min-height: 22px; padding: 0 8px; border-radius: 999px; background: var(--surface-2); font-size: 12px; font-weight: 600; color: var(--ink-2);">Mac</span></span><svg class="pp-icon pp-chev" viewBox="0 0 24 24" aria-hidden="true" style="margin-top: 3px;"><path d="M6 9l6 6 6-6"></path></svg></summary>
+    <div class="pp-details-body" style="padding: 0 16px 18px; font-size: 16px;"><strong>Näin korjaat:</strong><ol style="margin: 8px 0 0; padding-left: 22px; overflow-wrap: anywhere;"><li>Avaa VS Code, paina Cmd+Vaihto+P ja kirjoita komentopalettiin Shell Command: Install ’code’ command in PATH. Valitse se listasta ja anna salasanasi, jos Mac kysyy sitä. Sulje sen jälkeen Pääte kokonaan (Cmd+Q) ja avaa se uudelleen, jotta uusi asetus tulee voimaan.</li></ol></div>
+  </details>
+
+  <span class="pp-overline" style="color: var(--ink-2);">J · Sanaston pisin termi (31) ja selitys (161) sekä pisin sana</span>
+  <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;"><div class="pp-serif" style="font-size: 19px; font-weight: 600; overflow-wrap: anywhere;">kaksivaiheinen tunnistautuminen</div><div style="font-size: 15px; line-height: 1.55;">Kirjautuminen, jossa salasanan lisäksi tarvitaan toinen varmistus, esimerkiksi puhelimen sovelluksen näyttämä koodi. Englanniksi two-factor authentication (2FA).</div></div>
+  <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;"><div class="pp-serif" style="font-size: 19px; font-weight: 600;">PATH</div><div style="font-size: 15px; line-height: 1.55;">Tietokoneen asetus, joka kertoo terminaalille, mistä kansioista ohjelmia etsitään. Asennus lisää ohjelman PATHiin, ja terminaali lukee asetuksen käynnistyessään.</div></div>
+
+  <span class="pp-overline" style="color: var(--ink-2);">K · Merkin pisin kuvaus (94) ja kaksi ilmoitusta pinossa</span>
+  <article style="display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 20px; border: 1px solid var(--line); background: var(--surface);"><span style="flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--t2); border: 2px solid var(--t2-line); color: var(--t2-ink); display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 26px; height: 26px;"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path></svg></span><div style="flex: 1; min-width: 0;"><h3 style="margin: 0; font-size: 17px;">Ensimmäinen komento</h3><p style="margin: 0; font-size: 14px; color: var(--ink-2);">Osaat suunnitella ennen rakentamista, pitää salaisuudet salassa ja palata tallennuspisteeseen.</p><span style="font-size: 13px; font-weight: 600; color: var(--success);">✓ Ansaittu 20.10.2026</span></div></article>
+  <dc-import name="BadgeToast" count="{{two}}" framed="{{no}}" hint-size="100%,330px"></dc-import>
+
+  <span class="pp-overline" style="color: var(--ink-2);">L · Sivutus pitkillä nimillä</span>
+  <nav aria-label="Moduulit" style="display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; border-top: 1px solid var(--line);"><span style="max-width: 48%;"><a href="#" style="display: flex; flex-direction: column; text-decoration: none; font-size: 16px; line-height: 1.4;"><span style="font-size: 13px; color: var(--ink-2);">← Edellinen</span><span style="text-decoration: underline;">0.2 Terminaali ja komennot</span></a></span><span style="max-width: 48%; text-align: right;"><a href="#" style="display: flex; flex-direction: column; text-decoration: none; font-size: 16px; line-height: 1.4;"><span style="font-size: 13px; color: var(--ink-2);">Seuraava →</span><span style="text-decoration: underline;">2.1 Ensimmäinen keskustelu</span></a></span></nav>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":5200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'light',
+      no: false, yes: true, two: 2,
+      brew: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+    };
+  }
+}
+</script>
+</body>
+</html>

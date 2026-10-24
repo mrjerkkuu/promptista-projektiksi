@@ -1,0 +1,353 @@
+/* ==========================================================
+   Promptista projektiksi — design tokens v1
+   Fontit (OFL, itse hostattavat): Fraunces, Figtree, DM Mono
+   ========================================================== */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  /* Pohjat */
+  --bg: #FBF6EE;          /* lämmin kermanvalkoinen */
+  --surface: #FFFDF9;     /* kortit, valkoinen kortti kehyksen sisällä */
+  --surface-2: #F3EBDF;   /* kehykset, pillerinavigaation pohja */
+  --ink: #2A2420;         /* teksti 14,2:1 pohjalla */
+  --ink-2: #5E5249;       /* toissijainen teksti 7,0:1 */
+  --ink-3: #7A6C60;       /* aputeksti 4,7:1 (vain bg/surface) */
+  --line: #E6DACB;
+  --line-strong: #CDBBA6;
+  --track: rgba(42, 36, 32, .12);
+  --focus: #24507A;
+
+  /* Korostus */
+  --accent: #C4461A;      /* valkoinen teksti 5,0:1 */
+  --accent-hover: #A63912;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #FBE3D6;
+  --link: #B23E14;        /* 5,4:1 pohjalla */
+
+  /* Tila */
+  --success: #2E7148;
+  --success-soft: #DCEFDC;
+  --error: #A5352B;
+  --error-soft: #F8DEDA;
+
+  /* Aihealueet: pohja / reuna / tumma sävy tekstille ja täytölle */
+  --t0: #DCE9F6; --t0-line: #BCD3EA; --t0-ink: #24507A;   /* 0 Perusteet */
+  --t1: #F7E8B4; --t1-line: #E3CD82; --t1-ink: #6E520B;   /* 1 Asennukset */
+  --t2: #F6D6E0; --t2-line: #E8B5C5; --t2-ink: #843150;   /* 2 Periaatteet */
+  --t3: #FAD3BF; --t3-line: #EDB295; --t3-ink: #8A3D1D;   /* 3 Projekti */
+
+  /* Varjot: vähän ja lämpimästi */
+  --shadow-sm: 0 1px 2px rgba(74, 52, 30, .07);
+  --shadow-md: 0 12px 28px -14px rgba(74, 52, 30, .28);
+  --shadow-lg: 0 24px 48px -20px rgba(74, 52, 30, .35);
+
+  /* Fontit */
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, 'Cascadia Mono', Menlo, monospace;
+
+  /* Pyöristykset */
+  --r-xs: 8px;  --r-sm: 12px;  --r-md: 16px;  --r-lg: 28px;  --r-pill: 999px;
+
+  /* Välistys (4 px:n perusyksikkö) */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+  /* Liike */
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);  /* jousi, pieni ylitys */
+  --ease-soft: cubic-bezier(.22, 1, .36, 1);       /* pehmeä hidastus */
+  --dur-fast: 200ms; --dur-base: 400ms; --dur-slow: 900ms;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #211C18;
+  --surface: #2B2520;
+  --surface-2: #352E28;
+  --ink: #F4ECE1;
+  --ink-2: #D3C6B6;
+  --ink-3: #AE9F8E;
+  --line: #433A32;
+  --line-strong: #5C5045;
+  --track: rgba(244, 236, 225, .14);
+  --focus: #B9D4EE;
+
+  --accent: #F0874F;
+  --accent-hover: #F59E6E;
+  --accent-ink: #211C18;
+  --accent-soft: #4A2E20;
+  --link: #F49A69;
+
+  --success: #8ED3A0;
+  --success-soft: #24392B;
+  --error: #F2A196;
+  --error-soft: #462823;
+
+  --t0: #2C3A47; --t0-line: #3F5466; --t0-ink: #B9D4EE;
+  --t1: #423A24; --t1-line: #5E5232; --t1-ink: #EBD58A;
+  --t2: #45303A; --t2-line: #634452; --t2-ink: #F0B8CB;
+  --t3: #48322A; --t3-line: #66473B; --t3-ink: #F4B597;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35);
+  --shadow-md: 0 12px 28px -14px rgba(0, 0, 0, .6);
+  --shadow-lg: 0 24px 48px -20px rgba(0, 0, 0, .7);
+}
+
+/* ---------- Perusta ---------- */
+.pp-root {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.pp-root *, .pp-root *::before, .pp-root *::after { box-sizing: border-box; }
+.pp-root a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.pp-root a:hover { color: var(--accent-hover); }
+.pp-root :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.pp-root button { font: inherit; cursor: pointer; }
+.pp-serif { font-family: var(--font-serif); font-optical-sizing: auto; letter-spacing: -.01em; }
+.pp-mono { font-family: var(--font-mono); }
+.pp-overline { font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.pp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.pp-icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Painikkeet ---------- */
+.pp-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 10px 22px; border-radius: var(--r-pill);
+  font-weight: 600; font-size: 16px; line-height: 1.25; text-decoration: none; text-align: center;
+  white-space: normal; overflow-wrap: anywhere; /* v2: pitkät tekstit rivittyvät eivätkä vuoda yli */
+  border: 1.5px solid transparent;
+  transition: transform var(--dur-base) var(--ease-spring), background-color var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+.pp-root .pp-btn-primary, .pp-btn-primary { background: var(--accent); color: var(--accent-ink); }
+.pp-root .pp-btn-primary:hover { background: var(--accent-hover); color: var(--accent-ink); transform: translateY(-2px); }
+.pp-root .pp-btn-secondary, .pp-btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+.pp-root .pp-btn-secondary:hover { border-color: var(--ink); color: var(--ink); transform: translateY(-2px); }
+.pp-root .pp-btn-ghost, .pp-btn-ghost { background: transparent; color: var(--link); padding: 0 10px; }
+.pp-root .pp-btn-danger, .pp-btn-danger { background: var(--surface); color: var(--error); border-color: var(--error); }
+.pp-btn-sm { min-height: 44px; padding: 0 16px; font-size: 15px; }
+.pp-btn[disabled], .pp-btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; transform: none !important; }
+
+/* ---------- Kortit ---------- */
+.pp-lift { transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) ease; }
+.pp-lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+/* ---------- Pillerinavigaatio ---------- */
+.pp-pill {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 18px;
+  border-radius: var(--r-pill); color: var(--ink-2); font-weight: 500; text-decoration: none; white-space: nowrap;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+.pp-root .pp-pill { color: var(--ink-2); text-decoration: none; }
+.pp-root .pp-pill:hover { background: var(--surface); color: var(--ink); }
+.pp-root .pp-pill[aria-current="page"] { background: var(--surface); color: var(--link); font-weight: 600; box-shadow: var(--shadow-sm); }
+
+/* ---------- Segmenttivalitsin ---------- */
+.pp-seg { display: inline-flex; padding: 4px; gap: 4px; border-radius: var(--r-pill); background: var(--surface-2); }
+.pp-seg button {
+  border: 0; background: transparent; min-height: 44px; padding: 0 18px; border-radius: var(--r-pill);
+  color: var(--ink-2); font-weight: 500; display: inline-flex; align-items: center; gap: 8px;
+  transition: background-color var(--dur-fast) ease;
+}
+.pp-seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: var(--shadow-sm); }
+
+/* ---------- Edistymispalkki ---------- */
+.pp-bar { height: 10px; border-radius: var(--r-pill); background: var(--track); overflow: hidden; }
+.pp-bar > span {
+  display: block; height: 100%; border-radius: inherit; background: var(--ink);
+  transform-origin: left center; animation: pp-fill 1.1s var(--ease-soft) both;
+}
+
+/* ---------- Syötteet ---------- */
+.pp-input {
+  width: 100%; min-height: 48px; padding: 0 18px; border-radius: var(--r-pill);
+  border: 1.5px solid var(--line-strong); background: var(--surface); color: var(--ink); font: inherit;
+}
+.pp-input::placeholder { color: var(--ink-3); }
+.pp-switch { appearance: none; -webkit-appearance: none; width: 52px; height: 30px; border-radius: var(--r-pill); background: var(--line-strong); position: relative; cursor: pointer; flex: none; margin: 0; transition: background-color var(--dur-fast) ease; }
+.pp-switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--surface); box-shadow: var(--shadow-sm); transition: transform var(--dur-base) var(--ease-spring); }
+.pp-switch:checked { background: var(--ink); }
+.pp-switch:checked::after { transform: translateX(22px); }
+
+/* ---------- Visa ---------- */
+.pp-opt {
+  width: 100%; text-align: left; display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 10px 16px;
+  border-radius: var(--r-md); border: 1.5px solid var(--line); background: var(--surface); color: var(--ink);
+  transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease, transform var(--dur-base) var(--ease-spring);
+}
+.pp-opt:hover { border-color: var(--ink-3); transform: translateX(2px); }
+.pp-opt[aria-pressed="true"] { border-color: var(--ink); background: var(--surface-2); }
+.pp-opt.is-correct { border-color: var(--success); background: var(--success-soft); }
+.pp-opt.is-wrong { border-color: var(--error); background: var(--error-soft); }
+.pp-opt[disabled] { cursor: default; transform: none; }
+
+/* ---------- Kopioi-painike ---------- */
+.pp-copy {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 16px; border-radius: var(--r-pill);
+  border: 1.5px solid var(--line-strong); background: var(--surface); color: var(--ink); font-weight: 600; font-size: 14px;
+  transition: background-color var(--dur-fast) ease, border-color var(--dur-fast) ease, transform var(--dur-base) var(--ease-spring);
+}
+.pp-copy:hover { border-color: var(--ink); }
+.pp-copy.is-copied { background: var(--success-soft); color: var(--success); border-color: var(--success); animation: pp-pop .6s var(--ease-spring); }
+
+/* ---------- Termi ---------- */
+.pp-term {
+  background: none; border: 0; padding: 0; color: inherit; font: inherit; cursor: help;
+  text-decoration: underline dotted 2px; text-decoration-color: var(--accent); text-underline-offset: 5px;
+}
+.pp-term:hover, .pp-term[aria-expanded="true"] { background: var(--accent-soft); border-radius: 4px; }
+
+/* ---------- Avattava osio ---------- */
+.pp-details > summary { list-style: none; cursor: pointer; }
+.pp-details > summary::-webkit-details-marker { display: none; }
+.pp-chev { transition: transform var(--dur-base) var(--ease-spring); }
+.pp-details[open] .pp-chev { transform: rotate(180deg); }
+.pp-details[open] .pp-details-body { animation: pp-rise .45s var(--ease-soft) both; }
+
+/* ---------- Terminaalisimulaattori ---------- */
+.pp-tl-cmd { color: var(--ink); }
+.pp-tl-out { color: var(--ink-2); }
+.pp-tl-ok { color: var(--success); }
+.pp-tl-err { color: var(--error); }
+.pp-tl-hint { color: var(--ink-3); font-style: italic; }
+
+/* ---------- Animaatiot ---------- */
+@keyframes pp-fill { from { transform: scaleX(0); } }
+@keyframes pp-rise { from { opacity: 0; transform: translateY(10px); } }
+@keyframes pp-pop {
+  0% { transform: scale(.4); opacity: 0; }
+  55% { transform: scale(1.12); opacity: 1; }
+  78% { transform: scale(.96); }
+  100% { transform: scale(1); }
+}
+@keyframes pp-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes pp-wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-7deg); } 75% { transform: rotate(7deg); } }
+@keyframes pp-toast { from { opacity: 0; transform: translateY(24px) scale(.96); } }
+
+.pp-anim-rise { animation: pp-rise .5s var(--ease-soft) both; }
+.pp-anim-pop { animation: pp-pop .8s var(--ease-spring) both; }
+.pp-anim-toast { animation: pp-toast .6s var(--ease-spring) both; }
+.pp-mascot { animation: pp-bob 4.5s ease-in-out infinite; transform-origin: 50% 90%; }
+.pp-mascot-cheer { animation: pp-wiggle .8s var(--ease-spring) 2; transform-origin: 50% 90%; }
+
+/* Vähennetty liike: käyttöjärjestelmän asetus TAI sivuston oma asetus */
+@media (prefers-reduced-motion: reduce) {
+  .pp-root *, .pp-root *::before, .pp-root *::after { animation: none !important; transition: none !important; }
+}
+[data-motion="reduced"] *, [data-motion="reduced"] *::before, [data-motion="reduced"] *::after { animation: none !important; transition: none !important; }
+
+/* ---------- Responsiivisuus ---------- */
+.pp-show-sm { display: none !important; }
+@media (max-width: 640px) {
+  .pp-hide-sm { display: none !important; }
+  .pp-show-sm { display: flex !important; }
+  .pp-btn { width: 100%; }
+  .pp-btn-sm { width: auto; }
+  .pp-btn-ghost { width: auto; }
+}
+
+/* ==========================================================
+   v2 – sovelluksen kaikki osat (DESIGN-INVENTAARIO 24.10.2026)
+   ========================================================== */
+:root, [data-theme="light"] {
+  --info-soft: #E6EEF6;    --info-line: #C3D5E8;    --info-ink: #24507A;
+  --warning-soft: #FCEDC7; --warning-line: #E6C677; --warning-ink: #6E520B;
+  --success-line: #A7D2B1; --error-line: #EBB2AA;
+  --on-error: #FFFFFF;     /* 6,7:1 virheen päällä */
+  --term-height: 16rem;    /* terminaalin ikkuna, kuten sovelluksessa */
+  --toast-ms: 7000;        /* yksi totuus: koodissa 7 s */
+}
+[data-theme="dark"] {
+  --info-soft: #26323D;    --info-line: #3B4D5D;    --info-ink: #B9D4EE;
+  --warning-soft: #3F3622; --warning-line: #5E5232; --warning-ink: #EBD58A;
+  --success-line: #3C5E46; --error-line: #6A3A33;
+  --on-error: #211C18;
+}
+
+/* Sivujuuri on kontti: asettelu reagoi omaan leveyteensä (360 px -kehys toimii myös rinnakkain) */
+.pp-page { container: pp / inline-size; }
+@container pp (max-width: 640px) {
+  .pp-sm-hide { display: none !important; }
+  .pp-sm-col { flex-direction: column !important; align-items: stretch !important; }
+  .pp-sm-full { width: 100% !important; }
+  .pp-btn:not(.pp-btn-sm) { width: 100%; }
+}
+
+/* Painikkeiden puuttuvat tilat */
+.pp-btn:active, .pp-copy:active, .pp-opt:active { transform: translateY(1px) scale(.98); }
+.pp-root .pp-btn-danger:hover { background: var(--error-soft); color: var(--error); }
+.pp-root .pp-btn-danger-solid, .pp-btn-danger-solid { background: var(--error); color: var(--on-error); }
+.pp-root .pp-btn-danger-solid:hover { filter: brightness(.92); color: var(--on-error); }
+.pp-root a.pp-ext::after { content: "↗"; display: inline-block; margin-left: 2px; font-size: .85em; text-decoration: none; }
+
+/* Ohituslinkki */
+.pp-skip {
+  position: absolute; left: 16px; top: -200px; z-index: 50;
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: var(--r-pill);
+  background: var(--ink); color: var(--bg) !important; font-weight: 600; text-decoration: none;
+}
+.pp-skip:focus, .pp-skip.is-visible { top: 12px; outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* Ilmoituslaatikko: tausta + ohut reuna + kuvake */
+.pp-notice { display: flex; gap: 12px; align-items: flex-start; padding: 14px 18px; border-radius: var(--r-md); border: 1px solid; font-size: 15px; line-height: 1.55; color: var(--ink); overflow-wrap: anywhere; }
+.pp-notice > svg { flex: none; width: 22px; height: 22px; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.pp-notice-info { background: var(--info-soft); border-color: var(--info-line); }
+.pp-notice-info > svg { color: var(--info-ink); }
+.pp-notice-warning { background: var(--warning-soft); border-color: var(--warning-line); }
+.pp-notice-warning > svg { color: var(--warning-ink); }
+.pp-notice-success { background: var(--success-soft); border-color: var(--success-line); }
+.pp-notice-success > svg { color: var(--success); }
+.pp-notice-error { background: var(--error-soft); border-color: var(--error-line); }
+.pp-notice-error > svg { color: var(--error); }
+
+/* Tilamerkintä (3 tilaa, symboli + teksti) */
+.pp-status { display: inline-flex; align-items: center; gap: 5px; min-height: 26px; padding: 0 10px; border-radius: var(--r-pill); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.pp-status-todo { background: var(--surface-2); color: var(--ink-2); }
+.pp-status-doing { background: var(--info-soft); color: var(--ink); }
+.pp-status-done { background: var(--success-soft); color: var(--success); }
+
+/* Lomake-elementit */
+.pp-select-wrap { position: relative; display: inline-flex; align-items: center; }
+.pp-select {
+  appearance: none; -webkit-appearance: none; min-height: 44px; padding: 0 40px 0 16px; border-radius: var(--r-pill);
+  border: 1.5px solid var(--line-strong); background: var(--surface); color: var(--ink); font: inherit; font-size: 15px; cursor: pointer;
+}
+.pp-select-wrap > svg { position: absolute; right: 14px; width: 16px; height: 16px; pointer-events: none; fill: none; stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pp-textarea {
+  width: 100%; min-height: 120px; padding: 12px 16px; border-radius: var(--r-sm); border: 1.5px solid var(--line-strong);
+  background: var(--surface); color: var(--ink); font-family: var(--font-mono); font-size: 13px; line-height: 1.55; resize: vertical; overflow-wrap: anywhere;
+}
+.pp-check { appearance: none; -webkit-appearance: none; width: 24px; height: 24px; margin: 0; flex: none; border-radius: 7px; border: 2px solid var(--line-strong); background: var(--surface); display: inline-grid; place-content: center; cursor: pointer; }
+.pp-check:checked { background: var(--ink); border-color: var(--ink); }
+.pp-check:checked::after { content: ""; width: 11px; height: 6px; border-left: 2.5px solid var(--bg); border-bottom: 2.5px solid var(--bg); transform: rotate(-45deg) translate(1px, -1px); }
+
+/* Tietopaketin sisältö */
+.pp-code { font-family: var(--font-mono); font-size: .9em; background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: .05em .35em; overflow-wrap: anywhere; }
+.pp-pre { margin: 0; padding: 14px 16px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-sm); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; color: var(--ink); white-space: pre; overflow-x: auto; }
+.pp-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); }
+.pp-table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 15px; line-height: 1.5; }
+.pp-table th, .pp-table td { padding: 10px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.pp-table th { background: var(--surface-2); font-weight: 600; }
+.pp-table tr:last-child td { border-bottom: 0; }
+.pp-osblock { display: flex; flex-direction: column; gap: 12px; padding: 14px 16px 16px; border: 1.5px dashed var(--line-strong); border-radius: var(--r-md); }
+.pp-oslabel { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 0 12px 0 8px; border-radius: var(--r-pill); background: var(--surface-2); font-size: 13px; font-weight: 600; color: var(--ink); }
+
+/* Monivalinta: selitys vaihtoehdon alla */
+.pp-opt { overflow-wrap: anywhere; }
+.pp-opt > * { min-width: 0; }
+.pp-opt-expl { margin: 4px 0 0 48px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.pp-mark { flex: none; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line-strong); background: var(--bg); display: flex; align-items: center; justify-content: center; }
+.is-correct .pp-mark { background: var(--success); border-color: var(--success); color: var(--surface); }
+.is-wrong .pp-mark { background: var(--error); border-color: var(--error); color: var(--surface); }
+
+/* Terminaali v2 */
+.pp-tl-hint { color: var(--info-ink); font-family: var(--font-sans); font-style: normal; }
+.pp-tl-table { white-space: pre; }
+.pp-tl-prompt { color: var(--accent); overflow-wrap: anywhere; }
+
+/* Merkki-ilmoitusten pino */
+.pp-toast-stack { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }

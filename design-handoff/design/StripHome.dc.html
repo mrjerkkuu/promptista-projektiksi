@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Etusivun erikoistilanteet 360 px</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 3000px; min-height: 2900px; box-sizing: border-box; padding: 48px; display: flex; gap: 64px; align-items: flex-start; background: var(--surface-2);">
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Ensikäynti · fokus ohituslinkissä</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppHome" state="first" skip="{{yes}}" hint-size="360px,2600px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Käyttöjärjestelmä valittu (Mac), ei edistymistä</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppHome" state="os" os="Mac" hint-size="360px,2400px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Pakolliset tehty, bonus jäljellä</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppHome" state="bonus" hint-size="360px,2400px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Kaikki suoritettu</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppHome" state="done" hint-size="360px,2400px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Tallennus ei käytössä</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppHome" state="first" storage="off" hint-size="360px,2700px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Tallennus rikki</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppHome" state="first" storage="broken" hint-size="360px,2700px"></dc-import></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3000,"height":2900}}'>
+class Component extends DCLogic {
+  renderVals() { return { yes: true }; }
+}
+</script>
+</body>
+</html>

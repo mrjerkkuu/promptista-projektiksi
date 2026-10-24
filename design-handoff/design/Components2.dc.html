@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Komponentit 2 – sovelluksen osat</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 1440px; min-height: 2700px; box-sizing: border-box; padding: 56px 64px; display: flex; flex-direction: column; gap: 32px; background: var(--bg); color: var(--ink);">
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+    <!-- Ilmoitukset -->
+    <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+      <h2 class="pp-serif" style="margin: 0 0 4px; font-size: 24px; font-weight: 600;">Ilmoituslaatikko</h2>
+      <div class="pp-notice pp-notice-info"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span>Info: Merkitsit tämän luetuksi.</span></div>
+      <div class="pp-notice pp-notice-warning"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg><span>Varoitus: Tätä ei voi perua.</span></div>
+      <div class="pp-notice pp-notice-error"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg><span>Virhe: Koodia ei voitu lukea.</span></div>
+      <div class="pp-notice pp-notice-success"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.7 2.7L16 9.5"></path></svg><span>Onnistui: Edistyminen tuotu!</span></div>
+      <span class="pp-overline" style="color: var(--ink-2); margin-top: 6px;">Tip-komponentti otsikolla</span>
+      <div class="pp-notice pp-notice-info"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span style="display: flex; flex-direction: column; gap: 2px;"><strong>Huomaa</strong>Nimesi ja sähköpostiosoitteesi näkyvät julkisesti, jos julkaiset projektin GitHubissa.</span></div>
+      <div class="pp-notice pp-notice-warning"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg><span style="display: flex; flex-direction: column; gap: 2px;"><strong>Varo</strong>Älä koskaan liitä salasanaa tai API-avainta keskusteluun.</span></div>
+      <p style="margin: 0; font-size: 13px; color: var(--ink-2);">Kuvake + ohut reuna + tausta. Väri ei ole ainoa vihje.</p>
+    </section>
+
+    <!-- Tila + edistyminen -->
+    <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+      <h2 class="pp-serif" style="margin: 0; font-size: 24px; font-weight: 600;">Tilamerkintä</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <span class="pp-status pp-status-todo"><span aria-hidden="true">○</span>Ei aloitettu</span>
+        <span class="pp-status pp-status-doing"><span aria-hidden="true">◐</span>Kesken</span>
+        <span class="pp-status pp-status-done"><span aria-hidden="true">✓</span>Valmis</span>
+      </div>
+      <h2 class="pp-serif" style="margin: 8px 0 0; font-size: 24px; font-weight: 600;">Edistymispalkki</h2>
+      <sc-for list="{{bars}}" as="b" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span class="pp-bar" role="progressbar" aria-valuenow="{{b.pct}}" aria-valuemin="0" aria-valuemax="100" aria-label="Edistyminen" style="display: block;"><span style="width: {{b.pct}}%; background: var(--success);"></span></span>
+          <span style="font-size: 14px; color: var(--ink-2);"><span class="pp-mono">{{b.n}}/24</span> valmiina (<span class="pp-mono">{{b.pct}} %</span>)</span>
+        </div>
+      </sc-for>
+      <p style="margin: 0; font-size: 13px; color: var(--ink-2);">Täyttö on vihreä, koska palkki kertoo valmiista. Bonus ei kuulu laskuun.</p>
+      <h2 class="pp-serif" style="margin: 8px 0 0; font-size: 24px; font-weight: 600;">”Valmista?”-kortti</h2>
+      <div style="display: flex; flex-direction: column; gap: 10px; background: var(--bg); border-radius: 20px; padding: 16px;">
+        <button type="button" class="pp-btn pp-btn-primary" aria-pressed="false" style="align-self: flex-start;">Olen lukenut tämän</button>
+        <div class="pp-notice pp-notice-info"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><span>Merkitsit tämän luetuksi. Aihe on valmis, kun olet vastannut visan kaikkiin kysymyksiin oikein.</span></div>
+        <div class="pp-notice pp-notice-success"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.7 2.7L16 9.5"></path></svg><span>Tämä aihe on valmis!</span></div>
+        <button type="button" class="pp-btn pp-btn-secondary pp-btn-sm" aria-pressed="true" style="align-self: flex-start;">Luettu ✓ (peru merkintä)</button>
+      </div>
+    </section>
+
+    <!-- Monivalinta -->
+    <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+      <h2 class="pp-serif" style="margin: 0 0 4px; font-size: 24px; font-weight: 600;">Monivalinta (visa ja varmistus)</h2>
+      <span class="pp-overline" style="color: var(--ink-2);">Vastaamaton</span>
+      <span class="pp-opt" style="pointer-events: none;"><span class="pp-mark"></span><span>Se näyttää muutoksen ja kysyy lupaa</span></span>
+      <span class="pp-overline" style="color: var(--ink-2);">Hover</span>
+      <span class="pp-opt" style="pointer-events: none; border-color: var(--ink-3); background: var(--surface-2);"><span class="pp-mark"></span><span>Se näyttää muutoksen ja kysyy lupaa</span></span>
+      <span class="pp-overline" style="color: var(--ink-2);">Valittu, oikein</span>
+      <span class="pp-opt is-correct" style="pointer-events: none;"><span class="pp-mark"><svg class="pp-icon" viewBox="0 0 24 24" style="width: 16px; height: 16px; stroke-width: 3;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Agentti voi tehdä asioita koneellasi</span></span>
+      <span class="pp-overline" style="color: var(--ink-2);">Muu vaihtoehto, kun oikea on valittu</span>
+      <div><span class="pp-opt" style="pointer-events: none;"><span class="pp-mark"></span><span>Agentti on aina fiksumpi kuin chat</span></span><p class="pp-opt-expl">Taustalla voi olla sama tekoäly. Ero on siinä, mitä se pystyy tekemään.</p></div>
+      <span class="pp-overline" style="color: var(--ink-2);">Valittu, väärin</span>
+      <span class="pp-opt is-wrong" style="pointer-events: none;"><span class="pp-mark"><svg class="pp-icon" viewBox="0 0 24 24" style="width: 15px; height: 15px; stroke-width: 3;"><path d="M7 7l10 10M17 7L7 17"></path></svg></span><span>Se tekee muutoksen salaa</span></span>
+    </section>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+    <!-- Tietopaketin sisältö -->
+    <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 14px;">
+      <span class="pp-overline" style="color: var(--ink-2);">Tietopaketin elementit</span>
+      <h2 class="pp-serif" style="margin: 0; font-size: 28px; font-weight: 600;">Chat vastaa, agentti tekee</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.65;">Kirjoitusasulla on väliä: <code class="pp-code">git --version</code> toimii, <code class="pp-code">git--version</code> ei. Claude Code on <button type="button" class="pp-term">agentti</button>.</p>
+      <div class="pp-table-wrap">
+        <table class="pp-table">
+          <thead><tr><th scope="col">Kysymys</th><th scope="col">Chat selaimessa</th><th scope="col">Agentti (Claude Code)</th></tr></thead>
+          <tbody>
+            <tr><td>Mitä se tekee?</td><td>kirjoittaa vastauksen</td><td>lukee ja luo tiedostoja, ajaa komentoja</td></tr>
+            <tr><td>Missä?</td><td>selaimessa</td><td>terminaalissa, sinun kansiossasi</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="pp-serif" style="margin: 4px 0 0; font-size: 21px; font-weight: 600;">Koodilohko</h3>
+      <pre class="pp-pre">PS C:\Users\maija&gt;</pre>
+      <ul style="margin: 0; padding-left: 22px; font-size: 17px; line-height: 1.65;"><li>Jos et ymmärrä vastausta, se ei haittaa.</li><li>Lue rauhassa, usein viimeinen rivi kertoo olennaisen.</li></ul>
+      <span class="pp-overline" style="color: var(--ink-2); margin-top: 6px;">Käyttöjärjestelmäkohtainen lohko, kun valintaa ei ole</span>
+      <div class="pp-osblock">
+        <span class="pp-oslabel"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M3 5h18v14H3zM3 9h18"></path></svg>Vain Windows</span>
+        <p style="margin: 0; font-size: 16px;">Windowsilla terminaaliohjelma on PowerShell.</p>
+      </div>
+      <div class="pp-osblock">
+        <span class="pp-oslabel"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M5 6h14v10H5zM2 19h20"></path></svg>Vain Mac</span>
+        <p style="margin: 0; font-size: 16px;">Macilla terminaaliohjelma on Pääte.</p>
+      </div>
+      <p style="margin: 0; font-size: 13px; color: var(--ink-2);">Kun käyttöjärjestelmä on valittu, oma lohko näkyy ilman kehystä ja toinen piilotetaan.</p>
+    </section>
+
+    <!-- Lomakkeet -->
+    <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+      <span class="pp-overline" style="color: var(--ink-2);">Lomake-elementit (teeman mukaiset)</span>
+      <label style="display: flex; align-items: center; gap: 10px; font-weight: 600;">Teema
+        <span class="pp-select-wrap"><select class="pp-select"><option>Laitteen mukaan</option><option>Vaalea</option><option>Tumma</option></select><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span>
+      </label>
+      <label for="c2-code" style="font-weight: 600;">Siirtokoodi (kopioi tämä kokonaan):</label>
+      <textarea id="c2-code" class="pp-textarea" readonly="{{yes}}" style="min-height: 96px;">eyJ2ZXJzaW9uIjoxLCJvcyI6IndpbmRvd3MiLCJ0aGVtZSI6InN5c3RlbSIsIm1vZHVsZXMiOnsiY2xhdWRlLWNvZGUvMC4xIjp7InJlYWQiOnRydWV9fX0=</textarea>
+      <label for="c2-in" style="font-weight: 600;">Liitä siirtokoodi:</label>
+      <textarea id="c2-in" class="pp-textarea" style="min-height: 72px;"></textarea>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+        <button type="button" class="pp-btn pp-btn-primary" disabled="{{yes}}">Tuo koodista</button>
+        <span style="font-size: 13px; color: var(--ink-2);">Ei käytössä, kun kenttä on tyhjä.</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+        <span style="font-size: 15px;">Tai valitse ladattu tiedosto:</span>
+        <label class="pp-btn pp-btn-secondary pp-btn-sm" style="cursor: pointer;"><input type="file" accept="application/json" class="pp-sr">Valitse tiedosto</label>
+        <span style="font-size: 14px; color: var(--ink-2);">Ei valittua tiedostoa</span>
+      </div>
+      <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 16px; line-height: 1.5;"><input type="checkbox" class="pp-check" style="margin-top: 1px;">Näytä myös muiden käyttöjärjestelmien ongelmat (nyt näytetään: Windows)</label>
+      <span class="pp-overline" style="color: var(--ink-2); margin-top: 6px;">Linkit ja painalluksen hetki</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; font-size: 16px;">
+        <a href="#">Linkki</a>
+        <a href="#" style="color: var(--accent-hover);">Linkki hover</a>
+        <a href="#" class="pp-ext">Ulkoinen linkki</a>
+        <button type="button" class="pp-btn pp-btn-primary pp-btn-sm" style="transform: translateY(1px) scale(.98);">Active</button>
+        <button type="button" class="pp-btn pp-btn-danger-solid pp-btn-sm">Kyllä, aloita alusta</button>
+      </div>
+      <span class="pp-overline" style="color: var(--ink-2); margin-top: 6px;">Ohituslinkki (näppäimistöfokus)</span>
+      <div style="position: relative; height: 64px; background: var(--bg); border-radius: 16px;"><a href="#" class="pp-skip is-visible">Siirry sisältöön</a></div>
+    </section>
+  </div>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px;">
+    <!-- Navigointi sivulla -->
+    <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 14px;">
+      <span class="pp-overline" style="color: var(--ink-2);">Murupolku, moduulilista ja sivutus</span>
+      <nav aria-label="Murupolku" style="font-size: 14px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px;"><a href="#">Claude Code alusta alkaen</a><span aria-hidden="true">›</span><span>2. Claude Code -periaatteet</span></nav>
+      <ol style="margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line);">
+        <li style="display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line);">
+          <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><a href="#" style="font-weight: 600; font-size: 17px;">2.5 Luvat ja turvallisuus</a><span style="font-size: 14px; color: var(--ink-2);">Lue, mitä hyväksyt. Salasanat ja avaimet pysyvät poissa keskustelusta ja GitHubista.</span></div>
+          <span class="pp-status pp-status-doing"><span aria-hidden="true">◐</span>Kesken</span>
+        </li>
+        <li style="display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line);">
+          <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><a href="#" style="font-weight: 600; font-size: 17px;"><span aria-hidden="true" style="color: var(--t3-ink);">★</span> 3.5 Bonus: julkaise</a><span style="font-size: 14px; color: var(--ink-2);"><strong style="color: var(--ink);">Valinnainen.</strong> Valinnainen lisätehtävä: sivusi nettiin omaan osoitteeseen GitHub Pagesilla.</span></div>
+          <span class="pp-status pp-status-todo"><span aria-hidden="true">○</span>Ei aloitettu</span>
+        </li>
+      </ol>
+      <span class="pp-overline" style="color: var(--ink-2);">Sivutus: keskellä · ensimmäinen · viimeinen</span>
+      <sc-for list="{{pagers}}" as="p" hint-placeholder-count="3">
+        <nav aria-label="Moduulit" style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line);">
+          <span style="max-width: 48%;"><sc-if value="{{p.hasPrev}}" hint-placeholder-val="{{ true }}"><a href="#" style="display: flex; flex-direction: column; text-decoration: none;"><span style="font-size: 13px; color: var(--ink-2);">← Edellinen</span><span style="text-decoration: underline;">{{p.prev}}</span></a></sc-if></span>
+          <span style="max-width: 48%; text-align: right;"><a href="#" style="display: flex; flex-direction: column; text-decoration: none;"><span style="font-size: 13px; color: var(--ink-2);">{{p.nextLabel}}</span><span style="text-decoration: underline;">{{p.next}}</span></a></span>
+        </nav>
+      </sc-for>
+    </section>
+
+    <!-- Merkit -->
+    <section style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 14px;">
+      <span class="pp-overline" style="color: var(--ink-2);">Merkki: saatu · lukittu · bonus</span>
+      <sc-for list="{{badges}}" as="b" hint-placeholder-count="3">
+        <article style="display: flex; gap: 16px; align-items: flex-start; padding: 18px; border-radius: 20px; border: 1px solid var(--line); background: var(--bg);">
+          <span style="flex: none; width: 64px; height: 64px; border-radius: 50%; background: {{b.bg}}; border: 2px {{b.bs}} {{b.bc}}; color: {{b.fg}}; display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 28px; height: 28px; stroke-width: 1.7;"><path d="{{b.icon}}"></path></svg></span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+            <h3 style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3;">{{b.name}}<sc-if value="{{b.bonus}}" hint-placeholder-val="{{ false }}"><span style="font-weight: 400; color: var(--ink-2);"> (bonus)</span></sc-if></h3>
+            <p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-2);">{{b.desc}}</p>
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: {{b.sc}};">{{b.status}}</span>
+          </div>
+        </article>
+      </sc-for>
+      <span class="pp-overline" style="color: var(--ink-2); margin-top: 6px;">Lataus ja sisältövirhe</span>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 120px; background: var(--bg); border-radius: 20px; color: var(--ink-2);" role="status"><dc-import name="Mascot" pose="think" size="{{m}}" hint-size="64px,64px"></dc-import>Ladataan tietopakettia…</div>
+      <div class="pp-notice pp-notice-error"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg><span>Komentoa ”install-git” ei löytynyt.</span></div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.theme ?? 'light',
+      yes: true,
+      m: 64,
+      bars: [{ n: 0, pct: 0 }, { n: 9, pct: 38 }, { n: 24, pct: 100 }],
+      pagers: [
+        { hasPrev: true, prev: '0.4 Git ja GitHub', nextLabel: 'Seuraava →', next: '1.1 Terminaali' },
+        { hasPrev: false, prev: '', nextLabel: 'Seuraava →', next: '0.2 Terminaali ja komennot' },
+        { hasPrev: true, prev: '3.4 GitHubiin', nextLabel: 'Polun loppu', next: 'Takaisin polun etusivulle' }
+      ],
+      badges: [
+        { name: 'Ensimmäinen komento', desc: 'Kirjoitit ensimmäisen komentosi terminaaliin. Siitä se lähtee!', icon: 'M3 6h18v12H3zM7 10h.01M11 10h.01M15 10h.01M7 14h10', bg: 'var(--t0)', bc: 'var(--t0-line)', bs: 'solid', fg: 'var(--t0-ink)', status: '✓ Ansaittu 20.10.2026', sc: 'var(--success)', bonus: false },
+        { name: 'Turvallinen ohjaaja', desc: 'Osaat suunnitella ennen rakentamista, pitää salaisuudet salassa ja palata tallennuspisteeseen.', icon: 'M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z', bg: 'var(--surface-2)', bc: 'var(--line-strong)', bs: 'dashed', fg: 'var(--ink-3)', status: 'Ei vielä ansaittu', sc: 'var(--ink-2)', bonus: false },
+        { name: 'Julkaistu!', desc: 'Sivusi on netissä omassa osoitteessaan. Lähetä linkki kaverille!', icon: 'M12 3c4 2 6 6 6 10l-3 3H9l-3-3c0-4 2-8 6-10zM12 9h.01M9 16l-2 5 5-2M15 16l2 5-5-2', bg: 'var(--surface-2)', bc: 'var(--line-strong)', bs: 'dashed', fg: 'var(--ink-3)', status: 'Ei vielä ansaittu', sc: 'var(--ink-2)', bonus: true }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

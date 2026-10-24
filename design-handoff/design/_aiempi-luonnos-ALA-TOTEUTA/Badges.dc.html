@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Merkit – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 48px; display: flex; flex-direction: column; gap: clamp(24px, 4vw, 40px);">
+  <dc-import name="Nav" active="badges" hint-size="100%,76px"></dc-import>
+
+  <main style="display: flex; flex-direction: column; gap: clamp(24px, 4vw, 40px);">
+    <section style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4vw, 40px);">
+      <dc-import name="Mascot" pose="cheer" size="{{m}}" hint-size="150px,150px"></dc-import>
+      <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+        <h1 class="pp-serif" style="margin: 0; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; font-weight: 600;">Merkkisi</h1>
+        <p style="margin: 0; font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: var(--ink-2); max-width: 520px;">Jokainen merkki on pieni todiste siitä, että osaat jotain uutta. Ne tallentuvat tähän selaimeen.</p>
+      </div>
+      <div style="flex: 0 1 260px; background: var(--surface); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+        <span class="pp-overline" style="color: var(--ink-2);">Kerätty</span>
+        <div class="pp-mono" style="font-size: 44px; line-height: 1;">5<span style="font-size: 22px; color: var(--ink-2);">/12</span></div>
+        <span class="pp-bar" style="display: block;" role="progressbar" aria-label="Merkit: 5/12" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"><span style="width: 42%; background: var(--accent);"></span></span>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+      <h2 class="pp-serif" style="margin: 0; font-size: clamp(22px, 2.6vw, 28px); font-weight: 600;">Kaikki merkit</h2>
+      <div class="pp-seg" role="group" aria-label="Suodata merkkejä">
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="3">
+          <button type="button" aria-pressed="{{f.pressed}}" onClick="{{f.pick}}">{{f.label}} <span class="pp-mono" style="font-size: 13px; color: var(--ink-2);">{{f.count}}</span></button>
+        </sc-for>
+      </div>
+    </div>
+
+    <section aria-label="Merkit" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); gap: 14px;">
+      <sc-for list="{{shown}}" as="b" hint-placeholder-count="12">
+        <article style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;">
+          <div style="position: relative; width: 88px; height: 88px; border-radius: 50%; background: {{b.bg}}; border: 2px {{b.borderStyle}} {{b.border}}; color: {{b.color}}; display: flex; align-items: center; justify-content: center;">
+            <svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 36px; height: 36px; stroke-width: 1.6; opacity: {{b.opacity}};"><path d="{{b.icon}}"></path></svg>
+            <sc-if value="{{b.earned}}" hint-placeholder-val="{{ true }}">
+              <span style="position: absolute; right: -4px; bottom: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--success); color: var(--surface); border: 3px solid var(--surface); display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 15px; height: 15px; stroke-width: 3;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+            </sc-if>
+            <sc-if value="{{b.locked}}" hint-placeholder-val="{{ false }}">
+              <span style="position: absolute; right: -4px; bottom: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--surface-2); color: var(--ink-2); border: 3px solid var(--surface); display: flex; align-items: center; justify-content: center;"><svg class="pp-icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 14px; height: 14px; stroke-width: 2.2;"><path d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v9H5z"></path></svg></span>
+            </sc-if>
+          </div>
+          <h3 style="margin: 4px 0 0; font-size: 16px; font-weight: 600; line-height: 1.3; color: {{b.titleColor}};">{{b.name}}</h3>
+          <p style="margin: 0; font-size: 13px; line-height: 1.45; color: var(--ink-2);">{{b.desc}}</p>
+          <span style="margin-top: auto; font-size: 13px; font-weight: 600; color: {{b.statusColor}};">{{b.status}}</span>
+        </article>
+      </sc-for>
+    </section>
+  </main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'all' };
+  }
+  renderVals() {
+    const b = (key, name, desc, icon, date, hint) => {
+      const earned = !!date;
+      return {
+        name, desc, icon, earned, locked: !earned,
+        bg: earned ? 'var(--' + key + ')' : 'var(--surface-2)',
+        border: earned ? 'var(--' + key + '-line)' : 'var(--line-strong)',
+        borderStyle: earned ? 'solid' : 'dashed',
+        color: earned ? 'var(--' + key + '-ink)' : 'var(--ink-3)',
+        opacity: earned ? 1 : 0.55,
+        titleColor: earned ? 'var(--ink)' : 'var(--ink-2)',
+        status: earned ? 'Saatu ' + date : 'Lukittu · ' + hint,
+        statusColor: earned ? 'var(--success)' : 'var(--ink-2)'
+      };
+    };
+    const all = [
+      b('t0', 'Ensiaskel', 'Avasit ensimmäisen moduulin.', 'M7 20c0-4 2-6 5-6s5 2 5 6M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', '3.10.'),
+      b('t0', 'Kansiotaituri', 'Liikuit kansioissa harjoituspäätteessä.', 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', '5.10.'),
+      b('t0', 'Komentorivikokeilija', 'Suoritit kymmenen komentoa.', 'M4 5h16v14H4zM8 10l3 2-3 2M13 15h4', '5.10.'),
+      b('t1', 'Pakettitaituri', 'Asensit ohjelman paketinhallinnalla.', 'M4 8l8-4 8 4-8 4zM4 8v8l8 4 8-4V8M12 12v8', '12.10.'),
+      b('t1', 'GitHub-tili', 'Loit oman GitHub-tilin.', 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 4-6 8-6s8 2 8 6', '20.10.'),
+      b('t1', 'Git asennettu', 'Git vastasi versionumerolla.', 'M6 6v12M6 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM18 15V12a3 3 0 0 0-3-3H6', null, 'suorita 1.4'),
+      b('t1', 'Claude Code käynnissä', 'Ensimmäinen keskustelu Clauden kanssa.', 'M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18', null, 'suorita 1.6'),
+      b('t2', 'Hyvä pyyntö', 'Kirjoitit selkeän ja rajatun pyynnön.', 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z', null, 'suorita 2.2'),
+      b('t2', 'Tarkistaja', 'Tarkistit muutokset ennen hyväksymistä.', 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4', null, 'suorita 2.4'),
+      b('t3', 'Ensimmäinen commit', 'Tallensit projektin ensimmäisen version.', 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 12h6M15 12h6', null, 'suorita 3.3'),
+      b('t3', 'Verkossa!', 'Sivusi on julki GitHub Pagesissa.', 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z', null, 'suorita 3.6'),
+      b('t0', 'Visamestari', 'Kaikki visat oikein ensimmäisellä.', 'M12 4l2.4 5 5.4.6-4 3.7 1.1 5.3L12 16l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6z', null, 'kaikki visat')
+    ];
+    const f = this.state.filter;
+    const shown = all.filter((x) => f === 'all' || (f === 'earned' ? x.earned : x.locked));
+    const mk = (id, label, count) => ({ label, count, pressed: f === id ? 'true' : 'false', pick: () => this.setState({ filter: id }) });
+    return {
+      theme: this.props.theme ?? 'light',
+      m: 150,
+      shown,
+      filters: [mk('all', 'Kaikki', all.length), mk('earned', 'Saadut', all.filter((x) => x.earned).length), mk('locked', 'Lukitut', all.filter((x) => x.locked).length)]
+    };
+  }
+}
+</script>
+</body>
+</html>

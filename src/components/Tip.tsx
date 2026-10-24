@@ -10,7 +10,11 @@ interface TipProps {
 export function Tip({ title, type = 'info', children }: TipProps) {
   return (
     <aside className={`notice${type === 'warning' ? ' notice--warning' : ''}`} aria-label={title ?? (type === 'warning' ? 'Huomio' : 'Vinkki')}>
-      {title && <p><strong>{title}</strong></p>}
+      {title && (
+        <p className="notice__title">
+          <strong>{title}</strong>
+        </p>
+      )}
       {children}
     </aside>
   )

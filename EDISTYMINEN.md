@@ -116,5 +116,5 @@ Suunnitelman luvun 13 kaikki kymmenen vaihetta on toteutettu, ja jokainen on oma
 15. Workflow käyttää actioneiden pääversiotageja (`@v7` jne.). Harkitse lukitsemista commit-tunnisteisiin (SHA) kuten Viten virallisessa esimerkissä.
 16. `SUUNNITELMA.md` on litteroitu `SUUNNITELMA.pdf`:stä. Tarkista, että litterointi vastaa alkuperäistä, ja päätä, pidetäänkö PDF repossa.
 17. Kokeile sivustoa itse oikealla puhelimella, pelkällä näppäimistöllä ja mieluiten ruudunlukijalla. Automaattiset tarkistukset eivät korvaa niitä.
-18. Design (luku 11) on tekemättä: värit, typografia, oma itse hostattu fontti sekä merkkien kuvakkeet (nyt emojit).
+18. Design v2 on toteutettu (`design-handoff/`, ks. PAATOKSET.md 57–65). Tarkista ulkoasu itse oikealla laitteella, ja ota halutessasi uudet vertailukuvat kansioon `design-kuvat-uusi/` (CLAUDE-CODE-OHJE.md, luku 6).
 19. Pääpaketin koko on noin 400 kt (gzip noin 125 kt), josta osa on zod-ajonaikaista validointia. Lighthousen suorituskyky on silti 99–100. Optimointi ei ole tarpeen nyt.

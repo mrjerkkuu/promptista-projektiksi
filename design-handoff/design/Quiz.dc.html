@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Visa</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 100%; box-sizing: border-box; padding: {{pad}}px; background: {{bg}};">
+  <sc-if value="{{isError}}" hint-placeholder-val="{{ false }}">
+    <div class="pp-notice pp-notice-error" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg><span>Visaa ei löytynyt.</span></div>
+  </sc-if>
+  <sc-if value="{{notError}}" hint-placeholder-val="{{ true }}">
+  <section aria-labelledby="quiz-h" style="background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4cqi, 32px); display: flex; flex-direction: column; gap: 22px;">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <h2 id="quiz-h" class="pp-serif" style="margin: 0; font-size: 26px; line-height: 1.2; font-weight: 600;">Visa</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2);">Valitse vastaus. Saat palautteen heti, ja voit yrittää uudelleen niin monta kertaa kuin haluat.</p>
+    </div>
+    <sc-for list="{{questions}}" as="q" hint-placeholder-count="3">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <h3 style="margin: 0; font-size: 17px; line-height: 1.4; font-weight: 600; overflow-wrap: anywhere;">{{q.n}}. {{q.text}}</h3>
+        <div role="group" aria-label="Kysymys {{q.n}}" style="display: flex; flex-direction: column; gap: 8px;">
+          <sc-for list="{{q.opts}}" as="o" hint-placeholder-count="3">
+            <div>
+              <button type="button" class="pp-opt {{o.cls}}" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="min-height: 52px;">
+                <span class="pp-mark" aria-hidden="true">
+                  <sc-if value="{{o.ok}}" hint-placeholder-val="{{ false }}"><svg class="pp-icon" viewBox="0 0 24 24" style="width: 16px; height: 16px; stroke-width: 3;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+                  <sc-if value="{{o.bad}}" hint-placeholder-val="{{ false }}"><svg class="pp-icon" viewBox="0 0 24 24" style="width: 15px; height: 15px; stroke-width: 3;"><path d="M7 7l10 10M17 7L7 17"></path></svg></sc-if>
+                </span>
+                <span style="flex: 1; font-size: 16px; line-height: 1.45;">{{o.text}}<span class="pp-sr">{{o.sr}}</span></span>
+              </button>
+              <sc-if value="{{o.showExpl}}" hint-placeholder-val="{{ false }}"><p class="pp-opt-expl pp-anim-rise">{{o.expl}}</p></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div aria-live="polite">
+          <sc-if value="{{q.right}}" hint-placeholder-val="{{ false }}">
+            <div class="pp-notice pp-notice-success pp-anim-rise"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.7 2.7L16 9.5"></path></svg><span><strong>Oikein!</strong> {{q.okText}}</span></div>
+          </sc-if>
+          <sc-if value="{{q.wrong}}" hint-placeholder-val="{{ false }}">
+            <div class="pp-notice pp-notice-error pp-anim-rise"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg><span><strong>Ei aivan.</strong> {{q.badText}}</span></div>
+          </sc-if>
+        </div>
+      </div>
+    </sc-for>
+    <sc-if value="{{passed}}" hint-placeholder-val="{{ false }}">
+      <div class="pp-notice pp-notice-success pp-anim-pop" role="status" style="align-items: center;">
+        <dc-import name="Mascot" pose="cheer" size="{{m}}" hint-size="56px,56px"></dc-import>
+        <span><strong>Visa läpäisty!</strong> Kaikki vastaukset ovat oikein.</span>
+      </div>
+    </sc-if>
+  </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"set":{"editor":"enum","options":["terminal","agent","extreme"],"default":"agent"},"preset":{"editor":"enum","options":["empty","partial","passed"],"default":"partial"},"error":{"editor":"boolean","default":false},"framed":{"editor":"boolean","default":true},"$preview":{"width":720,"height":1000}}'>
+class Component extends DCLogic {
+  data() {
+    const Q = (text, opts, correct, okText, badText) => ({ text, opts, correct, okText, badText });
+    const sets = {
+      terminal: [
+        Q('Mikä terminaali on?', [['Ohjelma, jossa tietokonetta käytetään kirjoittamalla komentoja', ''], ['Uusi verkkoselain', 'Selaimella avataan sivuja, terminaalilla annetaan käskyjä.'], ['Haittaohjelma, jota kannattaa välttää', 'Terminaali kuuluu jokaiseen tietokoneeseen.']], 0, 'Terminaalissa annat koneelle käskyjä kirjoittamalla.', 'Terminaali on ohjelma, jossa tietokonetta käytetään kirjoittamalla komentoja.'),
+        Q('Mitä kehote (esim. PS C:\\Users\\maija> tai maija@MacBook ~ %) tarkoittaa?', [['Jotain on mennyt pieleen', 'Kehote näkyy aina, kun terminaali odottaa.'], ['Terminaali on valmis ottamaan vastaan komennon', ''], ['Teksti, joka pitää kirjoittaa itse ennen jokaista komentoa', 'Kehotetta ei kirjoiteta itse.']], 1, 'Kehote kertoo, että voit kirjoittaa komennon.', 'Kehote tarkoittaa, että terminaali odottaa komentoa.'),
+        Q('Kirjoitit komennon. Miten saat sen suoritettua?', [['Painan Enteriä', ''], ['Odotan hetken, niin se lähtee itsestään', 'Komento ei lähde ilman Enteriä.'], ['Kaksoisnapsautan komentoa hiirellä', 'Hiiri ei suorita komentoja.']], 0, 'Enter lähettää komennon.', 'Komento suoritetaan painamalla Enteriä.')
+      ],
+      agent: [
+        Q('Mikä on chatin ja agentin tärkein ero?', [['Agentti voi tehdä asioita koneellasi, chat vain vastaa', ''], ['Agentti on aina fiksumpi kuin chat', 'Taustalla voi olla sama tekoäly. Ero on siinä, mitä se pystyy tekemään.'], ['Eroa ei ole, nimi vain on eri', 'Ero on suuri: chat kirjoittaa vastauksen, agentti tekee työn.']], 0, 'Agentti luo tiedostoja ja ajaa komentoja, kun annat siihen luvan.', 'Agentti voi tehdä asioita koneellasi.'),
+        Q('Claude Code haluaa muokata tiedostoa. Mitä tapahtuu?', [['Se näyttää muutoksen ja kysyy lupaa', ''], ['Se tekee muutoksen salaa', 'Claude Code ei tee muutoksia salaa.'], ['Se ei pysty muokkaamaan tiedostoja', 'Muokkaaminen on juuri se, mitä agentti tekee.']], 0, 'Lue aina, mitä hyväksyt.', 'Oletuksena Claude Code kysyy lupaa ennen tiedostojen muokkaamista ja komentojen ajamista.')
+      ],
+      extreme: [
+        Q('Siirryt kokonaan uuteen tehtävään, ja Claude on alkanut kiertää kehää. Mitä teet?', [['Aloitan uuden keskustelun puhtaalta pöydältä', ''], ['Kirjoitan saman pyynnön uudelleen isoilla kirjaimilla', 'Isot kirjaimet eivät tyhjennä kontekstia.'], ['Odotan', 'Kehä ei katkea odottamalla.']], 0, 'Uusi keskustelu tyhjentää kontekstin, joten vanha tehtävä ei enää sotke uutta.', 'Uusi tehtävä kannattaa aloittaa uudessa keskustelussa.'),
+        Q('Mikä näistä on paras prompti?', [['”Tee peli.”', 'Liian väljä: Claude joutuu arvaamaan kaiken.'], ['”Tee selaimessa toimiva muistipeli 8-vuotiaalle. Kortteja on 12, ja kuvina ovat eläimet. Käytä vain HTML:ää, CSS:ää ja JavaScriptiä.”', ''], ['Ctrl+P', 'Tämä on pikanäppäin, ei prompti.']], 1, 'Hyvä prompti kertoo mitä, kenelle ja millä rajoilla.', 'Hyvä prompti kertoo mitä, kenelle ja millä rajoilla.')
+      ]
+    };
+    return sets[this.props.set ?? 'agent'];
+  }
+  constructor(props) {
+    super(props);
+    const p = props.preset ?? 'partial';
+    const qs = this.data();
+    let answers = {};
+    if (p === 'passed') qs.forEach((q, i) => { answers[i] = q.correct; });
+    if (p === 'partial') { answers[0] = qs[0].correct; if (qs[1]) answers[1] = (qs[1].correct + 1) % 3; }
+    this.state = { answers };
+  }
+  renderVals() {
+    const framed = this.props.framed ?? true;
+    const qs = this.data();
+    const a = this.state.answers;
+    const questions = qs.map((q, qi) => {
+      const picked = a[qi];
+      const answered = picked !== undefined;
+      const right = answered && picked === q.correct;
+      return {
+        n: qi + 1,
+        text: q.text,
+        okText: q.okText,
+        badText: q.badText,
+        right,
+        wrong: answered && !right,
+        opts: q.opts.map(([text, expl], oi) => {
+          const sel = picked === oi;
+          const ok = sel && oi === q.correct;
+          const bad = sel && oi !== q.correct;
+          return {
+            text, expl, ok, bad,
+            cls: ok ? 'is-correct' : (bad ? 'is-wrong' : ''),
+            pressed: sel ? 'true' : 'false',
+            sr: ok ? ' – valittu, oikein' : (bad ? ' – valittu, väärin' : ''),
+            showExpl: right && oi !== q.correct && !!expl,
+            pick: () => this.setState({ answers: { ...this.state.answers, [qi]: oi } })
+          };
+        })
+      };
+    });
+    const passed = qs.every((q, i) => a[i] === q.correct);
+    const err = this.props.error ?? false;
+    return {
+      pad: framed ? 28 : 0,
+      bg: framed ? 'var(--bg)' : 'transparent',
+      isError: err,
+      notError: !err,
+      questions,
+      passed,
+      m: 56
+    };
+  }
+}
+</script>
+</body>
+</html>

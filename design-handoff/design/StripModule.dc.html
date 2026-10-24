@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Moduulisivun tilat 360 px</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root" style="width: 3000px; min-height: 6400px; box-sizing: border-box; padding: 48px; display: flex; gap: 64px; align-items: flex-start; background: var(--surface-2);">
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">1.2 Git · ei käyttöjärjestelmää</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="git" os="none" read="unread" hint-size="360px,6000px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">1.2 Git · Mac, Homebrew auki</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="git" os="Mac" read="read" mac-open="{{yes}}" hint-size="360px,4600px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">1.2 Git · Windows, valmis</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="git" os="Windows" read="done" hint-size="360px,4000px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">0.2 · ei valintaa, tyhjä terminaali, vastaamaton visa</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="terminal" os="none" read="unread" hint-size="360px,5000px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">0.2 · Mac, aiemmin suoritettu, visa läpäisty</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="terminal" os="Mac" read="done" hint-size="360px,5000px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">3.5 Bonus · polun loppu</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" module="bonus" os="Windows" read="unread" hint-size="360px,1600px"></dc-import></div></div>
+  <div style="flex: none; width: 360px; display: flex; flex-direction: column; gap: 12px;"><span class="pp-overline" style="color: var(--ink-2);">Tietopaketti latautuu</span><div style="width: 360px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md);"><dc-import name="AppModule" loading="{{yes}}" hint-size="360px,1200px"></dc-import></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":3000,"height":6400}}'>
+class Component extends DCLogic {
+  renderVals() { return { yes: true }; }
+}
+</script>
+</body>
+</html>

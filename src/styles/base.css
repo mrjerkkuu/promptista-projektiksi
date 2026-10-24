@@ -1,5 +1,21 @@
 /* Perustyylit ja yleiset apuluokat. Arvot tulevat vain tokens.css:stä. */
 
+/* Kuvakkeet maskeina: väri tulee taustaväristä (currentColor tai token). */
+:root {
+  --mask-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 8h.01'/%3E%3C/svg%3E");
+  --mask-warning: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4l9 16H3z'/%3E%3Cpath d='M12 10v4M12 17h.01'/%3E%3C/svg%3E");
+  --mask-error: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M9 9l6 6M15 9l-6 6'/%3E%3C/svg%3E");
+  --mask-success: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M8 12.5l2.7 2.7L16 9.5'/%3E%3C/svg%3E");
+  --mask-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+/* Sivureunat: mobiili 16 px, työpöytä 40 px. */
+@media (min-width: 641px) {
+  :root {
+    --page-gutter: 2.5rem;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -19,6 +35,7 @@ body {
   font-size: var(--font-size-md);
   line-height: var(--line-height-body);
   overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -26,21 +43,24 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
   line-height: var(--line-height-heading);
   margin: var(--space-6) 0 var(--space-3);
 }
 
 h1 {
-  font-size: var(--font-size-2xl);
-  margin-top: var(--space-4);
+  font-size: var(--font-size-3xl);
+  margin-top: 0;
+  margin-bottom: var(--space-4);
 }
 
 h2 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-h2);
 }
 
 h3 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-h3);
 }
 
 p,
@@ -55,35 +75,66 @@ li + li {
 
 a {
   color: var(--color-link);
-  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Ulkoinen linkki: pieni nuoli, jota ruudunlukija ei lue
+   (”avautuu uuteen välilehteen” kerrotaan tekstinä). */
+a[target='_blank']::after {
+  content: '↗' / '';
+  display: inline-block;
+  margin-left: 0.15em;
+  font-size: 0.85em;
+  text-decoration: none;
 }
 
 :focus-visible {
   outline: var(--focus-ring-width) solid var(--color-focus);
-  outline-offset: 2px;
+  outline-offset: var(--focus-ring-offset);
 }
 
 code {
   font-family: var(--font-mono);
-  font-size: 0.92em;
+  font-size: 0.9em;
   background: var(--color-surface-muted);
-  padding: 0.1em 0.3em;
-  border-radius: var(--radius-sm);
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: calc(var(--radius-sm) - 2px);
+  padding: 0.05em 0.35em;
 }
 
 pre {
   overflow-x: auto;
+  margin: 0 0 var(--space-4);
   background: var(--color-code-bg);
   color: var(--color-code-text);
-  padding: var(--space-4);
-  border-radius: var(--radius-md);
+  border: var(--border-width) solid var(--color-border-subtle);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
   line-height: var(--line-height-code);
 }
 
 pre code {
   background: none;
+  border: 0;
   padding: 0;
   color: inherit;
+  font-size: inherit;
+}
+
+/* Taulukko kääreessä (mdxComponents): kääre vierittyy kapealla näytöllä. */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
 }
 
 table {
@@ -91,14 +142,32 @@ table {
   margin-bottom: var(--space-4);
   display: block;
   overflow-x: auto;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+}
+
+.table-wrap table {
+  display: table;
+  width: 100%;
+  margin: 0;
+  overflow: visible;
 }
 
 th,
 td {
-  border: var(--border-width) solid var(--color-border-subtle);
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
   padding: var(--space-2) var(--space-3);
   text-align: left;
   vertical-align: top;
+}
+
+th {
+  background: var(--color-surface-muted);
+  font-weight: var(--font-weight-bold);
+}
+
+tr:last-child td {
+  border-bottom: 0;
 }
 
 img {
@@ -118,35 +187,70 @@ img {
   border: 0;
 }
 
+.mono {
+  font-family: var(--font-mono);
+}
+
+.icon {
+  flex: none;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Painikkeet ---------- */
+
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: var(--tap-target-min);
-  padding: var(--space-2) var(--space-4);
-  border: var(--border-width) solid var(--color-primary);
-  border-radius: var(--radius-md);
+  min-height: var(--button-height);
+  padding: calc(var(--space-2) + 2px) calc(var(--space-5) - 2px);
+  border: var(--border-width-strong) solid transparent;
+  border-radius: var(--radius-pill);
   background: var(--color-primary);
   color: var(--color-on-primary);
   font: inherit;
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-bold);
+  line-height: 1.25;
+  text-align: center;
   text-decoration: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
   cursor: pointer;
-  transition: background var(--duration-fast) var(--easing-standard);
+  transition:
+    transform var(--duration-medium) var(--easing-spring),
+    background-color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard);
 }
 
 .button:hover {
   background: var(--color-primary-hover);
+  color: var(--color-on-primary);
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(1px) scale(0.98);
 }
 
 .button--secondary {
   background: var(--color-surface);
-  color: var(--color-primary);
+  color: var(--color-text);
+  border-color: var(--color-border);
 }
 
 .button--secondary:hover {
-  background: var(--color-surface-muted);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-text);
 }
 
 .button--danger {
@@ -155,15 +259,38 @@ img {
   color: var(--color-on-error);
 }
 
+.button--danger:hover {
+  background: var(--color-error);
+  color: var(--color-on-error);
+  filter: brightness(0.92);
+}
+
+/* Vaarallinen toiminto ääriviivana (”Aloita alusta…”). */
+.button--danger-outline {
+  background: var(--color-surface);
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.button--danger-outline:hover {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
 .button--small {
-  min-height: auto;
-  padding: var(--space-1) var(--space-3);
+  min-height: var(--tap-target-min);
+  padding: 0 var(--space-4);
   font-size: var(--font-size-sm);
 }
 
 .button:disabled {
-  opacity: 0.6;
+  opacity: 0.45;
   cursor: not-allowed;
+  transform: none;
+}
+
+.button:disabled:hover {
+  background: var(--color-primary);
 }
 
 .button-row {
@@ -173,36 +300,192 @@ img {
   margin-bottom: var(--space-4);
 }
 
+@media (max-width: 640px) {
+  .button:not(.button--small) {
+    width: 100%;
+  }
+}
+
+/* ---------- Kortit ---------- */
+
 .card {
   background: var(--color-surface);
   border: var(--border-width) solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  box-shadow: var(--shadow-sm);
   margin-bottom: var(--space-4);
 }
 
-.notice {
+.card--small {
   border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-4);
+}
+
+/* Linkkikortti nousee hoverissa. */
+/* Nousu tehdään top-siirtymällä eikä transformilla: transform piirtää kortin
+   animaation ajaksi kuvana omalle kerrokselleen, ja teksti sumenee. */
+.card--link {
+  position: relative;
+  top: 0;
+  transition:
+    top var(--duration-medium) var(--easing-spring),
+    box-shadow var(--duration-medium) var(--easing-standard);
+}
+
+.card--link:hover {
+  top: -4px;
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 641px) {
+  .card {
+    padding: var(--space-6);
+  }
+
+  .card--small {
+    padding: var(--space-4);
+  }
+}
+
+/* Otsikkokehys (sanasto, vianmääritys, merkit): teksti + Nuppu. */
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  background: var(--color-surface-muted);
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.page-header__text {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.page-header__text > :last-child {
+  margin-bottom: 0;
+}
+
+.page-header__text p {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 641px) {
+  .page-header {
+    padding: var(--space-6);
+  }
+}
+
+/* Lukusivut (moduuli, vianmääritys, asetukset) */
+.reading {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+/* ---------- Ilmoitukset ---------- */
+
+.notice {
+  position: relative;
+  padding: var(--space-3) var(--space-4) var(--space-3) calc(var(--space-4) + var(--notice-icon-size) + var(--space-3));
   margin-bottom: var(--space-4);
   background: var(--color-info-bg);
+  border: var(--border-width) solid var(--color-info-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
+}
+
+.notice::before {
+  content: '';
+  position: absolute;
+  left: var(--space-4);
+  top: calc(var(--space-3) + 1px);
+  width: var(--notice-icon-size);
+  height: var(--notice-icon-size);
+  background: var(--color-info-icon);
+  -webkit-mask: var(--mask-info) center / contain no-repeat;
+  mask: var(--mask-info) center / contain no-repeat;
+}
+
+.notice > :first-child {
+  margin-top: 0;
 }
 
 .notice > :last-child {
   margin-bottom: 0;
 }
 
+.notice p {
+  margin-bottom: var(--space-2);
+}
+
 .notice--warning {
   background: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+}
+
+.notice--warning::before {
+  background: var(--color-warning-icon);
+  -webkit-mask-image: var(--mask-warning);
+  mask-image: var(--mask-warning);
 }
 
 .notice--error {
   background: var(--color-error-bg);
+  border-color: var(--color-error-border);
+}
+
+.notice--error::before {
+  background: var(--color-error);
+  -webkit-mask-image: var(--mask-error);
+  mask-image: var(--mask-error);
 }
 
 .notice--success {
   background: var(--color-success-bg);
+  border-color: var(--color-success-border);
+}
+
+.notice--success::before {
+  background: var(--color-success);
+  -webkit-mask-image: var(--mask-success);
+  mask-image: var(--mask-success);
+}
+
+/* Ilman kuvaketta (esim. moduulisivun käyttöjärjestelmävalitsin). */
+.notice--plain {
+  padding-left: var(--space-4);
+}
+
+.notice--plain::before {
+  content: none;
+}
+
+/* Nuppu kuvakkeen tilalla (visa läpäisty, nollauksen vahvistus). */
+.notice--mascot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  padding-left: var(--space-4);
+}
+
+.notice--mascot::before {
+  content: none;
+}
+
+.notice__title {
+  font-size: var(--font-size-base);
+}
+
+/* Palaute nousee esiin (visa, varmistus, asetukset). */
+.notice--rise {
+  animation: rise var(--duration-medium) var(--easing-standard) both;
 }
 
 .muted {
@@ -213,13 +496,37 @@ img {
   margin-top: var(--space-4);
 }
 
+/* Pieni pilleri: käyttöjärjestelmä, aihe */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 1.75rem;
+  padding: 0 var(--space-3) 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+
+.chip .icon {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+/* ---------- Lomake-elementit ---------- */
+
 input,
 textarea,
 select {
   font: inherit;
   color: var(--color-text);
   background: var(--color-surface);
-  border: var(--border-width) solid var(--color-border);
+  border: var(--border-width-strong) solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: var(--space-2);
   max-width: 100%;
@@ -227,6 +534,127 @@ select {
 
 textarea {
   width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-code);
+  overflow-wrap: anywhere;
+  resize: vertical;
+}
+
+/* Tyylitelty select: oma nuoli tulee kääreestä (.select). */
+.select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.select select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: var(--tap-target-min);
+  padding: 0 calc(var(--space-4) + var(--icon-size-sm) + var(--space-2)) 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.select::after {
+  content: '';
+  position: absolute;
+  right: var(--space-3);
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  pointer-events: none;
+  background: var(--color-text-muted);
+  -webkit-mask: var(--mask-chevron) center / contain no-repeat;
+  mask: var(--mask-chevron) center / contain no-repeat;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-grid;
+  place-content: center;
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+  padding: 0;
+  border: 2px solid var(--color-border);
+  border-radius: calc(var(--radius-sm) - 1px);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+input[type='checkbox']:checked {
+  background: var(--color-text);
+  border-color: var(--color-text);
+}
+
+input[type='checkbox']:checked::after {
+  content: '';
+  width: 11px;
+  height: 6px;
+  border-left: 2.5px solid var(--color-surface);
+  border-bottom: 2.5px solid var(--color-surface);
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+/* ---------- Avattava osio (ReadMore, vianmääritys, terminaalin vihje) ---------- */
+
+.read-more {
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  background: var(--color-surface);
+}
+
+.read-more__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 3.25rem;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+
+.read-more__summary::-webkit-details-marker {
+  display: none;
+}
+
+.read-more__summary::after {
+  content: '';
+  flex: none;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-left: auto;
+  background: currentColor;
+  -webkit-mask: var(--mask-chevron) center / contain no-repeat;
+  mask: var(--mask-chevron) center / contain no-repeat;
+  transition: transform var(--duration-medium) var(--easing-spring);
+}
+
+.read-more[open] > .read-more__summary::after {
+  transform: rotate(180deg);
+}
+
+.read-more__body {
+  padding: 0 var(--space-4) var(--space-4);
+  font-size: var(--font-size-base);
+}
+
+.read-more[open] > .read-more__body {
+  animation: rise var(--duration-medium) var(--easing-standard) both;
+}
+
+.read-more__body > :last-child {
+  margin-bottom: 0;
 }
 
 /* Komennoissa kaksi väliviivaa (--) ei saa näyttää ajatusviivalta. */
@@ -234,4 +662,39 @@ code,
 pre,
 kbd {
   font-variant-ligatures: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  78% {
+    transform: scale(0.96);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Vähennetty liike: kestot ovat jo nollassa (tokens.css), ja tämä estää
+   myös toistuvat animaatiot (esim. Nupun kellunta). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

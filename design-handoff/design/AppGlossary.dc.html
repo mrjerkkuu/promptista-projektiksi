@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<title>Sanasto – Promptista projektiksi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Figtree:wght@400..700&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="pp-root pp-page" data-theme="{{theme}}" style="width: 100%; min-height: 100%; background: var(--bg); color: var(--ink);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4cqi, 40px) 32px; display: flex; flex-direction: column; gap: clamp(24px, 4cqi, 40px);">
+  <dc-import name="Nav" active="glossary" os="Windows" hint-size="100%,120px"></dc-import>
+  <main id="sisalto" tabindex="-1" style="display: flex; flex-direction: column; gap: 24px; outline: none;">
+    <header style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 4cqi, 36px);">
+      <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+        <h1 class="pp-serif" style="margin: 0; font-size: clamp(34px, 5cqi, 52px); line-height: 1.05; font-weight: 600;">Sanasto</h1>
+        <p style="margin: 0; font-size: clamp(16px, 2cqi, 19px); line-height: 1.6; color: var(--ink-2);">Kaikki sivuston termit lyhyesti. Tekstissä alleviivattua sanaa napauttamalla näet saman selityksen.</p>
+      </div>
+      <dc-import name="Mascot" pose="point" size="{{m}}" hint-size="110px,110px"></dc-import>
+    </header>
+    <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px;">
+      <sc-for list="{{terms}}" as="t" hint-placeholder-count="12">
+        <div id="{{t.id}}" style="background: {{t.bg}}; border: {{t.border}}; border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; scroll-margin: 40vh;">
+          <dt class="pp-serif" style="font-size: 19px; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere;">{{t.term}}<sc-if value="{{t.hl}}" hint-placeholder-val="{{ false }}"><span class="pp-sr"> (linkitetty termi)</span></sc-if></dt>
+          <dd style="margin: 0; font-size: 15px; line-height: 1.55; overflow-wrap: anywhere;">{{t.def}}<sc-if value="{{t.more}}" hint-placeholder-val="{{ false }}"> <a class="pp-ext" href="#" target="_blank" rel="noopener">Lue lisää<span class="pp-sr"> (avautuu uuteen välilehteen)</span></a></sc-if></dd>
+        </div>
+      </sc-for>
+    </dl>
+  </main>
+  <footer style="padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; color: var(--ink-2); text-align: center;">Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.</footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"highlight":{"editor":"enum","options":["none","terminaali","kaksivaiheinen-tunnistautuminen"],"default":"none"},"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":3000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const L = true;
+    const raw = [
+      ['.env-tiedosto', 'Tiedosto, johon salaisuudet kuten API-avaimet tallennetaan erilleen koodista. Sitä ei koskaan lähetetä GitHubiin.'],
+      ['.gitignore', 'Tiedosto, joka kertoo Gitille, mitä tiedostoja ei seurata eikä lähetetä GitHubiin, esimerkiksi .env.', L],
+      ['agentti', 'Tekoäly, joka ei vain vastaa vaan myös tekee: lukee ja luo tiedostoja ja ajaa komentoja tavoitteen saavuttamiseksi.'],
+      ['API-avain', 'Salainen merkkijono, jolla ohjelma tunnistautuu jonkin palvelun rajapintaan. Sitä pitää käsitellä kuin salasanaa.'],
+      ['Claude Code', 'Anthropicin tekoälyavustaja, joka toimii terminaalissa ja osaa lukea ja muokata tiedostoja sekä ajaa komentoja koneellasi, kun annat siihen luvan.', L],
+      ['CLAUDE.md', 'Projektikansion tekstitiedosto, jonka Claude Code lukee jokaisen keskustelun alussa. Siihen kirjoitetaan projektin pysyvät ohjeet.', L],
+      ['commit', 'Gitin tallennuspiste: tallennettu tilannekuva projektin tiedostoista ja lyhyt viesti siitä, mitä muutettiin.'],
+      ['CSS', 'Verkkosivun ulkoasu: värit, fontit, välistykset ja asettelu. Tiedostopääte on .css.', L],
+      ['Git', 'Versionhallintaohjelma, joka tallentaa projektistasi tallennuspisteitä. Niiden avulla näet, mitä on muuttunut, ja voit palata aiempaan versioon.', L],
+      ['GitHub', 'Verkkopalvelu, jossa Git-projekteja säilytetään pilvessä. Sieltä projektin voi jakaa muille ja julkaista verkkosivuna.', L],
+      ['GitHub CLI', 'GitHubin oma komentorivityökalu (gh), jolla voi kirjautua GitHubiin ja luoda repoja terminaalista.', L],
+      ['GitHub Pages', 'GitHubin ilmainen palvelu, joka julkaisee repon staattisen verkkosivun omaan osoitteeseen.', L],
+      ['Homebrew', 'Macin suosittu pakettienhallinta, jolla ohjelmia asennetaan komennolla brew install.', L],
+      ['HTML', 'Verkkosivun rakenne ja sisältö: otsikot, tekstit, kuvat ja linkit. Tiedostopääte on .html.', L],
+      ['JavaScript', 'Ohjelmointikieli, joka tekee verkkosivusta toiminnallisen, esimerkiksi painikkeet ja pelit. Tiedostopääte on .js.'],
+      ['kaksivaiheinen tunnistautuminen', 'Kirjautuminen, jossa salasanan lisäksi tarvitaan toinen varmistus, esimerkiksi puhelimen sovelluksen näyttämä koodi. Englanniksi two-factor authentication (2FA).', L],
+      ['kansio', 'Säilytyspaikka tiedostoille ja toisille kansioille, kuin mappi. Englanniksi folder tai directory.'],
+      ['kehote', 'Terminaalin rivin alussa oleva teksti, joka kertoo, että terminaali odottaa komentoa. Se näyttää usein myös, missä kansiossa olet.'],
+      ['kielimalli', 'Tekoälyohjelma, joka on opetettu valtavalla määrällä tekstiä ja osaa siksi tuottaa tekstiä ja koodia. Claude on kielimalli.', L],
+      ['komento', 'Terminaaliin kirjoitettava käsky, esimerkiksi git --version. Komento suoritetaan, kun painat Enteriä.'],
+      ['konteksti', 'Kaikki se, mitä Claude ”pitää mielessään” keskustelun aikana: viestit, luetut tiedostot ja komentojen tulokset. Kontekstin koko on rajallinen.'],
+      ['kotikansio', 'Oma käyttäjäkansiosi, jossa ovat esimerkiksi Työpöytä, Tiedostot ja Lataukset. Terminaalissa sitä merkitään aaltoviivalla ~.'],
+      ['lupakysely', 'Claude Coden kysymys ennen kuin se muokkaa tiedostoa tai ajaa komennon. Sinä päätät, sallitko toimenpiteen.', L],
+      ['Markdown', 'Yksinkertainen tapa muotoilla tekstiä tavallisilla merkeillä: esimerkiksi # tekee otsikon ja - luettelon. Tiedostopääte on .md.', L],
+      ['PATH', 'Tietokoneen asetus, joka kertoo terminaalille, mistä kansioista ohjelmia etsitään. Asennus lisää ohjelman PATHiin, ja terminaali lukee asetuksen käynnistyessään.', L],
+      ['plan mode', 'Claude Coden suunnittelutila, jossa Claude tutkii ja ehdottaa muutoksia mutta ei vielä tee niitä.', L],
+      ['polku', 'Kansion tai tiedoston osoite tietokoneella, esimerkiksi C:\\Users\\maija\\projektit (Windows) tai /Users/maija/projektit (Mac).'],
+      ['PowerShell', 'Microsoftin terminaaliohjelma. Windowsissa on valmiina vanha Windows PowerShell 5.1, mutta tässä oppaassa käytetään uudempaa PowerShell 7:ää.', L],
+      ['prompti', 'Teksti, jolla kerrot tekoälylle, mitä haluat. Kehote tai ohje, englanniksi prompt.'],
+      ['push', 'Komento git push lähettää koneellasi tehdyt commitit GitHubiin talteen.'],
+      ['Pääte', 'Macin valmiina oleva terminaaliohjelma, englanniksi Terminal. Löytyy Ohjelmat-kansion Lisäohjelmat-kansiosta.', L],
+      ['repo', 'Lyhenne sanasta repositorio: yhden projektin kansio, jonka historiaa Git seuraa. GitHubissa jokaisella projektilla on oma repo.'],
+      ['staattinen verkkosivu', 'Sivu, joka koostuu valmiista HTML-, CSS- ja JavaScript-tiedostoista ilman palvelinta tai tietokantaa. Selain avaa sen sellaisenaan.'],
+      ['terminaali', 'Ohjelma, jossa annat tietokoneelle käskyjä kirjoittamalla hiiren napsauttelun sijaan. Windowsilla PowerShell, Macilla Pääte.', L],
+      ['tiedosto', 'Yksi tallennettu kokonaisuus, esimerkiksi teksti, kuva tai verkkosivun koodi. Tiedoston nimen loppu (esim. .html) kertoo sen tyypin.'],
+      ['tokeni', 'Pieni tekstin pala, jonka mukaan kielimalli laskee tekstin määrää. Yksi sana voi olla yksi tai useampi tokeni.'],
+      ['vibekoodaus', 'Ohjelmointitapa, jossa tekoäly kirjoittaa koodin ja ihminen ohjaa kertomalla omin sanoin, mitä haluaa. Englanniksi vibe coding.', L],
+      ['VS Code', 'Visual Studio Code, ilmainen koodieditori. Siinä näet projektisi tiedostot ja voit lukea ja muokata koodia.', L],
+      ['WinGet', 'Windowsin oma pakettienhallinta, jolla ohjelmia voi asentaa yhdellä komennolla (winget install).', L]
+    ];
+    const hl = this.props.highlight ?? 'none';
+    const terms = raw.map(([term, def, more]) => {
+      const id = term.toLowerCase().replace(/[^a-z0-9äöå]+/g, '-').replace(/^-|-$/g, '');
+      const on = id === hl;
+      return { term, def, more: !!more, id, hl: on, bg: on ? 'var(--info-soft)' : 'var(--surface)', border: on ? '2px solid var(--info-ink)' : '1px solid var(--line)' };
+    });
+    return { theme: this.props.theme ?? 'light', m: 110, terms };
+  }
+}
+</script>
+</body>
+</html>
