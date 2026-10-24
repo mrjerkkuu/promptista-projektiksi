@@ -1,0 +1,20 @@
+.status {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.status--in-progress {
+  background: var(--color-info-bg);
+  color: var(--color-text);
+}
+
+.status--complete {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}

@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react'
+import { lazy, type ComponentType, type LazyExoticComponent } from 'react'
 import type { MDXProps } from 'mdx/types'
 import {
   badgesFileSchema,
@@ -49,6 +49,8 @@ export interface ModuleEntry extends ModuleMeta {
   number: string
   quiz?: Quiz
   load: () => Promise<MdxModule>
+  /** Tietopaketti React-komponenttina. Ladataan vasta, kun se näytetään (oma tiedostonsa buildissa). */
+  Content: LazyExoticComponent<ComponentType<MDXProps>>
 }
 
 export interface TopicEntry extends Omit<Topic, 'modules'> {
@@ -78,6 +80,7 @@ function buildPath(meta: LearningPathMeta): LearningPath {
         number: `${topicIndex}.${modIndex + 1}`,
         quiz: quizRaw === undefined ? undefined : quizSchema.parse(quizRaw),
         load,
+        Content: lazy(load),
       }
     })
     modules.push(...topicModules)

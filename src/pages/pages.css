@@ -1,0 +1,137 @@
+/* Sivukohtaiset tyylit. Arvot tulevat vain tokens.css:stä. */
+
+.hero__lead {
+  font-size: var(--font-size-lg);
+}
+
+.hero__cta {
+  flex-wrap: wrap;
+}
+
+.hero__cta-detail {
+  font-weight: var(--font-weight-normal);
+}
+
+.card__title {
+  margin-top: 0;
+}
+
+.topic {
+  margin-bottom: var(--space-6);
+}
+
+.module-list {
+  list-style: none;
+  padding: 0;
+}
+
+.module-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+}
+
+.module-list__item + .module-list__item {
+  margin-top: 0;
+}
+
+.module-list__main {
+  min-width: 0;
+}
+
+.module-list__link {
+  font-weight: var(--font-weight-bold);
+}
+
+.module-list__summary {
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.breadcrumb {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.module__meta {
+  margin-top: calc(-1 * var(--space-2));
+}
+
+.module__content {
+  margin: var(--space-5) 0;
+}
+
+.module__done-title {
+  margin-top: 0;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.pager__link {
+  display: flex;
+  flex-direction: column;
+  max-width: 48%;
+}
+
+.pager__link--next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.pager__dir {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.glossary__entry {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  scroll-margin-top: var(--space-6);
+}
+
+.glossary__entry--active {
+  background: var(--color-info-bg);
+}
+
+.glossary__term {
+  font-weight: var(--font-weight-bold);
+}
+
+.glossary__definition {
+  margin: var(--space-1) 0 0;
+}
+
+.troubleshooting__entry {
+  scroll-margin-top: var(--space-6);
+}
+
+.troubleshooting__os {
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-sm);
+}
+
+.checkbox {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+}
+
+.checkbox input {
+  margin-top: var(--space-1);
+}
+
+.theme-select {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}

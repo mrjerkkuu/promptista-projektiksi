@@ -1,0 +1,32 @@
+.os-picker {
+  margin-bottom: var(--space-4);
+}
+
+.os-picker__question {
+  display: block;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-3);
+}
+
+.os-picker__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.os-picker--compact {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.os-picker--compact .os-picker__options {
+  gap: var(--space-2);
+}
+
+.os-picker__label {
+  font-size: var(--font-size-sm);
+}

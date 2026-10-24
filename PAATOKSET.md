@@ -38,3 +38,16 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
     - *Perustelu:* Teema on näyttöasetus eikä edistymistä.
 15. **Avain pysyy `pp-progress-v1`:nä, ja skeeman versio on objektin `version`-kentässä.** Migraatiot ovat ketju `migrations[n]: vn → vn+1`. Tuonti hyväksyy sekä base64-koodin että ladatun JSON-tiedoston sisällön, ja molemmat validoidaan zodilla (`strict`).
 16. **Rikkinäistä tallennusta ei ylikirjoiteta heti latauksessa**, vaan vasta käyttäjän ensimmäisestä toiminnosta. Käyttäjälle näytetään huomautus.
+
+## Vaihe 4–5: komponentit ja sivut
+
+17. **Visan ja varmistuksen vaihtoehdot ovat painikkeita (`aria-pressed`) eivätkä radiopainikkeita.**
+    - *Perustelu:* Välitön palaute vaatii, että valinta kirjataan heti. Radiopainikkeissa nuolinäppäimillä liikkuminen valitsisi (ja kirjaisi) jokaisen vaihtoehdon matkalla.
+    - Valitun vaihtoehdon selitys näytetään heti. Kun oikea vastaus on löytynyt, näytetään kaikkien vaihtoehtojen selitykset.
+18. **Kun käyttöjärjestelmää ei ole valittu,** `<Os>` ja `<Command>` näyttävät molemmat versiot otsikoituina, ja moduulisivulla näytetään valintapainikkeet.
+    - *Perustelu:* Sisältöä ei piiloteta keneltäkään.
+19. **"Aloita alusta" -vahvistus on sivun sisäinen kysymys** (`role="alertdialog"`) eikä selaimen `confirm()`-ikkuna.
+    - *Perustelu:* Sen voi muotoilla, se on saavutettava, ja sen voi testata.
+20. **Lisäsivu `/merkit`** listaa kaikki merkit. Valikossa on linkki "Oppimispolku", kun polkuja on yksi; kun polkuja on useampi, ne listataan etusivulla. Koodiin ei ole kovakoodattu yhtään polkua.
+21. **Sivun vaihtuessa fokus siirtyy uuden sivun `h1`-otsikkoon** (ruudunlukijat). "Siirry sisältöön" -linkki käsitellään JavaScriptillä, koska HashRouter varaa `#`-osan reiteille.
+22. **Tietopaketeissa ei käytetä `#`-pääotsikkoa**, koska sivu tuo otsikon (numero + nimi) `path.json`:sta. Tietopakettien väliotsikot alkavat tasolta `##`.

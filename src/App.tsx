@@ -1,8 +1,11 @@
+import { HashRouter } from 'react-router'
+import { AppShell } from './AppShell'
+
+/** HashRouter: GitHub Pages ei tue SPA-reitityksen fallbackia (SUUNNITELMA.md luku 3). */
 export default function App() {
   return (
-    <main>
-      <h1>Promptista projektiksi</h1>
-      <p>Sivusto on rakenteilla.</p>
-    </main>
+    <HashRouter>
+      <AppShell />
+    </HashRouter>
   )
 }
