@@ -50,9 +50,13 @@ src/
 │  ├─ progress/        # tallennus (localStorage, vienti/tuonti, migraatiot)
 │  ├─ badges/          # merkkien ehdot
 │  └─ terminal-sim/    # terminaalisimulaattori
-├─ components/         # Command, Os, Term, Quiz, VerifyStep, Terminal, ReadMore, Tip, ...
+├─ components/         # Command, Os, Term, Quiz, VerifyStep, Terminal, ReadMore, Tip, Nuppu, ...
+├─ assets/             # SVG:t: maskotti Nuppu (nuppu/) ja merkkien kuvakkeet (merkit/)
 ├─ pages/              # sivut
-└─ styles/tokens.css   # design tokenit: kaikki värit, fontit ja välistykset
+└─ styles/
+   ├─ tokens.css       # design tokenit: kaikki värit, fontit, välistykset, pyöristykset ja varjot
+   └─ base.css         # perustyylit: painikkeet, kortit, ilmoitukset, lomake-elementit
+design-handoff/        # designin lähdeaineisto (näkymät, komponentit, tokenit, kontrastit)
 scripts/
 ├─ validate-content.ts # sisällön validointi (ajetaan buildissa)
 ├─ check-mobile.mjs
@@ -77,10 +81,14 @@ Edistyminen on käyttäjän selaimessa (localStorage, avain `pp-progress-v1`), j
 
 ## Ulkoasu
 
-Nykyinen ulkoasu on neutraali placeholder. Kaikki värit, fontit, välistykset, pyöristykset ja varjot ovat tiedostossa `src/styles/tokens.css`, joten designin voi vaihtaa koskematta komponentteihin. Design-brief on suunnitelman luvussa 11 ja nykyisen ulkoasun inventaari tiedostossa [DESIGN-INVENTAARIO.md](DESIGN-INVENTAARIO.md).
+Ulkoasu perustuu kansion [`design-handoff/`](design-handoff/) designiin: lämmin kermanvärinen paletti, oranssi korostusväri, jokaisella aihealueella oma pastelliväri ja maskotti Nuppu. Vaalea ja tumma teema seuraavat laitteen asetusta, ja teeman voi valita myös itse. Toteutuksen tulkinnat ovat [PAATOKSET.md](PAATOKSET.md):n kohdissa 57–71.
 
-- Kontrastitesti (`src/styles/tokens.test.ts`) tarkistaa uudet värit automaattisesti.
-- Fontit hostataan itse: lisää fonttitiedostot projektiin (esim. `src/styles/fonts/`) ja määritä `@font-face` tokens.css:ssä. Ei Google Fonts -CDN:ää.
+- **Tokenit:** kaikki värit, fontit, välistykset, pyöristykset, varjot ja liikkeet ovat tiedostossa `src/styles/tokens.css`. Komponenttien CSS käyttää vain niitä.
+- **Fontit:** Fraunces (otsikot), Figtree (leipäteksti) ja DM Mono (komennot ja numerot). Ne tulevat npm-paketeista (`@fontsource`) ja buildataan sivuston omiksi tiedostoiksi, joten Google Fonts -CDN:ää ei käytetä.
+- **Kontrastit:** `src/styles/tokens.test.ts` tarkistaa WCAG AA -kontrastit molemmissa teemoissa.
+- **Liike:** kaikki animaatiot ovat pois päältä, jos käyttäjä on pyytänyt vähemmän liikettä (`prefers-reduced-motion`).
+
+Ennen designia tehty inventaario sovelluksen näkymistä ja tiloista: [DESIGN-INVENTAARIO.md](DESIGN-INVENTAARIO.md).
 
 ## Lisenssi
 
