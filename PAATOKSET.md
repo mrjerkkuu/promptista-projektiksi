@@ -26,3 +26,15 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 9. **Lisäkomponentti `<Tip>`** (vinkkilaatikko) on sallittu MDX:ssä.
    - *Perustelu:* Aloittelijalle tarkoitetuissa ohjeissa tarvitaan usein huomiolaatikkoa ("Käynnistä terminaali uudelleen").
 10. **Bonusmoduuli 3.5 on merkitty `optional: true`.** Se ei vaikuta polun edistymisprosenttiin eikä "Jatka"-painikkeeseen.
+
+## Vaihe 3: tallennus
+
+11. **Moduulin tilaa ei tallenneta erikseen.** Tallennetaan teot (`visited`, `read`, visavastaukset), ja tila (ei aloitettu / kesken / valmis) lasketaan niistä.
+    - *Perustelu:* Jos visan sisältö muuttuu, tila päivittyy oikein, eikä tallennettu tila voi olla ristiriidassa sisällön kanssa.
+12. **Tietopaketti merkitään luetuksi painikkeella** ("Olen lukenut tämän") tietopaketin lopussa, ei automaattisesti vierityksen perusteella.
+    - *Perustelu:* Tämä on ennustettava, saavutettava ja helppo testata. Käyttäjä voi myös perua merkinnän.
+13. **Visa on läpäisty, kun jokaisen kysymyksen viimeisin vastaus on oikein.** Uudelleenyritys on sallittu, eikä yrityksiä lasketa.
+14. **Tallennettu objekti sisältää myös teemavalinnan.** "Aloita alusta" nollaa kaiken muun, myös käyttöjärjestelmävalinnan, mutta säilyttää teeman.
+    - *Perustelu:* Teema on näyttöasetus eikä edistymistä.
+15. **Avain pysyy `pp-progress-v1`:nä, ja skeeman versio on objektin `version`-kentässä.** Migraatiot ovat ketju `migrations[n]: vn → vn+1`. Tuonti hyväksyy sekä base64-koodin että ladatun JSON-tiedoston sisällön, ja molemmat validoidaan zodilla (`strict`).
+16. **Rikkinäistä tallennusta ei ylikirjoiteta heti latauksessa**, vaan vasta käyttäjän ensimmäisestä toiminnosta. Käyttäjälle näytetään huomautus.

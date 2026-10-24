@@ -29,3 +29,34 @@ Tarkistettu 2026-10-24. Komennot on kopioitu sanatarkasti virallisilta sivuilta.
 | Gitin ensiasetukset | `git config --global user.name "John Doe"`, `git config --global user.email johndoe@example.com` | https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup | |
 | Suoritusoikeudet | `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` | https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies | Ei vaadi järjestelmänvalvojaa. Tarkistus: `Get-ExecutionPolicy -List`. |
 | Pages-actionit | checkout@v7, setup-node@v7, configure-pages@v6, upload-pages-artifact@v5, deploy-pages@v5 | https://vite.dev/guide/static-deploy | Settings → Pages → Source: GitHub Actions. |
+
+## Toinen tarkistuskierros (2026-10-24)
+
+| Asia | Komento | Lähde | Huomiot |
+|---|---|---|---|
+| Git-versio | `git --version` | https://git-scm.com/docs/git | |
+| git init | `git init` | https://git-scm.com/docs/git-init | |
+| git status | `git status` | https://git-scm.com/docs/git-status | |
+| git add | `git add -A` (`.` on tavallinen polku) | https://git-scm.com/docs/git-add | Sivulla ei ole valmista `git add .` -esimerkkiä. Käytetään `git add -A`:ta. |
+| git commit | `git commit -m "<viesti>"` | https://git-scm.com/docs/git-commit | |
+| git log | `git log --oneline` | https://git-scm.com/docs/git-log | |
+| git restore | `git restore <tiedosto>` | https://git-scm.com/docs/git-restore | |
+| git push | `git push` | https://git-scm.com/docs/git-push | |
+| VS Code -versio | `code --version` | https://code.visualstudio.com/docs/configure/command-line | |
+| VS Code: kansio | `code .`; valikko File > Open Folder... | https://code.visualstudio.com/docs/editing/workspaces/workspaces | |
+| gh-versio | `gh --version` | https://cli.github.com/manual/gh | "Show gh version." |
+| gh browse | `gh browse` | https://cli.github.com/manual/gh_browse | Avaa nykyisen repon kotisivun selaimessa. |
+| PowerShell-aliakset | `cd`, `ls`, `dir`, `pwd` | https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases | |
+| mkdir (PowerShell) | `mkdir` | https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_built-in_functions | Funktio, joka ajaa `New-Item -Type Directory`. |
+| Tiedoston avaus (Win) | `Invoke-Item index.html` | https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/invoke-item | Avaa tiedoston oletusohjelmassa. Alias `ii`. |
+| Päätteen avaus (Mac) | Spotlight → "Terminal" / Apit > Lisäohjelmat | https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac | |
+| Tiedoston avaus (Mac) | `open index.html` | EI VIRALLISTA LÄHDETTÄ | Applen sivu näyttää vain `open -a MyProg.app`. Merkitty TODO:ksi. |
+| GitHub Pages | Settings → Pages → Deploy from a branch → main, / (root) → Save | https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site | Ilmainen julkisissa repoissa. Osoite muotoa `https://<käyttäjä>.github.io/<repo>/`. |
+| Claude Code: lopetus | `/exit`, Ctrl+C kahdesti, Ctrl+D kahdesti | https://code.claude.com/docs/en/interactive-mode | |
+| Claude Code: keskeytys | Esc | https://code.claude.com/docs/en/interactive-mode | |
+| Claude Code: kelaus | `/rewind` tai Esc Esc | https://code.claude.com/docs/en/checkpointing | Ei korvaa versionhallintaa. Bash-komentojen muuttamia tiedostoja ei seurata. |
+| Claude Code: luvat | "Yes, and don't ask again", `/permissions` | https://code.claude.com/docs/en/permissions | Read-estosääntö esim. `Read(./.env)`. `.claudeignore`:lla ei ole vaikutusta. |
+| CLAUDE.md | `/init` | https://code.claude.com/docs/en/memory | |
+| Turvallisuus | – | https://code.claude.com/docs/en/security | |
+| gitignore | – | https://git-scm.com/docs/gitignore, https://docs.github.com/en/get-started/git-basics/ignoring-files | |
+| Tilaus | – | https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan | |
