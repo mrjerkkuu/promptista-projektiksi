@@ -822,6 +822,76 @@
   gap: var(--space-2);
 }
 
+/* ---------- Palaute ---------- */
+
+.feedback > h2 {
+  margin-top: 0;
+}
+
+.feedback__field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.feedback__field label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.feedback__field > * {
+  margin: 0;
+}
+
+/* Palaute on tekstiä eikä koodia, joten ei tasalevyistä fonttia. */
+.feedback__field textarea {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+
+.feedback__hint {
+  font-size: var(--font-size-caption);
+}
+
+.feedback__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-3);
+}
+
+.feedback__option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-bg);
+  border-radius: calc(var(--radius-md) + 4px);
+}
+
+.feedback__option > * {
+  margin: 0;
+}
+
+.feedback__option > h3 {
+  font-family: var(--font-body);
+  font-size: var(--font-size-md-lg);
+  letter-spacing: normal;
+}
+
+.feedback__option > p {
+  font-size: var(--font-size-sm);
+}
+
+/* Moduulisivun lopun palautelinkki */
+.module__feedback {
+  margin: var(--space-5) 0 0;
+  font-size: var(--font-size-sm);
+}
+
 /* ---------- 404 ---------- */
 
 .not-found {

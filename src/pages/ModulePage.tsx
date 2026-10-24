@@ -1,12 +1,13 @@
 import { Suspense, useEffect } from 'react'
 import { Link, useParams } from 'react-router'
+import { FeedbackPrompt } from '../components/FeedbackPrompt'
 import { mdxComponents } from '../components/mdxComponents'
 import { ModuleContext } from '../components/moduleContext'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { StatusLabel } from '../components/StatusLabel'
 import { getPath } from '../content'
-import { getModuleStatus, isQuizPassed, useProgress } from '../features/progress'
+import { countProgress, getModuleStatus, isQuizPassed, useProgress } from '../features/progress'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import { NotFoundPage } from './NotFoundPage'
 import './pages.css'
@@ -31,6 +32,13 @@ export function ModulePage() {
   const status = getModuleStatus(progress, module)
   const read = progress.modules[module.key]?.read ?? false
   const quizPassed = isQuizPassed(progress, module)
+  const isAllComplete = (modules: typeof path.modules) => {
+    const count = countProgress(progress, modules)
+    return count.total > 0 && count.complete === count.total
+  }
+  // Palautetta pyydetään, kun tämä aihe viimeisteli aihealueen tai koko polun.
+  const pathComplete = status === 'complete' && isAllComplete(path.modules)
+  const topicComplete = status === 'complete' && isAllComplete(topic.modules)
 
   return (
     <article className="module reading">
@@ -85,11 +93,24 @@ export function ModulePage() {
           <div aria-live="polite">
             {status === 'complete' && <p className="notice notice--success notice--rise">Tämä aihe on valmis!</p>}
             {read && !quizPassed && <p className="notice notice--rise">Merkitsit tämän luetuksi. Aihe on valmis, kun olet vastannut visan kaikkiin kysymyksiin oikein.</p>}
+            {pathComplete ? (
+              <FeedbackPrompt to={`/palaute?polku=${path.id}`}>Kävit koko polun läpi! Miltä se tuntui?</FeedbackPrompt>
+            ) : (
+              topicComplete && (
+                <FeedbackPrompt to={`/palaute?aihealue=${path.id}/${topic.id}`}>
+                  Koko aihealue ”{topic.title}” on valmis! Miltä se tuntui?
+                </FeedbackPrompt>
+              )
+            )}
           </div>
           <button type="button" className={`button ${read ? 'button--secondary button--small' : ''}`} aria-pressed={read} onClick={() => dispatch({ type: 'markRead', key: module.key, read: !read })}>
             {read ? 'Luettu ✓ (peru merkintä)' : 'Olen lukenut tämän'}
           </button>
         </section>
+
+        <p className="module__feedback muted">
+          Löysitkö virheen, tai jäikö jokin epäselväksi? <Link to={`/palaute?moduuli=${module.key}`}>Kerro siitä</Link>
+        </p>
 
         <nav aria-label="Edellinen ja seuraava aihe" className="pager">
           {prev ? (

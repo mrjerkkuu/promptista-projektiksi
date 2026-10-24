@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Palaute ilman GitHub-tiliä
+    url: https://mrjerkkuu.github.io/promptista-projektiksi/#/palaute
+    about: Sivuston palautesivulta voit lähettää palautteen myös sähköpostilla.

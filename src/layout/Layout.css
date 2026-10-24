@@ -137,6 +137,16 @@
   font-weight: var(--font-weight-bold);
 }
 
+/* Palautelinkki näkyy jokaisella sivulla ilman vieritystä. */
+.site-header__feedback .icon {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+.site-header__feedback[aria-current='page'] {
+  border-color: var(--color-text);
+}
+
 @media (max-width: 640px) {
   /* Nimi, valikko ja työkalut omille riveilleen. */
   .site-header__brand,

@@ -90,6 +90,13 @@ Ulkoasu perustuu kansion [`design-handoff/`](design-handoff/) designiin: lämmin
 
 Ennen designia tehty inventaario sovelluksen näkymistä ja tiloista: [DESIGN-INVENTAARIO.md](DESIGN-INVENTAARIO.md).
 
+## Palaute
+
+Sivuston palautesivulla (`#/palaute`) käyttäjä kirjoittaa palautteen ja valitsee, lähettääkö sen GitHubissa vai sähköpostilla. Sivu ei lähetä mitään itse, vaan avaa GitHubin issue-lomakkeen tai sähköpostiohjelman valmiiksi täytettynä. Palautesivulle pääsee yläpalkista, alatunnisteesta ja jokaisen tietopaketin lopusta, jolloin mukaan tulee tieto aiheesta. Kun aihealue tai koko polku valmistuu, Nuppu pyytää palautetta.
+
+- **Lomakepohjat:** `.github/ISSUE_TEMPLATE/` (kehitysidea, virhe, komento ei toimi). Kenttien `id`:t ovat samat kuin `src/lib/feedback.ts`:ssä, ja testi tarkistaa sen.
+- **Sähköpostiosoite ja repon osoite:** `src/lib/feedback.ts`.
+
 ## Lisenssi
 
 [MIT](LICENSE). Korjausehdotukset ovat tervetulleita, ks. [CONTRIBUTING.md](CONTRIBUTING.md).

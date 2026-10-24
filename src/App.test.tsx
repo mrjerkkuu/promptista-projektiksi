@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router'
 import { describe, expect, it } from 'vitest'
 import { AppShell } from './AppShell'
+import { getPath } from './content'
 import { STORAGE_KEY, createDefaultProgress } from './features/progress'
 
 function renderAt(route: string) {
@@ -85,11 +86,88 @@ describe('sivut', () => {
       ['/vianmaaritys', 'Vianmääritys'],
       ['/merkit', 'Merkit'],
       ['/asetukset', 'Asetukset'],
+      ['/palaute', 'Palaute'],
     ]) {
       const { unmount } = renderAt(route)
       expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(title)
       unmount()
     }
+  })
+})
+
+/** Edistyminen, jossa annetut moduulit ovat valmiita (luettu ja visa oikein). */
+function completed(keys: string[]) {
+  const modules = getPath('claude-code')!.modules.filter((m) => keys.includes(m.key))
+  return {
+    ...createDefaultProgress(),
+    os: 'mac' as const,
+    modules: Object.fromEntries(modules.map((m) => [m.key, { visited: true, read: true }])),
+    quizAnswers: Object.fromEntries(
+      modules.filter((m) => m.quiz).map((m) => [m.key, Object.fromEntries(m.quiz!.questions.map((q) => [q.id, q.options.find((o) => o.correct)!.id]))]),
+    ),
+  }
+}
+
+describe('palaute', () => {
+  it('yläpalkista ja alatunnisteesta pääsee palautesivulle', () => {
+    renderAt('/')
+    const links = screen.getAllByRole('link', { name: 'Anna palautetta' })
+    expect(links).toHaveLength(2)
+    for (const link of links) expect(link).toHaveAttribute('href', '/palaute')
+  })
+
+  it('aihealueen viimeinen aihe pyytää palautetta aihealueesta', async () => {
+    const user = userEvent.setup()
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed(['claude-code/projektikansio', 'claude-code/suunnittele', 'claude-code/rakenna'])))
+    renderAt('/polku/claude-code/githubiin')
+    await user.click(await screen.findByRole('button', { name: 'Olen lukenut tämän' }))
+    expect(screen.getByText(/Koko aihealue ”Ensimmäinen projekti” on valmis!/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Kerro palautteessa' })).toHaveAttribute('href', '/palaute?aihealue=claude-code/ensimmainen-projekti')
+  })
+
+  it('valmis polku pyytää palautetta polkusivulla', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed(getPath('claude-code')!.modules.map((m) => m.key))))
+    renderAt('/polku/claude-code')
+    expect(screen.getByText(/Kävit koko polun läpi!/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Kerro palautteessa' })).toHaveAttribute('href', '/palaute?polku=claude-code')
+  })
+
+  it('kesken oleva polku ei pyydä palautetta', () => {
+    renderAt('/polku/claude-code')
+    expect(screen.queryByRole('link', { name: 'Kerro palautteessa' })).not.toBeInTheDocument()
+  })
+
+  it('palautesivu kertoo aihealueen ja polun', () => {
+    const { unmount } = renderAt('/palaute?aihealue=claude-code/ensimmainen-projekti')
+    expect(screen.getByText(/Palaute koskee aihealuetta/)).toHaveTextContent('3. Ensimmäinen projekti')
+    expect(screen.getByLabelText('Mitä palaute koskee?')).toHaveValue('idea')
+    unmount()
+    renderAt('/palaute?polku=claude-code')
+    expect(screen.getByText(/Palaute koskee polkua/)).toHaveTextContent('Claude Code alusta alkaen')
+  })
+
+  it('moduulin palautelinkki kertoo palautesivulle, mitä aihetta palaute koskee', async () => {
+    const user = userEvent.setup()
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), os: 'mac' }))
+    renderAt('/polku/claude-code/kansiot-ja-polut')
+    await user.click(await screen.findByRole('link', { name: 'Kerro siitä' }))
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Palaute')
+    expect(screen.getByText(/Palaute koskee aihetta/)).toHaveTextContent('0.3 Kansiot ja polut')
+    expect(screen.getByLabelText('Mitä palaute koskee?')).toHaveValue('virhe')
+
+    await user.type(screen.getByLabelText('Palautteesi'), 'Polku jäi epäselväksi')
+    const github = new URL(screen.getByRole('link', { name: /Jatka GitHubiin/ }).getAttribute('href')!)
+    expect(github.searchParams.get('template')).toBe('2-virhe.yml')
+    expect(github.searchParams.get('kuvaus')).toBe('Polku jäi epäselväksi')
+    expect(github.searchParams.get('sivu')).toMatch(/^0\.3 Kansiot ja polut – .*#\/polku\/claude-code\/kansiot-ja-polut$/)
+    expect(github.searchParams.get('kayttojarjestelma')).toBe('Mac')
+    expect(screen.getByRole('link', { name: 'Jatka sähköpostiin' }).getAttribute('href')).toMatch(/^mailto:jeremia\.projektit@gmail\.com\?/)
+  })
+
+  it('yleinen palaute on oletuksena kehitysidea', () => {
+    renderAt('/palaute?moduuli=ei/ole')
+    expect(screen.queryByText(/Palaute koskee aihetta/)).not.toBeInTheDocument()
+    expect(screen.getByLabelText('Mitä palaute koskee?')).toHaveValue('idea')
   })
 })
 

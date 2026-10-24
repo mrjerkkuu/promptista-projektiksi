@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { NavLink, useLocation } from 'react-router'
+import { Icon } from '../components/Icon'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { ThemeSelect } from '../components/ThemeSelect'
@@ -71,6 +72,10 @@ export function Layout({ children }: { children: ReactNode }) {
           <div className="site-header__tools">
             <OsPicker compact />
             <ThemeSelect />
+            <NavLink to="/palaute" className="button button--secondary button--small site-header__feedback">
+              <Icon name="message" />
+              Anna palautetta
+            </NavLink>
           </div>
         </div>
       </header>
@@ -93,6 +98,9 @@ export function Layout({ children }: { children: ReactNode }) {
         <p className="site-footer__text">© 2026 Jeremia Vepsäläinen</p>
         <p className="site-footer__text">
           Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.
+        </p>
+        <p className="site-footer__text">
+          Löysitkö virheen tai keksitkö parannuksen? <NavLink to="/palaute">Anna palautetta</NavLink>
         </p>
       </footer>
     </div>

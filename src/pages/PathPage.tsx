@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router'
+import { FeedbackPrompt } from '../components/FeedbackPrompt'
 import { ProgressBar } from '../components/ProgressBar'
 import { StatusLabel } from '../components/StatusLabel'
 import { getPath, type TopicEntry } from '../content'
@@ -23,6 +24,9 @@ export function PathPage() {
       <div className="card card--small path-page__progress">
         <ProgressBar label="Koko polun edistyminen" count={count} />
       </div>
+      {count.total > 0 && count.complete === count.total && (
+        <FeedbackPrompt to={`/palaute?polku=${path.id}`}>Kävit koko polun läpi! Miltä se tuntui?</FeedbackPrompt>
+      )}
       <p className="muted">Suositeltu järjestys on alla, mutta voit aloittaa mistä tahansa. Valinnainen bonustehtävä ei vaikuta edistymiseen.</p>
       {path.topics.map((topic) => (
         <TopicSection key={topic.id} pathId={path.id} topic={topic} />

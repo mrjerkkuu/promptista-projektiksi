@@ -1,0 +1,22 @@
+# Kenttien id:t (kuvaus, sivu) ovat samat kuin src/lib/feedback.ts:ssä: sivusto täyttää ne osoitteen kautta.
+name: Kehitysidea
+description: Ehdota, miten sivua voisi parantaa.
+title: "Idea: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Kiitos ideasta! **Huom:** palaute näkyy kaikille. Älä kirjoita siihen salasanoja, API-avaimia tai muita henkilötietoja.
+  - type: textarea
+    id: kuvaus
+    attributes:
+      label: Mikä on ideasi?
+      description: Mitä sivulla voisi olla tai mitä voisi tehdä toisin? Kerro myös, miten idea auttaisi sinua.
+    validations:
+      required: true
+  - type: input
+    id: sivu
+    attributes:
+      label: Sivu, jota idea koskee (valinnainen)
+      placeholder: esim. 0.2 Terminaali

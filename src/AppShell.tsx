@@ -5,6 +5,7 @@ import { deriveBadges } from './features/badges'
 import { ProgressProvider } from './features/progress'
 import { Layout } from './layout/Layout'
 import { BadgesPage } from './pages/BadgesPage'
+import { FeedbackPage } from './pages/FeedbackPage'
 import { GlossaryPage } from './pages/GlossaryPage'
 import { HomePage } from './pages/HomePage'
 import { ModulePage } from './pages/ModulePage'
@@ -27,6 +28,7 @@ export function AppShell() {
           <Route path="/vianmaaritys/:entryId?" element={<TroubleshootingPage />} />
           <Route path="/merkit" element={<BadgesPage />} />
           <Route path="/asetukset" element={<SettingsPage />} />
+          <Route path="/palaute" element={<FeedbackPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>

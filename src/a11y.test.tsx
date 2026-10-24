@@ -30,7 +30,7 @@ async function checkPage(route: string, os: 'windows' | 'mac' | null) {
   return result.violations.map((v) => `${v.id}: ${v.help} (${v.nodes.map((n) => n.target.join(' ')).join(', ')})`)
 }
 
-const staticRoutes = ['/', '/polku/claude-code', '/sanasto', '/vianmaaritys', '/merkit', '/asetukset', '/ei-ole']
+const staticRoutes = ['/', '/polku/claude-code', '/sanasto', '/vianmaaritys', '/merkit', '/asetukset', '/palaute', '/palaute?moduuli=claude-code/terminaali', '/palaute?aihealue=claude-code/perusteet','/ei-ole']
 const moduleRoutes = paths.flatMap((p) => p.modules.map((m) => `/polku/${p.id}/${m.id}`))
 
 describe('saavutettavuus (axe)', () => {

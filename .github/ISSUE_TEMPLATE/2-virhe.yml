@@ -1,0 +1,28 @@
+# Kenttien id:t (kuvaus, sivu, kayttojarjestelma) ovat samat kuin src/lib/feedback.ts:ssä: sivusto täyttää ne osoitteen kautta.
+name: Virhe tai epäselvä kohta
+description: Ilmoita kirjoitusvirheestä, vanhentuneesta tiedosta tai ohjeesta, jota oli vaikea ymmärtää.
+title: "Virhe: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Kiitos ilmoituksesta! **Huom:** palaute näkyy kaikille. Älä kirjoita siihen salasanoja, API-avaimia tai muita henkilötietoja.
+  - type: input
+    id: sivu
+    attributes:
+      label: Sivu
+      description: Minkä aiheen tai sivun kohta on?
+      placeholder: esim. 0.2 Terminaali
+  - type: textarea
+    id: kuvaus
+    attributes:
+      label: Mikä oli väärin tai epäselvää?
+      description: Kopioi mukaan lause, jota tarkoitat, ja kerro, miten sen pitäisi mielestäsi olla.
+    validations:
+      required: true
+  - type: input
+    id: kayttojarjestelma
+    attributes:
+      label: Käyttöjärjestelmä (valinnainen)
+      placeholder: Windows tai Mac

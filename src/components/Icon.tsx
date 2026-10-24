@@ -12,6 +12,7 @@ const PATHS = {
   shield: 'M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4',
   arrowRight: 'M5 12h14M13 6l6 6-6 6',
   download: 'M12 4v11M7 10l5 5 5-5M5 20h14',
+  message: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z',
 } as const
 
 export type IconName = keyof typeof PATHS

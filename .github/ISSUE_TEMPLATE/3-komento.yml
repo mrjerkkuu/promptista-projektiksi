@@ -1,0 +1,30 @@
+# Kenttien id:t (kuvaus, sivu, kayttojarjestelma) ovat samat kuin src/lib/feedback.ts:ssä: sivusto täyttää ne osoitteen kautta.
+name: Komento ei toimi
+description: Sivulla oleva komento ei toiminut koneellasi.
+title: "Komento ei toimi: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Kiitos ilmoituksesta! **Huom:** palaute näkyy kaikille. Jos liität virheilmoituksen, tarkista, ettei siinä näy esimerkiksi omaa nimeäsi, salasanoja tai API-avaimia.
+  - type: input
+    id: sivu
+    attributes:
+      label: Sivu
+      description: Millä sivulla komento oli?
+      placeholder: esim. 1.3 Gitin asennus
+  - type: input
+    id: kayttojarjestelma
+    attributes:
+      label: Käyttöjärjestelmä
+      placeholder: Windows tai Mac
+    validations:
+      required: true
+  - type: textarea
+    id: kuvaus
+    attributes:
+      label: Mitä tapahtui?
+      description: Mikä komento ei toiminut, ja mitä tapahtui? Liitä mukaan virheilmoitus.
+    validations:
+      required: true
