@@ -103,3 +103,12 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
     - Tietopaketin laiska lataus aiheutti asettelun siirtymää (CLS 0,15). Nyt koko moduulin loppuosa odottaa latausta, ja latauksen ajan varataan näytön korkeuden verran tilaa.
     - Komennot rivittyvät kapealla näytöllä, ja fonttien ligatuurit on poistettu käytöstä koodissa, jotta `--` ei näytä ajatusviivalta.
 50. **axe-core, lighthouse ja puppeteer-core ovat projektin kehitysriippuvuuksia**, eivät globaaleja asennuksia. Chromea ei ladata, vaan käytetään koneen omaa Chromea (`CHROME_PATH`).
+
+## Vaihe 10: julkaisu ja dokumentaatio
+
+51. **Workflow käyttää actioneiden pääversiotageja** (checkout@v7, setup-node@v7, configure-pages@v6, upload-pages-artifact@v5, deploy-pages@v5). Versiot tarkistettiin 24.10.2026 Viten virallisesta ohjeesta ja actioneiden julkaisuista. Viten oma esimerkki lukitsee actionit commit-tunnisteisiin (SHA). Se olisi tietoturvan kannalta vielä tiukempi vaihtoehto (ks. tarkistuslista).
+52. **Workflow ajaa ennen julkaisua lintin, testit ja buildin.** Rikkinäinen sisältö tai kaatuva testi estää siis julkaisun.
+53. **Viten `base` tulee workflowssa repon nimestä** (`BASE_PATH: /${{ github.event.repository.name }}/`), joten repon voi nimetä miten haluaa. Paikallinen oletus on `/promptista-projektiksi/`.
+54. **Node-versio:** `engines.node >= 22.22.0` (react-router 8:n vaatimus). CI:ssä käytetään uusinta LTS-versiota (`lts/*`).
+55. **LICENSE:** tekijänoikeuden haltijaksi merkittiin gitin asetuksissa oleva nimi (Jeremia Vepsäläinen).
+56. **Tarkistettiin, että uuden polun lisääminen toimii ilman koodimuutoksia:** väliaikainen `paths/lovable/`-kansio löytyi automaattisesti ja meni buildista läpi, minkä jälkeen se poistettiin.

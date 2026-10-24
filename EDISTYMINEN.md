@@ -36,9 +36,11 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajetaan taustalla heti a
 
 - **Vaihe 8 valmis:** 25 tietopakettia (95–196 sanaa ilman Lue lisää -osioita), 12 visaa, sanastossa 41 termiä, `MdxLink`, build-sääntö #-otsikolle, testit merkki-ilmoitukselle ja linkeille. 103 testiä läpi.
 
+- **Vaihe 9 valmis:** axe-testit (57), kontrastitestit (59), `npm run check:mobile` (31 sivua × 2, ei vaakavieritystä), `npm run lighthouse` (mobiili 99–100, desktop 100). CLS-korjaus moduulisivulla. Testejä yhteensä 219.
+
 ## Seuraavaksi
 
-Vaihe 9: saavutettavuus- ja mobiilitarkistus (axe-testit jsdomissa, 360 px:n tarkistus selaimessa, Lighthouse, jos Chrome on käytettävissä).
+Vaihe 10: `.github/workflows/deploy.yml` (actionit: checkout@v7, setup-node@v7, configure-pages@v6, upload-pages-artifact@v5, deploy-pages@v5), README.md, CONTRIBUTING.md, LICENSE. Sitten loppuyhteenveto.
 
 ## Avoimet ongelmat
 
