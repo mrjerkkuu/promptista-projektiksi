@@ -21,9 +21,9 @@
       "description": "Asennat askel kerrallaan kaikki työkalut, joita Claude Coden kanssa tarvitaan, ja varmistat, että ne toimivat.",
       "modules": [
         { "id": "terminaalin-avaaminen", "title": "Terminaali", "summary": "Windowsilla asennetaan PowerShell 7, Macilla avataan valmiina oleva Pääte." },
-        { "id": "git-asennus", "title": "Git", "summary": "Asennat Gitin, jolla projektiin tehdään tallennuspisteitä." },
-        { "id": "vs-code", "title": "VS Code", "summary": "Asennat koodieditorin ja opit avaamaan siinä kansion." },
         { "id": "github-tili", "title": "GitHub-tili", "summary": "Luot GitHub-tilin ja suojaat sen kaksivaiheisella tunnistautumisella." },
+        { "id": "git-asennus", "title": "Git", "summary": "Asennat Gitin, jolla projektiin tehdään tallennuspisteitä." },
+        { "id": "vs-code", "title": "VS Code", "summary": "Suositeltu koodieditori, jolla näet projektin tiedostot. Ei pakollinen." },
         { "id": "github-cli", "title": "GitHub CLI", "summary": "Asennat gh-työkalun ja kirjaudut sillä GitHubiin." },
         { "id": "claude-tilaus", "title": "Claude-tilaus", "summary": "Millainen tilaus Claude Codeen tarvitaan ja mistä näet ajantasaiset hinnat." },
         { "id": "claude-code-asennus", "title": "Claude Code", "summary": "Asennat Claude Coden ja kirjaudut sisään." },

@@ -83,7 +83,7 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 39. **VS Code asennetaan lataamalla** (virallisella Windows-sivulla ei ole winget-komentoa). Siksi `<Command>`-komentoa ei ole, vaan on linkki viralliseen ohjeeseen.
 40. **`git add -A` eikä `git add .`**, koska `-A` on dokumentoitu valitsin (git-scm.com/docs/git-add). `gh repo create oma-sivu --public --source=. --remote=origin --push` on koottu manuaalin dokumentoiduista valitsimista. Sama yhdistelmä ei ole sivulla sellaisenaan (merkitty tarkistuslistaan).
 41. **Projektikansio on `~/projektit/oma-sivu`**, ei Tiedostot-kansio, koska Windowsin Documents on usein OneDrive-synkronoinnin piirissä.
-42. **Visat on 12 moduulissa** (0.1, 0.2, 0.4, 0.5, 1.4, 1.6, 2.1, 2.2, 2.3, 2.5, 2.6, 2.7). Moduuleissa 0.3 ja 3.1 on simulaattoriharjoitus, ja asennusmoduuleissa on varmistukset.
+42. **Visat on 12 moduulissa** (0.1, 0.2, 0.4, 0.5, 1.2, 1.6, 2.1, 2.2, 2.3, 2.5, 2.6, 2.7). Moduuleissa 0.3 ja 3.1 on simulaattoriharjoitus, ja asennusmoduuleissa on varmistukset.
 43. **Tietopakettien ulkoiset linkit avautuvat uuteen välilehteen** (`MdxLink`), ja sisäiset linkit kirjoitetaan muodossa `#/vianmaaritys/...`, jolloin ne kulkevat reitittimen kautta.
 44. **Sanaston "Lue lisää" -linkit** osoittavat virallisiin ohjeisiin (Anthropic, GitHub, Microsoft, Apple, MDN) tai Wikipediaan. Linkkejä ei ole tarkistettu yksitellen (ks. tarkistuslista).
 45. **Uusi build-sääntö:** tietopaketeissa ei saa käyttää `#`-pääotsikkoa.
@@ -125,6 +125,8 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 64. **Merkki-ilmoituksen näkymisaika luetaan tokenista `--duration-toast`** (7 s). Jos tokenia ei voi lukea (testit ilman CSS:ää), käytetään 7 000 ms.
 65. **Vähennetty liike:** tokenien kestot menevät nollaan kuten ennenkin, ja `base.css` estää lisäksi kaikki animaatiot ja siirtymät (myös Nupun toistuvan kellunnan).
 66. **Nuppu kelluu vain etusivulla ja merkkisivulla** (ei nukkuessa). Muualla, myös yläpalkissa, se on paikallaan. Designin 4,5 s:n kellunta nyki, koska 4 px:n liike oli niin hidas, että selain pyöristi sijainnin kokonaisiin pikseleihin. Nyt Nuppu tekee nopean pompahduksen (noin 0,5 s) 2,4 s:n välein ja seisoo välillä paikallaan. Kelluvalla Nupulla on oma piirtokerros (`will-change: transform`).
+67. **GitHub-tili (nyt 1.2) on siirretty Gitin (1.3) ja VS Coden (1.4) edelle**, koska Gitille annetaan sama sähköpostiosoite kuin GitHubiin. Moduulien ID:t eivät muuttuneet, joten tallennettu edistyminen säilyy; vain näytettävä numero ja suositeltu järjestys muuttuivat. Tietopaketeissa ei viitata oppitunteihin numerolla, jotta järjestystä voi muuttaa.
+68. **VS Code on suositeltu mutta ei pakollinen.** Tietopaketti kertoo, että sen voi ohittaa ja tiedostot näkee myös tiedostonhallinnassa. Moduuli on edelleen pakollisten joukossa (edistymisen laskenta ja Asennukset kunnossa -merkin ehto ennallaan).
 69. **Linkkikortin nousu hoverissa tehdään `top`-siirtymällä, ei `transform`illa.** Transform-animaatio sumensi etusivun polkukortin tekstin animaation ajaksi.
 70. **Nuppu on vaalea myös tummassa teemassa.** `Nuppu.css` ohjaa SVG:n käyttämät värimuuttujat Nupun omiin tokeneihin (`--color-nuppu-*`), joita tumma teema ei korvaa. Tummassa teemassa Nupulla on lisäksi ohut vaalea ääriviiva (tarra, `drop-shadow`-ketju), jotta tummat kädet, jalat ja varsi erottuvat tummasta taustasta.
 71. **Alatunnisteessa on tekijänoikeusrivi** ”© 2026 Jeremia Vepsäläinen” (sama kuin LICENSE-tiedostossa).

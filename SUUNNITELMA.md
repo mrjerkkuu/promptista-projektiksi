@@ -99,9 +99,9 @@ Suositeltu järjestys näytetään, mutta mihin tahansa aihealueeseen pääsee s
 | Moduuli | Windows | Mac |
 |---|---|---|
 | 1.1 Terminaali | PowerShell 7:n asennus ja avaaminen | Terminal-sovelluksen avaaminen (ei asennusta) |
-| 1.2 Git | Asennus | Asennus (virallisen ohjeen mukainen tapa) |
-| 1.3 VS Code | Asennus, miten kansio avataan | Sama |
-| 1.4 GitHub-tili | Tilin luonti + kaksivaiheinen tunnistautuminen | Sama |
+| 1.2 GitHub-tili | Tilin luonti + kaksivaiheinen tunnistautuminen. Ennen Gitiä, koska Gitille annetaan sama sähköpostiosoite. | Sama |
+| 1.3 Git | Asennus | Asennus (virallisen ohjeen mukainen tapa) |
+| 1.4 VS Code | Asennus, miten kansio avataan. Suositeltu, ei pakollinen: tiedostot näkee myös tiedostonhallinnassa. | Sama |
 | 1.5 GitHub CLI | Asennus + `gh auth login` | Sama |
 | 1.6 Claude-tilaus | Mitä tilausta tarvitaan. **Ei hintoja sivulle**, vaan linkki viralliseen hinnastoon. | Sama |
 | 1.7 Claude Code | Asennus + kirjautuminen | Sama |
