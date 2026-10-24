@@ -1,5 +1,6 @@
 {
   "powershell": {
+    "title": "PowerShell 7",
     "command": "check-powershell",
     "question": "Aja komento PowerShellissa. Miltä tulos näytti?",
     "options": [
@@ -33,6 +34,7 @@
     ]
   },
   "git": {
+    "title": "Git",
     "command": "check-git",
     "question": "Aja komento terminaalissa. Miltä tulos näytti?",
     "options": [
@@ -75,6 +77,7 @@
     ]
   },
   "vscode": {
+    "title": "VS Code",
     "command": "check-vscode",
     "question": "Aja komento terminaalissa. Miltä tulos näytti?",
     "options": [
@@ -101,6 +104,7 @@
     ]
   },
   "gh": {
+    "title": "GitHub CLI",
     "command": "check-gh",
     "question": "Aja komento terminaalissa. Miltä tulos näytti?",
     "options": [
@@ -140,6 +144,7 @@
     ]
   },
   "claude": {
+    "title": "Claude Code",
     "command": "check-claude",
     "question": "Aja komento uudessa terminaali-ikkunassa. Miltä tulos näytti?",
     "options": [

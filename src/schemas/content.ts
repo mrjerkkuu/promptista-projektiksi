@@ -117,6 +117,8 @@ export const verifyOptionSchema = z
 
 export const verifyStepSchema = z
   .object({
+    /** Tarkistettava työkalu, esim. "Git". */
+    title: text,
     /** commands.json-tunniste komennolle, jolla asennus tarkistetaan. */
     command: idSchema,
     question: text,

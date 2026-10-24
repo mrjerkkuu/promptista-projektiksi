@@ -41,6 +41,7 @@ function makeFixture(): string {
   write('troubleshooting.json', { 'ei-loydy': { title: 'T', os: ['windows'], symptom: 'S', steps: ['A'] } })
   write('verify.json', {
     git: {
+      title: 'Git',
       command: 'check-git',
       question: 'Q',
       options: [

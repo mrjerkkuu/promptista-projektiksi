@@ -25,6 +25,8 @@
 
 .command__code {
   flex: 1;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   min-width: 0;
   margin: 0;
   padding: var(--space-2);

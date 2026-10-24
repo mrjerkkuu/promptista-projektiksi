@@ -1,44 +1,74 @@
 {
   "ensimmaiset-komennot": {
     "title": "Ensimmäiset komennot",
-    "goal": "Kirjoita ensin help ja paina Enter. Kokeile sitten, mitä komento git --version vastaa.",
-    "hint": "Kirjoita kirjaimet täsmälleen näin: help. Toisessa komennossa on välilyönti ja kaksi väliviivaa: git --version",
+    "goal": "Kirjoita ensin `help` ja paina Enter. Kokeile sitten, mitä komento `git --version` vastaa.",
+    "hint": "Kirjoita kirjaimet täsmälleen näin: `help`. Toisessa komennossa on välilyönti ja kaksi väliviivaa: `git --version`",
     "success": "Hienoa, ensimmäiset komennot on ajettu! Juuri näin terminaalia käytetään: kirjoitat käskyn, painat Enteriä ja luet vastauksen.",
     "conditions": [
-      { "type": "commandUsed", "command": "help" },
-      { "type": "commandUsed", "command": "git" }
+      {
+        "type": "commandUsed",
+        "command": "help"
+      },
+      {
+        "type": "commandUsed",
+        "command": "git"
+      }
     ]
   },
   "kansioissa-liikkuminen": {
     "title": "Kansiosta toiseen",
-    "goal": "Selvitä komennolla pwd, missä kansiossa olet. Siirry sitten Documents-kansioon ja katso, mitä siellä on. Palaa lopuksi takaisin kotikansioon.",
-    "hint": "Tarvitset komennot pwd, cd Documents, ls (tai Windowsilla dir) ja cd ..",
+    "goal": "Selvitä komennolla `pwd`, missä kansiossa olet. Siirry sitten Documents-kansioon ja katso, mitä siellä on. Palaa lopuksi takaisin kotikansioon.",
+    "hint": "Tarvitset komennot `pwd`, `cd Documents`, `ls` (tai Windowsilla `dir`) ja `cd ..`",
     "success": "Mahtavaa! Osaat nyt tarkistaa sijaintisi, liikkua kansiosta toiseen ja katsoa kansion sisältöä.",
     "conditions": [
-      { "type": "commandUsed", "command": "pwd" },
-      { "type": "visited", "path": "~/Documents" },
-      { "type": "commandUsed", "command": "ls" },
-      { "type": "cwdIs", "path": "~" }
+      {
+        "type": "commandUsed",
+        "command": "pwd"
+      },
+      {
+        "type": "visited",
+        "path": "~/Documents"
+      },
+      {
+        "type": "commandUsed",
+        "command": "ls"
+      },
+      {
+        "type": "cwdIs",
+        "path": "~"
+      }
     ]
   },
   "luo-projektikansio": {
     "title": "Oma kansio",
-    "goal": "Luo kansio nimeltä projekti ja siirry sinne.",
-    "hint": "Kansio luodaan komennolla mkdir projekti, ja sinne siirrytään komennolla cd projekti.",
+    "goal": "Luo kansio nimeltä `projekti` ja siirry sinne.",
+    "hint": "Kansio luodaan komennolla `mkdir projekti`, ja sinne siirrytään komennolla `cd projekti`.",
     "success": "Loit kansion ja siirryit sinne. Juuri näin aloitetaan jokainen uusi projekti!",
     "conditions": [
-      { "type": "dirExists", "path": "~/projekti" },
-      { "type": "cwdIs", "path": "~/projekti" }
+      {
+        "type": "dirExists",
+        "path": "~/projekti"
+      },
+      {
+        "type": "cwdIs",
+        "path": "~/projekti"
+      }
     ]
   },
   "projektikansio-harjoitus": {
     "title": "Projektikansio valmiiksi",
-    "goal": "Harjoittele ennen kuin teet saman oikeasti: luo kotikansioon kansio projektit, sen sisään kansio oma-sivu ja siirry oma-sivu-kansioon.",
-    "hint": "Komennot järjestyksessä: mkdir projektit, cd projektit, mkdir oma-sivu ja cd oma-sivu. Komennolla pwd näet, oletko perillä.",
+    "goal": "Harjoittele ennen kuin teet saman oikeasti: luo kotikansioon kansio `projektit`, sen sisään kansio `oma-sivu` ja siirry oma-sivu-kansioon.",
+    "hint": "Komennot järjestyksessä: `mkdir projektit`, `cd projektit`, `mkdir oma-sivu` ja `cd oma-sivu`. Komennolla `pwd` näet, oletko perillä.",
     "success": "Täydellistä! Seuraavaksi teet saman omassa terminaalissasi.",
     "conditions": [
-      { "type": "dirExists", "path": "~/projektit/oma-sivu" },
-      { "type": "cwdIs", "path": "~/projektit/oma-sivu" }
+      {
+        "type": "dirExists",
+        "path": "~/projektit/oma-sivu"
+      },
+      {
+        "type": "cwdIs",
+        "path": "~/projektit/oma-sivu"
+      }
     ]
   }
 }

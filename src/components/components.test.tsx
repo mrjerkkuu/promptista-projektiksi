@@ -49,6 +49,7 @@ vi.mock('../content', () => {
     troubleshooting: { 'ei-loydy': { title: 'Komentoa ei tunnisteta', os: ['windows', 'mac'], symptom: 's', steps: ['a'] } },
     verifySteps: {
       git: {
+        title: 'Git',
         command: 'check-git',
         question: 'Miltä tulos näytti?',
         options: [

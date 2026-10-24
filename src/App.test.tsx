@@ -48,7 +48,7 @@ describe('sivut', () => {
     renderAt('/polku/claude-code/kansiot-ja-polut')
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('0.3 Kansiot ja polut')
     expect(screen.getByText('Kesken', { exact: false })).toBeInTheDocument()
-    await user.click(screen.getByRole('button', { name: 'Olen lukenut tämän' }))
+    await user.click(await screen.findByRole('button', { name: 'Olen lukenut tämän' }))
     expect(screen.getByText('Tämä aihe on valmis!')).toBeInTheDocument()
     expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!).modules['claude-code/kansiot-ja-polut']).toEqual({ visited: true, read: true })
     expect(screen.getByRole('link', { name: /Seuraava/ })).toHaveAttribute('href', '/polku/claude-code/git-ja-github')

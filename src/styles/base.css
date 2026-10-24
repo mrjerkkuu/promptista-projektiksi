@@ -228,3 +228,10 @@ select {
 textarea {
   width: 100%;
 }
+
+/* Komennoissa kaksi väliviivaa (--) ei saa näyttää ajatusviivalta. */
+code,
+pre,
+kbd {
+  font-variant-ligatures: none;
+}

@@ -19,7 +19,8 @@ export function VerifyStep({ id }: VerifyStepProps) {
 
   return (
     <section className="card verify" aria-labelledby={headingId}>
-      <h3 id={headingId}>Varmistus: {step.question}</h3>
+      <h3 id={headingId}>Varmistus: {step.title}</h3>
+      <p>{step.question}</p>
       <Command id={step.command} />
       <ChoiceList
         labelledBy={headingId}

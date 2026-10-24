@@ -16,6 +16,7 @@ export function BadgesPage() {
       <p>
         Merkkejä saat, kun etenet polulla, teet harjoituksia ja saat asennukset kuntoon. Olet ansainnut {earned}/{list.length} merkkiä.
       </p>
+      <h2>Polun merkit</h2>
       <div className="badge-grid">
         {main.map(([id, b]) => (
           <Badge key={id} badge={b} earnedAt={progress.badges[id]} />

@@ -34,10 +34,12 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajetaan taustalla heti a
 - **Vaihe 6 valmis:** `src/features/terminal-sim/shell.ts` (+25 testiä), `src/components/Terminal.tsx` (+testit), `missions.json` (4 missiota).
 - **Vaihe 7 valmis:** `src/features/badges/` (ehdot + derive), `BadgeToaster`, `Badge`, `ProgressBar`, merkkisivu, `badges.json` (9 merkkiä). Samalla kirjoitettiin lopulliset `verify.json` (5 varmistusta) ja `troubleshooting.json` (15 kohtaa) sekä lisää komentoja `commands.json`:iin.
 
+- **Vaihe 8 valmis:** 25 tietopakettia (95–196 sanaa ilman Lue lisää -osioita), 12 visaa, sanastossa 41 termiä, `MdxLink`, build-sääntö #-otsikolle, testit merkki-ilmoitukselle ja linkeille. 103 testiä läpi.
+
 ## Seuraavaksi
 
-Vaihe 8: tietopaketit (25 kpl `index.mdx`), visat (`quiz.json`), sanasto (`glossary.json`). Lisää validointiin: MDX ei saa sisältää `#`-pääotsikkoa. Lisää testi: merkki-ilmoitus näkyy, kun moduulin 0.2 simulaattorissa ajetaan komento.
+Vaihe 9: saavutettavuus- ja mobiilitarkistus (axe-testit jsdomissa, 360 px:n tarkistus selaimessa, Lighthouse, jos Chrome on käytettävissä).
 
 ## Avoimet ongelmat
 
-(Ei vielä.)
+1. **Macin `open index.html` (commands.json: `open-file-mac`) on tarkistamatta**, koska Applen virallinen sivu dokumentoi vain muodon `open -a`. Komento on merkitty `verifiedAt: "TODO"`, ja build tulostaa siitä varoituksen. Rinnalla neuvotaan avaamaan tiedosto Finderista.

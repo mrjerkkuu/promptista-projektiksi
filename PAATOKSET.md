@@ -87,3 +87,19 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 43. **Tietopakettien ulkoiset linkit avautuvat uuteen välilehteen** (`MdxLink`), ja sisäiset linkit kirjoitetaan muodossa `#/vianmaaritys/...`, jolloin ne kulkevat reitittimen kautta.
 44. **Sanaston "Lue lisää" -linkit** osoittavat virallisiin ohjeisiin (Anthropic, GitHub, Microsoft, Apple, MDN) tai Wikipediaan. Linkkejä ei ole tarkistettu yksitellen (ks. tarkistuslista).
 45. **Uusi build-sääntö:** tietopaketeissa ei saa käyttää `#`-pääotsikkoa.
+
+## Vaihe 9: saavutettavuus, mobiili ja Lighthouse
+
+46. **Saavutettavuus tarkistetaan automaattisesti kolmella tavalla:**
+    - `src/a11y.test.tsx`: axe-core jokaiselle sivulle ja jokaiselle tietopaketille sekä Windows- että Mac-näkymässä (57 testiä).
+    - `src/styles/tokens.test.ts`: värikontrastit lasketaan suoraan tokens.css:stä molemmille teemoille (WCAG AA: teksti 4,5:1, käyttöliittymän osat 3:1). Testi tarkistaa myös, että tumman teeman kaksi kopiota ovat samat. Kun design vaihtaa värit, testi kertoo heti, jos kontrasti ei riitä.
+    - ESLintin jsx-a11y-säännöt.
+47. **Mobiilitarkistus** `npm run check:mobile`: puppeteer-core ja koneen oma Chrome avaavat kaikki 31 sivua 360 px leveänä kummallakin käyttöjärjestelmävalinnalla ja varmistavat, ettei sivu vieri vaakasuunnassa. Kuvakaappaukset tallentuvat `.lighthouse/mobile/`-kansioon (ei versionhallinnassa).
+48. **Lighthouse** `npm run lighthouse`: viisi edustavaa sivua mobiili- ja desktop-asetuksilla, neljä vakiokategoriaa (performance, accessibility, best-practices, seo). Tulos 24.10.2026: mobiilissa 99/100/100/100 ja desktopissa 100/100/100/100. Lighthouse 13:n uusi kokeellinen "agentic-browsing"-kategoria jätettiin pois, koska suunnitelma tarkoittaa vakiokategorioita.
+49. **Korjaukset tarkistusten perusteella:**
+    - Tyhjät taulukko-otsikot täytettiin.
+    - Otsikkotasot korjattiin (merkkisivu, tarkistuslista).
+    - Varmistuksille lisättiin `title`, jotta samalla sivulla olevilla osioilla on eri nimet.
+    - Tietopaketin laiska lataus aiheutti asettelun siirtymää (CLS 0,15). Nyt koko moduulin loppuosa odottaa latausta, ja latauksen ajan varataan näytön korkeuden verran tilaa.
+    - Komennot rivittyvät kapealla näytöllä, ja fonttien ligatuurit on poistettu käytöstä koodissa, jotta `--` ei näytä ajatusviivalta.
+50. **axe-core, lighthouse ja puppeteer-core ovat projektin kehitysriippuvuuksia**, eivät globaaleja asennuksia. Chromea ei ladata, vaan käytetään koneen omaa Chromea (`CHROME_PATH`).

@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent 
 import { missions } from '../content'
 import { useProgress } from '../features/progress'
 import { createShell, execute, isMissionComplete, prompt, type Line, type ShellState } from '../features/terminal-sim/shell'
+import { InlineText } from '../lib/InlineText'
 import { OS_LABEL } from '../lib/os'
 import type { Mission, Os } from '../schemas/content'
 import './Terminal.css'
@@ -95,11 +96,15 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
     <section className="terminal" aria-label={`Harjoitus: ${mission.title}`}>
       <div className="terminal__mission">
         <h3 className="terminal__title">Harjoitus: {mission.title}</h3>
-        <p id={goalId}>{mission.goal}</p>
+        <p id={goalId}>
+          <InlineText text={mission.goal} />
+        </p>
         {mission.hint && (
           <details>
             <summary>Näytä vihje</summary>
-            <p>{mission.hint}</p>
+            <p>
+              <InlineText text={mission.hint} />
+            </p>
           </details>
         )}
         {!osChosen && <p className="muted">Harjoitus on nyt {OS_LABEL[os]}-tyylinen. Valitse oma käyttöjärjestelmäsi yläpalkista.</p>}

@@ -56,48 +56,55 @@ export function ModulePage() {
         </div>
       )}
 
-      <ModuleContext.Provider value={module.key}>
-        <div className="module__content">
-          <Suspense fallback={<p role="status">Ladataan tietopakettia…</p>}>
+      {/* Koko loppuosa odottaa tietopaketin latausta, jotta sivu ei hypi (CLS). */}
+      <Suspense
+        fallback={
+          <p role="status" className="module__loading">
+            Ladataan tietopakettia…
+          </p>
+        }
+      >
+        <ModuleContext.Provider value={module.key}>
+          <div className="module__content">
             <module.Content components={mdxComponents} />
-          </Suspense>
-        </div>
-      </ModuleContext.Provider>
+          </div>
+        </ModuleContext.Provider>
 
-      <section className="card module__done" aria-labelledby="valmis-otsikko">
-        <h2 id="valmis-otsikko" className="module__done-title">
-          Valmista?
-        </h2>
-        <div aria-live="polite">
-          {status === 'complete' && <p className="notice notice--success">Tämä aihe on valmis!</p>}
-          {read && !quizPassed && <p className="notice">Merkitsit tämän luetuksi. Aihe on valmis, kun olet vastannut visan kaikkiin kysymyksiin oikein.</p>}
-        </div>
-        <button type="button" className={`button ${read ? 'button--secondary' : ''}`} aria-pressed={read} onClick={() => dispatch({ type: 'markRead', key: module.key, read: !read })}>
-          {read ? 'Luettu ✓ (peru merkintä)' : 'Olen lukenut tämän'}
-        </button>
-      </section>
+        <section className="card module__done" aria-labelledby="valmis-otsikko">
+          <h2 id="valmis-otsikko" className="module__done-title">
+            Valmista?
+          </h2>
+          <div aria-live="polite">
+            {status === 'complete' && <p className="notice notice--success">Tämä aihe on valmis!</p>}
+            {read && !quizPassed && <p className="notice">Merkitsit tämän luetuksi. Aihe on valmis, kun olet vastannut visan kaikkiin kysymyksiin oikein.</p>}
+          </div>
+          <button type="button" className={`button ${read ? 'button--secondary' : ''}`} aria-pressed={read} onClick={() => dispatch({ type: 'markRead', key: module.key, read: !read })}>
+            {read ? 'Luettu ✓ (peru merkintä)' : 'Olen lukenut tämän'}
+          </button>
+        </section>
 
-      <nav aria-label="Edellinen ja seuraava aihe" className="pager">
-        {prev ? (
-          <Link to={`/polku/${path.id}/${prev.id}`} className="pager__link">
-            <span className="pager__dir">Edellinen</span>
-            {prev.number} {prev.title}
-          </Link>
-        ) : (
-          <span />
-        )}
-        {next ? (
-          <Link to={`/polku/${path.id}/${next.id}`} className="pager__link pager__link--next">
-            <span className="pager__dir">Seuraava</span>
-            {next.number} {next.title}
-          </Link>
-        ) : (
-          <Link to={`/polku/${path.id}`} className="pager__link pager__link--next">
-            <span className="pager__dir">Polun loppu</span>
-            Takaisin polun etusivulle
-          </Link>
-        )}
-      </nav>
+        <nav aria-label="Edellinen ja seuraava aihe" className="pager">
+          {prev ? (
+            <Link to={`/polku/${path.id}/${prev.id}`} className="pager__link">
+              <span className="pager__dir">Edellinen</span>
+              {prev.number} {prev.title}
+            </Link>
+          ) : (
+            <span />
+          )}
+          {next ? (
+            <Link to={`/polku/${path.id}/${next.id}`} className="pager__link pager__link--next">
+              <span className="pager__dir">Seuraava</span>
+              {next.number} {next.title}
+            </Link>
+          ) : (
+            <Link to={`/polku/${path.id}`} className="pager__link pager__link--next">
+              <span className="pager__dir">Polun loppu</span>
+              Takaisin polun etusivulle
+            </Link>
+          )}
+        </nav>
+      </Suspense>
     </article>
   )
 }
