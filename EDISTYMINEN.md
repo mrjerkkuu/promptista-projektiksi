@@ -28,9 +28,12 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajetaan taustalla heti a
 - **Vaihe 2 valmis:** `src/schemas/content.ts` (zod), `src/content/index.ts` (import.meta.glob), `scripts/validate-content.ts` (Vite-plugin + 16 testiä). path.json kirjoitettu lopullisena, ja moduulien index.mdx-tiedostot ovat väliaikaisia tynkiä, jotka korvataan vaiheessa 8. commands.json on jo tarkistettu.
 - **Vaihe 3 valmis:** `src/features/progress/` (schema, storage, model, reducer, ProgressContext) + testit. Tallennus tapahtuu dispatchin yhteydessä, ei effectissä.
 
+- **Vaihe 4 valmis:** komponentit `src/components/` (Os, Command, Term, ReadMore, Quiz, VerifyStep, Tip, yhteinen ChoiceList), `mdxComponents.ts`, `moduleContext.ts`, testit (`components.test.tsx`, content mockattuna).
+- **Vaihe 5 valmis:** `src/AppShell.tsx` (reitit), `src/layout/Layout.tsx`, sivut `src/pages/` (Home, Path, Module, Glossary, Troubleshooting, Settings, Badges [yksinkertainen], NotFound). MDX ladataan laiskasti (`ModuleEntry.Content`). Testit: `App.test.tsx`.
+
 ## Seuraavaksi
 
-Vaihe 4: peruskomponentit (Os, Command, Term, ReadMore, Quiz, VerifyStep, Tip).
+Vaihe 6: terminaalisimulaattori (`src/features/terminal-sim/`: puhtaat funktiot `fs.ts` + `shell.ts`, missioiden tarkistus, `<Terminal mission>`-komponentti, testit).
 
 ## Avoimet ongelmat
 

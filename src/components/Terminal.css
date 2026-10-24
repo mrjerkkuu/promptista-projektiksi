@@ -1,0 +1,78 @@
+.terminal {
+  margin: var(--space-5) 0;
+}
+
+.terminal__mission {
+  margin-bottom: var(--space-3);
+}
+
+.terminal__title {
+  margin-top: 0;
+}
+
+.terminal__window {
+  background: var(--color-term-bg);
+  color: var(--color-term-text);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-code);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+}
+
+.terminal__screen {
+  height: var(--terminal-height);
+  overflow: auto;
+  padding: var(--space-3);
+}
+
+.terminal__line {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.terminal__line--error {
+  color: var(--color-term-error);
+}
+
+.terminal__line--hint {
+  color: var(--color-term-hint);
+  font-family: var(--font-body);
+}
+
+.terminal__prompt {
+  color: var(--color-term-prompt);
+  white-space: pre;
+}
+
+.terminal__form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-top: var(--border-width) solid var(--color-code-muted);
+}
+
+.terminal__prompt--input {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.terminal__input {
+  flex: 1;
+  min-width: 8rem;
+  min-height: var(--tap-target-min);
+  font-family: var(--font-mono);
+  color: var(--color-term-text);
+  background: transparent;
+  border: var(--border-width) solid var(--color-code-muted);
+  border-radius: var(--radius-sm);
+}
+
+.terminal__run {
+  flex-shrink: 0;
+}

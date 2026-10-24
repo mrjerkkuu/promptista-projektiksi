@@ -51,3 +51,15 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 20. **Lisäsivu `/merkit`** listaa kaikki merkit. Valikossa on linkki "Oppimispolku", kun polkuja on yksi; kun polkuja on useampi, ne listataan etusivulla. Koodiin ei ole kovakoodattu yhtään polkua.
 21. **Sivun vaihtuessa fokus siirtyy uuden sivun `h1`-otsikkoon** (ruudunlukijat). "Siirry sisältöön" -linkki käsitellään JavaScriptillä, koska HashRouter varaa `#`-osan reiteille.
 22. **Tietopaketeissa ei käytetä `#`-pääotsikkoa**, koska sivu tuo otsikon (numero + nimi) `path.json`:sta. Tietopakettien väliotsikot alkavat tasolta `##`.
+
+## Vaihe 6: terminaalisimulaattori
+
+23. **Simulaattorin ydin on puhtaita funktioita** (`src/features/terminal-sim/shell.ts`). Komponentti `src/components/Terminal.tsx` hoitaa vain näkymän, historian ja missioiden kirjauksen.
+24. **Polkujen kirjainkoolla ei ole väliä** kummallakaan käyttöjärjestelmällä, mutta näytössä käytetään kansion oikeaa nimeä.
+    - *Perustelu:* Windows ja macOS (APFS:n oletus) eivät erottele kirjainkokoa, joten tämä vastaa todellisuutta ja on aloittelijalle armollisempi.
+25. **Lisäkomennot `dir` (Windows), `cls`/`md` (Windows) ja `cd..` (Windows).** Macissa nämä antavat aidon zsh-virheen ja suomenkielisen vihjeen oikeasta komennosta. `cd` ilman kansiota vie kotikansioon. Windowsin `mkdir` luo puuttuvat yläkansiot (kuten `New-Item`), Macin vain `-p`-valitsimella.
+26. **PowerShellin `ls`/`dir`-tuloste on yksinkertaistettu** (Mode + Name, ei päivämääriä eikä kokoja), jotta se mahtuu kapeallekin näytölle.
+27. **Versiotarkistusten tulosteet ovat esimerkkejä:** Git 2.56.0 (git-scm.com:n uusin versio 24.10.2026). Claude Coden "2.1.0 (Claude Code)" on keksitty esimerkkiversio, ja help kertoo, että versiot ovat esimerkkejä.
+28. **Missioehtoihin lisättiin `visited`** (käyttäjä on käynyt kansiossa), jotta "käy kansiossa ja palaa takaisin" -tehtävän voi tunnistaa tilasta.
+29. **Jos käyttöjärjestelmää ei ole valittu, simulaattori on Windows-tyylinen** ja kertoo siitä. Käyttöjärjestelmän vaihtaminen aloittaa harjoituksen alusta oikealla kehotteella.
+30. **Missiot:** `ensimmaiset-komennot` (0.2), `kansioissa-liikkuminen` ja `luo-projektikansio` (0.3) sekä `projektikansio-harjoitus` (3.1).

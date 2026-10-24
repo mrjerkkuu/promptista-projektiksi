@@ -64,6 +64,9 @@ const virtualPathSchema = z
 export const missionConditionSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('cwdIs'), path: virtualPathSchema }).strict(),
   z.object({ type: z.literal('dirExists'), path: virtualPathSchema }).strict(),
+  /** Käyttäjä on käynyt kansiossa jossain vaiheessa harjoitusta. */
+  z.object({ type: z.literal('visited'), path: virtualPathSchema }).strict(),
+  /** Komento (ensimmäinen sana, esim. "ls"; Windowsin "dir" lasketaan ls:ksi ja "cls" clear:ksi) on ajettu onnistuneesti. */
   z.object({ type: z.literal('commandUsed'), command: text }).strict(),
 ])
 export type MissionCondition = z.infer<typeof missionConditionSchema>

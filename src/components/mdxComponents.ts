@@ -4,6 +4,7 @@ import { Os } from './Os'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
 import { Term } from './Term'
+import { Terminal } from './Terminal'
 import { Tip } from './Tip'
 import { VerifyStep } from './VerifyStep'
 
@@ -17,6 +18,7 @@ export const mdxComponents: MDXComponents = {
   Quiz,
   ReadMore,
   Term,
+  Terminal,
   Tip,
   VerifyStep,
 }
