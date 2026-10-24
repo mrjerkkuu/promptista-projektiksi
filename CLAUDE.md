@@ -36,4 +36,12 @@ Tämä repo on **Promptista projektiksi**: pelillistetty suomenkielinen verkkosi
 - **Tietopaketti:** noin 150–250 sanaa. Pidempi sisältö `<ReadMore>`-osioon.
 - **Ei kolmansien osapuolten pyyntöjä:** ei analytiikkaa, ei CDN-fontteja.
 - **Saavutettavuus:** WCAG 2.1 AA. Näppäimistö, näkyvä fokus, `aria-live` palautteille.
+- **Edistymisen säilyminen:** käyttäjän edistyminen ei saa kadota, kun lisäämme moduuleja, ominaisuuksia tai oppitunteja. Edistyminen on käyttäjän selaimessa (localStorage), joten sitä ei voi palauttaa jälkikäteen.
+  - Uuden sisällön (polku, tietopaketti, visa, merkki) lisääminen on turvallista. Vanha edistyminen säilyy.
+  - **Älä vaihda äläkä poista olemassa olevia ID:itä** (polku, tietopaketti, visa, merkki). Tallennus viittaa niihin ID:llä. Jos ID on pakko muuttaa, kirjoita migraatio, joka siirtää vanhan ID:n edistymisen uudelle, ja lisää sille testi.
+  - **Älä vaihda avainta `pp-progress-v1`.** Se nollaisi kaikkien edistymisen.
+  - Jos tallennusmuoto muuttuu (`src/features/progress/schema.ts`): nosta `CURRENT_VERSION`, lisää migraatio `src/features/progress/storage.ts`:n `migrations`-listaan ja kirjoita sille testi (`storage.test.ts`). Migraation pitää säilyttää vanhat tiedot.
+  - Uusi tallennettava kenttä tarvitsee oletusarvon, jotta vanha tallennus läpäisee validoinnin.
+  - Merkkien ehdot (`badges.json`): älä kiristä ehtoja niin, että jo myönnetty merkki katoaa. Myönnetyt merkit säilyvät.
+  - Kerro PAATOKSET.md:ssä, jos muutos koskee tallennusta.
 - Commitit pieninä ja selkeinä. Älä pushaa ilman lupaa.

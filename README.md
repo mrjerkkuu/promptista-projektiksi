@@ -2,12 +2,14 @@
 
 Pelillistetty suomenkielinen verkkosivusto, jolla täysi aloittelija saa tekoälyavusteisen ohjelmointiympäristön ([Claude Code](https://code.claude.com/docs)) käyttöön ja tekee ensimmäisen oman projektinsa. Aiempaa kokemusta komentorivistä tai ohjelmoinnista ei tarvita.
 
+**Kokeile sivua: https://mrjerkkuu.github.io/promptista-projektiksi/**
+
 - **Tekemällä oppiminen:** lyhyet tietopaketit, kopioitavat komennot, terminaalisimulaattori, visat ja asennusten varmistukset.
 - **Windows ja Mac:** ohjeet valitun käyttöjärjestelmän mukaan.
 - **Ei kirjautumista, ei seurantaa:** edistyminen tallentuu vain selaimeen (localStorage). Ei evästeitä, ei analytiikkaa, ei kolmansien osapuolten pyyntöjä.
 - **Laajennettava:** uusi oppimispolku lisätään sisältötiedostoina ilman koodimuutoksia.
 
-Suunnitelma: [SUUNNITELMA.md](SUUNNITELMA.md). Toteutuksen tulkinnat: [PAATOKSET.md](PAATOKSET.md).
+Suunnitelma: [SUUNNITELMA.md](SUUNNITELMA.md). Toteutuksen tulkinnat: [PAATOKSET.md](PAATOKSET.md). Toteutuksen tila ja avoimet kohdat: [EDISTYMINEN.md](EDISTYMINEN.md).
 
 ## Kehitys
 
@@ -61,19 +63,21 @@ Sisällön lisääminen ja muokkaaminen: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Julkaisu GitHub Pagesiin
 
-Julkaisu tehdään GitHub Actionsilla (`.github/workflows/deploy.yml`) aina, kun `main`-haaraan tulee muutoksia.
+Sivu on julkaistu osoitteessa https://mrjerkkuu.github.io/promptista-projektiksi/. Julkaisu tehdään GitHub Actionsilla (`.github/workflows/deploy.yml`) aina, kun `main`-haaraan tulee muutoksia. Workflow ajaa lintin, testit ja buildin ennen julkaisua.
 
-1. Luo GitHubiin repo ja pushaa koodi.
-2. Valitse repon asetuksista **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. Workflow ajaa lintin, testit ja buildin ja julkaisee sivun osoitteeseen `https://<käyttäjä>.github.io/<repo>/`.
+Jos forkkaat repon, valitse omasta repostasi **Settings → Pages → Build and deployment → Source: GitHub Actions**. Sivu julkaistaan silloin osoitteeseen `https://<käyttäjä>.github.io/<repo>/`.
 
 Viten `base`-polku asetetaan workflowssa automaattisesti repon nimestä (`BASE_PATH`). Paikallisesti oletus on `/promptista-projektiksi/`. Toisen polun voi antaa näin: `BASE_PATH=/oma-polku/ npm run build`.
 
 Reitityksessä käytetään `HashRouter`ia (osoitteet muotoa `/#/polku/moduuli`), koska GitHub Pages ei tue SPA-sovellusten reititystä.
 
+## Edistymisen säilyminen
+
+Edistyminen on käyttäjän selaimessa (localStorage, avain `pp-progress-v1`), joten sitä ei voi palauttaa jälkikäteen. Uuden sisällön lisääminen on turvallista, mutta olemassa olevia ID:itä (polku, tietopaketti, visa, merkki) ei saa vaihtaa tai poistaa ilman migraatiota. Tallennusmuodon muutos vaatii version noston ja migraation. Säännöt ovat tiedostossa [CLAUDE.md](CLAUDE.md).
+
 ## Ulkoasu
 
-Nykyinen ulkoasu on neutraali placeholder. Kaikki värit, fontit, välistykset, pyöristykset ja varjot ovat tiedostossa `src/styles/tokens.css`, joten designin voi vaihtaa koskematta komponentteihin. Design-brief on suunnitelman luvussa 11.
+Nykyinen ulkoasu on neutraali placeholder. Kaikki värit, fontit, välistykset, pyöristykset ja varjot ovat tiedostossa `src/styles/tokens.css`, joten designin voi vaihtaa koskematta komponentteihin. Design-brief on suunnitelman luvussa 11 ja nykyisen ulkoasun inventaari tiedostossa [DESIGN-INVENTAARIO.md](DESIGN-INVENTAARIO.md).
 
 - Kontrastitesti (`src/styles/tokens.test.ts`) tarkistaa uudet värit automaattisesti.
 - Fontit hostataan itse: lisää fonttitiedostot projektiin (esim. `src/styles/fonts/`) ja määritä `@font-face` tokens.css:ssä. Ei Google Fonts -CDN:ää.
