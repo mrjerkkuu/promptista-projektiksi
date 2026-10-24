@@ -1,0 +1,182 @@
+/*
+ * Design tokenit. KAIKKI värit, fontit, välistykset, pyöristykset, varjot ja
+ * liikkeet määritellään tässä tiedostossa. Komponenttien tyylit käyttävät vain
+ * näitä muuttujia, joten ulkoasun voi vaihtaa koskematta komponentteihin.
+ *
+ * Tämä on neutraali placeholder-teema (ks. SUUNNITELMA.md luku 11).
+ */
+
+:root {
+  /* Typografia. Järjestelmäfontit: ei pyyntöjä kolmansille osapuolille.
+     Oma fontti lisätään myöhemmin itse hostattuna (ks. PAATOKSET.md). */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-body);
+  --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  --font-size-xs: 0.8125rem;
+  --font-size-sm: 0.9375rem;
+  --font-size-md: 1.0625rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --line-height-body: 1.6;
+  --line-height-heading: 1.25;
+  --line-height-code: 1.45;
+  --font-weight-normal: 400;
+  --font-weight-bold: 650;
+
+  /* Välistykset */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  /* Mitat */
+  --content-max-width: 46rem;
+  --page-max-width: 64rem;
+  --page-gutter: 1rem;
+  --tap-target-min: 2.75rem;
+  --progress-height: 0.625rem;
+  --badge-size: 3.5rem;
+  --terminal-height: 16rem;
+  --focus-ring-width: 3px;
+  --border-width: 1px;
+  --term-underline-width: 2px;
+
+  /* Pyöristykset */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* Liike */
+  --duration-fast: 120ms;
+  --duration-medium: 250ms;
+  --duration-badge: 600ms;
+  --duration-toast: 5s;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Kerrokset */
+  --z-popover: 20;
+  --z-toast: 30;
+
+  /* Värit – vaalea teema (oletus) */
+  --color-bg: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-surface-muted: #efefec;
+  --color-text: #1d1f23;
+  --color-text-muted: #50555e;
+  --color-border: #8d9096;
+  --color-border-subtle: #d4d6da;
+  --color-primary: #2f4f8a;
+  --color-primary-hover: #243e6e;
+  --color-on-primary: #ffffff;
+  --color-link: #2a4b85;
+  --color-focus: #b8590b;
+  --color-success: #1f6b3a;
+  --color-success-bg: #e3f2e8;
+  --color-error: #a3261d;
+  --color-error-bg: #fbe7e5;
+  --color-on-error: #ffffff;
+  --color-info-bg: #e7edf7;
+  --color-warning-bg: #fdf3d8;
+  --color-badge: #7a5000;
+  --color-badge-bg: #fbefd2;
+  --color-badge-locked: #6b6f76;
+  --color-progress-track: #d4d6da;
+  --color-progress-fill: #2f6d4a;
+  --color-code-bg: #1f2329;
+  --color-code-text: #eef0f3;
+  --color-code-muted: #b4bac4;
+  --color-term-bg: #1f2329;
+  --color-term-text: #eef0f3;
+  --color-term-prompt: #8fd19e;
+  --color-term-error: #ffb4a9;
+  --color-term-hint: #c1ceff;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 14px rgb(0 0 0 / 0.16);
+
+  color-scheme: light;
+}
+
+/* Tumma paletti. Sama arvosarja kahdesti: käyttöjärjestelmän asetus
+   (ellei käyttäjä ole valinnut vaaleaa) ja käyttäjän oma valinta. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #15171a;
+    --color-surface: #1e2125;
+    --color-surface-muted: #2a2e33;
+    --color-text: #eceef1;
+    --color-text-muted: #b3b8c0;
+    --color-border: #7c828b;
+    --color-border-subtle: #3d4248;
+    --color-primary: #8fb0ef;
+    --color-primary-hover: #a9c3f5;
+    --color-on-primary: #10141c;
+    --color-link: #9dbcf5;
+    --color-focus: #f0a35e;
+    --color-success: #8fd6a7;
+    --color-success-bg: #1d3426;
+    --color-error: #ffaca3;
+    --color-error-bg: #3d1f1c;
+    --color-on-error: #1a0b09;
+    --color-info-bg: #1f2a3d;
+    --color-warning-bg: #3a3220;
+    --color-badge: #f2c66d;
+    --color-badge-bg: #3a3020;
+    --color-badge-locked: #9aa0a8;
+    --color-progress-track: #3d4248;
+    --color-progress-fill: #7cc796;
+    --color-code-bg: #0e1013;
+    --color-term-bg: #0e1013;
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 14px rgb(0 0 0 / 0.5);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #15171a;
+  --color-surface: #1e2125;
+  --color-surface-muted: #2a2e33;
+  --color-text: #eceef1;
+  --color-text-muted: #b3b8c0;
+  --color-border: #7c828b;
+  --color-border-subtle: #3d4248;
+  --color-primary: #8fb0ef;
+  --color-primary-hover: #a9c3f5;
+  --color-on-primary: #10141c;
+  --color-link: #9dbcf5;
+  --color-focus: #f0a35e;
+  --color-success: #8fd6a7;
+  --color-success-bg: #1d3426;
+  --color-error: #ffaca3;
+  --color-error-bg: #3d1f1c;
+  --color-on-error: #1a0b09;
+  --color-info-bg: #1f2a3d;
+  --color-warning-bg: #3a3220;
+  --color-badge: #f2c66d;
+  --color-badge-bg: #3a3020;
+  --color-badge-locked: #9aa0a8;
+  --color-progress-track: #3d4248;
+  --color-progress-fill: #7cc796;
+  --color-code-bg: #0e1013;
+  --color-term-bg: #0e1013;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 14px rgb(0 0 0 / 0.5);
+
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-medium: 0ms;
+    --duration-badge: 0ms;
+  }
+}
