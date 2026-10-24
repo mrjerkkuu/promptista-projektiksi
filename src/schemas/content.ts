@@ -110,7 +110,8 @@ export const verifyOptionSchema = z
     label: osTextSchema,
     correct: z.boolean(),
     explanation: text,
-    troubleshooting: idSchema.optional(),
+    /** Vianmäärityskohta. Voi olla eri Windowsille ja Macille. */
+    troubleshooting: z.union([idSchema, z.object({ windows: idSchema, mac: idSchema }).strict()]).optional(),
   })
   .strict()
 

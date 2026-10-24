@@ -14,7 +14,7 @@ interface TerminalProps {
 export function Terminal({ mission: missionId }: TerminalProps) {
   const { progress } = useProgress()
   const mission = missions[missionId]
-  if (!mission) return <p className="notice notice--error">Harjoitusta “{missionId}” ei löytynyt.</p>
+  if (!mission) return <p className="notice notice--error">Harjoitusta ”{missionId}” ei löytynyt.</p>
   const os: Os = progress.os ?? 'windows'
   // key: käyttöjärjestelmän vaihtuessa simulaattori alkaa alusta oikealla kehotteella.
   return <TerminalSession key={os} missionId={missionId} mission={mission} os={os} osChosen={progress.os !== null} />

@@ -15,7 +15,7 @@ export function VerifyStep({ id }: VerifyStepProps) {
   const { progress, dispatch } = useProgress()
   const headingId = useId()
   const step = verifySteps[id]
-  if (!step) return <p className="notice notice--error">Varmistusta “{id}” ei löytynyt.</p>
+  if (!step) return <p className="notice notice--error">Varmistusta ”{id}” ei löytynyt.</p>
 
   return (
     <section className="card verify" aria-labelledby={headingId}>
@@ -26,7 +26,8 @@ export function VerifyStep({ id }: VerifyStepProps) {
         selectedId={progress.verify[id]}
         onSelect={(optionId) => dispatch({ type: 'answerVerify', stepId: id, optionId })}
         options={step.options.map((o) => {
-          const entry = o.troubleshooting ? troubleshooting[o.troubleshooting] : undefined
+          const entryId = o.troubleshooting === undefined ? undefined : resolveOsText(o.troubleshooting, progress.os ?? 'windows')
+          const entry = entryId ? troubleshooting[entryId] : undefined
           return {
             id: o.id,
             label: resolveOsText(o.label, progress.os),
@@ -34,7 +35,7 @@ export function VerifyStep({ id }: VerifyStepProps) {
             explanation: o.explanation,
             extra: entry && (
               <p>
-                <Link to={`/vianmaaritys/${o.troubleshooting}`}>Vianmääritys: {entry.title}</Link>
+                <Link to={`/vianmaaritys/${entryId}`}>Vianmääritys: {entry.title}</Link>
               </p>
             ),
           }

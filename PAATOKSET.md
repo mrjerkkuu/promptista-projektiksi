@@ -63,3 +63,14 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 28. **Missioehtoihin lisättiin `visited`** (käyttäjä on käynyt kansiossa), jotta "käy kansiossa ja palaa takaisin" -tehtävän voi tunnistaa tilasta.
 29. **Jos käyttöjärjestelmää ei ole valittu, simulaattori on Windows-tyylinen** ja kertoo siitä. Käyttöjärjestelmän vaihtaminen aloittaa harjoituksen alusta oikealla kehotteella.
 30. **Missiot:** `ensimmaiset-komennot` (0.2), `kansioissa-liikkuminen` ja `luo-projektikansio` (0.3) sekä `projektikansio-harjoitus` (3.1).
+
+## Vaihe 7: merkit ja edistymispalkit
+
+31. **Merkit myönnetään saman toiminnon yhteydessä, jossa ehto täyttyy.** `ProgressProvider` saa `derive`-funktion (`deriveBadges`), ja juuri ansaituista merkeistä ilmoitetaan. Erillistä effectiä ei tarvita, joten tilaa ei renderöidä kahdesti.
+    - Tuodusta tai nollatusta edistymisestä ei ilmoiteta uusina merkkeinä.
+32. **Merkki-ilmoitus** (`BadgeToaster`) näkyy 7 sekuntia, ja siinä on Sulje-painike ja `role="status"`. Animaatio on pois päältä, kun `prefers-reduced-motion` on käytössä.
+33. **Merkit:** Ensimmäinen komento, Kansiomestari, Perusteet hallussa, Asennukset kunnossa, Promptiseppä, Turvallinen ohjaaja, Ensimmäinen commit, Vibekoodaaja (koko polku) ja bonuksena Julkaistu!
+    - "Asennukset kunnossa" vaatii Gitin, VS Coden, gh:n ja Clauden varmistukset oikein. PowerShell ei kuulu ehtoon, koska sitä ei ole Macilla.
+    - "Ensimmäinen commit" myönnetään, kun moduuli 3.4 (GitHubiin) on valmis, koska ensimmäinen commit tehdään siinä (suunnitelman luku 5).
+34. **Merkkien kuvakkeet ovat placeholder-emojeja** (`aria-hidden`). Design korvaa ne myöhemmin.
+35. **Varmistuksen väärä vaihtoehto voi ohjata eri vianmäärityskohtaan Windowsilla ja Macilla** (`troubleshooting: { windows, mac }`), koska esim. ”brew puuttuu” koskee vain Macia.

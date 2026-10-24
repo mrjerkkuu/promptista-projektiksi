@@ -118,5 +118,101 @@
     "mac": "gh repo create oma-sivu --public --source=. --remote=origin --push",
     "source": "https://cli.github.com/manual/gh_repo_create",
     "verifiedAt": "2026-10-24"
+  },
+  "check-git": {
+    "description": "Näyttää Gitin version.",
+    "windows": "git --version",
+    "mac": "git --version",
+    "source": "https://git-scm.com/docs/git",
+    "verifiedAt": "2026-10-24"
+  },
+  "check-vscode": {
+    "description": "Näyttää VS Coden version.",
+    "windows": "code --version",
+    "mac": "code --version",
+    "source": "https://code.visualstudio.com/docs/configure/command-line",
+    "verifiedAt": "2026-10-24"
+  },
+  "check-gh": {
+    "description": "Näyttää GitHub CLI:n version.",
+    "windows": "gh --version",
+    "mac": "gh --version",
+    "source": "https://cli.github.com/manual/gh",
+    "verifiedAt": "2026-10-24"
+  },
+  "code-open-folder": {
+    "description": "Avaa nykyisen kansion VS Codessa. Piste tarkoittaa \"tämä kansio\".",
+    "windows": "code .",
+    "mac": "code .",
+    "source": "https://code.visualstudio.com/docs/configure/command-line",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-init": {
+    "description": "Aloittaa Git-seurannan nykyisessä kansiossa.",
+    "windows": "git init",
+    "mac": "git init",
+    "source": "https://git-scm.com/docs/git-init",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-status": {
+    "description": "Näyttää, mitkä tiedostot ovat muuttuneet viimeisen tallennuspisteen jälkeen.",
+    "windows": "git status",
+    "mac": "git status",
+    "source": "https://git-scm.com/docs/git-status",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-add-all": {
+    "description": "Valitsee kaikki muutokset mukaan seuraavaan tallennuspisteeseen.",
+    "windows": "git add -A",
+    "mac": "git add -A",
+    "source": "https://git-scm.com/docs/git-add",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-commit": {
+    "description": "Tekee tallennuspisteen (commitin) ja liittää siihen viestin.",
+    "windows": "git commit -m \"Ensimmäinen versio\"",
+    "mac": "git commit -m \"Ensimmäinen versio\"",
+    "source": "https://git-scm.com/docs/git-commit",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-log": {
+    "description": "Listaa tallennuspisteet lyhyesti, uusin ensin.",
+    "windows": "git log --oneline",
+    "mac": "git log --oneline",
+    "source": "https://git-scm.com/docs/git-log",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-restore": {
+    "description": "Palauttaa tiedoston siihen muotoon, jossa se oli viimeisimmässä tallennuspisteessä. Tallentamattomat muutokset katoavat.",
+    "windows": "git restore index.html",
+    "mac": "git restore index.html",
+    "source": "https://git-scm.com/docs/git-restore",
+    "verifiedAt": "2026-10-24"
+  },
+  "git-push": {
+    "description": "Lähettää uudet tallennuspisteet GitHubiin.",
+    "windows": "git push",
+    "mac": "git push",
+    "source": "https://git-scm.com/docs/git-push",
+    "verifiedAt": "2026-10-24"
+  },
+  "gh-browse": {
+    "description": "Avaa projektisi GitHub-sivun selaimessa.",
+    "windows": "gh browse",
+    "mac": "gh browse",
+    "source": "https://cli.github.com/manual/gh_browse",
+    "verifiedAt": "2026-10-24"
+  },
+  "open-file-windows": {
+    "description": "Avaa tiedoston sen oletusohjelmassa (HTML-tiedoston selaimessa).",
+    "windows": "Invoke-Item index.html",
+    "source": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/invoke-item",
+    "verifiedAt": "2026-10-24"
+  },
+  "open-file-mac": {
+    "description": "Avaa tiedoston sen oletusohjelmassa (HTML-tiedoston selaimessa).",
+    "mac": "open index.html",
+    "source": "https://support.apple.com/guide/terminal/execute-commands-and-run-tools-apdb66b5242-0d18-49fc-9c47-a2498b7c91d5/mac",
+    "verifiedAt": "TODO"
   }
 }

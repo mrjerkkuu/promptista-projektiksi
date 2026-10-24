@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router'
+import { BadgeToaster } from './components/BadgeToaster'
 import { ThemeSync } from './components/ThemeSelect'
+import { deriveBadges } from './features/badges'
 import { ProgressProvider } from './features/progress'
 import { Layout } from './layout/Layout'
 import { BadgesPage } from './pages/BadgesPage'
@@ -14,7 +16,7 @@ import { TroubleshootingPage } from './pages/TroubleshootingPage'
 /** Sovellus ilman reititintä (testit käyttävät MemoryRouteria). */
 export function AppShell() {
   return (
-    <ProgressProvider>
+    <ProgressProvider derive={deriveBadges}>
       <ThemeSync />
       <Layout>
         <Routes>
@@ -28,6 +30,7 @@ export function AppShell() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
+      <BadgeToaster />
     </ProgressProvider>
   )
 }

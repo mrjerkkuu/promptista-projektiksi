@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router'
+import { ProgressBar } from '../components/ProgressBar'
 import { StatusLabel } from '../components/StatusLabel'
 import { getPath, type TopicEntry } from '../content'
 import { countProgress, getModuleStatus, useProgress } from '../features/progress'
@@ -18,9 +19,8 @@ export function PathPage() {
     <>
       <h1>{path.title}</h1>
       <p>{path.description}</p>
-      <p className="muted">
-        {count.complete}/{count.total} aihetta valmiina. Suositeltu järjestys on alla, mutta voit aloittaa mistä tahansa.
-      </p>
+      <ProgressBar label="Koko polun edistyminen" count={count} />
+      <p className="muted">Suositeltu järjestys on alla, mutta voit aloittaa mistä tahansa. Valinnainen bonustehtävä ei vaikuta edistymiseen.</p>
       {path.topics.map((topic) => (
         <TopicSection key={topic.id} topic={topic} />
       ))}
@@ -38,9 +38,7 @@ function TopicSection({ topic }: { topic: TopicEntry }) {
         {topic.number}. {topic.title}
       </h2>
       <p>{topic.description}</p>
-      <p className="muted">
-        {count.complete}/{count.total} valmiina
-      </p>
+      <ProgressBar label={`Edistyminen: ${topic.title}`} count={count} />
       <ol className="module-list">
         {topic.modules.map((m) => (
           <li key={m.id} className="module-list__item">

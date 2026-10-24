@@ -1,8 +1,57 @@
 {
   "ensimmainen-komento": {
     "title": "Ensimmäinen komento",
-    "description": "Kirjoitit ensimmäisen komentosi terminaaliin.",
+    "description": "Kirjoitit ensimmäisen komentosi terminaaliin. Siitä se lähtee!",
     "icon": "⌨️",
     "condition": { "type": "commandsRun", "min": 1 }
+  },
+  "kansiomestari": {
+    "title": "Kansiomestari",
+    "description": "Liikuit kansiosta toiseen ja loit oman kansion terminaalissa.",
+    "icon": "📁",
+    "condition": { "type": "missionsComplete", "missions": ["kansioissa-liikkuminen", "luo-projektikansio"] }
+  },
+  "perusteet-hallussa": {
+    "title": "Perusteet hallussa",
+    "description": "Kävit läpi kaikki perusteet: vibekoodauksen, terminaalin, kansiot, Gitin ja agentit.",
+    "icon": "🧭",
+    "condition": { "type": "topicComplete", "path": "claude-code", "topic": "perusteet" }
+  },
+  "asennukset-kunnossa": {
+    "title": "Asennukset kunnossa",
+    "description": "Git, VS Code, GitHub CLI ja Claude Code on asennettu ja tarkistettu.",
+    "icon": "🧰",
+    "condition": { "type": "verifyPassed", "steps": ["git", "vscode", "gh", "claude"] }
+  },
+  "promptiseppa": {
+    "title": "Promptiseppä",
+    "description": "Tiedät, miten hyvä prompti kerrotaan: mitä, miksi ja millä rajoilla.",
+    "icon": "✍️",
+    "condition": { "type": "modulesComplete", "modules": ["claude-code/hyva-prompti"] }
+  },
+  "turvallinen-ohjaaja": {
+    "title": "Turvallinen ohjaaja",
+    "description": "Osaat suunnitella ennen rakentamista, pitää salaisuudet salassa ja palata tallennuspisteeseen.",
+    "icon": "🛡️",
+    "condition": { "type": "topicComplete", "path": "claude-code", "topic": "periaatteet" }
+  },
+  "ensimmainen-commit": {
+    "title": "Ensimmäinen commit",
+    "description": "Tallensit oman projektisi ja veit sen GitHubiin.",
+    "icon": "💾",
+    "condition": { "type": "modulesComplete", "modules": ["claude-code/githubiin"] }
+  },
+  "vibekoodaaja": {
+    "title": "Vibekoodaaja",
+    "description": "Kävit koko polun läpi ja teit ensimmäisen oman projektisi. Onneksi olkoon!",
+    "icon": "🏆",
+    "condition": { "type": "pathComplete", "path": "claude-code" }
+  },
+  "julkaistu": {
+    "title": "Julkaistu!",
+    "description": "Sivusi on netissä omassa osoitteessaan. Lähetä linkki kaverille!",
+    "icon": "🚀",
+    "bonus": true,
+    "condition": { "type": "modulesComplete", "modules": ["claude-code/julkaise"] }
   }
 }

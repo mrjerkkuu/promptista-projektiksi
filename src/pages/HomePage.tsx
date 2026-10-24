@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { OsPicker } from '../components/OsPicker'
+import { ProgressBar } from '../components/ProgressBar'
 import { paths, type LearningPath } from '../content'
 import { countProgress, getNextModule, hasAnyProgress, useProgress } from '../features/progress'
 import { OS_LABEL } from '../lib/os'
@@ -77,9 +78,7 @@ function PathCard({ path }: { path: LearningPath }) {
         <Link to={`/polku/${path.id}`}>{path.title}</Link>
       </h3>
       <p>{path.description}</p>
-      <p className="muted">
-        {count.complete}/{count.total} aihetta valmiina
-      </p>
+      <ProgressBar label={`Edistyminen: ${path.title}`} count={count} />
     </article>
   )
 }

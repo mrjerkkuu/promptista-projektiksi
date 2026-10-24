@@ -1,11 +1,181 @@
 {
+  "powershell": {
+    "command": "check-powershell",
+    "question": "Aja komento PowerShellissa. Miltä tulos näytti?",
+    "options": [
+      {
+        "id": "versio",
+        "label": "Yksi rivi, esimerkiksi PowerShell 7.6.0",
+        "correct": true,
+        "explanation": "PowerShell 7 on asennettu ja toimii. Käytä jatkossa aina tätä ohjelmaa."
+      },
+      {
+        "id": "ei-tunnisteta",
+        "label": "Virheilmoitus, jossa lukee ”not recognized”",
+        "correct": false,
+        "explanation": "PowerShell 7:ää ei löytynyt. Joko asennus on kesken tai terminaali pitää käynnistää uudelleen.",
+        "troubleshooting": "komentoa-ei-tunnisteta"
+      },
+      {
+        "id": "vanha",
+        "label": "Avasin ohjelman, jonka nimi on Windows PowerShell",
+        "correct": false,
+        "explanation": "Se on vanha PowerShell 5.1. PowerShell 7 on eri ohjelma, ja se löytyy Käynnistä-valikosta nimellä PowerShell 7.",
+        "troubleshooting": "vaara-powershell"
+      },
+      {
+        "id": "muuta",
+        "label": "Jotain muuta",
+        "correct": false,
+        "explanation": "Ei hätää, selvitetään yhdessä.",
+        "troubleshooting": "muu-ongelma"
+      }
+    ]
+  },
+  "git": {
+    "command": "check-git",
+    "question": "Aja komento terminaalissa. Miltä tulos näytti?",
+    "options": [
+      {
+        "id": "versio",
+        "label": "git version ja numero, esimerkiksi git version 2.56.0",
+        "correct": true,
+        "explanation": "Git on asennettu. Tarkka numero voi olla eri, ja se on aivan ok."
+      },
+      {
+        "id": "ei-tunnisteta",
+        "label": {
+          "windows": "Virheilmoitus, jossa lukee ”not recognized”",
+          "mac": "zsh: command not found: git"
+        },
+        "correct": false,
+        "explanation": "Terminaali ei löydä Gitiä. Useimmiten auttaa, kun suljet terminaalin ja avaat sen uudelleen.",
+        "troubleshooting": "komentoa-ei-tunnisteta"
+      },
+      {
+        "id": "ikkuna",
+        "label": {
+          "windows": "Asennus ei mennyt loppuun asti",
+          "mac": "Näytölle aukesi ikkuna komentorivityökalujen asentamisesta"
+        },
+        "correct": false,
+        "explanation": "Asennus on vielä kesken. Katso vianmäärityksestä, miten jatkat.",
+        "troubleshooting": {
+          "windows": "muu-ongelma",
+          "mac": "xcode-tyokalut"
+        }
+      },
+      {
+        "id": "muuta",
+        "label": "Jotain muuta",
+        "correct": false,
+        "explanation": "Ei hätää, selvitetään yhdessä.",
+        "troubleshooting": "muu-ongelma"
+      }
+    ]
+  },
+  "vscode": {
+    "command": "check-vscode",
+    "question": "Aja komento terminaalissa. Miltä tulos näytti?",
+    "options": [
+      {
+        "id": "versio",
+        "label": "Kolme riviä: versionumero, pitkä kirjain- ja numerosarja sekä x64 tai arm64",
+        "correct": true,
+        "explanation": "VS Code on asennettu, ja terminaali löytää sen. Voit avata kansioita komennolla code ."
+      },
+      {
+        "id": "ei-tunnisteta",
+        "label": "Virheilmoitus: komentoa ei löydy",
+        "correct": false,
+        "explanation": "VS Code voi olla asennettu, mutta terminaali ei vielä löydä code-komentoa.",
+        "troubleshooting": "code-komento-puuttuu"
+      },
+      {
+        "id": "muuta",
+        "label": "Jotain muuta",
+        "correct": false,
+        "explanation": "Ei hätää, selvitetään yhdessä.",
+        "troubleshooting": "muu-ongelma"
+      }
+    ]
+  },
+  "gh": {
+    "command": "check-gh",
+    "question": "Aja komento terminaalissa. Miltä tulos näytti?",
+    "options": [
+      {
+        "id": "versio",
+        "label": "gh version, numero ja päivämäärä sekä linkki",
+        "correct": true,
+        "explanation": "GitHub CLI on asennettu. Seuraavaksi kirjaudutaan."
+      },
+      {
+        "id": "ei-tunnisteta",
+        "label": "Virheilmoitus: komentoa ei löydy",
+        "correct": false,
+        "explanation": "Terminaali ei löydä gh-komentoa. Käynnistä terminaali uudelleen, niin se todennäköisesti korjaantuu.",
+        "troubleshooting": "komentoa-ei-tunnisteta"
+      },
+      {
+        "id": "brew",
+        "label": {
+          "windows": "winget-komentoa ei löytynyt",
+          "mac": "zsh: command not found: brew"
+        },
+        "correct": false,
+        "explanation": "Asennukseen tarvittava työkalu puuttuu. Vianmäärityksestä löydät ohjeen sen asentamiseen.",
+        "troubleshooting": {
+          "windows": "winget-puuttuu",
+          "mac": "brew-puuttuu"
+        }
+      },
+      {
+        "id": "muuta",
+        "label": "Jotain muuta",
+        "correct": false,
+        "explanation": "Ei hätää, selvitetään yhdessä.",
+        "troubleshooting": "muu-ongelma"
+      }
+    ]
+  },
   "claude": {
     "command": "check-claude",
-    "question": "Aja komento. Miltä tulos näytti?",
+    "question": "Aja komento uudessa terminaali-ikkunassa. Miltä tulos näytti?",
     "options": [
-      { "id": "versio", "label": "Versionumero", "correct": true, "explanation": "Asennus onnistui." },
-      { "id": "ei-loydy", "label": "Komentoa ei löydy", "correct": false, "explanation": "Terminaali ei vielä tunne komentoa.", "troubleshooting": "komentoa-ei-tunnisteta" },
-      { "id": "muuta", "label": "Jotain muuta", "correct": false, "explanation": "Katso vianmääritys.", "troubleshooting": "komentoa-ei-tunnisteta" }
+      {
+        "id": "versio",
+        "label": "Versionumero ja perässä (Claude Code)",
+        "correct": true,
+        "explanation": "Claude Code on asennettu! Seuraavaksi kirjaudutaan."
+      },
+      {
+        "id": "ei-tunnisteta",
+        "label": "Virheilmoitus: komentoa ei löydy",
+        "correct": false,
+        "explanation": "Terminaali ei löydä claude-komentoa. Avaa uusi terminaali-ikkuna ja kokeile uudelleen.",
+        "troubleshooting": "komentoa-ei-tunnisteta"
+      },
+      {
+        "id": "skriptit",
+        "label": {
+          "windows": "Virhe, jossa lukee ”running scripts is disabled”",
+          "mac": "Asennus keskeytyi virheeseen"
+        },
+        "correct": false,
+        "explanation": "Asennus ei mennyt läpi. Vianmäärityksestä löydät ohjeen.",
+        "troubleshooting": {
+          "windows": "suoritusoikeudet",
+          "mac": "muu-ongelma"
+        }
+      },
+      {
+        "id": "muuta",
+        "label": "Jotain muuta",
+        "correct": false,
+        "explanation": "Ei hätää, selvitetään yhdessä.",
+        "troubleshooting": "muu-ongelma"
+      }
     ]
   }
 }

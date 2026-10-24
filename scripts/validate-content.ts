@@ -113,8 +113,9 @@ export function validateContent(contentDir: string): ValidationResult {
   for (const [id, step] of Object.entries(verify)) {
     if (!commands[step.command]) errors.push(`verify.json: "${id}" viittaa tuntemattomaan komentoon "${step.command}"`)
     for (const o of step.options) {
-      if (o.troubleshooting && !troubleshooting[o.troubleshooting]) {
-        errors.push(`verify.json: "${id}" / "${o.id}" viittaa tuntemattomaan vianmäärityskohtaan "${o.troubleshooting}"`)
+      const refs = o.troubleshooting === undefined ? [] : typeof o.troubleshooting === 'string' ? [o.troubleshooting] : Object.values(o.troubleshooting)
+      for (const ref of refs) {
+        if (!troubleshooting[ref]) errors.push(`verify.json: "${id}" / "${o.id}" viittaa tuntemattomaan vianmäärityskohtaan "${ref}"`)
       }
     }
   }

@@ -2,7 +2,167 @@
   "komentoa-ei-tunnisteta": {
     "title": "Komentoa ei tunnisteta",
     "os": ["windows", "mac"],
-    "symptom": "Terminaali sanoo, ettei komentoa löydy.",
-    "steps": ["Sulje terminaali ja avaa se uudelleen."]
+    "symptom": "Windowsilla terminaali vastaa esimerkiksi `git: The term 'git' is not recognized…`, Macilla `zsh: command not found: git`. Terminaali ei siis löydä ohjelmaa, jota yrität käyttää.",
+    "steps": [
+      "Tarkista kirjoitusasu. Pienikin kirjoitusvirhe riittää, ja välilyönneillä on väliä: `git --version` toimii, `git--version` ei.",
+      "Jos asensit ohjelman juuri, sulje terminaali kokonaan ja avaa se uudelleen. Terminaali lukee tiedon asennetuista ohjelmista vain käynnistyessään.",
+      "Windowsilla: jos käytät Windows Terminalia, avaa kokonaan uusi ikkuna. Pelkkä uusi välilehti ei aina riitä.",
+      "Macilla: sulje Pääte-ohjelma kokonaan näppäinyhdistelmällä Cmd+Q ja käynnistä se uudelleen.",
+      "Jos komento ei vieläkään toimi, asennus on ehkä keskeytynyt. Palaa asennusohjeeseen ja aja asennuskomento uudelleen.",
+      "Viimeinen keino: käynnistä koko tietokone uudelleen ja kokeile sitten."
+    ]
+  },
+  "terminaali-uudelleen": {
+    "title": "Asensin ohjelman, mutta terminaali ei löydä sitä",
+    "os": ["windows", "mac"],
+    "symptom": "Asennus näytti onnistuvan, mutta samassa terminaali-ikkunassa ohjelma ei toimi.",
+    "steps": [
+      "Tämä on tavallisin asennusongelma ja helppo korjata: terminaali pitää käynnistää uudelleen asennuksen jälkeen.",
+      "Sulje kaikki terminaali-ikkunat. Windowsilla sulje PowerShell-ikkunat, Macilla lopeta Pääte näppäinyhdistelmällä Cmd+Q.",
+      "Avaa terminaali uudelleen ja kokeile versiotarkistusta, esimerkiksi `git --version`."
+    ]
+  },
+  "suoritusoikeudet": {
+    "title": "PowerShell ei suostu ajamaan skriptiä",
+    "os": ["windows"],
+    "symptom": "Virheilmoituksessa lukee `cannot be loaded because running scripts is disabled on this system`. Windows estää oletuksena joidenkin skriptien ajamisen turvallisuussyistä.",
+    "steps": [
+      "Tarkista ensin nykyiset asetukset alla olevalla Get-ExecutionPolicy-komennolla.",
+      "Salli paikallisten ja allekirjoitettujen skriptien ajaminen omalle käyttäjällesi alla olevalla Set-ExecutionPolicy-komennolla. Järjestelmänvalvojan oikeuksia ei tarvita, koska muutos koskee vain sinua.",
+      "Jos PowerShell kysyy vahvistusta, vastaa `Y` ja paina Enter.",
+      "Muutos tulee voimaan heti. Aja sitten uudelleen komento, joka ei aiemmin toiminut."
+    ],
+    "commands": ["get-execution-policy", "set-execution-policy"]
+  },
+  "winget-puuttuu": {
+    "title": "winget-komentoa ei löydy",
+    "os": ["windows"],
+    "symptom": "PowerShell vastaa `winget: The term 'winget' is not recognized…`.",
+    "steps": [
+      "WinGet tulee Windowsin mukana Sovellusasennusohjelma-nimisessä paketissa (App Installer). Avaa Microsoft Store, hae ”App Installer” tai ”Sovellusasennusohjelma” ja päivitä tai asenna se.",
+      "Sulje PowerShell, avaa se uudelleen ja kokeile asennuskomentoa uudelleen.",
+      "Jos winget ei vieläkään toimi, voit asentaa ohjelman myös tavallisella asennusohjelmalla. Komennon alla on linkki viralliselle sivulle, josta asennusohjelman voi ladata."
+    ]
+  },
+  "vaara-powershell": {
+    "title": "Avasin vanhan Windows PowerShellin",
+    "os": ["windows"],
+    "symptom": "Ikkunan otsikossa lukee ”Windows PowerShell” tai komento `pwsh -Version` ei toimi. Windowsissa on valmiina vanha PowerShell 5.1, ja PowerShell 7 on erillinen ohjelma.",
+    "steps": [
+      "Avaa Käynnistä-valikko ja kirjoita hakuun `PowerShell 7`. Valitse se, ei ”Windows PowerShell”.",
+      "Jos PowerShell 7 ei löydy, sitä ei ole vielä asennettu. Asenna se Terminaali-oppitunnin ohjeella. Asennuksen voi tehdä vanhassa Windows PowerShellissa.",
+      "Voit tarkistaa version komennolla `$PSVersionTable`. PSVersion-rivillä pitää olla 7."
+    ]
+  },
+  "xcode-tyokalut": {
+    "title": "Macissa aukeaa ikkuna komentorivityökalujen asentamisesta",
+    "os": ["mac"],
+    "symptom": "Kun kirjoitat `git` tai `xcode-select --install`, näytölle ilmestyy ikkuna, joka tarjoaa komentorivin kehitystyökalujen (Command Line Tools) asentamista. Tai terminaali vastaa `xcode-select: error: command line tools are already installed`.",
+    "steps": [
+      "Ikkuna on Applen oma ja turvallinen. Valitse Asenna (Install) ja hyväksy käyttöehdot. Asennus voi kestää useita minuutteja.",
+      "Jos terminaali sanoo, että työkalut on jo asennettu (”already installed”), kaikki on kunnossa: Git on jo koneellasi.",
+      "Asennuksen jälkeen avaa Pääte uudelleen ja kokeile komentoa `git --version`."
+    ]
+  },
+  "brew-puuttuu": {
+    "title": "brew-komentoa ei löydy",
+    "os": ["mac"],
+    "symptom": "Pääte vastaa `zsh: command not found: brew`. GitHub CLI:n Mac-asennus käyttää Homebrew-pakettienhallintaa, eikä sitä ole valmiina Macissa.",
+    "steps": [
+      "Asenna Homebrew alla olevalla komennolla. Se kysyy Macisi salasanaa: kirjoita se ja paina Enter. Salasana ei näy kirjoittaessa, ja se on normaalia.",
+      "Asennuksen lopussa Homebrew tulostaa otsikon ”Next steps” ja sen alle komentoja. Kopioi ja aja ne yksi kerrallaan, jotta Pääte löytää brew-komennon.",
+      "Sulje Pääte (Cmd+Q), avaa se uudelleen ja kokeile `brew --version`."
+    ],
+    "commands": ["install-homebrew"]
+  },
+  "code-komento-puuttuu": {
+    "title": "code-komento ei toimi",
+    "os": ["windows", "mac"],
+    "symptom": "VS Code on asennettu, mutta `code .` tai `code --version` vastaa, ettei komentoa löydy.",
+    "steps": [
+      "Windowsilla: VS Coden asennusohjelma lisää code-komennon automaattisesti. Sulje terminaali, avaa se uudelleen ja kokeile uudelleen.",
+      "Macilla: code-komento pitää ottaa käyttöön itse. Avaa VS Code, paina Cmd+Shift+P ja kirjoita `shell command`. Valitse vaihtoehto ”Shell Command: Install 'code' and optionally 'copilot' commands in PATH” (vanhemmissa versioissa ”Shell Command: Install 'code' command in PATH”).",
+      "Macilla tarkista myös, että VS Code on siirretty Ohjelmat-kansioon (Applications) eikä sitä ajeta suoraan Lataukset-kansiosta.",
+      "Käynnistä terminaali uudelleen ja kokeile `code --version`."
+    ]
+  },
+  "gh-kirjautuminen": {
+    "title": "GitHub-kirjautuminen gh-työkalulla ei onnistu",
+    "os": ["windows", "mac"],
+    "symptom": "Komento `gh auth login` jää jumiin, selain ei aukea tai kirjautuminen epäonnistuu.",
+    "steps": [
+      "Valitse kysymyksiin nuolinäppäimillä ja Enterillä: GitHub.com, HTTPS ja kirjautuminen selaimella (Login with a web browser). Kun gh kysyy, saako Git käyttää GitHub-tunnuksiasi, vastaa kyllä (Y).",
+      "gh näyttää kertakäyttöisen koodin (esim. ABCD-1234). Kopioi se ja paina Enter, jolloin selain aukeaa. Liitä koodi selaimessa avautuvalle sivulle.",
+      "Jos selain ei aukea itsestään, avaa osoite https://github.com/login/device itse ja kirjoita koodi sinne.",
+      "Tarkista lopuksi komennolla `gh auth status`, että olet kirjautunut."
+    ]
+  },
+  "push-ei-onnistu": {
+    "title": "git push tai gh repo create ei onnistu",
+    "os": ["windows", "mac"],
+    "symptom": "Lähetys GitHubiin päättyy virheeseen, jossa puhutaan esimerkiksi oikeuksista (permission denied), tunnistautumisesta (authentication failed) tai siitä, että repo on jo olemassa (already exists).",
+    "steps": [
+      "Jos virhe koskee oikeuksia tai tunnistautumista, kirjaudu uudelleen komennolla `gh auth login` ja vastaa kyllä, kun gh kysyy Gitin tunnuksista.",
+      "Jos repo on jo olemassa, sinulla on GitHubissa jo samanniminen repo. Vaihda komennossa nimi, esimerkiksi `oma-sivu-2`.",
+      "Jos virhe sanoo, ettei lähetettävää ole (esim. `src refspec main does not match any`), et ole vielä tehnyt yhtään commitia. Tee commit ensin.",
+      "Kopioi virheilmoitus Claudelle ja kysy, mitä se tarkoittaa. Claude osaa yleensä selittää sen ja ehdottaa korjausta."
+    ]
+  },
+  "claude-kirjautuminen": {
+    "title": "Claude Code ei kirjaudu tai valittaa tilauksesta",
+    "os": ["windows", "mac"],
+    "symptom": "Kirjautuminen ei onnistu, tai Claude Code kertoo, ettei tililläsi ole pääsyä.",
+    "steps": [
+      "Tarkista, että sinulla on tilaus, johon Claude Code kuuluu. Ilmainen Claude-tili ei riitä. Katso Claude-tilaus-oppitunti.",
+      "Kirjaudu samalla tilillä, jolla tilaus on tehty. Voit vaihtaa tiliä kirjoittamalla Claude Codessa `/login`.",
+      "Aja `claude doctor`, joka tarkistaa asennuksen ja kertoo mahdollisista ongelmista."
+    ],
+    "commands": ["claude-doctor"]
+  },
+  "liittaminen-ei-toimi": {
+    "title": "Kopioitu komento ei liity terminaaliin",
+    "os": ["windows", "mac"],
+    "symptom": "Kopioit komennon sivulta, mutta terminaaliin ei tule mitään.",
+    "steps": [
+      "Windowsilla: liitä näppäinyhdistelmällä Ctrl+V tai napsauttamalla hiiren oikealla painikkeella terminaali-ikkunan sisällä.",
+      "Macilla: liitä näppäinyhdistelmällä Cmd+V.",
+      "Varmista, että terminaali-ikkuna on aktiivinen: napsauta sitä kerran ennen liittämistä.",
+      "Kun komento on liitetty, paina Enter."
+    ]
+  },
+  "vaara-muutos": {
+    "title": "Claude teki muutoksen, jota en halunnut",
+    "os": ["windows", "mac"],
+    "symptom": "Sivu meni rikki tai näyttää huonommalta kuin ennen Clauden muutosta.",
+    "steps": [
+      "Älä hätäile: jos teit commitin ennen muutosta, mitään ei ole menetetty.",
+      "Claude Codessa voit kirjoittaa `/rewind` (tai painaa Esc kahdesti tyhjässä kehotteessa) ja palata aiempaan kohtaan keskustelussa ja koodissa.",
+      "Gitillä voit palauttaa yksittäisen tiedoston viimeisimpään tallennuspisteeseen alla olevalla komennolla. Huomaa, että tallentamattomat muutokset katoavat.",
+      "Voit myös pyytää Claudea: ”Peru äskeinen muutos ja palauta sivu siihen tilaan, jossa se oli viimeisimmässä commitissa.”"
+    ],
+    "commands": ["git-restore"]
+  },
+  "pages-ei-nay": {
+    "title": "GitHub Pages -sivu ei näy tai näyttää vanhaa versiota",
+    "os": ["windows", "mac"],
+    "symptom": "Osoite näyttää virhesivun 404 tai vanhan version sivustasi.",
+    "steps": [
+      "Odota muutama minuutti. Julkaisu kestää yleensä hetken.",
+      "Tarkista repon asetuksista (Settings → Pages), että julkaisun lähteeksi on valittu haara main ja kansio / (root).",
+      "Varmista, että etusivun tiedoston nimi on täsmälleen `index.html` ja että se on projektikansion juuressa eikä alikansiossa.",
+      "Lataa sivu uudelleen ohittaen välimuisti: Windowsilla Ctrl+F5, Macilla Cmd+Shift+R."
+    ]
+  },
+  "muu-ongelma": {
+    "title": "Jotain muuta meni pieleen",
+    "os": ["windows", "mac"],
+    "symptom": "Tulos ei vastannut mitään odotettua, eikä ongelmaa löydy tältä listalta.",
+    "steps": [
+      "Lue virheilmoitus rauhassa. Usein tärkein tieto on viimeisillä riveillä.",
+      "Kopioi koko virheilmoitus ja kysy siitä Claudelta (tarvittaessa selaimen claude.ai-keskustelussa): ”Yritin asentaa X:n komennolla Y ja sain tämän virheen. Mitä se tarkoittaa ja miten korjaan sen?”",
+      "Tarkista, että ajoit komennon oikeassa ohjelmassa: Windowsilla PowerShell 7:ssä, Macilla Päätteessä.",
+      "Käynnistä terminaali ja tarvittaessa koko tietokone uudelleen ja kokeile uudelleen.",
+      "Jokaisen komennon alla on linkki viralliseen ohjeeseen. Sieltä löytyy usein ajantasaisin tieto."
+    ]
   }
 }

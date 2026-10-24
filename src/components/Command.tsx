@@ -19,7 +19,7 @@ function sourceFor(command: CommandData, os: Os): string {
 export function Command({ id }: CommandProps) {
   const { progress } = useProgress()
   const command = commands[id]
-  if (!command) return <p className="notice notice--error">Komentoa “{id}” ei löytynyt.</p>
+  if (!command) return <p className="notice notice--error">Komentoa ”{id}” ei löytynyt.</p>
 
   const variants = OS_LIST.filter((os) => command[os] !== undefined && (progress.os === null || progress.os === os))
   if (variants.length === 0) {

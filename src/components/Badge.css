@@ -1,0 +1,128 @@
+.badge {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: var(--border-width) solid var(--color-border-subtle);
+  background: var(--color-surface);
+}
+
+.badge__icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: var(--badge-size);
+  height: var(--badge-size);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xl);
+  background: var(--color-surface-muted);
+}
+
+.badge--earned .badge__icon {
+  background: var(--color-badge-bg);
+  color: var(--color-badge);
+}
+
+.badge--locked .badge__icon {
+  color: var(--color-badge-locked);
+}
+
+.badge__title {
+  margin: 0;
+  font-size: var(--font-size-md);
+}
+
+.badge__bonus {
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-muted);
+}
+
+.badge__description {
+  margin: var(--space-1) 0;
+  font-size: var(--font-size-sm);
+}
+
+.badge__state {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.badge--earned .badge__state {
+  color: var(--color-badge);
+  font-weight: var(--font-weight-bold);
+}
+
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+/* Ilmoitus uudesta merkistä */
+.badge-toasts {
+  position: fixed;
+  right: var(--page-gutter);
+  bottom: var(--page-gutter);
+  left: var(--page-gutter);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+  pointer-events: none;
+}
+
+.badge-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 24rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-badge);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  animation: badge-pop var(--duration-badge) var(--easing-standard);
+}
+
+.badge-toast .badge__icon {
+  width: calc(var(--badge-size) * 0.75);
+  height: calc(var(--badge-size) * 0.75);
+  background: var(--color-badge-bg);
+  animation: badge-spin var(--duration-badge) var(--easing-standard);
+}
+
+.badge-toast p {
+  margin: 0;
+}
+
+@keyframes badge-pop {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes badge-spin {
+  from {
+    transform: rotate(-20deg) scale(0.6);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-toast,
+  .badge-toast .badge__icon {
+    animation: none;
+  }
+}
