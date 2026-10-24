@@ -22,7 +22,7 @@ describe('sivut', () => {
     const macButtons = screen.getAllByRole('button', { name: 'Mac' })
     await user.click(macButtons[macButtons.length - 1])
     expect(screen.queryByText('Kumpaa tietokonetta käytät?')).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Aloita alusta: 0.1/ })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Aloita tästä: 0.1/ })).toBeInTheDocument()
   })
 
   it('jatka-painike vie seuraavaan keskeneräiseen moduuliin', () => {

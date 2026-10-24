@@ -37,7 +37,7 @@ export function HomePage() {
         {next && (
           <p>
             <Link className="button hero__cta" to={`/polku/${next.pathId}/${next.id}`}>
-              {started ? 'Jatka siitä mihin jäit' : 'Aloita alusta'}
+              {started ? 'Jatka siitä mihin jäit' : 'Aloita tästä'}
               <span className="hero__cta-detail">
                 : {next.number} {next.title}
               </span>
