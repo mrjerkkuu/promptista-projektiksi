@@ -224,6 +224,9 @@ img {
   white-space: normal;
   overflow-wrap: anywhere;
   cursor: pointer;
+  /* Oma kerros koko ajan, jotta teksti ei sumene hoverin nousun aikana
+     (sama syy kuin .card--link-kortissa, PAATOKSET.md kohta 74). */
+  will-change: transform;
   transition:
     transform var(--duration-medium) var(--easing-spring),
     background-color var(--duration-fast) var(--easing-standard),
