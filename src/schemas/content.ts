@@ -44,9 +44,22 @@ export const commandsFileSchema = z.record(idSchema, commandSchema)
 
 // ---------------------------------------------------------------- glossary.json
 
+/** Sanaston aiheet siinä järjestyksessä, jossa ne näytetään sanastosivulla. */
+export const GLOSSARY_CATEGORIES = {
+  tekoaly: 'Tekoäly ja Claude Code',
+  terminaali: 'Terminaali ja asennukset',
+  tiedostot: 'Tiedostot ja kansiot',
+  git: 'Git ja GitHub',
+  tietoturva: 'Tietoturva',
+  verkkosivut: 'Verkkosivut',
+} as const
+export type GlossaryCategory = keyof typeof GLOSSARY_CATEGORIES
+export const glossaryCategorySchema = z.enum(Object.keys(GLOSSARY_CATEGORIES) as [GlossaryCategory, ...GlossaryCategory[]])
+
 export const glossaryEntrySchema = z
   .object({
     term: text,
+    category: glossaryCategorySchema,
     definition: text,
     readMore: urlSchema.optional(),
   })

@@ -80,6 +80,25 @@ describe('sivut', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Sivua ei löytynyt')
   })
 
+  it('sanasto on jaettu aiheisiin ja haku suodattaa termit', async () => {
+    const user = userEvent.setup()
+    renderAt('/sanasto')
+    expect(screen.getByRole('heading', { level: 2, name: 'Git ja GitHub' })).toBeInTheDocument()
+    const search = screen.getByRole('searchbox', { name: 'Hae sanastosta' })
+    await user.type(search, 'brew')
+    expect(screen.getByText('Löytyi 1 termi.')).toBeInTheDocument()
+    expect(screen.getByText('Homebrew')).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { level: 2, name: 'Git ja GitHub' })).not.toBeInTheDocument()
+    // Haku löytää myös ilman ä-kirjaimia, ja selityksistä: terminaalin selitys mainitsee Päätteen.
+    await user.clear(search)
+    await user.type(search, 'paate')
+    expect(screen.getByText('Pääte')).toBeInTheDocument()
+    expect(screen.getByText('terminaali')).toBeInTheDocument()
+    await user.clear(screen.getByRole('searchbox'))
+    await user.type(screen.getByRole('searchbox'), 'xyzzy')
+    expect(screen.getByText(/Haulla ”xyzzy” ei löytynyt termejä/)).toBeInTheDocument()
+  })
+
   it('sanasto, vianmääritys, merkit ja asetukset avautuvat', () => {
     for (const [route, title] of [
       ['/sanasto', 'Sanasto'],

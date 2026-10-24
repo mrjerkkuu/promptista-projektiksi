@@ -1,180 +1,219 @@
 {
   "vibekoodaus": {
     "term": "vibekoodaus",
+    "category": "tekoaly",
     "definition": "Ohjelmointitapa, jossa tekoäly kirjoittaa koodin ja ihminen ohjaa kertomalla omin sanoin, mitä haluaa. Englanniksi vibe coding.",
     "readMore": "https://en.wikipedia.org/wiki/Vibe_coding"
   },
   "claude-code": {
     "term": "Claude Code",
+    "category": "tekoaly",
     "definition": "Anthropicin tekoälyavustaja, joka toimii terminaalissa ja osaa lukea ja muokata tiedostoja sekä ajaa komentoja koneellasi, kun annat siihen luvan.",
     "readMore": "https://code.claude.com/docs/en/overview"
   },
   "kielimalli": {
     "term": "kielimalli",
+    "category": "tekoaly",
     "definition": "Tekoälyohjelma, joka on opetettu valtavalla määrällä tekstiä ja osaa siksi tuottaa tekstiä ja koodia. Claude on kielimalli.",
     "readMore": "https://fi.wikipedia.org/wiki/Suuri_kielimalli"
   },
   "agentti": {
     "term": "agentti",
+    "category": "tekoaly",
     "definition": "Tekoäly, joka ei vain vastaa vaan myös tekee: lukee ja luo tiedostoja ja ajaa komentoja tavoitteen saavuttamiseksi."
   },
   "prompti": {
     "term": "prompti",
+    "category": "tekoaly",
     "definition": "Teksti, jolla kerrot tekoälylle, mitä haluat. Kehote tai ohje, englanniksi prompt."
   },
   "terminaali": {
     "term": "terminaali",
+    "category": "terminaali",
     "definition": "Ohjelma, jossa annat tietokoneelle käskyjä kirjoittamalla hiiren napsauttelun sijaan. Windowsilla PowerShell, Macilla Pääte.",
     "readMore": "https://fi.wikipedia.org/wiki/Komentorivi"
   },
   "komento": {
     "term": "komento",
+    "category": "terminaali",
     "definition": "Terminaaliin kirjoitettava käsky, esimerkiksi git --version. Komento suoritetaan, kun painat Enteriä."
   },
   "kehote": {
     "term": "kehote",
+    "category": "terminaali",
     "definition": "Terminaalin rivin alussa oleva teksti, joka kertoo, että terminaali odottaa komentoa. Se näyttää usein myös, missä kansiossa olet."
   },
   "powershell": {
     "term": "PowerShell",
+    "category": "terminaali",
     "definition": "Microsoftin terminaaliohjelma. Windowsissa on valmiina vanha Windows PowerShell 5.1, mutta tässä oppaassa käytetään uudempaa PowerShell 7:ää.",
     "readMore": "https://learn.microsoft.com/en-us/powershell/scripting/overview"
   },
   "paate": {
     "term": "Pääte",
+    "category": "terminaali",
     "definition": "Macin valmiina oleva terminaaliohjelma, englanniksi Terminal. Löytyy Ohjelmat-kansion Lisäohjelmat-kansiosta.",
     "readMore": "https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac"
   },
   "kansio": {
     "term": "kansio",
+    "category": "tiedostot",
     "definition": "Säilytyspaikka tiedostoille ja toisille kansioille, kuin mappi. Englanniksi folder tai directory."
   },
   "tiedosto": {
     "term": "tiedosto",
+    "category": "tiedostot",
     "definition": "Yksi tallennettu kokonaisuus, esimerkiksi teksti, kuva tai verkkosivun koodi. Tiedoston nimen loppu (esim. .html) kertoo sen tyypin."
   },
   "polku": {
     "term": "polku",
+    "category": "tiedostot",
     "definition": "Kansion tai tiedoston osoite tietokoneella, esimerkiksi C:\\Users\\maija\\projektit (Windows) tai /Users/maija/projektit (Mac)."
   },
   "kotikansio": {
     "term": "kotikansio",
+    "category": "tiedostot",
     "definition": "Oma käyttäjäkansiosi, jossa ovat esimerkiksi Työpöytä, Tiedostot ja Lataukset. Terminaalissa sitä merkitään aaltoviivalla ~."
   },
   "path": {
     "term": "PATH",
+    "category": "terminaali",
     "definition": "Tietokoneen asetus, joka kertoo terminaalille, mistä kansioista ohjelmia etsitään. Asennus lisää ohjelman PATHiin, ja terminaali lukee asetuksen käynnistyessään.",
     "readMore": "https://en.wikipedia.org/wiki/PATH_(variable)"
   },
   "winget": {
     "term": "WinGet",
+    "category": "terminaali",
     "definition": "Windowsin oma pakettienhallinta, jolla ohjelmia voi asentaa yhdellä komennolla (winget install).",
     "readMore": "https://learn.microsoft.com/en-us/windows/package-manager/winget/"
   },
   "homebrew": {
     "term": "Homebrew",
+    "category": "terminaali",
     "definition": "Macin suosittu pakettienhallinta, jolla ohjelmia asennetaan komennolla brew install.",
     "readMore": "https://brew.sh/"
   },
   "git": {
     "term": "Git",
+    "category": "git",
     "definition": "Versionhallintaohjelma, joka tallentaa projektistasi tallennuspisteitä. Niiden avulla näet, mitä on muuttunut, ja voit palata aiempaan versioon.",
     "readMore": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
   },
   "commit": {
     "term": "commit",
+    "category": "git",
     "definition": "Gitin tallennuspiste: tallennettu tilannekuva projektin tiedostoista ja lyhyt viesti siitä, mitä muutettiin."
   },
   "github": {
     "term": "GitHub",
+    "category": "git",
     "definition": "Verkkopalvelu, jossa Git-projekteja säilytetään pilvessä. Sieltä projektin voi jakaa muille ja julkaista verkkosivuna.",
     "readMore": "https://docs.github.com/en/get-started/start-your-journey/about-github-and-git"
   },
   "repo": {
     "term": "repo",
+    "category": "git",
     "definition": "Lyhenne sanasta repositorio: yhden projektin kansio, jonka historiaa Git seuraa. GitHubissa jokaisella projektilla on oma repo."
   },
   "push": {
     "term": "push",
+    "category": "git",
     "definition": "Komento git push lähettää koneellasi tehdyt commitit GitHubiin talteen."
   },
   "gh": {
     "term": "GitHub CLI",
+    "category": "git",
     "definition": "GitHubin oma komentorivityökalu (gh), jolla voi kirjautua GitHubiin ja luoda repoja terminaalista.",
     "readMore": "https://cli.github.com/"
   },
   "kaksivaiheinen-tunnistautuminen": {
     "term": "kaksivaiheinen tunnistautuminen",
+    "category": "tietoturva",
     "definition": "Kirjautuminen, jossa salasanan lisäksi tarvitaan toinen varmistus, esimerkiksi puhelimen sovelluksen näyttämä koodi. Englanniksi two-factor authentication (2FA).",
     "readMore": "https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-two-factor-authentication"
   },
   "vs-code": {
     "term": "VS Code",
+    "category": "tiedostot",
     "definition": "Visual Studio Code, ilmainen koodieditori. Siinä näet projektisi tiedostot ja voit lukea ja muokata koodia.",
     "readMore": "https://code.visualstudio.com/docs"
   },
   "plan-mode": {
     "term": "plan mode",
+    "category": "tekoaly",
     "definition": "Claude Coden suunnittelutila, jossa Claude tutkii ja ehdottaa muutoksia mutta ei vielä tee niitä.",
     "readMore": "https://code.claude.com/docs/en/permission-modes"
   },
   "claude-md": {
     "term": "CLAUDE.md",
+    "category": "tekoaly",
     "definition": "Projektikansion tekstitiedosto, jonka Claude Code lukee jokaisen keskustelun alussa. Siihen kirjoitetaan projektin pysyvät ohjeet.",
     "readMore": "https://code.claude.com/docs/en/memory"
   },
   "markdown": {
     "term": "Markdown",
+    "category": "tiedostot",
     "definition": "Yksinkertainen tapa muotoilla tekstiä tavallisilla merkeillä: esimerkiksi # tekee otsikon ja - luettelon. Tiedostopääte on .md.",
     "readMore": "https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax"
   },
   "lupa": {
     "term": "lupakysely",
+    "category": "tekoaly",
     "definition": "Claude Coden kysymys ennen kuin se muokkaa tiedostoa tai ajaa komennon. Sinä päätät, sallitko toimenpiteen.",
     "readMore": "https://code.claude.com/docs/en/permissions"
   },
   "api-avain": {
     "term": "API-avain",
+    "category": "tietoturva",
     "definition": "Salainen merkkijono, jolla ohjelma tunnistautuu jonkin palvelun rajapintaan. Sitä pitää käsitellä kuin salasanaa."
   },
   "env-tiedosto": {
     "term": ".env-tiedosto",
+    "category": "tietoturva",
     "definition": "Tiedosto, johon salaisuudet kuten API-avaimet tallennetaan erilleen koodista. Sitä ei koskaan lähetetä GitHubiin."
   },
   "gitignore": {
     "term": ".gitignore",
+    "category": "git",
     "definition": "Tiedosto, joka kertoo Gitille, mitä tiedostoja ei seurata eikä lähetetä GitHubiin, esimerkiksi .env.",
     "readMore": "https://docs.github.com/en/get-started/git-basics/ignoring-files"
   },
   "konteksti": {
     "term": "konteksti",
+    "category": "tekoaly",
     "definition": "Kaikki se, mitä Claude ”pitää mielessään” keskustelun aikana: viestit, luetut tiedostot ja komentojen tulokset. Kontekstin koko on rajallinen."
   },
   "tokeni": {
     "term": "tokeni",
+    "category": "tekoaly",
     "definition": "Pieni tekstin pala, jonka mukaan kielimalli laskee tekstin määrää. Yksi sana voi olla yksi tai useampi tokeni."
   },
   "html": {
     "term": "HTML",
+    "category": "verkkosivut",
     "definition": "Verkkosivun rakenne ja sisältö: otsikot, tekstit, kuvat ja linkit. Tiedostopääte on .html.",
     "readMore": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content"
   },
   "css": {
     "term": "CSS",
+    "category": "verkkosivut",
     "definition": "Verkkosivun ulkoasu: värit, fontit, välistykset ja asettelu. Tiedostopääte on .css.",
     "readMore": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Styling_the_content"
   },
   "javascript": {
     "term": "JavaScript",
+    "category": "verkkosivut",
     "definition": "Ohjelmointikieli, joka tekee verkkosivusta toiminnallisen, esimerkiksi painikkeet ja pelit. Tiedostopääte on .js.",
     "readMore": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Adding_interactivity"
   },
   "staattinen-sivu": {
     "term": "staattinen verkkosivu",
+    "category": "verkkosivut",
     "definition": "Sivu, joka koostuu valmiista HTML-, CSS- ja JavaScript-tiedostoista ilman palvelinta tai tietokantaa. Selain avaa sen sellaisenaan."
   },
   "github-pages": {
     "term": "GitHub Pages",
+    "category": "verkkosivut",
     "definition": "GitHubin ilmainen palvelu, joka julkaisee repon staattisen verkkosivun omaan osoitteeseen.",
     "readMore": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
   }

@@ -34,7 +34,7 @@ function makeFixture(): string {
   write('commands.json', {
     'check-git': { description: 'Versio', windows: 'git --version', mac: 'git --version', source: 'https://git-scm.com/', verifiedAt: '2026-10-24' },
   })
-  write('glossary.json', { git: { term: 'Git', definition: 'Versionhallinta.' } })
+  write('glossary.json', { git: { term: 'Git', category: 'git', definition: 'Versionhallinta.' } })
   write('missions.json', {
     'm-1': { title: 'T', goal: 'G', success: 'S', conditions: [{ type: 'cwdIs', path: '~/projekti' }] },
   })
