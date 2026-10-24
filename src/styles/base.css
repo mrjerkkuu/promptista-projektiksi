@@ -322,18 +322,19 @@ img {
 }
 
 /* Linkkikortti nousee hoverissa. */
-/* Nousu tehdään top-siirtymällä eikä transformilla: transform piirtää kortin
-   animaation ajaksi kuvana omalle kerrokselleen, ja teksti sumenee. */
+/* Nousu tehdään transformilla, jotta kortti ja teksti liikkuvat yhtenä kuvana
+   (top-siirtymässä teksti hyppi kokonaisiin pikseleihin eri tahtiin kuin
+   kortti). will-change pitää kortin omalla kerroksellaan koko ajan, joten
+   tekstin piirto ei vaihdu animaation alussa eikä teksti sumene. */
 .card--link {
-  position: relative;
-  top: 0;
+  will-change: transform;
   transition:
-    top var(--duration-medium) var(--easing-spring),
+    transform var(--duration-medium) var(--easing-spring),
     box-shadow var(--duration-medium) var(--easing-standard);
 }
 
 .card--link:hover {
-  top: -4px;
+  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
 
