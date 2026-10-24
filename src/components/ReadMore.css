@@ -1,0 +1,17 @@
+.read-more {
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  background: var(--color-surface);
+}
+
+.read-more__summary {
+  cursor: pointer;
+  padding: var(--space-3) var(--space-4);
+  font-weight: var(--font-weight-bold);
+  min-height: var(--tap-target-min);
+}
+
+.read-more__body {
+  padding: 0 var(--space-4) var(--space-2);
+}

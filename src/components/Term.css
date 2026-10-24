@@ -1,0 +1,40 @@
+.term {
+  position: relative;
+  display: inline;
+}
+
+.term__button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: help;
+  text-decoration: underline dotted;
+  text-decoration-thickness: var(--term-underline-width);
+  text-underline-offset: 0.2em;
+}
+
+.term__popover {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: var(--z-popover);
+  display: block;
+  width: max-content;
+  max-width: min(20rem, calc(100vw - 2 * var(--page-gutter)));
+  margin-top: var(--space-1);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-normal);
+}
+
+.term__popover[hidden] {
+  display: none;
+}

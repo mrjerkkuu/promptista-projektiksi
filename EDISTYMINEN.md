@@ -23,11 +23,14 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajetaan taustalla heti a
 
 ## Loki
 
-(Päivitetään jokaisen vaiheen jälkeen.)
+- **Vaihe 1 valmis** (commit "Vaihe 1"): package.json, Vite 8 + React 19 + TS 6, ESLint 9 (+ jsx-a11y), Vitest 5 + Testing Library, tokens.css + base.css, CLAUDE.md, SUUNNITELMA.md (litteroitu PDF:stä). `npm run check` = lint + test + build.
+- **Komentojen tarkistus valmis:** taustalla ajettu tarkistus virallisista lähteistä, tulokset tiedostossa `docs/komentojen-tarkistus.md` (kaksi kierrosta). Ei virallista lähdettä Macin `open index.html` -komennolle, joten se merkitään TODO:ksi tai jätetään pois.
+- **Vaihe 2 valmis:** `src/schemas/content.ts` (zod), `src/content/index.ts` (import.meta.glob), `scripts/validate-content.ts` (Vite-plugin + 16 testiä). path.json kirjoitettu lopullisena, ja moduulien index.mdx-tiedostot ovat väliaikaisia tynkiä, jotka korvataan vaiheessa 8. commands.json on jo tarkistettu.
+- **Vaihe 3 valmis:** `src/features/progress/` (schema, storage, model, reducer, ProgressContext) + testit. Tallennus tapahtuu dispatchin yhteydessä, ei effectissä.
 
 ## Seuraavaksi
 
-Vaihe 1.
+Vaihe 4: peruskomponentit (Os, Command, Term, ReadMore, Quiz, VerifyStep, Tip).
 
 ## Avoimet ongelmat
 
