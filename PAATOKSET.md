@@ -130,3 +130,8 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 69. **Linkkikortin nousu hoverissa tehdään `top`-siirtymällä, ei `transform`illa.** Transform-animaatio sumensi etusivun polkukortin tekstin animaation ajaksi.
 70. **Nuppu on vaalea myös tummassa teemassa.** `Nuppu.css` ohjaa SVG:n käyttämät värimuuttujat Nupun omiin tokeneihin (`--color-nuppu-*`), joita tumma teema ei korvaa. Tummassa teemassa Nupulla on lisäksi ohut vaalea ääriviiva (tarra, `drop-shadow`-ketju), jotta tummat kädet, jalat ja varsi erottuvat tummasta taustasta.
 71. **Alatunnisteessa on tekijänoikeusrivi** ”© 2026 Jeremia Vepsäläinen” (sama kuin LICENSE-tiedostossa).
+
+## Jälkikorjaukset
+
+72. **Macin `open index.html` (`open-file-mac`) on tarkistettu** (24.10.2026). Omistaja vahvisti komennon oikeaksi, ja `verifiedAt` on nyt päivämäärä, joten build ei enää varoita siitä. Lähdelinkki on ennallaan. Kohdan 36 TODO on näin hoidettu.
+73. **Polkusivun aiheet ovat avattavia ja aluksi kiinni.** Avatut aiheet muistetaan istunnon ajan sessionStoragessa (avain `pp-open-topics`, arvona `polku/aihe`-tunnisteet). Tämä on käyttömukavuutta eikä edistymistä: `pp-progress-v1` ja sen skeema ovat ennallaan. Jos sessionStorage ei toimi, aiheet ovat vain kiinni.

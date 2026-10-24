@@ -41,7 +41,7 @@ Kaikki vaiheet on tehty. Seuraavaksi omistaja tarkistaa työn (lista alla). Sen 
 
 ## Avoimet ongelmat
 
-1. **Macin `open index.html` (commands.json: `open-file-mac`) on tarkistamatta.** Applen virallinen Terminal-ohje näyttää vain muodon `open -a MyProg.app`, eikä tiedoston avaamista kuvaavaa virallista lähdettä löytynyt. Komento on merkitty `verifiedAt: "TODO"`, ja build tulostaa siitä varoituksen. Oppitunnilla 3.3 neuvotaan rinnalla avaamaan tiedosto Finderista.
+Ei avoimia ongelmia. Macin `open index.html` (`open-file-mac`) on nyt tarkistettu (ks. PAATOKSET.md, kohta 72).
 
 ---
 
@@ -79,7 +79,7 @@ Suunnitelman luvun 13 kaikki kymmenen vaihetta on toteutettu, ja jokainen on oma
 
 ### Avoimet ongelmat
 
-1. `open-file-mac` (`open index.html`) on tarkistamatta, ks. yllä. Muita avoimia ongelmia ei jäänyt. Kaikki vaiheet menivät läpi ilman kiertoteitä.
+1. `open-file-mac` (`open index.html`) oli tarkistamatta. Omistaja tarkisti sen myöhemmin (ks. PAATOKSET.md, kohta 72). Muita avoimia ongelmia ei jäänyt. Kaikki vaiheet menivät läpi ilman kiertoteitä.
 
 ### Tarkista nämä ennen julkaisua
 
