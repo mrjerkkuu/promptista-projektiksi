@@ -78,6 +78,34 @@
   padding: var(--space-4);
 }
 
+/* Puhekupla Nupun alla. Häntä on kiertynyt neliö, jonka kaksi reunaa jatkaa kuplan reunaa. */
+.hero__nuppu-intro {
+  position: relative;
+  margin: var(--space-3) 0 0;
+  padding: var(--space-3) var(--space-4);
+  max-width: 100%;
+  background: var(--color-primary-soft);
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  text-align: center;
+}
+
+.hero__nuppu-intro::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-2) * -1 - var(--border-width));
+  left: 50%;
+  width: var(--space-3);
+  height: var(--space-3);
+  margin-left: calc(var(--space-3) / -2);
+  background: var(--color-primary-soft);
+  border-top: var(--border-width) solid var(--color-border-subtle);
+  border-left: var(--border-width) solid var(--color-border-subtle);
+  transform: rotate(45deg);
+}
+
 .hero__os-picker {
   align-self: stretch;
 }
