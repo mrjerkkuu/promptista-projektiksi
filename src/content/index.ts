@@ -105,3 +105,11 @@ export function getModuleByKey(key: string): ModuleEntry | undefined {
   const [pathId, moduleId] = key.split('/')
   return getModule(pathId, moduleId)
 }
+
+/** Polun seuraava moduuli suositellussa järjestyksessä, tai undefined, jos moduuli on polun viimeinen. */
+export function getNextModule(key: string): ModuleEntry | undefined {
+  const module = getModuleByKey(key)
+  if (!module) return undefined
+  const modules = getPath(module.pathId)!.modules
+  return modules[modules.indexOf(module) + 1]
+}

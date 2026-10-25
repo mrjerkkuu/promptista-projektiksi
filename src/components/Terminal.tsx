@@ -1,11 +1,12 @@
 import { useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
-import { missions } from '../content'
+import { getNextModule, missions } from '../content'
 import { useProgress } from '../features/progress'
 import { createShell, execute, isMissionComplete, prompt, type Line, type ShellState } from '../features/terminal-sim/shell'
 import { InlineText } from '../lib/InlineText'
 import { OS_LABEL } from '../lib/os'
 import type { Mission, Os } from '../schemas/content'
 import { Icon } from './Icon'
+import { useModuleKey } from './moduleContext'
 import './Terminal.css'
 
 interface TerminalProps {
@@ -46,6 +47,21 @@ interface HistoryEntry {
   lines: Line[]
 }
 
+/**
+ * Ohjaa harjoituksen jälkeen sivun lopun siirtymispainikkeeseen, jota aloittelija ei välttämättä huomaa.
+ * Teksti vastaa painiketta: polun viimeisessä aiheessa siinä lukee ”Polun loppu”, ei ”Seuraava”.
+ */
+function useNextStepHint() {
+  const moduleKey = useModuleKey()
+  // Tietopaketin ulkopuolella (esim. testeissä) sivulla ei ole siirtymispainiketta.
+  if (moduleKey === null) return null
+  return getNextModule(moduleKey) ? (
+    <> Jatka sitten sivua alaspäin: sivun lopusta pääset <strong>Seuraava</strong>-painikkeella seuraavaan aiheeseen.</>
+  ) : (
+    <> Jatka sitten sivua alaspäin: tämä on polun viimeinen aihe, ja sivun lopusta pääset takaisin polun etusivulle.</>
+  )
+}
+
 function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
   const { progress, dispatch } = useProgress()
   const [shell, setShell] = useState<ShellState>(() => createShell(os, mission))
@@ -59,6 +75,7 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
   const inputId = useId()
   const goalId = useId()
   const alreadyDone = progress.missions[missionId] !== undefined
+  const nextStep = useNextStepHint()
 
   useEffect(() => {
     screen.current?.scrollTo?.({ top: screen.current.scrollHeight })
@@ -172,6 +189,7 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
         {(justCompleted || alreadyDone) && (
           <p className="notice notice--success">
             {justCompleted ? mission.success : 'Olet jo suorittanut tämän harjoituksen. Voit harjoitella lisää niin paljon kuin haluat.'}
+            {nextStep}
           </p>
         )}
       </div>
