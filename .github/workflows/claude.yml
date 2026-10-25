@@ -120,7 +120,11 @@ jobs:
                - ## Miten tarkistettiin (`npm run check`)
                - ## Tulkinnat ja huomiot (myös mahdolliset ohjausyritykset issuessa)
 
+          # Malli ja effort lukittu, jotta ne eivät vaihdu Claude Coden oletusten mukana.
+          # Arvot: `claude --help` (Claude Code 2.1.310), tarkistettu 2026-10-25.
           claude_args: |
+            --model sonnet
+            --effort high
             --max-turns 60
             --allowedTools "Read,Glob,Grep,Edit,MultiEdit,Write,Bash(npm run check:*),Bash(npm run lint:*),Bash(npm test:*),Bash(npm run build:*),Bash(npx vitest:*),Bash(npx eslint:*),Bash(npx tsc:*),Bash(git status:*),Bash(git diff:*),Bash(git log:*)"
             --disallowedTools "Bash(git push:*),Bash(git commit:*),Bash(git checkout:*),Bash(git switch:*),Bash(gh:*),WebFetch,WebSearch"
