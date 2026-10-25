@@ -179,3 +179,7 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 ## Nupun esittely (25.10.2026)
 
 97. **Nuppu esittelee itsensä etusivun herossa puhekuplalla Nupun alla** (”Moi, olen Nuppu! Kuljen mukanasi koko polun alusta loppuun.”). Teksti on tavallista tekstiä (`<p>`), koska Nupun SVG on koriste (`aria-hidden`). Kupla näkyy aina, myös käyttöjärjestelmän valinnan jälkeen, eikä sillä ole tallennettavaa tilaa (ei ”älä näytä enää” -valintaa). Teksti ei lupaa muuta kuin sen, mitä Nuppu jo tekee (kulkee mukana sivustolla). Kuplan värit, välit ja pyöristys tulevat `tokens.css`:stä. Tallennukseen ei tehty muutoksia.
+
+## Nupun asento sanastossa (25.10.2026)
+
+98. **Sanaston otsikon Nuppu vilkuttaa (`vilkuttaa`) osoittamisen sijaan** (palaute: issue #7). Muutos on vain asennon vaihto `GlossaryPage.tsx`:ssä; kuvan koko (110 px) ja muu ulkoasu ovat ennallaan. Kuva on koriste, joten saavutettavuus ei muutu. `design-handoff/`-kansion ohjetta (kohta ”Käyttökohteet”) ei muutettu, koska se on suunnittelun luovutusaineisto. Tallennukseen ei tehty muutoksia.
