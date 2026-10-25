@@ -26,6 +26,18 @@ describe('sivut', () => {
     expect(screen.getByRole('link', { name: /Aloita tästä: 0.1/ })).toBeInTheDocument()
   })
 
+  it('Nuppu esittelee itsensä tekstinä sekä ensikäynnillä että käyttöjärjestelmän valinnan jälkeen', () => {
+    const { unmount } = renderAt('/')
+    expect(screen.getByText('Kumpaa tietokonetta käytät?')).toBeInTheDocument()
+    expect(screen.getByText('Moi, olen Nuppu!').closest('p')).toHaveTextContent('Kuljen mukanasi koko polun alusta loppuun.')
+    unmount()
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), os: 'mac' }))
+    renderAt('/')
+    expect(screen.queryByText('Kumpaa tietokonetta käytät?')).not.toBeInTheDocument()
+    expect(screen.getByText('Moi, olen Nuppu!').closest('p')).toHaveTextContent('Kuljen mukanasi koko polun alusta loppuun.')
+  })
+
   it('jatka-painike vie seuraavaan keskeneräiseen moduuliin', () => {
     localStorage.setItem(
       STORAGE_KEY,
