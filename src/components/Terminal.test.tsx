@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
-import { renderWithProviders, storedProgress } from '../test/render'
+import { placeFromKey, renderWithProviders, storedProgress } from '../test/render'
 import { ModuleContext } from './moduleContext'
 import { Terminal } from './Terminal'
 
@@ -64,12 +64,23 @@ describe('<Terminal>', () => {
     ['claude-code/julkaise', /polun viimeinen aihe/],
   ])('ohjaa onnistumisen jälkeen sivun lopun painikkeeseen (%s)', (moduleKey, expected) => {
     renderWithProviders(
-      <ModuleContext.Provider value={moduleKey}>
+      <ModuleContext.Provider value={placeFromKey(moduleKey)}>
         <Terminal mission="luo-projektikansio" />
       </ModuleContext.Provider>,
       { progress: { os: 'mac', missions: { 'luo-projektikansio': '2026-10-24T10:00:00.000Z' } } },
     )
     expect(screen.getByText(expected)).toBeInTheDocument()
+  })
+
+  it('yhteisessä aiheessa vihje katsoo polkua, jolla kävijä on, eikä edistymisen avainta', () => {
+    // Avain on aiheen "terminaali", mutta kävijä on polun viimeisellä aiheella: seuraavaa aihetta ei ole.
+    renderWithProviders(
+      <ModuleContext.Provider value={{ key: 'claude-code/terminaali', pathId: 'claude-code', moduleId: 'julkaise' }}>
+        <Terminal mission="luo-projektikansio" />
+      </ModuleContext.Provider>,
+      { progress: { os: 'mac', missions: { 'luo-projektikansio': '2026-10-24T10:00:00.000Z' } } },
+    )
+    expect(screen.getByText(/polun viimeinen aihe/)).toBeInTheDocument()
   })
 
   it('ei näytä siirtymisohjetta tietopaketin ulkopuolella', () => {

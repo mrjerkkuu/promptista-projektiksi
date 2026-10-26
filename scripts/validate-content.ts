@@ -6,8 +6,11 @@ import {
   badgesFileSchema,
   commandsFileSchema,
   glossaryFileSchema,
+  isModuleRef,
   missionsFileSchema,
+  moduleEntryId,
   osSchema,
+  parseModuleRef,
   pathSchema,
   quizSchema,
   troubleshootingFileSchema,
@@ -20,7 +23,8 @@ import {
  *
  * Tarkistaa kaikki JSON-tiedostot zod-skeemoilla ja kaikki viittaukset
  * tiedostojen välillä: MDX-komponenttien id:t, visat, merkkien ehdot,
- * vianmääritys ja polkujen kansiorakenne. Palauttaa listan virheistä.
+ * vianmääritys, polkujen kansiorakenne ja polkujen väliset viittaukset.
+ * Palauttaa listan virheistä.
  */
 
 export interface ValidationResult {
@@ -111,7 +115,7 @@ export function validateContent(contentDir: string): ValidationResult {
 
   // Varmistusten viittaukset
   for (const [id, step] of Object.entries(verify)) {
-    if (!commands[step.command]) errors.push(`verify.json: "${id}" viittaa tuntemattomaan komentoon "${step.command}"`)
+    if (step.command && !commands[step.command]) errors.push(`verify.json: "${id}" viittaa tuntemattomaan komentoon "${step.command}"`)
     for (const o of step.options) {
       const refs = o.troubleshooting === undefined ? [] : typeof o.troubleshooting === 'string' ? [o.troubleshooting] : Object.values(o.troubleshooting)
       for (const ref of refs) {
@@ -123,7 +127,11 @@ export function validateContent(contentDir: string): ValidationResult {
   // Polut
   const pathsDir = file('paths')
   const paths = new Map<string, LearningPathMeta>()
+  /** Aiheiden avaimet ("<polku>/<aihe>") ja tietopaketit. Viittaukset eivät ole aiheita, joten ne eivät ole tässä. */
+  const moduleSources = new Map<string, { mdxFile: string; source: string }>()
   const moduleRefs = new Set<string>()
+  /** Polkujen viittaukset toisten polkujen aiheisiin. Tarkistetaan, kun kaikki polut on luettu. */
+  const sharedRefs: { pathId: string; ref: string }[] = []
   const usedTerms = new Set<string>()
   for (const pathDirName of listDirs(pathsDir)) {
     const pathDir = path.join(pathsDir, pathDirName)
@@ -135,6 +143,11 @@ export function validateContent(contentDir: string): ValidationResult {
     const listed = new Set<string>()
     for (const topic of meta.topics) {
       for (const mod of topic.modules) {
+        // Viittauksella ei ole omaa kansiota: tietopaketti on alkuperäisen polun kansiossa.
+        if (isModuleRef(mod)) {
+          sharedRefs.push({ pathId: meta.id, ref: mod.ref })
+          continue
+        }
         listed.add(`${topic.id}/${mod.id}`)
         moduleRefs.add(`${meta.id}/${mod.id}`)
         const modDir = path.join(pathDir, topic.id, mod.id)
@@ -148,6 +161,7 @@ export function validateContent(contentDir: string): ValidationResult {
         if (hasQuiz) parseFile(quizSchema, quizFile, errors)
 
         const source = fs.readFileSync(mdxFile, 'utf8')
+        moduleSources.set(`${meta.id}/${mod.id}`, { mdxFile, source })
         if (/^# /m.test(stripCode(source))) errors.push(rel(mdxFile) + ': älä käytä #-pääotsikkoa (sivu näyttää otsikon path.jsonista), aloita väliotsikot ##-tasolta')
         const tags = findTags(source)
         let quizTags = 0
@@ -199,6 +213,48 @@ export function validateContent(contentDir: string): ValidationResult {
     }
   }
   if (paths.size === 0) errors.push('paths/: yhtään oppimispolkua ei löytynyt')
+  // Sama järjestysnumero kahdella polulla tekisi valintasivun järjestyksestä sattumanvaraisen.
+  const pathsByOrder = new Map<number, string>()
+  for (const p of paths.values()) {
+    const other = pathsByOrder.get(p.order)
+    if (other) errors.push(`paths/${p.id}/path.json: order ${p.order} on jo polulla "${other}"`)
+    else pathsByOrder.set(p.order, p.id)
+  }
+
+  // Yhteiset aiheet (SUUNNITELMA.md 15.3)
+  for (const { pathId, ref } of sharedRefs) {
+    const where = `paths/${pathId}/path.json: viittaus "${ref}"`
+    const target = parseModuleRef(ref)
+    const targetPath = paths.get(target.pathId)
+    if (!targetPath) {
+      errors.push(`${where}: tuntematon polku "${target.pathId}"`)
+      continue
+    }
+    const targetEntry = targetPath.topics.flatMap((t) => t.modules).find((m) => moduleEntryId(m) === target.moduleId)
+    if (!targetEntry) {
+      errors.push(`${where}: polulla "${target.pathId}" ei ole aihetta "${target.moduleId}"`)
+      continue
+    }
+    if (isModuleRef(targetEntry)) {
+      errors.push(`${where}: kohde on itsekin viittaus ("${targetEntry.ref}"). Viittaa suoraan alkuperäiseen aiheeseen.`)
+      continue
+    }
+    // Linkki tietyn polun aiheeseen veisi toisen polun kävijän väärälle polulle.
+    const shared = moduleSources.get(ref)
+    if (shared && /#\/polku\//.test(stripCode(shared.source))) {
+      errors.push(
+        `${rel(shared.mdxFile)}: aihe on yhteinen (myös polulla "${pathId}"), joten siinä ei saa olla linkkejä tietyn polun aiheisiin (#/polku/…)`,
+      )
+    }
+  }
+
+  // Merkkien ja vianmäärityksen polut
+  for (const [id, badge] of Object.entries(badges)) {
+    if (badge.path && !paths.has(badge.path)) errors.push(`badges.json: "${id}" tuntematon polku "${badge.path}"`)
+  }
+  for (const [id, entry] of Object.entries(troubleshooting)) {
+    if (entry.path && !paths.has(entry.path)) errors.push(`troubleshooting.json: "${id}" tuntematon polku "${entry.path}"`)
+  }
 
   // Merkkien ehdot
   for (const [id, badge] of Object.entries(badges)) {
@@ -209,7 +265,12 @@ export function validateContent(contentDir: string): ValidationResult {
         for (const m of c.missions) if (!missions[m]) errors.push(`${where} tuntematon missio "${m}"`)
         break
       case 'modulesComplete':
-        for (const m of c.modules) if (!moduleRefs.has(m)) errors.push(`${where} tuntematon moduuli "${m}"`)
+        for (const m of c.modules) {
+          if (moduleRefs.has(m)) continue
+          // Edistyminen tallentuu alkuperäisellä avaimella, joten merkki viittaa siihen eikä viittaavan polun avaimeen.
+          const shared = sharedRefs.find((r) => `${r.pathId}/${parseModuleRef(r.ref).moduleId}` === m)
+          errors.push(shared ? `${where} moduuli "${m}" on viittaus: käytä alkuperäistä avainta "${shared.ref}"` : `${where} tuntematon moduuli "${m}"`)
+        }
         break
       case 'topicComplete': {
         const p = paths.get(c.path)

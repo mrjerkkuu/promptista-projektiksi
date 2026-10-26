@@ -20,16 +20,20 @@ if (!executablePath) {
   process.exit(1)
 }
 
-const pathJson = JSON.parse(fs.readFileSync('src/content/paths/claude-code/path.json', 'utf8'))
-const moduleRoutes = pathJson.topics.flatMap((t) => t.modules.map((m) => `/polku/claude-code/${m.id}`))
-const routes = ['/', '/polku/claude-code', '/sanasto', '/vianmaaritys', '/merkit', '/asetukset', '/palaute', ...moduleRoutes]
+// Kaikki polut ja niiden aiheet. Viittauksen ({ "ref": "<polku>/<aihe>" }) tunniste on viittauksen jälkiosa.
+const pathsDir = 'src/content/paths'
+const pathJsons = fs.readdirSync(pathsDir).map((dir) => JSON.parse(fs.readFileSync(path.join(pathsDir, dir, 'path.json'), 'utf8')))
+const moduleRoutes = pathJsons.flatMap((p) => p.topics.flatMap((t) => t.modules.map((m) => `/polku/${p.id}/${m.ref ? m.ref.split('/')[1] : m.id}`)))
+const pathRoutes = pathJsons.map((p) => `/polku/${p.id}`)
+const routes = ['/', '/polut', ...pathRoutes, '/sanasto', '/vianmaaritys', '/merkit', '/asetukset', '/palaute', ...moduleRoutes]
 
 const server = await preview({ preview: { port: 4179, strictPort: true } })
 const base = server.resolvedUrls.local[0]
 const shotDir = path.resolve('.lighthouse/mobile')
 fs.mkdirSync(shotDir, { recursive: true })
 
-const browser = await puppeteer.launch({ executablePath, headless: true })
+// Root-käyttäjänä (esim. kontit ja pilviympäristöt) Chrome ei käynnisty ilman --no-sandbox-valintaa.
+const browser = await puppeteer.launch({ executablePath, headless: true, args: process.getuid?.() === 0 ? ['--no-sandbox'] : [] })
 const problems = []
 try {
   for (const os of ['windows', 'mac']) {

@@ -111,7 +111,8 @@
   color: var(--color-text);
 }
 
-.site-nav__link[aria-current='page'] {
+.site-nav__link[aria-current='page'],
+.site-nav__link--section {
   background: var(--color-surface);
   color: var(--color-link);
   font-weight: var(--font-weight-bold);

@@ -35,9 +35,36 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajettiin taustalla heti 
 - **Vaihe 9 valmis:** axe-testit, kontrastitestit, `npm run check:mobile`, `npm run lighthouse`, CLS-korjaus.
 - **Vaihe 10 valmis:** `.github/workflows/deploy.yml`, README.md, CONTRIBUTING.md, LICENSE, `engines.node`. Lisäksi kokeiltiin, että uusi polku löytyy ilman koodimuutoksia.
 
+## Laajennus: useampi oppimispolku ja työpöytäpolku (26.10.2026)
+
+Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 106–131.
+
+| Vaihe | Sisältö | Tila |
+|---|---|---|
+| 11 | Suunnitelma ja päätökset | ✅ |
+| 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ✅ |
+| 13 | Yhteiset aiheet (`ref`) + validointi + testit | ✅ |
+| 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ✅ |
+| 15 | Polun `claude-code-desktop` sisältö | ✅ (omistajan tarkistus kesken) |
+| 16 | Merkit, varmistus, vianmääritys, sanasto, CONTRIBUTING.md | ✅ |
+| 17 | Saavutettavuus, mobiili ja Lighthouse | ✅ |
+
 ## Seuraavaksi
 
-Kaikki vaiheet on tehty. Seuraavaksi omistaja tarkistaa työn (lista alla). Sen jälkeen vuorossa ovat design ja julkaisu.
+Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Laajennuksen kaikki vaiheet (11–17) on tehty. Työpöytäpolku on merkitty tarkastamattomaksi (`"reviewed": false`), kunnes omistaja on käynyt sen läpi.
+
+**Vaiheen 17 tulokset (26.10.2026, pilviympäristö):**
+
+- Saavutettavuus: automaattiset axe-testit kaikille sivuille kummallakin käyttöjärjestelmävalinnalla. Lighthouse: 100 kaikilla mitatuilla sivuilla etusivun kontrastikorjauksen jälkeen (PAATOKSET.md kohta 131).
+- Mobiili: `npm run check:mobile` → 55 sivua × 2 käyttöjärjestelmää, ei vaakavieritystä 360 px:n leveydellä.
+- Lighthouse, työpöytä: 100/100/100/100 kaikilla 11 sivulla.
+- Lighthouse, mobiili: suorituskyky 83–92, muut 100. Tämä ympäristö on hitaampi kuin omistajan kone (aiemmin 99). `main`-haaran versio ennen laajennusta sai samassa ympäristössä 88–90, joten ero on mittausvaihtelun rajoissa. Mittaa uudelleen omalla koneella ennen julkaisua: `npm run build && npm run lighthouse`.
+
+**Myöhemmin tehtävät ideat:**
+
+- Työpöytäpolulle bonusaihe Gitin tallennuspisteistä (omistajan päätös, PAATOKSET.md kohta 128). Ei kuulu ydinpolkuun.
+
+**Omistajan tarkistettavat asiat** (luettavat tekstit, tehdyt valinnat, käyttöliittymän nimet ja otettavat kuvakaappaukset) ovat tiedostossa [`docs/tyopoytapolun-tarkistus.md`](docs/tyopoytapolun-tarkistus.md).
 
 ## Avoimet ongelmat
 

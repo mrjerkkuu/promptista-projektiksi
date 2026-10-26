@@ -1,0 +1,56 @@
+/* Nuppu ja puhekupla varoitusvärein. Kuplan nuoli osoittaa Nuppuun. */
+.unreviewed {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-4);
+}
+
+.unreviewed .nuppu {
+  flex-shrink: 0;
+}
+
+.unreviewed__bubble {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-warning-bg);
+  border: var(--border-width) solid var(--color-warning-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+}
+
+.unreviewed__bubble::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(var(--space-2) * -1 - var(--border-width));
+  width: var(--space-3);
+  height: var(--space-3);
+  margin-top: calc(var(--space-3) / -2);
+  background: var(--color-warning-bg);
+  border-bottom: var(--border-width) solid var(--color-warning-border);
+  border-left: var(--border-width) solid var(--color-warning-border);
+  transform: rotate(45deg);
+}
+
+.unreviewed__bubble p {
+  margin: 0;
+}
+
+.unreviewed__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-overline);
+  text-transform: uppercase;
+}
+
+.unreviewed__bubble p + p {
+  margin-top: var(--space-1);
+}
+
+.unreviewed--compact .unreviewed__bubble {
+  font-size: var(--font-size-sm);
+}

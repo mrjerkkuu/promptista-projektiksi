@@ -1,0 +1,31 @@
+{
+  "questions": [
+    {
+      "id": "ero",
+      "question": "Mikä on chatin ja Code-välilehden ero?",
+      "options": [
+        { "id": "tekee", "text": "Code-välilehden Claude voi tehdä asioita koneellasi, chat vain vastaa", "correct": true, "explanation": "Oikein. Claude Code luo ja muokkaa tiedostoja projektikansiossasi, kun annat siihen luvan." },
+        { "id": "sama", "text": "Ei mitään, ne ovat sama asia eri nimellä", "correct": false, "explanation": "Ne ovat samassa sovelluksessa, mutta toimivat eri tavalla. Chat kirjoittaa vastauksia, Claude Code tekee muutoksia tiedostoihin." },
+        { "id": "nopeus", "text": "Code-välilehti vastaa vain nopeammin", "correct": false, "explanation": "Ero ei ole nopeudessa. Claude Code tekee työtä tiedostoillasi, chat vain vastaa." }
+      ]
+    },
+    {
+      "id": "kansio",
+      "question": "Missä kansiossa Claude Code työskentelee?",
+      "options": [
+        { "id": "valittu", "text": "Siinä kansiossa, jonka valitset sille", "correct": true, "explanation": "Juuri niin. Siksi jokaiselle projektille tehdään oma kansio." },
+        { "id": "tyopoyta", "text": "Aina työpöydällä, koska sovellus on työpöytäsovellus", "correct": false, "explanation": "Nimi viittaa siihen, että sovellus asennetaan tietokoneelle. Kansion valitset itse." },
+        { "id": "keksii", "text": "Missä tahansa kansiossa, jonka se itse keksii", "correct": false, "explanation": "Kansion valitset sinä, kun aloitat työn Code-välilehdellä." }
+      ]
+    },
+    {
+      "id": "paattaa",
+      "question": "Kuka päättää, kuinka vapaasti Claude saa tehdä muutoksia?",
+      "options": [
+        { "id": "sina", "text": "Sinä, valitsemalla tilan", "correct": true, "explanation": "Oikein. Tila kertoo, kysyykö Claude lupaa ennen muutosta vai tarkistatko muutokset jälkikäteen." },
+        { "id": "claude", "text": "Claude itse", "correct": false, "explanation": "Claude toimii sinun valitsemasi tilan mukaan. Päätös on sinun." },
+        { "id": "ei-kukaan", "text": "Ei kukaan, Claude tekee aina kaiken kysymättä", "correct": false, "explanation": "Ei pidä paikkaansa. Voit valita tilan, jossa Claude kysyy lupaa ennen jokaista muutosta." }
+      ]
+    }
+  ]
+}

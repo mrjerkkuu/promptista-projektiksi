@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import type { ReactElement } from 'react'
 import { MemoryRouter } from 'react-router'
-import { ModuleContext } from '../components/moduleContext'
+import { ModuleContext, type ModulePlace } from '../components/moduleContext'
 import { ProgressProvider, STORAGE_KEY, createDefaultProgress, type Progress } from '../features/progress'
 
 interface Options {
@@ -16,10 +16,16 @@ export function renderWithProviders(ui: ReactElement, { progress, moduleKey, rou
   return render(
     <MemoryRouter initialEntries={[route]}>
       <ProgressProvider>
-        <ModuleContext.Provider value={moduleKey ?? null}>{ui}</ModuleContext.Provider>
+        <ModuleContext.Provider value={moduleKey ? placeFromKey(moduleKey) : null}>{ui}</ModuleContext.Provider>
       </ProgressProvider>
     </MemoryRouter>,
   )
+}
+
+/** Testeissä aihe on omalla polullaan: polku ja aihe saadaan avaimesta. */
+export function placeFromKey(key: string): ModulePlace {
+  const [pathId, moduleId] = key.split('/')
+  return { key, pathId, moduleId }
 }
 
 export function storedProgress(): Progress {

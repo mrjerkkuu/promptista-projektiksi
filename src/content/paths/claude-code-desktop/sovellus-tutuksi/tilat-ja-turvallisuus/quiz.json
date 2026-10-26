@@ -1,0 +1,31 @@
+{
+  "questions": [
+    {
+      "id": "aloittelija",
+      "question": "Mikä tila sopii parhaiten, kun olet vasta aloittamassa?",
+      "options": [
+        { "id": "manual", "text": "Manual", "correct": true, "explanation": "Oikein. Manual-tilassa näet jokaisen muutoksen ennen kuin se tehdään." },
+        { "id": "auto", "text": "Auto", "correct": false, "explanation": "Auto-tilassa Claude toimii kysymättä. Se sopii, kun olet jo tottunut ohjaamaan Claudea." },
+        { "id": "bypass", "text": "Bypass permissions", "correct": false, "explanation": "Tätä tilaa ei pidä käyttää omalla koneella. Anthropic suosittelee sitä vain erillisiin, suojattuihin ympäristöihin." }
+      ]
+    },
+    {
+      "id": "plan",
+      "question": "Mitä Plan-tilassa tapahtuu?",
+      "options": [
+        { "id": "suunnitelma", "text": "Claude tutkii projektin ja tekee suunnitelman muuttamatta tiedostoja", "correct": true, "explanation": "Juuri niin. Kun suunnitelma on hyvä, vaihdat tilaa ja Claude toteuttaa sen." },
+        { "id": "nopea", "text": "Claude tekee kaikki muutokset kerralla kysymättä", "correct": false, "explanation": "Plan-tilassa Claude ei muuta tiedostoja lainkaan. Se vain suunnittelee." },
+        { "id": "pilvi", "text": "Claude siirtää työn pilveen", "correct": false, "explanation": "Pilvi on ympäristö, ei tila. Plan-tila tarkoittaa suunnittelua ennen tekemistä." }
+      ]
+    },
+    {
+      "id": "salasana",
+      "question": "Claude pyytää GitHub-salasanaasi. Mitä teet?",
+      "options": [
+        { "id": "ei", "text": "En anna sitä. Kirjautumiset tehdään aina selaimessa", "correct": true, "explanation": "Oikein. Salasanat eivät kuulu keskusteluun." },
+        { "id": "annan", "text": "Annan, koska Claude tarvitsee sen", "correct": false, "explanation": "Älä anna. Claude ei tarvitse salasanoja, ja kirjautumiset tehdään selaimessa." },
+        { "id": "osittain", "text": "Annan vain salasanan alkuosan", "correct": false, "explanation": "Salasanan osiakaan ei anneta. Kirjautumiset tehdään aina selaimessa." }
+      ]
+    }
+  ]
+}

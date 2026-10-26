@@ -64,6 +64,15 @@ vi.mock('../content', () => {
           { id: 'muu', label: 'Jotain muuta', correct: false, explanation: 'Katso vianmääritys.', troubleshooting: 'ei-loydy' },
         ],
       },
+      sovellus: {
+        title: 'Sovellus',
+        question: 'Mitä näet sovelluksessa?',
+        options: [
+          { id: 'ok', label: 'Kirjoituskentän', correct: true, explanation: 'Hyvä.' },
+          { id: 'virhe', label: 'Virheen', correct: false, explanation: 'Ei hätää.', troubleshooting: 'ei-loydy' },
+          { id: 'muu', label: 'Jotain muuta', correct: false, explanation: 'Katso vianmääritys.', troubleshooting: 'ei-loydy' },
+        ],
+      },
     },
     getModuleByKey: (key: string) => (key === 'p/m' ? module : undefined),
   }
@@ -193,6 +202,13 @@ describe('<VerifyStep>', () => {
     const feedback = screen.getByText('Ei aivan.').closest('.notice') as HTMLElement
     expect(within(feedback).getByRole('link', { name: /Komentoa ei tunnisteta/ })).toHaveAttribute('href', '/vianmaaritys/ei-loydy')
     expect(storedProgress().verify).toEqual({ git: 'virhe' })
+  })
+
+  it('ilman komentoa varmistus kysyy pelkästään, mitä näet', () => {
+    renderWithProviders(<VerifyStep id="sovellus" />, { progress: { os: 'mac' } })
+    expect(screen.getByText('Mitä näet sovelluksessa?')).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /Kopioi/ })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Kirjoituskentän/ })).toBeInTheDocument()
   })
 
   it('oikea valinta kuitataan onnistuneeksi', async () => {

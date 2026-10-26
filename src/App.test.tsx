@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router'
 import { describe, expect, it } from 'vitest'
 import { AppShell } from './AppShell'
-import { getPath } from './content'
+import { getPath, paths } from './content'
 import { STORAGE_KEY, createDefaultProgress } from './features/progress'
+import { storedProgress } from './test/render'
 
 function renderAt(route: string) {
   return render(
@@ -23,7 +24,40 @@ describe('sivut', () => {
     const macButtons = screen.getAllByRole('button', { name: 'Mac' })
     await user.click(macButtons[macButtons.length - 1])
     expect(screen.queryByText('Kumpaa tietokonetta käytät?')).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Aloita tästä: 0.1/ })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Aloita tästä: Valitse oppimispolku' })).toHaveAttribute('href', '/polut')
+  })
+
+  it('polun avaaminen valitsee sen, ja etusivu jatkaa sen ensimmäisestä aiheesta', async () => {
+    const user = userEvent.setup()
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), os: 'mac' }))
+    renderAt('/polut')
+    await user.click(screen.getByRole('link', { name: 'Claude Code terminaalissa' }))
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Claude Code terminaalissa')
+    expect(storedProgress().activePath).toBe('claude-code')
+    await user.click(within(screen.getByRole('navigation', { name: 'Päävalikko' })).getByRole('link', { name: 'Etusivu' }))
+    expect(screen.getByRole('link', { name: /Aloita tästä: 0.1/ })).toHaveAttribute('href', '/polku/claude-code/mita-on-vibekoodaus')
+    expect(screen.getByRole('heading', { name: 'Oppimispolkusi' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Kaikki oppimispolut' })).toHaveAttribute('href', '/polut')
+  })
+
+  it('aiheen avaaminen suoralla linkillä valitsee sen polun', async () => {
+    renderAt('/polku/claude-code/terminaali')
+    await screen.findByRole('button', { name: /Olen lukenut tämän/ })
+    expect(storedProgress().activePath).toBe('claude-code')
+  })
+
+  it('valintasivu merkitsee valitun polun', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), activePath: 'claude-code' }))
+    renderAt('/polut')
+    const card = screen.getByRole('link', { name: 'Claude Code terminaalissa' }).closest('article')!
+    expect(within(card).getByText('Valitsemasi polku')).toBeInTheDocument()
+  })
+
+  it('jos valittua polkua ei enää ole, etusivu ohjaa valintaan', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), activePath: 'poistettu-polku' }))
+    renderAt('/')
+    expect(screen.getByRole('link', { name: 'Aloita tästä: Valitse oppimispolku' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Oppimispolut' })).toBeInTheDocument()
   })
 
   it('Nuppu esittelee itsensä tekstinä sekä ensikäynnillä että käyttöjärjestelmän valinnan jälkeen', () => {
@@ -41,7 +75,7 @@ describe('sivut', () => {
   it('jatka-painike vie seuraavaan keskeneräiseen moduuliin', () => {
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ ...createDefaultProgress(), os: 'windows', modules: { 'claude-code/mita-on-vibekoodaus': { visited: true, read: true } },
+      JSON.stringify({ ...createDefaultProgress(), os: 'windows', activePath: 'claude-code', modules: { 'claude-code/mita-on-vibekoodaus': { visited: true, read: true } },
         quizAnswers: { 'claude-code/mita-on-vibekoodaus': { 'kuka-kirjoittaa': 'tekoaly', tarkistus: 'tarkista', rooli: 'kertominen' } },
       }),
     )
@@ -49,9 +83,55 @@ describe('sivut', () => {
     expect(screen.getByRole('link', { name: /Jatka siitä mihin jäit: 0.2/ })).toHaveAttribute('href', '/polku/claude-code/terminaali')
   })
 
+  it('oppimispolkujen sivu listaa polut järjestyksessä ja kertoo, kenelle ne sopivat', () => {
+    renderAt('/polut')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Oppimispolut')
+    const headings = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent)
+    expect(headings).toEqual(paths.map((p) => p.title))
+    expect(screen.getByRole('link', { name: 'Claude Code terminaalissa' })).toHaveAttribute('href', '/polku/claude-code')
+    expect(screen.getAllByText('Kenelle?')).toHaveLength(paths.length)
+  })
+
+  it('päävalikon Oppimispolut-linkki vie valintasivulle ja korostuu myös polun sivuilla', () => {
+    const { unmount } = renderAt('/polut')
+    const nav = () => screen.getByRole('navigation', { name: 'Päävalikko' })
+    const link = () => within(nav()).getByRole('link', { name: 'Oppimispolut' })
+    expect(link()).toHaveAttribute('href', '/polut')
+    expect(link()).toHaveAttribute('aria-current', 'page')
+    unmount()
+    renderAt('/polku/claude-code')
+    expect(link()).toHaveClass('site-nav__link--section')
+    expect(link()).not.toHaveAttribute('aria-current')
+  })
+
+  it('tarkastamaton polku näyttää ilmoituksen kortissa, polun sivulla ja ensimmäisessä aiheessa', async () => {
+    const notice = () => screen.queryAllByRole('complementary', { name: 'Ei vielä tarkastettu' })
+    let view = renderAt('/polut')
+    const desktopCard = screen.getByRole('link', { name: 'Claude Code työpöytäsovelluksessa' }).closest('article')!
+    const terminalCard = screen.getByRole('link', { name: 'Claude Code terminaalissa' }).closest('article')!
+    expect(within(desktopCard).getByText('Ei vielä tarkastettu')).toBeInTheDocument()
+    expect(within(terminalCard).queryByText('Ei vielä tarkastettu')).not.toBeInTheDocument()
+    view.unmount()
+
+    view = renderAt('/polku/claude-code-desktop')
+    expect(notice()).toHaveLength(1)
+    view.unmount()
+
+    // Ensimmäinen aihe on yhteinen terminaalipolun kanssa: ilmoitus näkyy vain työpöytäpolulla.
+    view = renderAt('/polku/claude-code-desktop/mita-on-vibekoodaus')
+    expect(notice()).toHaveLength(1)
+    expect(within(notice()[0]).getByRole('link', { name: 'kerro siitä' })).toHaveAttribute('href', '/palaute?polku=claude-code-desktop')
+    view.unmount()
+    view = renderAt('/polku/claude-code/mita-on-vibekoodaus')
+    expect(notice()).toHaveLength(0)
+    view.unmount()
+    renderAt('/polku/claude-code-desktop/chat-vai-agentti')
+    expect(notice()).toHaveLength(0)
+  })
+
   it('polkusivu listaa aihealueet ja moduulit', () => {
     renderAt('/polku/claude-code')
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Claude Code alusta alkaen')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Claude Code terminaalissa')
     expect(screen.getByRole('heading', { name: '1. Asennukset' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /3.5 Bonus: julkaise/ })).toBeInTheDocument()
   })
@@ -109,6 +189,16 @@ describe('sivut', () => {
     await user.clear(screen.getByRole('searchbox'))
     await user.type(screen.getByRole('searchbox'), 'xyzzy')
     expect(screen.getByText(/Haulla ”xyzzy” ei löytynyt termejä/)).toBeInTheDocument()
+  })
+
+  it('merkit ja vianmääritys ryhmitellään poluittain, valittu polku ensin', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), activePath: 'claude-code-desktop' }))
+    const h2 = () => screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent)
+    const { unmount } = renderAt('/merkit')
+    expect(h2()).toEqual(['Claude Code työpöytäsovelluksessa', 'Claude Code terminaalissa', 'Yhteiset merkit', 'Bonusmerkit'])
+    unmount()
+    renderAt('/vianmaaritys')
+    expect(h2()).toEqual(['Claude Code työpöytäsovelluksessa', 'Claude Code terminaalissa', 'Kaikilla poluilla'])
   })
 
   it('sanasto, vianmääritys, merkit ja asetukset avautuvat', () => {
@@ -174,7 +264,7 @@ describe('palaute', () => {
     expect(screen.getByLabelText('Mitä palaute koskee?')).toHaveValue('idea')
     unmount()
     renderAt('/palaute?polku=claude-code')
-    expect(screen.getByText(/Palaute koskee polkua/)).toHaveTextContent('Claude Code alusta alkaen')
+    expect(screen.getByText(/Palaute koskee polkua/)).toHaveTextContent('Claude Code terminaalissa')
   })
 
   it('moduulin palautelinkki kertoo palautesivulle, mitä aihetta palaute koskee', async () => {

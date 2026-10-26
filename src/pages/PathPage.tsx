@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { FeedbackPrompt } from '../components/FeedbackPrompt'
 import { ProgressBar } from '../components/ProgressBar'
 import { StatusLabel } from '../components/StatusLabel'
+import { UnreviewedNotice } from '../components/UnreviewedNotice'
 import { getPath, type TopicEntry } from '../content'
 import { countProgress, getModuleStatus, useProgress } from '../features/progress'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
@@ -13,7 +14,11 @@ export function PathPage() {
   const { pathId = '' } = useParams()
   const path = getPath(pathId)
   useDocumentTitle(path?.title)
-  const { progress } = useProgress()
+  const { progress, dispatch } = useProgress()
+  // Polun avaaminen valitsee sen: etusivun "Jatka" vie tämän polun seuraavaan aiheeseen.
+  useEffect(() => {
+    if (path) dispatch({ type: 'selectPath', pathId: path.id })
+  }, [path, dispatch])
   if (!path) return <NotFoundPage />
   const count = countProgress(progress, path.modules)
 
@@ -21,6 +26,7 @@ export function PathPage() {
     <div className="path-page">
       <h1>{path.title}</h1>
       <p className="lead">{path.description}</p>
+      {path.reviewed === false && <UnreviewedNotice pathId={path.id} />}
       <div className="card card--small path-page__progress">
         <ProgressBar label="Koko polun edistyminen" count={count} />
       </div>

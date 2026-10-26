@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "kansio",
+      "question": "Missä Claude työskentelee istunnossa, jonka ympäristö on Local?",
+      "options": [
+        { "id": "valittu", "text": "Omalla koneellasi, istunnolle valitussa kansiossa", "correct": true, "explanation": "Oikein. Siksi kansio kannattaa valita huolella ennen ensimmäistä viestiä." },
+        { "id": "pilvi", "text": "Pilvessä, eikä se koske koneesi tiedostoihin", "correct": false, "explanation": "Pilviympäristö on erikseen. Local tarkoittaa omaa konettasi." },
+        { "id": "kaikki", "text": "Koko koneella kaikissa kansioissa", "correct": false, "explanation": "Claude työskentelee siinä kansiossa, jonka valitset istunnolle." }
+      ]
+    },
+    {
+      "id": "suunta",
+      "question": "Claude on lähtenyt tekemään jotain aivan muuta kuin pyysit. Mitä teet?",
+      "options": [
+        { "id": "pysayta", "text": "Napsautan pysäytyspainiketta tai kirjoitan korjauksen", "correct": true, "explanation": "Juuri niin. Clauden voi pysäyttää tai ohjata uuteen suuntaan milloin tahansa." },
+        { "id": "odota", "text": "Odotan, kunnes se on valmis, ja aloitan kaiken alusta", "correct": false, "explanation": "Odottaminen ei ole tarpeen. Voit keskeyttää heti tai kirjoittaa korjauksen kesken työn." },
+        { "id": "sulje", "text": "Suljen sovelluksen", "correct": false, "explanation": "Se ei ole tarpeen. Pysäytyspainike keskeyttää työn hallitusti." }
+      ]
+    }
+  ]
+}

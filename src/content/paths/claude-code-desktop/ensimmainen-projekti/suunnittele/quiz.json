@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "miksi",
+      "question": "Miksi sivu suunnitellaan ensin Plan-tilassa?",
+      "options": [
+        { "id": "korjaa", "text": "Suunnitelmaa on helppo muuttaa ennen kuin yhtään tiedostoa on tehty", "correct": true, "explanation": "Oikein. Muutos suunnitelmaan on yksi viesti, valmiin sivun muuttaminen enemmän työtä." },
+        { "id": "pakko", "text": "Muuten Claude ei suostu tekemään sivua", "correct": false, "explanation": "Claude tekisi sivun ilman suunnitelmaakin. Suunnittelu kannattaa, koska silloin lopputulos vastaa paremmin toiveitasi." },
+        { "id": "nopea", "text": "Plan-tilassa Claude kirjoittaa koodin nopeammin", "correct": false, "explanation": "Plan-tilassa Claude ei kirjoita koodia lainkaan. Se vain suunnittelee." }
+      ]
+    },
+    {
+      "id": "rajat",
+      "question": "Mitä rajat-kohta esimerkkipromptissa tekee?",
+      "options": [
+        { "id": "rajaa", "text": "Kertoo, mitä Claude saa käyttää ja mitä sivulta vaaditaan", "correct": true, "explanation": "Juuri niin. Rajat estävät Claudea tekemästä sivusta liian monimutkaista." },
+        { "id": "pituus", "text": "Rajoittaa, kuinka pitkä Clauden vastaus saa olla", "correct": false, "explanation": "Rajat koskevat sivun tekotapaa, eivät vastauksen pituutta." },
+        { "id": "turha", "text": "Ei mitään, Claude ohittaa sen", "correct": false, "explanation": "Claude noudattaa rajoja. Ne ovat hyvän promptin kolmas osa: mitä, miksi ja millä rajoilla." }
+      ]
+    }
+  ]
+}

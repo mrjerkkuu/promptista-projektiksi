@@ -4,20 +4,27 @@ import { Icon } from '../components/Icon'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { ThemeSelect } from '../components/ThemeSelect'
-import { paths } from '../content'
 import { useProgress } from '../features/progress'
 import { REPO_URL } from '../lib/feedback'
 import './Layout.css'
 
 const NAV_LINKS = [
   { to: '/', label: 'Etusivu', end: true },
-  // Yksi polku: linkki suoraan siihen. Useampi polku: ne listataan etusivulla.
-  ...(paths.length === 1 ? [{ to: `/polku/${paths[0].id}`, label: 'Oppimispolku', end: false }] : []),
+  { to: '/polut', label: 'Oppimispolut', end: false },
   { to: '/sanasto', label: 'Sanasto', end: false },
   { to: '/vianmaaritys', label: 'Vianmääritys', end: false },
   { to: '/merkit', label: 'Merkit', end: false },
   { to: '/asetukset', label: 'Asetukset', end: false },
 ]
+
+/**
+ * Oppimispolut-linkki korostetaan myös yksittäisen polun ja aiheen sivuilla (/polku/…), koska ne ovat
+ * sen alla. aria-current="page" jää vain itse valintasivulle, jotta ruudunlukija ei väitä väärää sivua.
+ */
+function navLinkClass(to: string, pathname: string): string {
+  const inSection = to === '/polut' && pathname.startsWith('/polku/')
+  return inSection ? 'site-nav__link site-nav__link--section' : 'site-nav__link'
+}
 
 export function Layout({ children }: { children: ReactNode }) {
   const { storageAvailable, storageCorrupted } = useProgress()
@@ -63,7 +70,7 @@ export function Layout({ children }: { children: ReactNode }) {
             <ul className="site-nav">
               {NAV_LINKS.map((l) => (
                 <li key={l.to}>
-                  <NavLink to={l.to} end={l.end} className="site-nav__link">
+                  <NavLink to={l.to} end={l.end} className={() => navLinkClass(l.to, location.pathname)}>
                     {l.label}
                   </NavLink>
                 </li>

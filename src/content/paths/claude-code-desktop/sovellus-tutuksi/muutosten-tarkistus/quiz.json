@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "luvut",
+      "question": "Changes-kortissa lukee +12 -1. Mitä se tarkoittaa?",
+      "options": [
+        { "id": "rivit", "text": "Kaksitoista riviä lisättiin ja yksi poistettiin", "correct": true, "explanation": "Oikein. Napsauttamalla lukuja näet muutokset tarkemmin diffissä." },
+        { "id": "virheet", "text": "Koodissa on kaksitoista virhettä", "correct": false, "explanation": "Luvut eivät kerro virheistä. Ne kertovat, kuinka monta riviä lisättiin ja poistettiin." },
+        { "id": "pisteet", "text": "Sait kaksitoista pistettä", "correct": false, "explanation": "Tässä ei kerätä pisteitä. Luvut kertovat muuttuneiden rivien määrän." }
+      ]
+    },
+    {
+      "id": "ymmarrys",
+      "question": "Pitääkö sinun ymmärtää jokainen koodirivi diffissä?",
+      "options": [
+        { "id": "ei", "text": "Ei. Riittää, että muutos on oikeassa tiedostossa ja näyttää järkevältä", "correct": true, "explanation": "Juuri niin. Jos jokin näyttää oudolta, kommentoi riviä tai kysy Claudelta." },
+        { "id": "kylla", "text": "Kyllä, muuten muutosta ei saa hyväksyä", "correct": false, "explanation": "Kukaan ei vaadi sitä aloittelijalta. Kysy Claudelta, jos jokin muutos askarruttaa." },
+        { "id": "ei-katsota", "text": "Diffiä ei tarvitse katsoa lainkaan", "correct": false, "explanation": "Kannattaa katsoa. Silloin huomaat, jos Claude muutti väärää tiedostoa." }
+      ]
+    }
+  ]
+}

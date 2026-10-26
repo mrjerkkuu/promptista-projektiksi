@@ -42,5 +42,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     css: false,
+    // Pois päältä: välimuisti tunnistaa muuttumattoman src/content/index.ts:n eikä huomaa, että
+    // import.meta.glob löytäisi uusia sisältökansioita. Testit kaatuisivat ”Tietopaketti puuttuu”
+    // -virheeseen, vaikka uusi aihe on oikein (PAATOKSET.md, kohta 125).
+    fsModuleCache: false,
   },
 })

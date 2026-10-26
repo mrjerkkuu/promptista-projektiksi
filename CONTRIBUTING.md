@@ -15,6 +15,7 @@ Komento ajaa lintin, testit ja buildin. **Build validoi koko sisällön**: rikki
 - Kieli on hyvää yleiskieltä ja rentoa sinuttelua. Leikkisä saa olla, lapsellinen ei. Vältä anglismeja ja selitä jokainen tekninen termi.
 - Tietopaketti on enintään noin 150–250 sanaa. Syventävä sisältö laitetaan `<ReadMore>`-osioon.
 - Termi esitellään ensimmäisellä kerralla `<Term id="…">`-komponentilla. Termin pitää olla `glossary.json`:ssa.
+- **Ohjeista näkyvä tapa ensin, pikanäppäin sulkuihin.** Lukija ei välttämättä käytä tietokonetta paljon, joten ensisijainen ohje on haku, valikko tai hiiren oikea painike, esimerkiksi ”Napsauta Käynnistä-painiketta, kirjoita `Resurssienhallinta` ja valitse se hakutuloksista. (Voit myös painaa Windows-näppäintä ja E-kirjainta yhtä aikaa.)”. Poikkeus: kun näppäinyhdistelmä on ainoa tapa (esimerkiksi tila vaihtuu Shift+Tabilla), se kerrotaan suoraan.
 - **Komentoja ei kirjoiteta muistista.** Tarkista jokainen asennuskomento virallisesta lähteestä (Anthropic, git-scm.com, cli.github.com, Microsoft, code.visualstudio.com) ja merkitse `source` ja `verifiedAt`.
 - **Hintoja tai tilausten yksityiskohtia ei kirjoiteta sivulle.** Linkitä viralliseen hinnastoon.
 - Lainausmerkkeinä käytetään suomalaisia lainausmerkkejä (”näin”).
@@ -35,6 +36,8 @@ Polku lisätään pelkillä sisältötiedostoilla. Sovelluksen koodiin ei tarvit
   "id": "lovable",
   "title": "Lovable alusta alkaen",
   "description": "Lyhyt kuvaus polusta.",
+  "order": 3,
+  "audience": "Sinulle, joka haluat… (näytetään valintasivulla otsikon ”Kenelle?” jälkeen)",
   "topics": [
     {
       "id": "perusteet",
@@ -56,7 +59,23 @@ Säännöt:
 - `id`:n pitää olla sama kuin kansion nimi. Tunnisteissa saa olla vain pieniä kirjaimia a–z, numeroita ja väliviivoja.
 - Moduulien tunnisteiden pitää olla yksilöllisiä polun sisällä.
 - Valinnainen bonusmoduuli merkitään `"optional": true`. Se ei vaikuta edistymisprosenttiin.
-- Jos polkuja on useampi, etusivu listaa ne kaikki.
+- Polut näytetään sivulla Oppimispolut (`/polut`) ja etusivulla `order`-kentän mukaisessa järjestyksessä. Kahdella polulla ei saa olla samaa `order`-arvoa.
+- `audience` kertoo valintasivulla, kenelle polku sopii. Kirjoita se niin, että kävijä tunnistaa siitä, onko polku hänelle oikea.
+
+### Yhteinen aihe usealla polulla
+
+Jos aihe sopii sellaisenaan toiselle polulle, älä kopioi sitä, vaan viittaa siihen. Lisää polun `path.json`:iin aiheen paikalle:
+
+```json
+{ "ref": "claude-code/hyva-prompti" }
+```
+
+- Nimi, tiivistelmä, tietopaketti ja visa tulevat alkuperäisestä aiheesta. Viittaavalle polulle ei tehdä kansiota.
+- Edistyminen tallentuu alkuperäisellä avaimella (`claude-code/hyva-prompti`), joten kerran tehty aihe on valmis kaikilla poluilla. Käytä samaa avainta myös merkkien ehdoissa.
+- Osoite ja "Seuraava"-painike ovat viittaavan polun omia (`/polku/<polku>/hyva-prompti`).
+- Yhteisessä aiheessa **ei saa olla linkkejä tietyn polun aiheisiin** (`#/polku/…`), koska ne veisivät toisen polun kävijän väärälle polulle. Build tarkistaa tämän.
+- Viittaus ei voi osoittaa toiseen viittaukseen eikä omalle polulle.
+- Jaa vain aihe, jonka sisältö pätee kaikilla poluilla. Jos aiheessa puhutaan esimerkiksi terminaalista, kirjoita toiselle polulle oma versio.
 
 ### Uusi moduuli olemassa olevaan polkuun
 
@@ -133,9 +152,9 @@ Kaikki komennot ovat yhdessä tiedostossa, joten päivitys on yksi muutos yhteen
 |---|---|
 | `glossary.json` | Sanasto: `term`, `definition` (1–2 virkettä), valinnainen `readMore`-linkki. |
 | `missions.json` | Simulaattorin harjoitukset. Onnistumisen ehdot: `cwdIs`, `dirExists`, `visited` ja `commandUsed`. Polut kirjoitetaan muodossa `~/kansio`. |
-| `verify.json` | Varmistukset: tasan yksi oikea vaihtoehto. Jokainen väärä vaihtoehto ohjaa vianmääritykseen (`troubleshooting`, voi olla eri Windowsille ja Macille). |
-| `troubleshooting.json` | Vianmääritys: `os`, `symptom`, `steps` (takahipsujen väliin kirjoitettu teksti näytetään koodina), valinnaiset `commands`. |
-| `badges.json` | Merkit ja ehdot: `commandsRun`, `missionsComplete`, `modulesComplete` (`"polku/moduuli"`), `topicComplete`, `verifyPassed` ja `pathComplete`. |
+| `verify.json` | Varmistukset: tasan yksi oikea vaihtoehto. Jokainen väärä vaihtoehto ohjaa vianmääritykseen (`troubleshooting`, voi olla eri Windowsille ja Macille). `command` on valinnainen: ilman sitä varmistus kysyy, mitä sovelluksessa näkyy. |
+| `troubleshooting.json` | Vianmääritys: `os`, `symptom`, `steps` (takahipsujen väliin kirjoitettu teksti näytetään koodina), valinnaiset `commands` ja `path` (polku, jota ongelma koskee; sivu ryhmittelee kohdat poluittain, ja ilman polkua kohta näkyy kohdassa ”Kaikilla poluilla”). |
+| `badges.json` | Merkit ja ehdot: `commandsRun`, `missionsComplete`, `modulesComplete` (`"polku/moduuli"`, valinnainen `"match": "any"`, kun yksikin aihe riittää), `topicComplete`, `verifyPassed` ja `pathComplete`. Valinnainen `path` kertoo, minkä polun merkki on; ilman sitä merkki on yhteinen. Älä kiristä ehtoja: jo ansaittu merkki säilyy, mutta ehto ei saa muuttua niin, ettei sitä enää voi ansaita samalla tavalla. |
 
 ## Koodi
 

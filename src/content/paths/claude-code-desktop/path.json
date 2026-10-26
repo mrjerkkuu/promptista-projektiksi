@@ -1,0 +1,59 @@
+{
+  "id": "claude-code-desktop",
+  "title": "Claude Code työpöytäsovelluksessa",
+  "description": "Opit käyttämään Claude Codea Clauden työpöytäsovelluksessa ja teet sen avulla ensimmäisen oman verkkosivusi. Terminaalia ei tarvita, eikä aiempaa kokemusta.",
+  "order": 2,
+  "reviewed": false,
+  "audience": "Sinulle, joka haluat päästä alkuun helpoimmalla tavalla: tavallisella sovelluksella, jossa on painikkeet ja valikot. Komentoriviä ei tarvitse opetella.",
+  "topics": [
+    {
+      "id": "perusteet",
+      "title": "Perusteet",
+      "description": "Mitä vibekoodaus on, miten agentti eroaa chatista ja miksi jokaiselle projektille tehdään oma kansio.",
+      "modules": [
+        { "ref": "claude-code/mita-on-vibekoodaus" },
+        { "id": "chat-vai-agentti", "title": "Chat vai AI-agentti?", "summary": "Samassa sovelluksessa on chat, joka vastaa, ja Claude Code, joka tekee." },
+        { "id": "kansiot-ja-tiedostot", "title": "Kansiot ja tiedostot", "summary": "Claude työskentelee valitsemassasi kansiossa. Teet projekteillesi oman kansion." },
+        { "ref": "claude-code/git-ja-github" }
+      ]
+    },
+    {
+      "id": "kayttoonotto",
+      "title": "Käyttöönotto",
+      "description": "Hankit tilauksen, asennat Clauden työpöytäsovelluksen ja avaat Code-välilehden. Asennuskomentoja ei tarvita.",
+      "modules": [
+        { "id": "claude-tilaus", "title": "Claude-tilaus", "summary": "Millainen tilaus Claude Codeen tarvitaan ja mistä näet ajantasaiset hinnat." },
+        { "id": "sovelluksen-asennus", "title": "Sovelluksen asennus", "summary": "Lataat Clauden työpöytäsovelluksen virallisesta osoitteesta ja asennat sen." },
+        { "id": "code-valilehti", "title": "Kirjautuminen ja Code-välilehti", "summary": "Kirjaudut sisään ja avaat välilehden, jolla Claude Code toimii." },
+        { "id": "tarkistuslista", "title": "Tarkistuslista", "summary": "Kaikki varmistukset yhdellä sivulla: onko kaikki valmiina?" }
+      ]
+    },
+    {
+      "id": "sovellus-tutuksi",
+      "title": "Sovellus tutuksi",
+      "description": "Annat Claudelle ensimmäisen tehtävän, valitset sopivan tilan, tarkistat muutokset ja opit ohjaamaan Claudea hyvin.",
+      "modules": [
+        { "id": "ensimmainen-istunto", "title": "Ensimmäinen istunto", "summary": "Valitset kansion ja tilan ja annat Claudelle ensimmäisen pienen tehtävän." },
+        { "id": "tilat-ja-turvallisuus", "title": "Tilat ja turvallisuus", "summary": "Päätät, kuinka vapaasti Claude saa toimia. Salasanat ja avaimet pysyvät poissa keskustelusta." },
+        { "id": "muutosten-tarkistus", "title": "Muutosten tarkistus", "summary": "Näet, mitä Claude muutti, kommentoit rivejä ja keskeytät tarvittaessa." },
+        { "id": "esikatselu", "title": "Esikatselu", "summary": "Katsot tekemääsi sivua suoraan sovelluksessa tai omassa selaimessasi." },
+        { "ref": "claude-code/hyva-prompti" },
+        { "id": "claude-md", "title": "CLAUDE.md", "summary": "Projektin muistilappu, jonka Claude lukee joka istunnon alussa." },
+        { "id": "konteksti", "title": "Konteksti", "summary": "Mitä Claude muistaa istunnosta ja milloin kannattaa aloittaa uusi." }
+      ]
+    },
+    {
+      "id": "ensimmainen-projekti",
+      "title": "Ensimmäinen projekti",
+      "description": "Teet Claude Coden kanssa oman pienen verkkosivun (HTML, CSS ja JavaScript). Bonuksena julkaiset sen nettiin.",
+      "modules": [
+        { "id": "projektikansio", "title": "Projektikansio", "summary": "Keksit aiheen, teet projektille kansion ja aloitat sille oman istunnon." },
+        { "id": "suunnittele", "title": "Suunnittele", "summary": "Suunnittelet Clauden kanssa Plan-tilassa, mitä sivulle tulee." },
+        { "id": "rakenna", "title": "Rakenna", "summary": "Claude rakentaa sivun, sinä katsot sitä ja pyydät muutoksia." },
+        { "id": "viimeistele", "title": "Viimeistele", "summary": "Tarkistat sivun kapealla näytöllä, päivität CLAUDE.md:n ja opit jatkamaan myöhemmin." },
+        { "ref": "claude-code/github-tili", "optional": true },
+        { "id": "julkaise", "title": "Bonus: julkaise", "summary": "Valinnainen lisätehtävä: viet sivusi GitHubiin ja julkaiset sen omaan osoitteeseen.", "optional": true }
+      ]
+    }
+  ]
+}

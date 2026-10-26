@@ -6,6 +6,7 @@ export type ProgressAction =
   | { type: 'setOs'; os: Os }
   | { type: 'setTheme'; theme: Theme }
   | { type: 'visitModule'; key: string }
+  | { type: 'selectPath'; pathId: string }
   | { type: 'markRead'; key: string; read: boolean }
   | { type: 'answerQuiz'; key: string; questionId: string; optionId: string }
   | { type: 'answerVerify'; stepId: string; optionId: string }
@@ -26,6 +27,8 @@ export function progressReducer(state: Progress, action: ProgressAction): Progre
       if (current?.visited) return state
       return { ...state, modules: { ...state.modules, [action.key]: { read: current?.read ?? false, visited: true } } }
     }
+    case 'selectPath':
+      return state.activePath === action.pathId ? state : { ...state, activePath: action.pathId }
     case 'markRead': {
       const current = state.modules[action.key] ?? { visited: true, read: false }
       return { ...state, modules: { ...state.modules, [action.key]: { ...current, visited: true, read: action.read } } }

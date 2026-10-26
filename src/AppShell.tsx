@@ -11,6 +11,7 @@ import { HomePage } from './pages/HomePage'
 import { ModulePage } from './pages/ModulePage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { PathPage } from './pages/PathPage'
+import { PathsPage } from './pages/PathsPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { TroubleshootingPage } from './pages/TroubleshootingPage'
 
@@ -22,6 +23,7 @@ export function AppShell() {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/polut" element={<PathsPage />} />
           <Route path="/polku/:pathId" element={<PathPage />} />
           <Route path="/polku/:pathId/:moduleId" element={<ModulePage />} />
           <Route path="/sanasto/:termId?" element={<GlossaryPage />} />

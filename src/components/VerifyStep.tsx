@@ -27,7 +27,10 @@ function optionLabel(label: OsText, os: Os | null) {
   )
 }
 
-/** Asennuksen varmistus: aja tarkistuskomento ja kerro, miltä tulos näytti. Väärä valinta ohjaa vianmääritykseen. */
+/**
+ * Asennuksen varmistus: aja tarkistuskomento (tai katso sovellusta) ja kerro, miltä tulos näytti.
+ * Väärä valinta ohjaa vianmääritykseen.
+ */
 export function VerifyStep({ id }: VerifyStepProps) {
   const { progress, dispatch } = useProgress()
   const headingId = useId()
@@ -45,7 +48,7 @@ export function VerifyStep({ id }: VerifyStepProps) {
         </h3>
       </div>
       <p>{step.question}</p>
-      <Command id={step.command} />
+      {step.command && <Command id={step.command} />}
       <ChoiceList
         labelledBy={headingId}
         selectedId={progress.verify[id]}

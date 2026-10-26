@@ -6,6 +6,7 @@ import { ModuleContext } from '../components/moduleContext'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { StatusLabel } from '../components/StatusLabel'
+import { UnreviewedNotice } from '../components/UnreviewedNotice'
 import { getPath } from '../content'
 import { countProgress, getModuleStatus, isQuizPassed, useProgress } from '../features/progress'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
@@ -21,10 +22,14 @@ export function ModulePage() {
   const { progress, dispatch } = useProgress()
 
   useEffect(() => {
-    if (module) dispatch({ type: 'visitModule', key: module.key })
-  }, [module, dispatch])
+    if (!path || !module) return
+    dispatch({ type: 'visitModule', key: module.key })
+    // Polku osoitteesta, ei avaimesta: yhteisen aiheen kautta kävijä jatkaa sillä polulla, jota hän kulkee.
+    dispatch({ type: 'selectPath', pathId: path.id })
+  }, [path, module, dispatch])
 
   if (!path || !module) return <NotFoundPage />
+  const place = { key: module.key, pathId: path.id, moduleId: module.id }
 
   const topic = path.topics.find((t) => t.id === module.topicId)!
   const prev = path.modules[index - 1]
@@ -64,6 +69,9 @@ export function ModulePage() {
         </p>
       </div>
 
+      {/* Tarkastamattoman polun ilmoitus polun ensimmäisen aiheen alussa. */}
+      {path.reviewed === false && index === 0 && <UnreviewedNotice pathId={path.id} />}
+
       {progress.os === null && (
         <div className="notice notice--plain module__os">
           <OsPicker />
@@ -80,7 +88,7 @@ export function ModulePage() {
           </p>
         }
       >
-        <ModuleContext.Provider value={module.key}>
+        <ModuleContext.Provider value={place}>
           <div className="module__content">
             <module.Content components={mdxComponents} />
           </div>

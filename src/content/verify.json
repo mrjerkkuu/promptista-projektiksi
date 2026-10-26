@@ -182,5 +182,71 @@
         "troubleshooting": "muu-ongelma"
       }
     ]
+  },
+  "claude-sovellus": {
+    "title": "Clauden työpöytäsovellus",
+    "question": "Käynnistä Claude. Mitä näet?",
+    "options": [
+      {
+        "id": "kaynnistyy",
+        "label": "Kirjautumisikkunan tai, jos olet jo kirjautunut, Clauden aloitusnäkymän",
+        "correct": true,
+        "explanation": "Sovellus on asennettu! Seuraavaksi kirjaudutaan ja avataan Code-välilehti."
+      },
+      {
+        "id": "tyhja",
+        "label": "Tyhjän tai jumittuneen ikkunan",
+        "correct": false,
+        "explanation": "Sovellus käynnistyi, mutta jokin jäi kesken. Vianmäärityksestä löydät ohjeen.",
+        "troubleshooting": "tyopoyta-jumissa"
+      },
+      {
+        "id": "ei-loydy",
+        "label": "En löydä sovellusta asennuksen jälkeen",
+        "correct": false,
+        "explanation": "Ei hätää, sovellus on todennäköisesti asentunut tai asennus jäi kesken. Vianmäärityksessä kerrotaan, mistä etsiä.",
+        "troubleshooting": "tyopoyta-ei-loydy"
+      },
+      {
+        "id": "muuta",
+        "label": "Jotain muuta",
+        "correct": false,
+        "explanation": "Ei hätää, selvitetään yhdessä.",
+        "troubleshooting": "tyopoyta-muu-ongelma"
+      }
+    ]
+  },
+  "code-valilehti": {
+    "title": "Code-välilehti",
+    "question": "Napsauta sivupalkin yläosasta Code. Mitä näet?",
+    "options": [
+      {
+        "id": "kirjoituskentta",
+        "label": "Kirjoituskentän, jonka alla on rivi valintoja",
+        "correct": true,
+        "explanation": "Code-välilehti toimii! Olet valmis antamaan Claudelle ensimmäisen tehtävän."
+      },
+      {
+        "id": "paivita-tilaus",
+        "label": "Kehotuksen päivittää tilaus",
+        "correct": false,
+        "explanation": "Tililläsi ei ole tilausta, johon Claude Code kuuluu, tai olet kirjautunut eri tilillä.",
+        "troubleshooting": "code-tilaus"
+      },
+      {
+        "id": "virhe-403",
+        "label": "Virheen 403 tai muun kirjautumisvirheen",
+        "correct": false,
+        "explanation": "Kirjautumisessa on jotain vialla. Yleensä uudelleenkirjautuminen auttaa.",
+        "troubleshooting": "code-403"
+      },
+      {
+        "id": "muuta",
+        "label": "Jotain muuta",
+        "correct": false,
+        "explanation": "Ei hätää, selvitetään yhdessä.",
+        "troubleshooting": "tyopoyta-muu-ongelma"
+      }
+    ]
   }
 }

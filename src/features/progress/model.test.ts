@@ -90,9 +90,17 @@ describe('reducer', () => {
     expect(p.missions).toEqual({ m: 't1' })
   })
 
+  it('polun valinta: sama polku ei muuta tilaa, toinen vaihtaa valinnan', () => {
+    const p = progressReducer(createDefaultProgress(), { type: 'selectPath', pathId: 'claude-code' })
+    expect(p.activePath).toBe('claude-code')
+    expect(progressReducer(p, { type: 'selectPath', pathId: 'claude-code' })).toBe(p)
+    expect(progressReducer(p, { type: 'selectPath', pathId: 'toinen' }).activePath).toBe('toinen')
+  })
+
   it('nollaus säilyttää teeman', () => {
     let p = progressReducer(createDefaultProgress(), { type: 'setTheme', theme: 'dark' })
     p = progressReducer(p, { type: 'setOs', os: 'windows' })
+    p = progressReducer(p, { type: 'selectPath', pathId: 'claude-code' })
     p = progressReducer(p, { type: 'reset' })
     expect(p).toEqual({ ...createDefaultProgress(), theme: 'dark' })
   })

@@ -3,24 +3,28 @@
     "title": "Ensimmäinen komento",
     "description": "Kirjoitit ensimmäisen komentosi terminaaliin. Siitä se lähtee!",
     "icon": "⌨️",
+    "path": "claude-code",
     "condition": { "type": "commandsRun", "min": 1 }
   },
   "kansiomestari": {
     "title": "Kansiomestari",
     "description": "Liikuit kansiosta toiseen ja loit oman kansion terminaalissa.",
     "icon": "📁",
+    "path": "claude-code",
     "condition": { "type": "missionsComplete", "missions": ["kansioissa-liikkuminen", "luo-projektikansio"] }
   },
   "perusteet-hallussa": {
     "title": "Perusteet hallussa",
     "description": "Kävit läpi kaikki perusteet: vibekoodauksen, terminaalin, kansiot, Gitin ja agentit.",
     "icon": "🧭",
+    "path": "claude-code",
     "condition": { "type": "topicComplete", "path": "claude-code", "topic": "perusteet" }
   },
   "asennukset-kunnossa": {
     "title": "Asennukset kunnossa",
     "description": "Git, VS Code, GitHub CLI ja Claude Code on asennettu ja tarkistettu.",
     "icon": "🧰",
+    "path": "claude-code",
     "condition": { "type": "verifyPassed", "steps": ["git", "vscode", "gh", "claude"] }
   },
   "promptiseppa": {
@@ -33,25 +37,49 @@
     "title": "Turvallinen ohjaaja",
     "description": "Osaat suunnitella ennen rakentamista, pitää salaisuudet salassa ja palata tallennuspisteeseen.",
     "icon": "🛡️",
+    "path": "claude-code",
     "condition": { "type": "topicComplete", "path": "claude-code", "topic": "periaatteet" }
   },
   "ensimmainen-commit": {
     "title": "Ensimmäinen commit",
     "description": "Tallensit oman projektisi ja veit sen GitHubiin.",
     "icon": "💾",
+    "path": "claude-code",
     "condition": { "type": "modulesComplete", "modules": ["claude-code/githubiin"] }
   },
   "vibekoodaaja": {
     "title": "Vibekoodaaja",
     "description": "Kävit koko polun läpi ja teit ensimmäisen oman projektisi. Onneksi olkoon!",
     "icon": "🏆",
+    "path": "claude-code",
     "condition": { "type": "pathComplete", "path": "claude-code" }
+  },
+  "code-valilehti-auki": {
+    "title": "Code-välilehti auki",
+    "description": "Clauden työpöytäsovellus on asennettu, ja Code-välilehti aukeaa.",
+    "icon": "🖥️",
+    "path": "claude-code-desktop",
+    "condition": { "type": "verifyPassed", "steps": ["claude-sovellus", "code-valilehti"] }
+  },
+  "ohjaimissa": {
+    "title": "Ohjaimissa",
+    "description": "Osaat valita tilan, tarkistaa Clauden muutokset ja pitää kontekstin siistinä.",
+    "icon": "🎛️",
+    "path": "claude-code-desktop",
+    "condition": { "type": "topicComplete", "path": "claude-code-desktop", "topic": "sovellus-tutuksi" }
+  },
+  "tyopoytakoodari": {
+    "title": "Työpöytäkoodari",
+    "description": "Kävit koko polun läpi ja teit työpöytäsovelluksessa ensimmäisen oman verkkosivusi. Onneksi olkoon!",
+    "icon": "🎉",
+    "path": "claude-code-desktop",
+    "condition": { "type": "pathComplete", "path": "claude-code-desktop" }
   },
   "julkaistu": {
     "title": "Julkaistu!",
     "description": "Sivusi on netissä omassa osoitteessaan. Lähetä linkki kaverille!",
     "icon": "🚀",
     "bonus": true,
-    "condition": { "type": "modulesComplete", "modules": ["claude-code/julkaise"] }
+    "condition": { "type": "modulesComplete", "modules": ["claude-code/julkaise", "claude-code-desktop/julkaise"], "match": "any" }
   }
 }

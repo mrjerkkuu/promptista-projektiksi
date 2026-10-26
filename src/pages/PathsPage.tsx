@@ -1,0 +1,31 @@
+import { paths } from '../content'
+import { useProgress } from '../features/progress'
+import { useDocumentTitle } from '../lib/useDocumentTitle'
+import { PathCard } from './PathCard'
+import './pages.css'
+
+/**
+ * Oppimispolkujen valinta (SUUNNITELMA.md luku 15.2). Polut tulevat sisällöstä
+ * order-kentän mukaisessa järjestyksessä, joten uusi polku ilmestyy tänne ilman koodimuutoksia.
+ */
+export function PathsPage() {
+  useDocumentTitle('Oppimispolut')
+  const { progress } = useProgress()
+  return (
+    <div className="paths-page">
+      <h1>Oppimispolut</h1>
+      <p className="lead">
+        Valitse, mitä haluat oppia. Jokainen polku alkaa alusta, joten aiempaa kokemusta ei tarvita. Voit vaihtaa polkua milloin tahansa, eikä
+        edistymisesi katoa.
+      </p>
+      {/* Lista: ruudunlukija kertoo polkujen määrän ("lista, 2 kohdetta"), mikä auttaa, kun polkuja on paljon. */}
+      <ul className="path-grid">
+        {paths.map((p) => (
+          <li key={p.id} className="path-grid__item">
+            <PathCard path={p} headingLevel={2} showAudience selected={p.id === progress.activePath} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

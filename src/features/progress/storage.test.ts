@@ -8,6 +8,7 @@ import {
   isStorageAvailable,
   loadProgress,
   migrate,
+  parseProgress,
   resetProgress,
   saveProgress,
 } from './storage'
@@ -92,6 +93,52 @@ describe('migraatiot', () => {
       2: (d: Record<string, unknown>) => ({ ...d, version: 3, b: 2 }),
     }
     expect(migrate({ version: 1 }, steps, 3)).toEqual({ version: 3, a: 1, b: 2 })
+  })
+
+  describe('v1 → v2: valittu polku', () => {
+    /** Tallennus sellaisena kuin versio 1 sen kirjoitti (ennen activePath-kenttää). */
+    function v1Save(overrides: Record<string, unknown> = {}) {
+      return {
+        version: 1,
+        os: 'windows',
+        theme: 'dark',
+        modules: { 'claude-code/terminaali': { visited: true, read: true } },
+        quizAnswers: { 'claude-code/terminaali': { q1: 'a' } },
+        verify: { git: 'ok' },
+        missions: { 'luo-projektikansio': '2026-10-24T10:00:00.000Z' },
+        badges: { 'ensimmainen-komento': '2026-10-24T10:00:00.000Z' },
+        stats: { commandsRun: 7 },
+        ...overrides,
+      }
+    }
+
+    it('säilyttää kaikki vanhat tiedot ja valitsee polun, jolla on edistymistä', () => {
+      const v1 = v1Save()
+      const { version, ...rest } = v1
+      expect(version).toBe(1)
+      expect(parseProgress(v1)).toEqual({ ...rest, version: 2, activePath: 'claude-code' })
+    })
+
+    it('ilman edistymistä polkua ei valita', () => {
+      expect(parseProgress(v1Save({ modules: {}, quizAnswers: {} })).activePath).toBeNull()
+    })
+
+    it('pelkät visavastaukset riittävät', () => {
+      expect(parseProgress(v1Save({ modules: {} })).activePath).toBe('claude-code')
+    })
+
+    it('vertaa polkua vinoviivan kanssa: claude-code-desktop ei ole claude-code', () => {
+      const v1 = v1Save({ modules: { 'claude-code-desktop/x': { visited: true, read: false } }, quizAnswers: {} })
+      expect(parseProgress(v1).activePath).toBeNull()
+    })
+
+    it('toimii sekä selaimen tallennuksesta että vanhasta siirtokoodista', () => {
+      const storage = memoryStorage()
+      storage.setItem(STORAGE_KEY, JSON.stringify(v1Save()))
+      expect(loadProgress(storage)).toMatchObject({ corrupted: false, progress: { version: 2, activePath: 'claude-code' } })
+      const oldCode = btoa(JSON.stringify(v1Save()))
+      expect(importProgress(oldCode).activePath).toBe('claude-code')
+    })
   })
 
   it('hylkää puuttuvan version, uudemman version ja puuttuvan migraation', () => {
