@@ -216,9 +216,9 @@ describe('sivut', () => {
   })
 })
 
-/** Edistyminen, jossa annetut moduulit ovat valmiita (luettu ja visa oikein). */
+/** Edistyminen, jossa annetut moduulit ovat valmiita (luettu ja visa oikein). Moduulit voivat olla miltä polulta tahansa. */
 function completed(keys: string[]) {
-  const modules = getPath('claude-code')!.modules.filter((m) => keys.includes(m.key))
+  const modules = paths.flatMap((p) => p.modules).filter((m) => keys.includes(m.key))
   return {
     ...createDefaultProgress(),
     os: 'mac' as const,
@@ -228,6 +228,28 @@ function completed(keys: string[]) {
     ),
   }
 }
+
+describe('etusivu, kun polku on valmis', () => {
+  const allKeys = (pathIds: string[]) => pathIds.flatMap((id) => getPath(id)!.modules.map((m) => m.key))
+
+  it('valitun polun valmistuminen ei väitä, että kaikki polut olisi käyty', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...completed(allKeys(['claude-code'])), activePath: 'claude-code' }))
+    renderAt('/')
+    expect(screen.getByText(/Kävit polun ”Claude Code terminaalissa” läpi/)).toBeInTheDocument()
+    expect(screen.queryByText(/kaikki oppimispolut läpi/)).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Katso muut oppimispolut' })).toHaveAttribute('href', '/polut')
+    // Nuppu juhlii eikä enää esittäydy kuin ensikäynnillä.
+    expect(screen.getByText('Jee, teit sen!').closest('p')).toHaveTextContent('Kuljit polun loppuun asti.')
+    expect(screen.queryByText('Moi, olen Nuppu!')).not.toBeInTheDocument()
+  })
+
+  it('kun kaikki polut on käyty, etusivu kertoo sen', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...completed(allKeys(paths.map((p) => p.id))), activePath: 'claude-code' }))
+    renderAt('/')
+    expect(screen.getByText('Olet käynyt kaikki oppimispolut läpi. Mahtavaa työtä!')).toBeInTheDocument()
+    expect(screen.getByText('Jee, teit sen!').closest('p')).toHaveTextContent('Kuljit kaikki polut loppuun asti.')
+  })
+})
 
 describe('palaute', () => {
   it('yläpalkista ja alatunnisteesta pääsee palautesivulle', () => {

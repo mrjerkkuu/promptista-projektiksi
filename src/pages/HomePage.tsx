@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { Icon } from '../components/Icon'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
-import { getPath } from '../content'
+import { getPath, paths } from '../content'
 import { getNextModule, hasAnyProgress, useProgress } from '../features/progress'
 import { OS_LABEL } from '../lib/os'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
@@ -18,7 +18,10 @@ export function HomePage() {
   const activePath = progress.activePath === null ? undefined : getPath(progress.activePath)
   const next = activePath ? getNextModule(progress, activePath.modules) : undefined
   const allDone = activePath !== undefined && !next
-  // Nuppu vilkuttaa etusivulla aina; koko polun valmistuttua se iloitsee.
+  // Polkuja on useita, joten valitun polun valmistuminen ei tarkoita, että kaikki olisi tehty.
+  // Lasketaan joka kerta sisällöstä: kun uusi polku lisätään, se on vielä kesken, eikä tallennusta tarvitse muuttaa.
+  const everyPathDone = allDone && paths.every((p) => !getNextModule(progress, p.modules))
+  // Nuppu vilkuttaa etusivulla aina; polun valmistuttua se iloitsee.
   const pose = allDone ? 'iloitsee' : 'vilkuttaa'
 
   return (
@@ -59,13 +62,29 @@ export function HomePage() {
               </Link>
             </p>
           )}
-          {allDone && <p className="notice notice--success">Olet käynyt koko polun läpi. Mahtavaa työtä!</p>}
+          {allDone &&
+            (everyPathDone ? (
+              <p className="notice notice--success">Olet käynyt kaikki oppimispolut läpi. Mahtavaa työtä!</p>
+            ) : (
+              <p className="notice notice--success">
+                Kävit polun ”{activePath.title}” läpi. Mahtavaa työtä! <Link to="/polut">Katso muut oppimispolut</Link>
+              </p>
+            ))}
         </div>
         <div className="hero__aside">
           <Nuppu pose={pose} size={150} wave />
           {/* Nupun SVG on koriste, joten esittely on tavallista tekstiä ruudunlukijalle. */}
           <p className="hero__nuppu-intro">
-            <strong>Moi, olen Nuppu!</strong> Kuljen mukanasi koko polun alusta loppuun.
+            {allDone ? (
+              <>
+                <strong>Jee, teit sen!</strong>{' '}
+                {everyPathDone ? 'Kuljit kaikki polut loppuun asti.' : 'Kuljit polun loppuun asti.'} Olen tosi ylpeä sinusta.
+              </>
+            ) : (
+              <>
+                <strong>Moi, olen Nuppu!</strong> Kuljen mukanasi koko polun alusta loppuun.
+              </>
+            )}
           </p>
           {progress.os === null ? (
             <div className="hero__os-picker">
