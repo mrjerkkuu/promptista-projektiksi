@@ -36,7 +36,7 @@
   filter: var(--nuppu-sticker);
 }
 
-/* Kellunta vain, kun se on pyydetty (etusivu, merkit). Oma piirtokerros
+/* Kellunta vain, kun se on pyydetty (merkit). Oma piirtokerros
    (will-change) pitää hitaan liikkeen tasaisena: muuten selain pyöristää
    sijainnin kokonaisiin pikseleihin ja liike nykii. */
 .nuppu--float {

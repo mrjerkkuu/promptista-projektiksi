@@ -277,7 +277,7 @@
   --color-nuppu-cheek: #F6D6E0;
   --color-nuppu-accent: #C4461A;
 
-  --duration-float: 2.4s;         /* Nupun pomppujen väli (etusivu, merkit); itse pomppu vie jakson alusta noin 0,5 s */
+  --duration-float: 2.4s;         /* Nupun pomppujen väli (merkit); itse pomppu vie jakson alusta noin 0,5 s */
   --duration-wave: 3.6s;          /* Nupun vilkutusten väli (etusivu); itse vilkutus vie jakson alusta noin 1 s */
 }
 

@@ -48,7 +48,7 @@ export function HomePage() {
           {allDone && <p className="notice notice--success">Olet käynyt koko polun läpi. Mahtavaa työtä!</p>}
         </div>
         <div className="hero__aside">
-          <Nuppu pose={pose} size={150} float wave />
+          <Nuppu pose={pose} size={150} wave />
           {/* Nupun SVG on koriste, joten esittely on tavallista tekstiä ruudunlukijalle. */}
           <p className="hero__nuppu-intro">
             <strong>Moi, olen Nuppu!</strong> Kuljen mukanasi koko polun alusta loppuun.
