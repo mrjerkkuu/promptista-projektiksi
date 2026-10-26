@@ -37,7 +37,7 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajettiin taustalla heti 
 
 ## Laajennus: useampi oppimispolku ja työpöytäpolku (26.10.2026)
 
-Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100–107.
+Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100–110.
 
 | Vaihe | Sisältö | Tila |
 |---|---|---|
@@ -45,7 +45,7 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100
 | 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ⬜ |
 | 13 | Yhteiset aiheet (`ref`) + validointi + testit | ⬜ |
 | 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ⬜ |
-| 15 | Polun `claude-desktop` sisältö | ⬜ |
+| 15 | Polun `claude-code-desktop` sisältö | ⬜ |
 | 16 | Merkit, varmistus, vianmääritys, sanasto, CONTRIBUTING.md | ⬜ |
 | 17 | Saavutettavuus, mobiili ja Lighthouse | ⬜ |
 

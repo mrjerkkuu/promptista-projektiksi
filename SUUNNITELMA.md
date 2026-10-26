@@ -251,7 +251,7 @@ Jokaisen vaiheen lopuksi: testit ja build läpi → commit.
 
 ## 15. Useampi oppimispolku ja polku "Claude Code työpöytäsovelluksessa"
 
-> Lisätty 26.10.2026. Päätökset ja perustelut: `PAATOKSET.md`, kohdat 100–107.
+> Lisätty 26.10.2026. Päätökset ja perustelut: `PAATOKSET.md`, kohdat 100–110.
 
 ### 15.1 Tavoite
 
@@ -287,9 +287,20 @@ Osa aiheista sopii sellaisenaan useaan polkuun. Niitä ei kopioida, vaan polku v
 | Asia | Toiminta |
 |---|---|
 | Sisältö | Yksi tiedosto (alkuperäisen polun kansiossa). Nimi, tiivistelmä, tietopaketti ja visa tulevat alkuperäisestä. |
-| Osoite | Polun oma: `/polku/claude-desktop/hyva-prompti`. "Seuraava aihe" pysyy samalla polulla. |
+| Osoite | Polun oma: `/polku/claude-code-desktop/hyva-prompti`. "Seuraava aihe" pysyy samalla polulla. |
 | Edistyminen | Tallennetaan alkuperäisellä avaimella (`claude-code/hyva-prompti`). Kerran tehty aihe on valmis kummallakin polulla. |
-| Validointi (build) | Viittauksen kohde on olemassa, kohde ei ole itse viittaus (ei ketjuja), ja aiheen ID on polun sisällä yksilöllinen. |
+| Validointi (build) | Viittauksen kohde on olemassa, kohde ei ole itse viittaus (ei ketjuja), ja aiheen ID on polun sisällä yksilöllinen. Yhteisen aiheen tietopaketissa ei saa olla linkkejä tietyn polun aiheisiin (`#/polku/…`). |
+
+**Sääntö: polku päätellään aina osoitteesta, ei edistymisen avaimesta.** Avain (`claude-code/hyva-prompti`) kertoo vain, mihin edistyminen tallennetaan. Kävijä voi tulla samaan aiheeseen kahdelta polulta, joten "missä olen" -tieto tulee osoitteen polusta. Koskee näitä kohtia:
+
+| Kohta | Toiminta |
+|---|---|
+| Seuraava / Edellinen ja murupolku | Osoitteen polun aiheet (`ModulePage.tsx` toimii jo näin). |
+| Simulaattorin vihje "Jatka sivua alaspäin…" | Nyt `getNextModule(key)` hakee seuraavan aiheen avaimen polulta. Muutetaan käyttämään osoitteen polkua: `ModuleContext` kertoo avaimen lisäksi polun. |
+| Valittu polku (`activePath`) | Asetetaan osoitteen polusta. |
+| "Aihealue / polku valmis" -palautepyyntö | Lasketaan osoitteen polusta (toimii jo näin). |
+
+Jokaisesta tehdään testi: yhteinen aihe kahdella polulla, ja "Seuraava" vie kummallakin polulla oikeaan paikkaan.
 
 Vaihtoehdot olivat kopio (korjaukset kahteen paikkaan, edistyminen erikseen) ja erillinen "Perusteet"-polku (ID:t vaihtuisivat, migraatio). Viittaus valittiin, koska yhtään olemassa olevaa ID:tä ei tarvitse muuttaa.
 
@@ -302,7 +313,9 @@ Vaihtoehdot olivat kopio (korjaukset kahteen paikkaan, edistyminen erikseen) ja 
 | Plan mode, Luvat ja turvallisuus, Git tallennuspisteinä | Ei: Shift+Tab, komentorivin lupakyselyt ja git-komennot. Työpöytäpolulle kirjoitetaan oma versio. |
 | Kansiot ja polut, Claude-tilaus | Ei: terminaalisimulaattori ja Console-tili. |
 
-### 15.4 Polku "Claude Code työpöytäsovelluksessa" (`claude-desktop`)
+### 15.4 Polku "Claude Code työpöytäsovelluksessa" (`claude-code-desktop`)
+
+**Otsikot:** uusi polku on "Claude Code työpöytäsovelluksessa". Vanhan polun (`claude-code`) otsikko vaihdetaan muotoon "Claude Code terminaalissa", jotta polkujen ero näkyy valintasivulla yhdellä silmäyksellä. Otsikon vaihto ei vaikuta tallennukseen, koska tallennus käyttää ID:tä.
 
 **Kohderyhmä:** täysi aloittelija, kuten terminaalipolussa. Polku on itsenäinen: terminaalipolkua ei tarvitse käydä ensin.
 
@@ -342,6 +355,6 @@ Jokaisen vaiheen lopuksi `npm run check` → commit.
 | 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `path.json`:n `order` ja `audience` |
 | 13 | Yhteiset aiheet: `ref` skeemaan, lataukseen ja build-validointiin + testit |
 | 14 | Valittu polku: `activePath`, migraatio v1 → v2 + testit, etusivun painike |
-| 15 | Polun `claude-desktop` sisältö (aihealueet 0–3), tarkistettuna virallisesta dokumentaatiosta |
+| 15 | Polun `claude-code-desktop` sisältö (aihealueet 0–3), tarkistettuna virallisesta dokumentaatiosta |
 | 16 | Merkit, varmistus, vianmääritys, sanasto, `CONTRIBUTING.md` (viittaukset) |
 | 17 | Saavutettavuus, mobiili ja Lighthouse uusille sivuille |
