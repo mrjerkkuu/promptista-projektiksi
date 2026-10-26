@@ -53,6 +53,10 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100
 
 Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Vaihe 15 on tehty. Seuraavaksi vaihe 16: merkit (esimerkiksi Code-välilehti auki, Työpöytäkoodari ja julkaisumerkki työpöytäpolulle) ja vianmäärityksen ryhmittely poluittain.
 
+**Myöhemmin tehtävät ideat:**
+
+- Työpöytäpolulle bonusaihe Gitin tallennuspisteistä (omistajan päätös, PAATOKSET.md kohta 122). Ei kuulu ydinpolkuun.
+
 **Omistajan tarkistettavat asiat** (luettavat tekstit, tehdyt valinnat, käyttöliittymän nimet ja otettavat kuvakaappaukset) ovat tiedostossa [`docs/tyopoytapolun-tarkistus.md`](docs/tyopoytapolun-tarkistus.md).
 
 ## Avoimet ongelmat

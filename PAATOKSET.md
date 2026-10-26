@@ -251,3 +251,4 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset tehtiin omistajan kanssa.
     - **Aiheen 2.3 vinkki muuttui:** ”Gitin tallennuspisteet harjoitellaan bonuksessa” → kopio projektikansiosta varmuuskopioksi ja maininta, että bonuksessa GitHub säilyttää jokaisen version.
     - **Omistajan tarkistuslista** on tiedostossa `docs/tyopoytapolun-tarkistus.md`: luettavat tekstit, tehdyt valinnat, käyttöliittymän nimet ja 44 kuvakaappausta tiedostoniminen. Kuvia ei vielä käytetä. Ne lisätään, kun omistaja on ottanut ne.
     - Tallennukseen ei tehty muutoksia.
+122. **Omistaja vahvisti: Gitin tallennuspisteet eivät kuulu työpöytäpolun ydinosaan.** Ne tehdään myöhemmin erillisenä bonusaiheena. Kohdan 121 ratkaisu (aihe 3.4 Viimeistele ja julkaisu GitHubin verkkosivun kautta) pysyy ennallaan. Idea on kirjattu EDISTYMINEN.md:hen.

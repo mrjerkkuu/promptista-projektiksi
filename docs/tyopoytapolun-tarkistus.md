@@ -43,7 +43,7 @@ Lisäksi:
 
 Nämä tehtiin ilman erillistä päätöstäsi. Perustelut ovat `PAATOKSET.md`:ssä.
 
-- [ ] **3.4 on ”Viimeistele” eikä ”Tallenna”.** Ydinpolku toimii ilman Gitiä. Viimeistelyssä tarkistetaan sivu kapealla näytöllä, päivitetään CLAUDE.md ja opitaan jatkamaan myöhemmin.
+- [x] **3.4 on ”Viimeistele” eikä ”Tallenna”.** Ydinpolku toimii ilman Gitiä. Viimeistelyssä tarkistetaan sivu kapealla näytöllä, päivitetään CLAUDE.md ja opitaan jatkamaan myöhemmin. *Omistaja vahvisti 26.10.2026: Gitin tallennuspisteet eivät kuulu ydinpolkuun, vaan ne tehdään myöhemmin bonusaiheena.*
 - [ ] **Bonus julkaistaan GitHubin verkkosivun kautta.** Repo luodaan selaimessa, tiedostot raahataan sinne ja Pages otetaan käyttöön asetuksista. Gitiä, GitHub CLI:tä tai terminaalia ei tarvita. Vaihtoehto olisi asentaa Git ja GitHub CLI kuten terminaalipolulla.
 - [ ] **GitHub-tili on bonus** (yhteinen aihe, merkitty valinnaiseksi tällä polulla).
 - [ ] **Polku on valintasivulla toisena** (terminaalipolun jälkeen).
