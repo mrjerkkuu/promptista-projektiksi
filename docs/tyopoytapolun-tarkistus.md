@@ -4,7 +4,17 @@ Tämä lista kokoaa sen, mitä polusta ”Claude Code työpöytäsovelluksessa�
 
 Tekstit näkee helpoimmin selaimessa: aja `npm run dev` ja avaa Oppimispolut → Claude Code työpöytäsovelluksessa.
 
-**Kun polku on tarkastettu:** poista rivi `"reviewed": false` tiedostosta `src/content/paths/claude-code-desktop/path.json`. Silloin Nupun ilmoitus ”Ei vielä tarkastettu” katoaa polkukortista, polun sivulta ja ensimmäisestä aiheesta.
+## 0. Viimeisenä: poista ilmoitus ”Ei vielä tarkastettu”
+
+Polku on julkaistu ilmoituksella, jossa Nuppu kertoo, ettei polkua ole vielä tarkastettu. Ilmoitus näkyy kolmessa paikassa: polun kortissa (valintasivu ja etusivu), polun sivulla ja polun ensimmäisessä aiheessa. Kun olet käynyt kohdat 1–4 läpi:
+
+- [ ] Avaa tiedosto `src/content/paths/claude-code-desktop/path.json` ja **poista tämä rivi**:
+
+  ```json
+    "reviewed": false,
+  ```
+
+  Rivi on tiedoston alussa kohdan `"order": 2,` alla. Muuta ei tarvitse muuttaa: kaikki kolme ilmoitusta katoavat tämän yhden rivin mukana. Aja lopuksi `npm run check`.
 
 ## 1. Luettavat tekstit
 

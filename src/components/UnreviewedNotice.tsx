@@ -15,7 +15,7 @@ interface UnreviewedNoticeProps {
 export function UnreviewedNotice({ pathId, compact = false }: UnreviewedNoticeProps) {
   return (
     <aside className={`unreviewed${compact ? ' unreviewed--compact' : ''}`} aria-label="Ei vielä tarkastettu">
-      <Nuppu pose="miettii" size={compact ? 56 : 80} />
+      <Nuppu pose="varoittaa" size={compact ? 56 : 80} />
       <div className="unreviewed__bubble">
         <p className="unreviewed__label">Ei vielä tarkastettu</p>
         {compact ? (
