@@ -7,8 +7,7 @@
 <path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--color-topic-0-bg)"></path>
 <ellipse cx="72" cy="116" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
 <ellipse cx="124" cy="116" rx="7" ry="4.5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
-<path d="M76 92 Q84 88 92 92"></path>
-<circle cx="84" cy="102" r="4.5" style="fill: var(--color-text); stroke: none"></circle>
+<path d="M78 103 Q84 97 90 103"></path>
 <circle cx="112" cy="102" r="4.5" style="fill: var(--color-text); stroke: none"></circle>
 <path d="M88 116 Q98 125 108 116"></path>
 <path d="M46 116 C 36 122 32 130 34 138"></path>
