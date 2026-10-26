@@ -12,7 +12,19 @@ import { preview } from 'vite'
 const TARGET = 90
 // Suunnitelman luku 10: tavoite 90+ Lighthousen neljässä vakiokategoriassa.
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo']
-const pages = ['/', '/polku/claude-code', '/polku/claude-code/terminaali', '/polku/claude-code/git-asennus', '/asetukset']
+const pages = [
+  '/',
+  '/polut',
+  '/polku/claude-code',
+  '/polku/claude-code/terminaali',
+  '/polku/claude-code/git-asennus',
+  '/polku/claude-code-desktop',
+  '/polku/claude-code-desktop/mita-on-vibekoodaus',
+  '/polku/claude-code-desktop/code-valilehti',
+  '/merkit',
+  '/vianmaaritys',
+  '/asetukset',
+]
 
 const server = await preview({ preview: { port: 4180, strictPort: true } })
 const base = server.resolvedUrls.local[0]
@@ -21,7 +33,8 @@ fs.mkdirSync(outDir, { recursive: true })
 
 const chrome = await chromeLauncher.launch({
   chromePath: process.env.CHROME_PATH,
-  chromeFlags: ['--headless=new', '--no-first-run'],
+  // Root-käyttäjänä (esim. kontit ja pilviympäristöt) Chrome ei käynnisty ilman --no-sandbox-valintaa.
+  chromeFlags: ['--headless=new', '--no-first-run', ...(process.getuid?.() === 0 ? ['--no-sandbox'] : [])],
 })
 const rows = []
 let failed = false

@@ -43,6 +43,10 @@ Lisäksi:
 - [ ] Uudet merkit (`src/content/badges.json`): Code-välilehti auki, Ohjaimissa, Työpöytäkoodari. Kuvakkeet (`src/assets/merkit/`) on piirretty samaan tyyliin kuin designin merkit, mutta designer ei ole nähnyt niitä.
 - [ ] Uusi vianmäärityksen kohta `tyopoyta-vaara-muutos` (Claude teki muutoksen, jota en halunnut).
 
+## 1b. Ennen julkaisua omalla koneella
+
+- [ ] `npm run build && npm run lighthouse`: mobiilin suorituskyky pilviympäristössä oli 83–92 (omalla koneellasi aiemmin 99). Tarkista, että tulos on 90+.
+
 ## 2. Tehdyt valinnat, jotka voit muuttaa
 
 Nämä tehtiin ilman erillistä päätöstäsi. Perustelut ovat `PAATOKSET.md`:ssä.

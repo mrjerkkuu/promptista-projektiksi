@@ -54,8 +54,8 @@
 }
 
 .hero__cta-label {
+  /* Ei läpinäkyvyyttä: pienen tekstin kontrastin pitää olla vähintään 4,5:1 (WCAG AA). */
   font-size: var(--font-size-xs);
-  opacity: 0.92;
 }
 
 .hero__cta-module {

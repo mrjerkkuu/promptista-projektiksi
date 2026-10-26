@@ -32,7 +32,8 @@ const base = server.resolvedUrls.local[0]
 const shotDir = path.resolve('.lighthouse/mobile')
 fs.mkdirSync(shotDir, { recursive: true })
 
-const browser = await puppeteer.launch({ executablePath, headless: true })
+// Root-käyttäjänä (esim. kontit ja pilviympäristöt) Chrome ei käynnisty ilman --no-sandbox-valintaa.
+const browser = await puppeteer.launch({ executablePath, headless: true, args: process.getuid?.() === 0 ? ['--no-sandbox'] : [] })
 const problems = []
 try {
   for (const os of ['windows', 'mac']) {
