@@ -44,12 +44,14 @@
   overflow-wrap: anywhere;
 }
 
-/* Pieni nuoli sanaa kohti */
+/* Pieni nuoli sanaa kohti. Kun selitys on siirretty näkymän sisään (Term.tsx),
+   --term-arrow-offset siirtää nuolen takaisin sanan kohdalle, kuitenkin
+   enintään selityksen oikeaan reunaan asti. */
 .term__popover::before {
   content: '';
   position: absolute;
   top: -7px;
-  left: var(--space-5);
+  left: min(var(--space-5) + var(--term-arrow-offset, 0px), 100% - var(--space-5) - 12px);
   width: 12px;
   height: 12px;
   background: var(--color-surface);

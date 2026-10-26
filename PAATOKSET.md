@@ -295,3 +295,11 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset tehtiin omistajan kanssa.
     - `tallentaa`: pitää kiinni tallennuspisteen lipusta
     - `kansio`: kantaa kansiota, josta pilkistää papereita
 136. **Kommentteja on 39, ja niitä on molemmilla poluilla** (terminaalipolulla 23 aihetta, työpöytäpolulla 20). Neljä niistä on yhteisissä aiheissa (`mita-on-vibekoodaus`, `git-ja-github`, `hyva-prompti`, `github-tili`), joten teksti ei mainitse kumpaakaan polkua. Kommentiton on muutama aihe, joissa on jo paljon ohjeita (esim. `github-cli` ja `claude-tilaus`). Asento on valittu aiheen mukaan, ja samaa asentoa ei käytetä peräkkäisissä aiheissa. Pääpaketti kasvoi uusien kuvien vuoksi noin 2 kt (gzip). Tallennukseen ei tehty muutoksia.
+
+## Sanaston selitys mobiilissa (26.10.2026)
+
+139. **Sanastotermin selitys pysyy mobiilissa näkymän sisällä** (omistajan palaute: selitys meni puhelimessa ruudun reunan yli). Vika oli kaksiosainen:
+    - **Leveys:** `Term.tsx` vertasi selityksen reunaa `window.innerWidth`iin. Mobiiliselaimessa innerWidth kasvaa sivun sisällön levyiseksi, joten reunan yli menevä selitys venytti itse vertailuleveyttä (Pixel 7: näkymä 412 px, innerWidth 561 px), eikä selitys siirtynyt näkyviin. Nyt leveys luetaan `document.documentElement.clientWidth`istä, joka on näkymän todellinen leveys.
+    - **Siirto:** selitys siirrettiin `transform`illa, joka siirtää vain piirron. Alkuperäinen paikka levitti sivua vaakasuunnassa niin kauan kuin selitys oli auki. Nyt siirto tehdään `left`-arvolla.
+    - **Nuoli:** ennen nuoli siirtyi selityksen mukana pois sanan kohdalta. Nyt muuttuja `--term-arrow-offset` siirtää sen takaisin sanan kohdalle, kuitenkin enintään selityksen reunaan asti.
+    - Testi jäljittelee mobiilin tilannetta (innerWidth 560 px, näkymä 360 px), ja se kaatui ennen korjausta. `check:mobile` ei huomannut vikaa, koska se tarkistaa sivut selitykset suljettuina. Tallennukseen ei tehty muutoksia.

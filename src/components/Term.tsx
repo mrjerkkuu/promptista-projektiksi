@@ -57,16 +57,27 @@ export function Term({ id, children }: TermProps) {
   }, [pinned])
 
   // Pidetään selitys näkymän sisällä kapeillakin näytöillä (ei vaakavieritystä).
+  // - Leveys luetaan clientWidthistä eikä window.innerWidthistä: mobiiliselaimissa
+  //   innerWidth kasvaa sivun sisällön levyiseksi, jolloin reunan yli menevä
+  //   selitys venyttäisi itse vertailuleveyttä eikä siirtyisi näkyviin.
+  // - Siirto tehdään left-arvolla eikä transformilla: transform siirtää vain
+  //   piirron, ja alkuperäinen paikka levittäisi sivua vaakasuunnassa.
+  // - Nuoli siirretään vastakkaiseen suuntaan, jotta se osoittaa yhä sanaa.
   useLayoutEffect(() => {
     const el = popover.current
     if (!open || !el) return
-    el.style.transform = ''
+    el.style.left = ''
+    el.style.removeProperty('--term-arrow-offset')
     const rect = el.getBoundingClientRect()
+    const viewportWidth = document.documentElement.clientWidth
     const margin = 8
     let shift = 0
-    if (rect.right > window.innerWidth - margin) shift = window.innerWidth - margin - rect.right
+    if (rect.right > viewportWidth - margin) shift = viewportWidth - margin - rect.right
     if (rect.left + shift < margin) shift = margin - rect.left
-    if (shift !== 0) el.style.transform = `translateX(${shift}px)`
+    if (shift !== 0) {
+      el.style.left = `${shift}px`
+      el.style.setProperty('--term-arrow-offset', `${-shift}px`)
+    }
   }, [open])
 
   if (!entry) return <>{children}</>

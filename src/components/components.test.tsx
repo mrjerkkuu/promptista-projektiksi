@@ -152,6 +152,24 @@ describe('<Term>', () => {
     expect(button).toHaveAttribute('aria-expanded', 'false')
   })
 
+  it('siirtää selityksen näkymän sisään, vaikka mobiilin innerWidth on venynyt', async () => {
+    // Mobiiliselaimessa reunan yli menevä selitys venyttää window.innerWidthin,
+    // mutta näkymän todellinen leveys (clientWidth) pysyy samana.
+    const restore = [
+      vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(360),
+      vi.spyOn(window, 'innerWidth', 'get').mockReturnValue(560),
+      vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue(DOMRect.fromRect({ x: 200, width: 320 })),
+    ]
+    const user = userEvent.setup()
+    renderWithProviders(<Term id="git">Gitiä</Term>)
+    await user.click(screen.getByRole('button', { name: 'Gitiä' }))
+    // Oikea reuna 520 px → 360 − 8 = 352 px, joten siirto on −168 px, ja nuoli siirtyy takaisin sanan kohdalle.
+    const note = screen.getByRole('note')
+    expect(note).toHaveStyle({ left: '-168px' })
+    expect(note.style.getPropertyValue('--term-arrow-offset')).toBe('168px')
+    restore.forEach((spy) => spy.mockRestore())
+  })
+
   it('tuntematon termi näytetään tavallisena tekstinä', () => {
     renderWithProviders(<Term id="tuntematon">sana</Term>)
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
