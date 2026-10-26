@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" aria-hidden="true" focusable="false" style="stroke: var(--color-text); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--color-border-subtle); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--color-surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--color-topic-1-bg)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--color-topic-0-bg)"></path>
+<ellipse cx="66" cy="114" rx="7" ry="4.5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<ellipse cx="134" cy="114" rx="7" ry="4.5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<circle cx="84" cy="104" r="3.5" style="fill: var(--color-text); stroke: none"></circle>
+<circle cx="116" cy="104" r="3.5" style="fill: var(--color-text); stroke: none"></circle>
+<circle cx="84" cy="101" r="11.5" style="stroke-width: 3"></circle>
+<circle cx="116" cy="101" r="11.5" style="stroke-width: 3"></circle>
+<path d="M95.5 99 Q100 95 104.5 99 M72.5 99 L45 95 M127.5 99 L155 95" style="stroke-width: 3"></path>
+<path d="M95 117 Q100 121 105 117"></path>
+<path d="M52 124 L52 156 C 70 152 90 152 100 158 C 110 152 130 152 148 156 L148 124 Z" style="fill: var(--color-primary)"></path>
+<path d="M100 128 C 90 122 74 122 60 125 L60 148 C 74 145 90 145 100 150 Z" style="fill: var(--color-surface)"></path>
+<path d="M100 128 C 110 122 126 122 140 125 L140 148 C 126 145 110 145 100 150 Z" style="fill: var(--color-surface)"></path>
+<path d="M68 131 C 76 129 84 129 92 131 M68 137 C 76 135 84 135 92 137 M68 143 C 76 141 82 141 86 142 M108 131 C 116 129 124 129 132 131 M108 137 C 116 135 124 135 132 137" style="stroke: var(--color-text-muted); stroke-width: 2"></path>
+<path d="M46 116 C 42 128 44 136 52 140 M154 116 C 158 128 156 136 148 140"></path>
+<path d="M122 123.4 C 128 116 140 113 145 117 C 141 122 140 130 140 140 L140 125 C 132 123.5 126 123.2 122 123.4 Z" style="fill: var(--color-surface)"></path>
+</svg>
