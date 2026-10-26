@@ -187,3 +187,8 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 ## Maskotti alatunnisteessa (26.10.2026)
 
 99. **Alatunnisteessa on vilkuttava Nuppu** (palaute: issue #9). Palautteessa toivottiin kissamaskottia, mutta sivuston maskotti on Nuppu, ja omistaja päätti käyttää sitä (`vilkuttaa`-asento). Uutta hahmoa ei piirretty. Nuppu (72 px) on alatunnisteen tekstien yläpuolella keskellä, ja se on paikallaan (ei kellu, kohta 66). Kuva on koriste (`aria-hidden`), joten saavutettavuus ei muutu. Väli tulee `tokens.css`:n tokenista. Tallennukseen ei tehty muutoksia.
+
+## Vilkuttava Nuppu ja matalampi alatunniste (26.10.2026)
+
+100. **Etusivun Nuppu vilkuttaa oikeasti.** Vilkutusasennon SVG:ssä käsi ja liikeviivat ovat ryhmässä `.nuppu__arm`, jota `wave`-prop kääntää olkapään ympäri. Käsi heilahtaa kaksi kertaa (noin 1 s) ja lepää sitten jakson loppuun; jakson pituus on `--duration-wave` (3,6 s). Vilkutus on käytössä vain etusivulla, ja vain kun asento on `vilkuttaa` (ennen käyttöjärjestelmän valintaa). Yläpalkin ja alatunnisteen Nuppu on edelleen paikallaan. Vähennetyssä liikkeessä `base.css` estää animaation kuten kellunnankin (kohta 65).
+101. **Alatunnisteen Nuppu on tekstien vasemmalla samalla rivillä** (korvaa kohdan 99 sijoittelun). Tekstien yläpuolella Nuppu lähes kaksinkertaisti alatunnisteen korkeuden. Nyt Nuppu (64 px) on suunnilleen kolmen tekstirivin korkuinen, ja tekstit on tasattu vasemmalle. Kapealla näytöllä sama rivi säilyy, eikä vaakavieritystä synny. Tallennukseen ei tehty muutoksia.

@@ -278,6 +278,7 @@
   --color-nuppu-accent: #C4461A;
 
   --duration-float: 2.4s;         /* Nupun pomppujen väli (etusivu, merkit); itse pomppu vie jakson alusta noin 0,5 s */
+  --duration-wave: 3.6s;          /* Nupun vilkutusten väli (etusivu); itse vilkutus vie jakson alusta noin 1 s */
 }
 
 /* ---------- Vähennetty liike: kestot nollaan (kuten ennenkin) ---------- */
