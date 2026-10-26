@@ -169,8 +169,8 @@
     "os": ["windows", "mac"],
     "symptom": "Asensit sovelluksen, mutta et löydä sitä mistään.",
     "steps": [
-      "Windowsilla: paina Windows-näppäintä, kirjoita Claude ja valitse sovellus hakutuloksista.",
-      "Macilla: paina Cmd+välilyönti, kirjoita Claude ja paina Enter. Jos sovellusta ei löydy, avaa Lataukset-kansiosta ladattu asennustiedosto uudelleen ja vedä Clauden kuvake Ohjelmat-kansioon.",
+      "Windowsilla: napsauta tehtäväpalkin Käynnistä-painiketta, kirjoita Claude ja valitse sovellus hakutuloksista.",
+      "Macilla: avaa Finder ja valitse sivupalkista Ohjelmat. Jos Claudea ei ole siellä, avaa Lataukset-kansiosta ladattu asennustiedosto uudelleen ja vedä Clauden kuvake Ohjelmat-kansioon.",
       "Jos sovellusta ei vieläkään löydy, lataa se uudelleen osoitteesta claude.ai/download ja asenna se."
     ]
   },

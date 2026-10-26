@@ -15,6 +15,7 @@ Komento ajaa lintin, testit ja buildin. **Build validoi koko sisällön**: rikki
 - Kieli on hyvää yleiskieltä ja rentoa sinuttelua. Leikkisä saa olla, lapsellinen ei. Vältä anglismeja ja selitä jokainen tekninen termi.
 - Tietopaketti on enintään noin 150–250 sanaa. Syventävä sisältö laitetaan `<ReadMore>`-osioon.
 - Termi esitellään ensimmäisellä kerralla `<Term id="…">`-komponentilla. Termin pitää olla `glossary.json`:ssa.
+- **Ohjeista näkyvä tapa ensin, pikanäppäin sulkuihin.** Lukija ei välttämättä käytä tietokonetta paljon, joten ensisijainen ohje on haku, valikko tai hiiren oikea painike, esimerkiksi ”Napsauta Käynnistä-painiketta, kirjoita `Resurssienhallinta` ja valitse se hakutuloksista. (Voit myös painaa Windows-näppäintä ja E-kirjainta yhtä aikaa.)”. Poikkeus: kun näppäinyhdistelmä on ainoa tapa (esimerkiksi tila vaihtuu Shift+Tabilla), se kerrotaan suoraan.
 - **Komentoja ei kirjoiteta muistista.** Tarkista jokainen asennuskomento virallisesta lähteestä (Anthropic, git-scm.com, cli.github.com, Microsoft, code.visualstudio.com) ja merkitse `source` ja `verifiedAt`.
 - **Hintoja tai tilausten yksityiskohtia ei kirjoiteta sivulle.** Linkitä viralliseen hinnastoon.
 - Lainausmerkkeinä käytetään suomalaisia lainausmerkkejä (”näin”).

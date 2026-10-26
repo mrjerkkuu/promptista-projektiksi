@@ -34,6 +34,7 @@ Tämä repo on **Promptista projektiksi**: pelillistetty suomenkielinen verkkosi
 - **Hintoja ei kirjoiteta sivulle**, vaan linkitetään viralliseen hinnastoon.
 - **Kieli:** hyvä yleiskieli, rento sinuttelu, ei anglismeja. Termi esitellään ensimmäisellä kerralla `<Term id="…">`-komponentilla.
 - **Tietopaketti:** noin 150–250 sanaa. Pidempi sisältö `<ReadMore>`-osioon.
+- **Pikanäppäimet sulkuihin:** ensisijainen ohje on näkyvä tapa (haku, valikko, hiiren oikea painike), pikanäppäin vaihtoehtona sulkeissa. Lukija ei välttämättä käytä tietokonetta paljon.
 - **Ei kolmansien osapuolten pyyntöjä:** ei analytiikkaa, ei CDN-fontteja.
 - **Saavutettavuus:** WCAG 2.1 AA. Näppäimistö, näkyvä fokus, `aria-live` palautteille.
 - **Edistymisen säilyminen:** käyttäjän edistyminen ei saa kadota, kun lisäämme moduuleja, ominaisuuksia tai oppitunteja. Edistyminen on käyttäjän selaimessa (localStorage), joten sitä ei voi palauttaa jälkikäteen.
