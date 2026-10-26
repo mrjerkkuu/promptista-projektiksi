@@ -45,13 +45,22 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100
 | 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ✅ |
 | 13 | Yhteiset aiheet (`ref`) + validointi + testit | ✅ |
 | 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ✅ |
-| 15 | Polun `claude-code-desktop` sisältö | ⬜ |
+| 15 | Polun `claude-code-desktop` sisältö | 🟡 aihealueet 0–1 valmiit, 2–3 tekemättä |
 | 16 | Merkit, varmistus, vianmääritys, sanasto, CONTRIBUTING.md | ⬜ |
 | 17 | Saavutettavuus, mobiili ja Lighthouse | ⬜ |
 
 ## Seuraavaksi
 
-Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Seuraavaksi vaihe 15: polun `claude-code-desktop` sisältö.
+Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Vaiheesta 15 on tehty aihealueet 0–1. Seuraavaksi aihealue 2 (Sovellus tutuksi), kun omistaja on lukenut aihealueiden 0–1 tekstit.
+
+**Tarkista työpöytäpolulta ennen julkaisua** (käyttöliittymän nimet, joita ei ole tarkistettu oikealta koneelta):
+
+- Clauden työpöytäsovelluksen asennus Macilla: tuleeko näkyviin ikkuna, jossa kuvake vedetään Ohjelmat-kansioon (1.2)?
+- macOS:n suomenkieliset nimet: omenavalikko → Tietoja tästä Macista (1.2), Finderin Näytä → Näytä polkupalkki (0.3).
+- Windowsin suomenkielinen polku Asetukset → Järjestelmä → Tietoja → Järjestelmän tyyppi (1.2, ARM).
+- Resurssienhallinnan osoiterivi ja `%USERPROFILE%` (0.3).
+- Sovelluksen kirjautumisen kulku ja Code-välilehden valintarivi (1.3). Anthropicin ohjeen mukaan välilehdet ovat sivupalkin yläosassa ja valintarivi kirjoituskentän alla.
+- Onko sovelluksen käyttöliittymä saatavilla suomeksi? Oppaassa nimet ovat englanniksi kuten Anthropicin ohjeissa.
 
 ## Avoimet ongelmat
 

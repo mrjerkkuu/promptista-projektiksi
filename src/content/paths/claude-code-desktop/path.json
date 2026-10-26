@@ -1,0 +1,31 @@
+{
+  "id": "claude-code-desktop",
+  "title": "Claude Code työpöytäsovelluksessa",
+  "description": "Opit käyttämään Claude Codea Clauden työpöytäsovelluksessa ja teet sen avulla ensimmäisen oman verkkosivusi. Terminaalia ei tarvita, eikä aiempaa kokemusta.",
+  "order": 2,
+  "audience": "Sinulle, joka haluat päästä alkuun helpoimmalla tavalla: tavallisella sovelluksella, jossa on painikkeet ja valikot. Komentoriviä ei tarvitse opetella.",
+  "topics": [
+    {
+      "id": "perusteet",
+      "title": "Perusteet",
+      "description": "Mitä vibekoodaus on, miten agentti eroaa chatista ja miksi jokaiselle projektille tehdään oma kansio.",
+      "modules": [
+        { "ref": "claude-code/mita-on-vibekoodaus" },
+        { "id": "chat-vai-agentti", "title": "Chat vai AI-agentti?", "summary": "Samassa sovelluksessa on chat, joka vastaa, ja Claude Code, joka tekee." },
+        { "id": "kansiot-ja-tiedostot", "title": "Kansiot ja tiedostot", "summary": "Claude työskentelee valitsemassasi kansiossa. Teet projekteillesi oman kansion." },
+        { "ref": "claude-code/git-ja-github" }
+      ]
+    },
+    {
+      "id": "kayttoonotto",
+      "title": "Käyttöönotto",
+      "description": "Hankit tilauksen, asennat Clauden työpöytäsovelluksen ja avaat Code-välilehden. Asennuskomentoja ei tarvita.",
+      "modules": [
+        { "id": "claude-tilaus", "title": "Claude-tilaus", "summary": "Millainen tilaus Claude Codeen tarvitaan ja mistä näet ajantasaiset hinnat." },
+        { "id": "sovelluksen-asennus", "title": "Sovelluksen asennus", "summary": "Lataat Clauden työpöytäsovelluksen virallisesta osoitteesta ja asennat sen." },
+        { "id": "code-valilehti", "title": "Kirjautuminen ja Code-välilehti", "summary": "Kirjaudut sisään ja avaat välilehden, jolla Claude Code toimii." },
+        { "id": "tarkistuslista", "title": "Tarkistuslista", "summary": "Kaikki varmistukset yhdellä sivulla: onko kaikki valmiina?" }
+      ]
+    }
+  ]
+}

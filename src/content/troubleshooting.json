@@ -153,6 +153,69 @@
       "Lataa sivu uudelleen ohittaen välimuisti: Windowsilla Ctrl+F5, Macilla Cmd+Shift+R."
     ]
   },
+  "tyopoyta-jumissa": {
+    "title": "Clauden työpöytäsovellus näyttää tyhjää tai jumittaa",
+    "os": ["windows", "mac"],
+    "symptom": "Sovellus aukeaa, mutta ikkuna on tyhjä tai ei reagoi.",
+    "steps": [
+      "Sulje sovellus kokonaan ja käynnistä se uudelleen.",
+      "Odota hetki käynnistyksen jälkeen: sovellus asentaa päivitykset käynnistyessään.",
+      "Jos olet työpaikan tai oppilaitoksen verkossa, verkko voi estää yhteyden. Kokeile toisessa verkossa tai kysy ylläpitäjältä.",
+      "Jos mikään ei auta, lataa sovellus uudelleen osoitteesta claude.ai/download ja asenna se."
+    ]
+  },
+  "tyopoyta-ei-loydy": {
+    "title": "En löydä Clauden työpöytäsovellusta",
+    "os": ["windows", "mac"],
+    "symptom": "Asensit sovelluksen, mutta et löydä sitä mistään.",
+    "steps": [
+      "Windowsilla: paina Windows-näppäintä, kirjoita Claude ja valitse sovellus hakutuloksista.",
+      "Macilla: paina Cmd+välilyönti, kirjoita Claude ja paina Enter. Jos sovellusta ei löydy, avaa Lataukset-kansiosta ladattu asennustiedosto uudelleen ja vedä Clauden kuvake Ohjelmat-kansioon.",
+      "Jos sovellusta ei vieläkään löydy, lataa se uudelleen osoitteesta claude.ai/download ja asenna se."
+    ]
+  },
+  "code-tilaus": {
+    "title": "Code-välilehti pyytää päivittämään tilauksen",
+    "os": ["windows", "mac"],
+    "symptom": "Kun napsautat Code-välilehteä, sovellus pyytää päivittämään tilauksen tai kirjautumaan selaimessa.",
+    "steps": [
+      "Tarkista, että sinulla on Pro-, Max-, Team- tai Enterprise-tilaus. Ilmainen Claude-tili ei riitä. Katso Claude-tilaus-aihe.",
+      "Varmista, että olet kirjautunut sovellukseen samalla tilillä, jolla tilaus on tehty.",
+      "Jos sovellus pyytää kirjautumaan selaimessa, tee kirjautuminen loppuun ja käynnistä sovellus uudelleen."
+    ]
+  },
+  "code-403": {
+    "title": "Code-välilehti näyttää virheen 403",
+    "os": ["windows", "mac"],
+    "symptom": "Code-välilehdellä näkyy Error 403: Forbidden tai muu kirjautumisvirhe.",
+    "steps": [
+      "Kirjaudu ulos sovelluksen valikosta ja kirjaudu takaisin sisään. Tämä auttaa useimmiten.",
+      "Tarkista, että tilauksesi on voimassa (Pro, Max, Team tai Enterprise).",
+      "Sulje sovellus kokonaan, älä pelkkää ikkunaa. Avaa se uudelleen ja kirjaudu sisään.",
+      "Tarkista, että internetyhteys toimii."
+    ]
+  },
+  "code-vanha-nakyma": {
+    "title": "Code-välilehdellä ei ole valintariviä",
+    "os": ["windows", "mac"],
+    "symptom": "Kirjoituskentän alla ei ole ympäristön valintaa, tai näkymä ei vastaa tämän oppaan kuvausta.",
+    "steps": [
+      "Sovelluksesi on todennäköisesti vanhempi versio. Windowsilla valitse valikosta Help → Check for Updates…, Macilla valikkoriviltä Claude → Check for Updates….",
+      "Näet sovelluksen version Windowsilla valikosta Help → About Claude ja Macilla valikkoriviltä Claude → About Claude.",
+      "Jos käytät työpaikan tai oppilaitoksen tiliä, organisaatio voi hallita päivityksiä. Kysy silloin ylläpitäjältä."
+    ]
+  },
+  "tyopoyta-muu-ongelma": {
+    "title": "Jotain muuta meni pieleen työpöytäsovelluksessa",
+    "os": ["windows", "mac"],
+    "symptom": "Sovellus ei toiminut odotetusti, eikä ongelmaa löydy tältä listalta.",
+    "steps": [
+      "Lue virheilmoitus rauhassa ja kirjoita se talteen.",
+      "Sulje sovellus kokonaan ja käynnistä se uudelleen.",
+      "Kysy Claudelta sovelluksen Chat-välilehdellä tai selaimessa osoitteessa claude.ai: ”Yritin avata Clauden työpöytäsovelluksen Code-välilehden ja sain tämän virheen. Mitä se tarkoittaa ja miten korjaan sen?”",
+      "Anthropicin ohjeessa on vianmääritysosio: code.claude.com/docs/en/desktop."
+    ]
+  },
   "muu-ongelma": {
     "title": "Jotain muuta meni pieleen",
     "os": ["windows", "mac"],

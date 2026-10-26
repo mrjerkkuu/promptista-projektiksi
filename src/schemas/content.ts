@@ -132,8 +132,11 @@ export const verifyStepSchema = z
   .object({
     /** Tarkistettava työkalu, esim. "Git". */
     title: text,
-    /** commands.json-tunniste komennolle, jolla asennus tarkistetaan. */
-    command: idSchema,
+    /**
+     * commands.json-tunniste komennolle, jolla asennus tarkistetaan. Puuttuu, kun tarkistetaan
+     * sovelluksen näkymä eikä komennon tulosta (esim. työpöytäsovelluksen Code-välilehti).
+     */
+    command: idSchema.optional(),
     question: text,
     options: z.array(verifyOptionSchema).min(3).max(4),
   })

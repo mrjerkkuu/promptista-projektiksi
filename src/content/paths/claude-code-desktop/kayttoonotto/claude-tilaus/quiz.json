@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "ilmainen",
+      "question": "Riittääkö ilmainen Claude-tili työpöytäsovelluksen Claude Codeen?",
+      "options": [
+        { "id": "ei", "text": "Ei riitä, tarvitaan tilaus, johon Claude Code kuuluu", "correct": true, "explanation": "Oikein. Esimerkiksi Pro- tai Max-tilaukseen Claude Code kuuluu." },
+        { "id": "kylla", "text": "Riittää, koska sovelluksen voi ladata ilmaiseksi", "correct": false, "explanation": "Sovelluksen saa ladata ilmaiseksi, mutta Code-välilehden käyttö vaatii tilauksen, johon Claude Code kuuluu." },
+        { "id": "kokeilu", "text": "Riittää, kunhan kirjautuu joka päivä", "correct": false, "explanation": "Kirjautumistiheys ei vaikuta asiaan. Tarvitaan tilaus, johon Claude Code kuuluu." }
+      ]
+    },
+    {
+      "id": "hinnat",
+      "question": "Mistä näet tilausten ajantasaiset hinnat?",
+      "options": [
+        { "id": "virallinen", "text": "Anthropicin virallisesta hinnastosta", "correct": true, "explanation": "Juuri niin. Hinnat muuttuvat, joten ne kannattaa aina tarkistaa virallisesta lähteestä." },
+        { "id": "tama-sivu", "text": "Tältä sivulta", "correct": false, "explanation": "Tällä sivulla ei kerrota hintoja juuri siksi, että ne muuttuvat. Linkki viralliseen hinnastoon on yllä." },
+        { "id": "arvaus", "text": "Kaverilta, joka osti tilauksen viime vuonna", "correct": false, "explanation": "Tieto voi olla vanhentunut. Tarkista aina virallisesta hinnastosta." }
+      ]
+    }
+  ]
+}
