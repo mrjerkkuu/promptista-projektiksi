@@ -37,7 +37,7 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajettiin taustalla heti 
 
 ## Laajennus: useampi oppimispolku ja työpöytäpolku (26.10.2026)
 
-Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100–110.
+Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 106–131.
 
 | Vaihe | Sisältö | Tila |
 |---|---|---|
@@ -55,14 +55,14 @@ Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Laajennuk
 
 **Vaiheen 17 tulokset (26.10.2026, pilviympäristö):**
 
-- Saavutettavuus: automaattiset axe-testit kaikille sivuille kummallakin käyttöjärjestelmävalinnalla. Lighthouse: 100 kaikilla mitatuilla sivuilla etusivun kontrastikorjauksen jälkeen (PAATOKSET.md kohta 125).
+- Saavutettavuus: automaattiset axe-testit kaikille sivuille kummallakin käyttöjärjestelmävalinnalla. Lighthouse: 100 kaikilla mitatuilla sivuilla etusivun kontrastikorjauksen jälkeen (PAATOKSET.md kohta 131).
 - Mobiili: `npm run check:mobile` → 55 sivua × 2 käyttöjärjestelmää, ei vaakavieritystä 360 px:n leveydellä.
 - Lighthouse, työpöytä: 100/100/100/100 kaikilla 11 sivulla.
 - Lighthouse, mobiili: suorituskyky 83–92, muut 100. Tämä ympäristö on hitaampi kuin omistajan kone (aiemmin 99). `main`-haaran versio ennen laajennusta sai samassa ympäristössä 88–90, joten ero on mittausvaihtelun rajoissa. Mittaa uudelleen omalla koneella ennen julkaisua: `npm run build && npm run lighthouse`.
 
 **Myöhemmin tehtävät ideat:**
 
-- Työpöytäpolulle bonusaihe Gitin tallennuspisteistä (omistajan päätös, PAATOKSET.md kohta 122). Ei kuulu ydinpolkuun.
+- Työpöytäpolulle bonusaihe Gitin tallennuspisteistä (omistajan päätös, PAATOKSET.md kohta 128). Ei kuulu ydinpolkuun.
 
 **Omistajan tarkistettavat asiat** (luettavat tekstit, tehdyt valinnat, käyttöliittymän nimet ja otettavat kuvakaappaukset) ovat tiedostossa [`docs/tyopoytapolun-tarkistus.md`](docs/tyopoytapolun-tarkistus.md).
 

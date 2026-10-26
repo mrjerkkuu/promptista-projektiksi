@@ -251,7 +251,7 @@ Jokaisen vaiheen lopuksi: testit ja build läpi → commit.
 
 ## 15. Useampi oppimispolku ja polku "Claude Code työpöytäsovelluksessa"
 
-> Lisätty 26.10.2026. Päätökset ja perustelut: `PAATOKSET.md`, kohdat 100–110.
+> Lisätty 26.10.2026. Päätökset ja perustelut: `PAATOKSET.md`, kohdat 106–131.
 
 ### 15.1 Tavoite
 
@@ -331,7 +331,7 @@ Toteutus (↗ = viittaus terminaalipolun aiheeseen, ★ = bonus). Aiheiden ID:t 
 | **2. Sovellus tutuksi** | Ensimmäinen istunto · Tilat ja turvallisuus · Muutosten tarkistus · Esikatselu · ↗ Hyvä prompti · CLAUDE.md · Konteksti |
 | **3. Ensimmäinen projekti** | Projektikansio · Suunnittele · Rakenna · Viimeistele · ★ ↗ GitHub-tili · ★ Bonus: julkaise |
 
-Toteutuksessa yhteisiä aiheita tuli vähemmän kuin luvussa 15.3 arvioitiin: Chat vai AI-agentti, CLAUDE.md ja Konteksti saivat oman version (PAATOKSET.md, kohdat 116 ja 120). Bonuksessa sivu julkaistaan GitHubin verkkosivun kautta ilman Gitiä ja terminaalia (kohta 121).
+Toteutuksessa yhteisiä aiheita tuli vähemmän kuin luvussa 15.3 arvioitiin: Chat vai AI-agentti, CLAUDE.md ja Konteksti saivat oman version (PAATOKSET.md, kohdat 122 ja 126). Bonuksessa sivu julkaistaan GitHubin verkkosivun kautta ilman Gitiä ja terminaalia (kohta 127).
 
 **Sisällön lähteet:** Anthropicin dokumentaatio (`code.claude.com/docs/en/desktop-quickstart` ja `…/desktop`). Kuten luvussa 12, käyttöliittymän nimet ja vaiheet tarkistetaan toteutushetkellä eikä kirjoiteta muistista. Hintoja ei kirjoiteta sivulle.
 

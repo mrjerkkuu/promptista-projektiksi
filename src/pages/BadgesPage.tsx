@@ -20,7 +20,7 @@ export function BadgesPage() {
     { key: 'bonus', title: 'Bonusmerkit', items: list.filter(([, b]) => b.bonus) },
   ].filter((g) => g.items.length > 0)
   const earned = list.filter(([id]) => progress.badges[id]).length
-  const pose = earned === 0 ? 'lepaa' : earned === list.length ? 'iloitsee' : 'vilkuttaa'
+  const pose = earned === 0 ? 'lepaa' : earned === list.length ? 'iloitsee' : 'mitali'
   return (
     <>
       <header className="page-header">

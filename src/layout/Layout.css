@@ -184,12 +184,17 @@
   border-top: var(--border-width) solid var(--color-border-subtle);
   color: var(--color-text-muted);
   font-size: var(--font-size-caption);
-  text-align: center;
   padding: var(--space-5) 0 var(--space-6);
+
+  /* Nuppu tekstien vasemmalla samalla rivillä, joten se ei kasvata alatunnisteen korkeutta. */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
 }
 
-.site-footer__mascot {
-  margin-bottom: var(--space-2);
+.site-footer__texts {
+  min-width: 0;
 }
 
 .site-footer__text {

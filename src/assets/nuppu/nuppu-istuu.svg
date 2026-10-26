@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" aria-hidden="true" focusable="false" style="stroke: var(--color-text); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="160" rx="54" ry="6" style="fill: var(--color-border-subtle); stroke: none"></ellipse>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--color-surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--color-topic-1-bg)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--color-topic-0-bg)"></path>
+<ellipse cx="72" cy="154" rx="12" ry="7" style="fill: var(--color-surface)"></ellipse>
+<ellipse cx="128" cy="154" rx="12" ry="7" style="fill: var(--color-surface)"></ellipse>
+<ellipse cx="72" cy="112" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<ellipse cx="128" cy="112" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<path d="M78 100 Q84 94 90 100 M110 100 Q116 94 122 100"></path>
+<path d="M92 112 Q100 118 108 112"></path>
+<rect x="88" y="130" width="24" height="20" rx="4" style="fill: var(--color-topic-0-bg)"></rect>
+<path d="M112 134 C 120 134 120 146 112 146"></path>
+<path d="M46 118 C 56 134 72 142 88 141 M154 118 C 150 130 138 138 119 140"></path>
+<path d="M96 126 C 94 123 98 122 96 119 M104 126 C 102 123 106 122 104 119" style="stroke: var(--color-text-muted); stroke-width: 2.5"></path>
+</svg>
