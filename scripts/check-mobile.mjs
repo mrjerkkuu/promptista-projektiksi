@@ -22,7 +22,7 @@ if (!executablePath) {
 
 const pathJson = JSON.parse(fs.readFileSync('src/content/paths/claude-code/path.json', 'utf8'))
 const moduleRoutes = pathJson.topics.flatMap((t) => t.modules.map((m) => `/polku/claude-code/${m.id}`))
-const routes = ['/', '/polku/claude-code', '/sanasto', '/vianmaaritys', '/merkit', '/asetukset', '/palaute', ...moduleRoutes]
+const routes = ['/', '/polut', '/polku/claude-code', '/sanasto', '/vianmaaritys', '/merkit', '/asetukset', '/palaute', ...moduleRoutes]
 
 const server = await preview({ preview: { port: 4179, strictPort: true } })
 const base = server.resolvedUrls.local[0]

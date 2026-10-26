@@ -204,6 +204,10 @@ export const pathSchema = z
     id: idSchema,
     title: text,
     description: text,
+    /** Järjestys polkujen valintasivulla (pienin ensin). */
+    order: z.number().int().nonnegative(),
+    /** Kenelle polku sopii. Näytetään valintasivulla otsikon "Kenelle?" jälkeen. */
+    audience: text,
     topics: z.array(topicSchema).min(1),
   })
   .strict()

@@ -1,9 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router'
 import { describe, expect, it } from 'vitest'
 import { AppShell } from './AppShell'
-import { getPath } from './content'
+import { getPath, paths } from './content'
 import { STORAGE_KEY, createDefaultProgress } from './features/progress'
 
 function renderAt(route: string) {
@@ -49,9 +49,30 @@ describe('sivut', () => {
     expect(screen.getByRole('link', { name: /Jatka siitä mihin jäit: 0.2/ })).toHaveAttribute('href', '/polku/claude-code/terminaali')
   })
 
+  it('oppimispolkujen sivu listaa polut järjestyksessä ja kertoo, kenelle ne sopivat', () => {
+    renderAt('/polut')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Oppimispolut')
+    const headings = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent)
+    expect(headings).toEqual(paths.map((p) => p.title))
+    expect(screen.getByRole('link', { name: 'Claude Code terminaalissa' })).toHaveAttribute('href', '/polku/claude-code')
+    expect(screen.getAllByText('Kenelle?')).toHaveLength(paths.length)
+  })
+
+  it('päävalikon Oppimispolut-linkki vie valintasivulle ja korostuu myös polun sivuilla', () => {
+    const { unmount } = renderAt('/polut')
+    const nav = () => screen.getByRole('navigation', { name: 'Päävalikko' })
+    const link = () => within(nav()).getByRole('link', { name: 'Oppimispolut' })
+    expect(link()).toHaveAttribute('href', '/polut')
+    expect(link()).toHaveAttribute('aria-current', 'page')
+    unmount()
+    renderAt('/polku/claude-code')
+    expect(link()).toHaveClass('site-nav__link--section')
+    expect(link()).not.toHaveAttribute('aria-current')
+  })
+
   it('polkusivu listaa aihealueet ja moduulit', () => {
     renderAt('/polku/claude-code')
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Claude Code alusta alkaen')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Claude Code terminaalissa')
     expect(screen.getByRole('heading', { name: '1. Asennukset' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /3.5 Bonus: julkaise/ })).toBeInTheDocument()
   })
@@ -174,7 +195,7 @@ describe('palaute', () => {
     expect(screen.getByLabelText('Mitä palaute koskee?')).toHaveValue('idea')
     unmount()
     renderAt('/palaute?polku=claude-code')
-    expect(screen.getByText(/Palaute koskee polkua/)).toHaveTextContent('Claude Code alusta alkaen')
+    expect(screen.getByText(/Palaute koskee polkua/)).toHaveTextContent('Claude Code terminaalissa')
   })
 
   it('moduulin palautelinkki kertoo palautesivulle, mitä aihetta palaute koskee', async () => {

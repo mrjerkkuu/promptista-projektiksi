@@ -58,6 +58,8 @@ function makeFixture(): string {
     id: 'polku',
     title: 'P',
     description: 'D',
+    order: 1,
+    audience: 'A',
     topics: [{ id: 'aihe', title: 'A', description: 'D', modules: [{ id: 'moduuli', title: 'M', summary: 'S' }] }],
   })
   write(
@@ -180,6 +182,16 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
     const d = fixture()
     replaceIn(mdx(d), '## M', '# M')
     expect(validateContent(d).errors.join()).toMatch(/pääotsikkoa/)
+  })
+
+  it('kahdella polulla sama järjestysnumero', () => {
+    const d = fixture()
+    const meta = JSON.parse(fs.readFileSync(path.join(d, 'paths/polku/path.json'), 'utf8'))
+    const copy = { ...meta, id: 'toinen' }
+    fs.mkdirSync(path.join(d, 'paths/toinen/aihe/moduuli'), { recursive: true })
+    fs.writeFileSync(path.join(d, 'paths/toinen/path.json'), JSON.stringify(copy))
+    fs.writeFileSync(path.join(d, 'paths/toinen/aihe/moduuli/index.mdx'), '## M\n')
+    expect(validateContent(d).errors.join()).toMatch(/order 1 on jo polulla "polku"/)
   })
 
   it('rikkinäinen JSON', () => {

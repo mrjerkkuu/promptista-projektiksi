@@ -199,6 +199,13 @@ export function validateContent(contentDir: string): ValidationResult {
     }
   }
   if (paths.size === 0) errors.push('paths/: yhtään oppimispolkua ei löytynyt')
+  // Sama järjestysnumero kahdella polulla tekisi valintasivun järjestyksestä sattumanvaraisen.
+  const pathsByOrder = new Map<number, string>()
+  for (const p of paths.values()) {
+    const other = pathsByOrder.get(p.order)
+    if (other) errors.push(`paths/${p.id}/path.json: order ${p.order} on jo polulla "${other}"`)
+    else pathsByOrder.set(p.order, p.id)
+  }
 
   // Merkkien ehdot
   for (const [id, badge] of Object.entries(badges)) {

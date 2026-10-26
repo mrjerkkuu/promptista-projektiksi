@@ -35,6 +35,8 @@ Polku lisätään pelkillä sisältötiedostoilla. Sovelluksen koodiin ei tarvit
   "id": "lovable",
   "title": "Lovable alusta alkaen",
   "description": "Lyhyt kuvaus polusta.",
+  "order": 3,
+  "audience": "Sinulle, joka haluat… (näytetään valintasivulla otsikon ”Kenelle?” jälkeen)",
   "topics": [
     {
       "id": "perusteet",
@@ -56,7 +58,8 @@ Säännöt:
 - `id`:n pitää olla sama kuin kansion nimi. Tunnisteissa saa olla vain pieniä kirjaimia a–z, numeroita ja väliviivoja.
 - Moduulien tunnisteiden pitää olla yksilöllisiä polun sisällä.
 - Valinnainen bonusmoduuli merkitään `"optional": true`. Se ei vaikuta edistymisprosenttiin.
-- Jos polkuja on useampi, etusivu listaa ne kaikki.
+- Polut näytetään sivulla Oppimispolut (`/polut`) ja etusivulla `order`-kentän mukaisessa järjestyksessä. Kahdella polulla ei saa olla samaa `order`-arvoa.
+- `audience` kertoo valintasivulla, kenelle polku sopii. Kirjoita se niin, että kävijä tunnistaa siitä, onko polku hänelle oikea.
 
 ### Uusi moduuli olemassa olevaan polkuun
 

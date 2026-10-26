@@ -170,6 +170,11 @@
   color: var(--color-text-muted);
 }
 
+.path-card__audience {
+  max-width: 45rem;
+  font-size: var(--font-size-base);
+}
+
 .topic-chips {
   list-style: none;
   padding: 0;

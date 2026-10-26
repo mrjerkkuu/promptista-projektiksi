@@ -42,7 +42,7 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100
 | Vaihe | Sisältö | Tila |
 |---|---|---|
 | 11 | Suunnitelma ja päätökset | ✅ |
-| 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ⬜ |
+| 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ✅ |
 | 13 | Yhteiset aiheet (`ref`) + validointi + testit | ⬜ |
 | 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ⬜ |
 | 15 | Polun `claude-code-desktop` sisältö | ⬜ |
@@ -51,7 +51,7 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100
 
 ## Seuraavaksi
 
-Alkuperäiset vaiheet 1–10 on tehty. Seuraavaksi laajennuksen vaihe 12 (yllä).
+Alkuperäiset vaiheet 1–10 ja laajennuksen vaihe 12 on tehty. Seuraavaksi vaihe 13: yhteiset aiheet (`ref`).
 
 ## Avoimet ongelmat
 

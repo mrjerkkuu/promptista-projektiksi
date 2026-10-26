@@ -2,11 +2,11 @@ import { Link } from 'react-router'
 import { Icon } from '../components/Icon'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
-import { ProgressBar } from '../components/ProgressBar'
-import { paths, type LearningPath } from '../content'
-import { countProgress, getNextModule, hasAnyProgress, useProgress } from '../features/progress'
+import { paths } from '../content'
+import { getNextModule, hasAnyProgress, useProgress } from '../features/progress'
 import { OS_LABEL } from '../lib/os'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
+import { PathCard } from './PathCard'
 import './pages.css'
 
 export function HomePage() {
@@ -68,7 +68,7 @@ export function HomePage() {
       <section aria-labelledby="polut-otsikko" className="home-section">
         <h2 id="polut-otsikko">Oppimispolut</h2>
         {paths.map((p) => (
-          <PathCard key={p.id} path={p} />
+          <PathCard key={p.id} path={p} headingLevel={3} />
         ))}
       </section>
 
@@ -104,27 +104,5 @@ export function HomePage() {
         </ul>
       </section>
     </>
-  )
-}
-
-function PathCard({ path }: { path: LearningPath }) {
-  const { progress } = useProgress()
-  const count = countProgress(progress, path.modules)
-  return (
-    <article className="card card--link path-card">
-      <h3 className="card__title">
-        <Link to={`/polku/${path.id}`}>{path.title}</Link>
-      </h3>
-      <p className="path-card__description">{path.description}</p>
-      <ul className="topic-chips" aria-label="Aiheet">
-        {path.topics.map((t) => (
-          <li key={t.id} className={`topic-chip topic-chip--${t.number % 4}`}>
-            <span className="topic-chip__number mono">{t.number}</span>
-            {t.title}
-          </li>
-        ))}
-      </ul>
-      <ProgressBar label={`Edistyminen: ${path.title}`} count={count} />
-    </article>
   )
 }

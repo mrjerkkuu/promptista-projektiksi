@@ -91,7 +91,7 @@ function buildPath(meta: LearningPathMeta): LearningPath {
 
 export const paths: LearningPath[] = Object.values(pathFiles)
   .map((raw) => buildPath(pathSchema.parse(raw)))
-  .sort((a, b) => a.id.localeCompare(b.id))
+  .sort((a, b) => a.order - b.order)
 
 export function getPath(pathId: string): LearningPath | undefined {
   return paths.find((p) => p.id === pathId)
