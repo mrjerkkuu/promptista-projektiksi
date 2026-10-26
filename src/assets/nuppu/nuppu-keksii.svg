@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" aria-hidden="true" focusable="false" style="stroke: var(--color-text); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--color-border-subtle); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--color-surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--color-topic-1-bg)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--color-topic-0-bg)"></path>
+<ellipse cx="72" cy="116" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<ellipse cx="128" cy="116" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<path d="M77 88 Q84 82 91 87 M109 87 Q116 82 123 88"></path>
+<circle cx="84" cy="100" r="5" style="fill: var(--color-text); stroke: none"></circle>
+<circle cx="116" cy="100" r="5" style="fill: var(--color-text); stroke: none"></circle>
+<path d="M90 114 Q100 128 110 114 Z" style="fill: var(--color-surface-muted)"></path>
+<path d="M46 116 C 36 122 32 130 34 138"></path>
+<path d="M154 108 C 164 100 168 90 166 80"></path>
+<path d="M164 18 C 152 18 144 28 146 39 C 147 46 152 50 154 56 L174 56 C 176 50 181 46 182 39 C 184 28 176 18 164 18 Z" style="fill: var(--color-nuppu-gold)"></path>
+<path d="M159 56 L159 44 Q159 38 164 38 Q169 38 169 44 L169 56" style="stroke-width: 2.5"></path>
+<rect x="155" y="56" width="18" height="11" rx="3" style="fill: var(--color-surface-muted)"></rect>
+<path d="M157 61.5 L171 61.5" style="stroke-width: 2.5"></path>
+<path d="M164 4 L164 10 M186 13 L191 9 M142 13 L137 9 M192 34 L199 34 M136 34 L129 34" style="stroke: var(--color-nuppu-gold)"></path>
+</svg>

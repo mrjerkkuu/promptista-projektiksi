@@ -64,7 +64,7 @@ function makeFixture(): string {
   })
   write(
     'paths/polku/aihe/moduuli/index.mdx',
-    '## M\n\n<Term id="git">Git</Term> <Command id="check-git" /> <Terminal mission="m-1" /> <VerifyStep id="git" />\n<Os only="mac">x</Os>\n<Quiz />\n',
+    '## M\n\n<Term id="git">Git</Term> <Command id="check-git" /> <Terminal mission="m-1" /> <VerifyStep id="git" />\n<Os only="mac">x</Os>\n<NuppuSays pose="koodaa">Moi!</NuppuSays>\n<Quiz />\n',
   )
   write('paths/polku/aihe/moduuli/quiz.json', {
     questions: [1, 2].map((n) => ({
@@ -144,6 +144,15 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
     const d = fixture()
     replaceIn(mdx(d), 'only="mac"', 'only="linux"')
     expect(validateContent(d).errors.join()).toMatch(/only-arvon/)
+  })
+
+  it('Nupun tuntematon tai puuttuva asento', () => {
+    const d = fixture()
+    replaceIn(mdx(d), 'pose="koodaa"', 'pose="lentaa"')
+    replaceIn(mdx(d), '<Quiz />', '<NuppuSays>Hei</NuppuSays>\n<Quiz />')
+    const errors = validateContent(d).errors.join('\n')
+    expect(errors).toMatch(/tuntematon Nupun asento "lentaa"/)
+    expect(errors).toMatch(/<NuppuSays> puuttuu pose/)
   })
 
   it('moduulin tietopaketti puuttuu', () => {

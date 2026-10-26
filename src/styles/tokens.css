@@ -265,6 +265,8 @@
   --notice-icon-size: 1.375rem;   /* 22 px */
   --choice-mark-size: 1.75rem;    /* 28 px */
   --wide-content-max-width: 56.25rem; /* 900 px: polkusivu */
+  --margin-note-width: 12rem;     /* 192 px: Nupun kommentti tekstipalstan reunassa */
+  --margin-note-gap: 2rem;        /* 32 px: kommentin etäisyys tekstipalstasta */
   /* Nuppu on vaalea molemmissa teemoissa: vaalean teeman arvot, joita tumma
      teema ei korvaa (Nuppu.css ohjaa SVG:n muuttujat näihin). */
   --color-nuppu-ink: #2A2420;

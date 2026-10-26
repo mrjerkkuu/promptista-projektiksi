@@ -318,4 +318,30 @@ export const quizSchema = z
 export type Quiz = z.infer<typeof quizSchema>
 
 /** MDX:ssä sallitut komponentit. Muut isolla alkavat tagit kaatavat buildin. */
-export const MDX_COMPONENTS = ['Os', 'Command', 'Term', 'Quiz', 'Terminal', 'ReadMore', 'VerifyStep', 'Tip'] as const
+export const MDX_COMPONENTS = ['Os', 'Command', 'Term', 'Quiz', 'Terminal', 'ReadMore', 'VerifyStep', 'Tip', 'NuppuSays'] as const
+
+/**
+ * Nupun asennot. Jokaisella on kuva src/assets/nuppu/nuppu-<asento>.svg.
+ * Tietopaketin <NuppuSays pose="…"> saa käyttää vain näitä (tarkistetaan buildissa).
+ */
+export const NUPPU_POSES = [
+  'vilkuttaa',
+  'iloitsee',
+  'miettii',
+  'osoittaa',
+  'lepaa',
+  'kurkistaa',
+  'istuu',
+  'mitali',
+  'varoittaa',
+  'lukee',
+  'koodaa',
+  'tutkii',
+  'tarkistaa',
+  'rakentaa',
+  'julkaisee',
+  'keksii',
+  'suojaa',
+  'tallentaa',
+  'kansio',
+] as const

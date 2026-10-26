@@ -60,6 +60,8 @@ Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Laajennuk
 - Lighthouse, työpöytä: 100/100/100/100 kaikilla 11 sivulla.
 - Lighthouse, mobiili: suorituskyky 83–92, muut 100. Tämä ympäristö on hitaampi kuin omistajan kone (aiemmin 99). `main`-haaran versio ennen laajennusta sai samassa ympäristössä 88–90, joten ero on mittausvaihtelun rajoissa. Mittaa uudelleen omalla koneella ennen julkaisua: `npm run build && npm run lighthouse`.
 
+**Nuppu oppitunneilla (26.10.2026):** uusi MDX-komponentti `<NuppuSays>`, yhdeksän uutta Nupun asentoa ja 39 kommenttia molemmille poluille (PAATOKSET.md, kohdat 134–136).
+
 **Myöhemmin tehtävät ideat:**
 
 - Työpöytäpolulle bonusaihe Gitin tallennuspisteistä (omistajan päätös, PAATOKSET.md kohta 128). Ei kuulu ydinpolkuun.
