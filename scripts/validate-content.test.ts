@@ -194,6 +194,81 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
     expect(validateContent(d).errors.join()).toMatch(/order 1 on jo polulla "polku"/)
   })
 
+  describe('yhteiset aiheet', () => {
+    /** Lisää polun "toinen", jolla on oma aihe "oma" ja annetut viittaukset. */
+    const addSharingPath = (d: string, refs: string[]) => {
+      const meta = {
+        id: 'toinen',
+        title: 'T',
+        description: 'D',
+        order: 2,
+        audience: 'A',
+        topics: [{ id: 'aihe', title: 'A', description: 'D', modules: [{ id: 'oma', title: 'O', summary: 'S' }, ...refs.map((ref) => ({ ref }))] }],
+      }
+      fs.mkdirSync(path.join(d, 'paths/toinen/aihe/oma'), { recursive: true })
+      fs.writeFileSync(path.join(d, 'paths/toinen/path.json'), JSON.stringify(meta))
+      fs.writeFileSync(path.join(d, 'paths/toinen/aihe/oma/index.mdx'), '## O\n')
+    }
+
+    it('kelvollinen viittaus menee läpi ilman omaa kansiota', () => {
+      const d = fixture()
+      addSharingPath(d, ['polku/moduuli'])
+      expect(validateContent(d).errors).toEqual([])
+    })
+
+    it('tuntematon polku tai aihe', () => {
+      const d = fixture()
+      addSharingPath(d, ['olematon/moduuli', 'polku/puuttuu'])
+      const errors = validateContent(d).errors.join('\n')
+      expect(errors).toMatch(/viittaus "olematon\/moduuli": tuntematon polku "olematon"/)
+      expect(errors).toMatch(/polulla "polku" ei ole aihetta "puuttuu"/)
+    })
+
+    it('viittaus viittaukseen (ketju) on kielletty', () => {
+      const d = fixture()
+      addSharingPath(d, ['polku/moduuli'])
+      const file = path.join(d, 'paths/polku/path.json')
+      const meta = JSON.parse(fs.readFileSync(file, 'utf8'))
+      meta.topics[0].modules.push({ ref: 'toinen/oma' })
+      fs.writeFileSync(file, JSON.stringify(meta))
+      const third = { ...meta, id: 'kolmas', order: 3, topics: [{ id: 'aihe', title: 'A', description: 'D', modules: [{ ref: 'toinen/moduuli' }] }] }
+      fs.mkdirSync(path.join(d, 'paths/kolmas'))
+      fs.writeFileSync(path.join(d, 'paths/kolmas/path.json'), JSON.stringify(third))
+      expect(validateContent(d).errors.join()).toMatch(/kohde on itsekin viittaus \("polku\/moduuli"\)/)
+    })
+
+    it('viittaus omaan polkuun on kielletty', () => {
+      const d = fixture()
+      const file = path.join(d, 'paths/polku/path.json')
+      const meta = JSON.parse(fs.readFileSync(file, 'utf8'))
+      meta.topics[0].modules.push({ ref: 'polku/moduuli' })
+      fs.writeFileSync(file, JSON.stringify(meta))
+      const errors = validateContent(d).errors.join()
+      expect(errors).toMatch(/osoittaa omalle polulle/)
+      expect(errors).toMatch(/"moduuli" esiintyy polulla kahdesti/)
+    })
+
+    it('yhteisessä aiheessa ei saa olla linkkiä tietyn polun aiheeseen', () => {
+      const d = fixture()
+      addSharingPath(d, ['polku/moduuli'])
+      fs.appendFileSync(mdx(d), '\nKatso [tämä](#/polku/polku/moduuli).\n')
+      expect(validateContent(d).errors.join()).toMatch(/aihe on yhteinen \(myös polulla "toinen"\)/)
+    })
+
+    it('sama linkki on sallittu aiheessa, jota mikään polku ei jaa', () => {
+      const d = fixture()
+      fs.appendFileSync(mdx(d), '\nKatso [tämä](#/polku/polku/moduuli).\n')
+      expect(validateContent(d).errors).toEqual([])
+    })
+
+    it('merkki viittaa yhteiseen aiheeseen alkuperäisellä avaimella', () => {
+      const d = fixture()
+      addSharingPath(d, ['polku/moduuli'])
+      replaceIn(path.join(d, 'badges.json'), 'polku/moduuli', 'toinen/moduuli')
+      expect(validateContent(d).errors.join()).toMatch(/moduuli "toinen\/moduuli" on viittaus: käytä alkuperäistä avainta "polku\/moduuli"/)
+    })
+  })
+
   it('rikkinäinen JSON', () => {
     const d = fixture()
     fs.writeFileSync(path.join(d, 'glossary.json'), '{ rikki')

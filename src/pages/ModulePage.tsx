@@ -25,6 +25,7 @@ export function ModulePage() {
   }, [module, dispatch])
 
   if (!path || !module) return <NotFoundPage />
+  const place = { key: module.key, pathId: path.id, moduleId: module.id }
 
   const topic = path.topics.find((t) => t.id === module.topicId)!
   const prev = path.modules[index - 1]
@@ -80,7 +81,7 @@ export function ModulePage() {
           </p>
         }
       >
-        <ModuleContext.Provider value={module.key}>
+        <ModuleContext.Provider value={place}>
           <div className="module__content">
             <module.Content components={mdxComponents} />
           </div>

@@ -61,6 +61,21 @@ Säännöt:
 - Polut näytetään sivulla Oppimispolut (`/polut`) ja etusivulla `order`-kentän mukaisessa järjestyksessä. Kahdella polulla ei saa olla samaa `order`-arvoa.
 - `audience` kertoo valintasivulla, kenelle polku sopii. Kirjoita se niin, että kävijä tunnistaa siitä, onko polku hänelle oikea.
 
+### Yhteinen aihe usealla polulla
+
+Jos aihe sopii sellaisenaan toiselle polulle, älä kopioi sitä, vaan viittaa siihen. Lisää polun `path.json`:iin aiheen paikalle:
+
+```json
+{ "ref": "claude-code/hyva-prompti" }
+```
+
+- Nimi, tiivistelmä, tietopaketti ja visa tulevat alkuperäisestä aiheesta. Viittaavalle polulle ei tehdä kansiota.
+- Edistyminen tallentuu alkuperäisellä avaimella (`claude-code/hyva-prompti`), joten kerran tehty aihe on valmis kaikilla poluilla. Käytä samaa avainta myös merkkien ehdoissa.
+- Osoite ja "Seuraava"-painike ovat viittaavan polun omia (`/polku/<polku>/hyva-prompti`).
+- Yhteisessä aiheessa **ei saa olla linkkejä tietyn polun aiheisiin** (`#/polku/…`), koska ne veisivät toisen polun kävijän väärälle polulle. Build tarkistaa tämän.
+- Viittaus ei voi osoittaa toiseen viittaukseen eikä omalle polulle.
+- Jaa vain aihe, jonka sisältö pätee kaikilla poluilla. Jos aiheessa puhutaan esimerkiksi terminaalista, kirjoita toiselle polulle oma versio.
+
 ### Uusi moduuli olemassa olevaan polkuun
 
 1. Lisää moduuli oikeaan kohtaan `path.json`:n `modules`-listaan. Järjestys määrää suositellun etenemisjärjestyksen ja numeroinnin.

@@ -6,7 +6,7 @@ import { InlineText } from '../lib/InlineText'
 import { OS_LABEL } from '../lib/os'
 import type { Mission, Os } from '../schemas/content'
 import { Icon } from './Icon'
-import { useModuleKey } from './moduleContext'
+import { useModulePlace } from './moduleContext'
 import './Terminal.css'
 
 interface TerminalProps {
@@ -52,10 +52,11 @@ interface HistoryEntry {
  * Teksti vastaa painiketta: polun viimeisessä aiheessa siinä lukee ”Polun loppu”, ei ”Seuraava”.
  */
 function useNextStepHint() {
-  const moduleKey = useModuleKey()
+  const place = useModulePlace()
   // Tietopaketin ulkopuolella (esim. testeissä) sivulla ei ole siirtymispainiketta.
-  if (moduleKey === null) return null
-  return getNextModule(moduleKey) ? (
+  if (place === null) return null
+  // Polku osoitteesta, ei avaimesta: yhteisen aiheen seuraava aihe riippuu polusta, jolla kävijä on.
+  return getNextModule(place.pathId, place.moduleId) ? (
     <> Jatka sitten sivua alaspäin: sivun lopusta pääset <strong>Seuraava</strong>-painikkeella seuraavaan aiheeseen.</>
   ) : (
     <> Jatka sitten sivua alaspäin: tämä on polun viimeinen aihe, ja sivun lopusta pääset takaisin polun etusivulle.</>
