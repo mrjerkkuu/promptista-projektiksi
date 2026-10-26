@@ -199,7 +199,13 @@ export type ModuleMeta = z.infer<typeof moduleMetaSchema>
  * Viittaus toisen polun aiheeseen (SUUNNITELMA.md luku 15.3): "<polku>/<aihe>".
  * Sisältö, visa ja edistyminen ovat alkuperäisen aiheen, mutta aihe näkyy myös tällä polulla.
  */
-export const moduleRefSchema = z.object({ ref: moduleKeySchema }).strict()
+export const moduleRefSchema = z
+  .object({
+    ref: moduleKeySchema,
+    /** Valinnainen tällä polulla (bonus), vaikka alkuperäinen aihe ei olisi. Vaikuttaa vain edistymisprosenttiin. */
+    optional: z.boolean().optional(),
+  })
+  .strict()
 export type ModuleRef = z.infer<typeof moduleRefSchema>
 
 export const moduleEntrySchema = z.union([moduleMetaSchema, moduleRefSchema])

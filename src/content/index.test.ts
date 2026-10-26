@@ -108,6 +108,16 @@ describe('yhteiset aiheet (viittaukset)', () => {
     expect(countProgress(progress, b.modules).complete).toBe(1)
   })
 
+  it('viittaus voi tehdä aiheesta bonuksen vain omalla polullaan', () => {
+    const withBonus = structuredClone(metas)
+    withBonus[1].topics[1].modules[0] = { ref: 'a/yhteinen', optional: true }
+    const [a2, b2] = buildPaths(withBonus, files)
+    expect(b2.modules[1]).toMatchObject({ key: 'a/yhteinen', optional: true })
+    expect(a2.modules[1].optional).toBeUndefined()
+    // Bonus ei kuulu viittaavan polun edistymisprosenttiin.
+    expect(countProgress(createDefaultProgress(), b2.modules).total).toBe(b2.modules.length - 1)
+  })
+
   it('viittaus aiheeseen, jota ei ole, kaatuu', () => {
     const broken = structuredClone(metas)
     broken[1].topics[1].modules[0] = { ref: 'a/puuttuu' }

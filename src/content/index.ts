@@ -130,6 +130,8 @@ export function buildPaths(metas: LearningPathMeta[], files: ContentFiles): Lear
           topicId: topic.id,
           number: `${topicIndex}.${modIndex + 1}`,
           sharedFrom: isModuleRef(mod) ? parseModuleRef(mod.ref).pathId : undefined,
+          // Viittaava polku voi tehdä aiheesta bonuksen. Edistyminen tallentuu silti samalle avaimelle.
+          optional: isModuleRef(mod) && mod.optional !== undefined ? mod.optional : source.meta.optional,
         }
       })
       modules.push(...topicModules)
