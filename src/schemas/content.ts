@@ -256,6 +256,11 @@ export const pathSchema = z
     order: z.number().int().nonnegative(),
     /** Kenelle polku sopii. Näytetään valintasivulla otsikon "Kenelle?" jälkeen. */
     audience: text,
+    /**
+     * false: sivuston tekijä ei ole vielä tarkastanut polkua. Polkukortissa, polun sivulla ja ensimmäisessä
+     * aiheessa näytetään ilmoitus ”Ei vielä tarkastettu”. Poista kenttä, kun polku on tarkastettu.
+     */
+    reviewed: z.boolean().optional(),
     topics: z.array(topicSchema).min(1),
   })
   .strict()

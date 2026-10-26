@@ -104,6 +104,31 @@ describe('sivut', () => {
     expect(link()).not.toHaveAttribute('aria-current')
   })
 
+  it('tarkastamaton polku näyttää ilmoituksen kortissa, polun sivulla ja ensimmäisessä aiheessa', async () => {
+    const notice = () => screen.queryAllByRole('complementary', { name: 'Ei vielä tarkastettu' })
+    let view = renderAt('/polut')
+    const desktopCard = screen.getByRole('link', { name: 'Claude Code työpöytäsovelluksessa' }).closest('article')!
+    const terminalCard = screen.getByRole('link', { name: 'Claude Code terminaalissa' }).closest('article')!
+    expect(within(desktopCard).getByText('Ei vielä tarkastettu')).toBeInTheDocument()
+    expect(within(terminalCard).queryByText('Ei vielä tarkastettu')).not.toBeInTheDocument()
+    view.unmount()
+
+    view = renderAt('/polku/claude-code-desktop')
+    expect(notice()).toHaveLength(1)
+    view.unmount()
+
+    // Ensimmäinen aihe on yhteinen terminaalipolun kanssa: ilmoitus näkyy vain työpöytäpolulla.
+    view = renderAt('/polku/claude-code-desktop/mita-on-vibekoodaus')
+    expect(notice()).toHaveLength(1)
+    expect(within(notice()[0]).getByRole('link', { name: 'kerro siitä' })).toHaveAttribute('href', '/palaute?polku=claude-code-desktop')
+    view.unmount()
+    view = renderAt('/polku/claude-code/mita-on-vibekoodaus')
+    expect(notice()).toHaveLength(0)
+    view.unmount()
+    renderAt('/polku/claude-code-desktop/chat-vai-agentti')
+    expect(notice()).toHaveLength(0)
+  })
+
   it('polkusivu listaa aihealueet ja moduulit', () => {
     renderAt('/polku/claude-code')
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Claude Code terminaalissa')

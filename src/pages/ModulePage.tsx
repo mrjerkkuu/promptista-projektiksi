@@ -6,6 +6,7 @@ import { ModuleContext } from '../components/moduleContext'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { StatusLabel } from '../components/StatusLabel'
+import { UnreviewedNotice } from '../components/UnreviewedNotice'
 import { getPath } from '../content'
 import { countProgress, getModuleStatus, isQuizPassed, useProgress } from '../features/progress'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
@@ -67,6 +68,9 @@ export function ModulePage() {
           {module.optional && <span className="muted"> Valinnainen bonustehtävä</span>}
         </p>
       </div>
+
+      {/* Tarkastamattoman polun ilmoitus polun ensimmäisen aiheen alussa. */}
+      {path.reviewed === false && index === 0 && <UnreviewedNotice pathId={path.id} />}
 
       {progress.os === null && (
         <div className="notice notice--plain module__os">

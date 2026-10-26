@@ -3,6 +3,7 @@
   "title": "Claude Code työpöytäsovelluksessa",
   "description": "Opit käyttämään Claude Codea Clauden työpöytäsovelluksessa ja teet sen avulla ensimmäisen oman verkkosivusi. Terminaalia ei tarvita, eikä aiempaa kokemusta.",
   "order": 2,
+  "reviewed": false,
   "audience": "Sinulle, joka haluat päästä alkuun helpoimmalla tavalla: tavallisella sovelluksella, jossa on painikkeet ja valikot. Komentoriviä ei tarvitse opetella.",
   "topics": [
     {

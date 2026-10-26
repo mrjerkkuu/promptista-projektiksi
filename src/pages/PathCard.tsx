@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import { Icon } from '../components/Icon'
 import { ProgressBar } from '../components/ProgressBar'
 import '../components/StatusLabel.css'
+import { UnreviewedNotice } from '../components/UnreviewedNotice'
 import type { LearningPath } from '../content'
 import { countProgress, useProgress } from '../features/progress'
 import './pages.css'
@@ -34,6 +35,7 @@ export function PathCard({ path, headingLevel, showAudience = false, selected = 
           </span>
         </p>
       )}
+      {path.reviewed === false && <UnreviewedNotice pathId={path.id} compact />}
       <p className="path-card__description">{path.description}</p>
       {showAudience && (
         <p className="path-card__audience">

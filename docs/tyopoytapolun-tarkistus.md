@@ -4,6 +4,8 @@ Tämä lista kokoaa sen, mitä polusta ”Claude Code työpöytäsovelluksessa�
 
 Tekstit näkee helpoimmin selaimessa: aja `npm run dev` ja avaa Oppimispolut → Claude Code työpöytäsovelluksessa.
 
+**Kun polku on tarkastettu:** poista rivi `"reviewed": false` tiedostosta `src/content/paths/claude-code-desktop/path.json`. Silloin Nupun ilmoitus ”Ei vielä tarkastettu” katoaa polkukortista, polun sivulta ja ensimmäisestä aiheesta.
+
 ## 1. Luettavat tekstit
 
 Tarkista sävy (rento sinuttelu), asiat ja se, ymmärtääkö täysi aloittelija ohjeen.
