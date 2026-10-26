@@ -305,3 +305,11 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset tehtiin omistajan kanssa.
     - **Siirto:** selitys siirrettiin `transform`illa, joka siirtää vain piirron. Alkuperäinen paikka levitti sivua vaakasuunnassa niin kauan kuin selitys oli auki. Nyt siirto tehdään `left`-arvolla.
     - **Nuoli:** ennen nuoli siirtyi selityksen mukana pois sanan kohdalta. Nyt muuttuja `--term-arrow-offset` siirtää sen takaisin sanan kohdalle, kuitenkin enintään selityksen reunaan asti.
     - Testi jäljittelee mobiilin tilannetta (innerWidth 560 px, näkymä 360 px), ja se kaatui ennen korjausta. `check:mobile` ei huomannut vikaa, koska se tarkistaa sivut selitykset suljettuina. Tallennukseen ei tehty muutoksia.
+
+## Etusivu, kun polku on valmis (26.10.2026)
+
+140. **Etusivu erottaa valitun polun valmistumisen siitä, että kaikki polut on käyty** (omistajan palaute: toisen polun tultua etusivu väitti yhä ”Olet käynyt koko polun läpi”, ja Nuppu esittäytyi kuin ensikäynnillä). Etusivu katsoi vain valittua polkua (`activePath`), ja teksti oli kirjoitettu aikana, jolloin polkuja oli yksi.
+    - **Valittu polku valmis, muita kesken:** ”Kävit polun ”…” läpi. Mahtavaa työtä!” ja linkki muihin oppimispolkuihin.
+    - **Kaikki polut valmiita:** ”Olet käynyt kaikki oppimispolut läpi. Mahtavaa työtä!”
+    - **Nuppu:** kun polku on valmis, puhekupla vaihtuu esittelystä juhlimiseen (”Jee, teit sen!”). Asento oli jo `iloitsee`.
+    - Tila lasketaan joka kerta sisällöstä ja tallennetuista teoista, kuten muukin edistyminen. Kun uusi polku lisätään, se näkyy keskeneräisenä ilman migraatiota. Tallennukseen ei tehty muutoksia, eikä kenenkään edistyminen muutu.
