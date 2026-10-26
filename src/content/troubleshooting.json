@@ -7,7 +7,7 @@
       "Tarkista kirjoitusasu. Pienikin kirjoitusvirhe riittää, ja välilyönneillä on väliä: `git --version` toimii, `git--version` ei.",
       "Jos asensit ohjelman juuri, sulje terminaali kokonaan ja avaa se uudelleen. Terminaali lukee tiedon asennetuista ohjelmista vain käynnistyessään.",
       "Windowsilla: jos käytät Windows Terminalia, avaa kokonaan uusi ikkuna. Pelkkä uusi välilehti ei aina riitä.",
-      "Macilla: sulje Pääte-ohjelma kokonaan näppäinyhdistelmällä Cmd+Q ja käynnistä se uudelleen.",
+      "Macilla: sulje Pääte-ohjelma kokonaan valitsemalla valikkoriviltä Pääte → Lopeta Pääte (tai paina Cmd+Q) ja käynnistä se uudelleen.",
       "Jos komento ei vieläkään toimi, asennus on ehkä keskeytynyt. Palaa asennusohjeeseen ja aja asennuskomento uudelleen.",
       "Viimeinen keino: käynnistä koko tietokone uudelleen ja kokeile sitten."
     ]
@@ -18,7 +18,7 @@
     "symptom": "Asennus näytti onnistuvan, mutta samassa terminaali-ikkunassa ohjelma ei toimi.",
     "steps": [
       "Tämä on tavallisin asennusongelma ja helppo korjata: terminaali pitää käynnistää uudelleen asennuksen jälkeen.",
-      "Sulje kaikki terminaali-ikkunat. Windowsilla sulje PowerShell-ikkunat, Macilla lopeta Pääte näppäinyhdistelmällä Cmd+Q.",
+      "Sulje kaikki terminaali-ikkunat. Windowsilla sulje PowerShell-ikkunat. Macilla valitse valikkoriviltä Pääte → Lopeta Pääte (tai paina Cmd+Q).",
       "Avaa terminaali uudelleen ja kokeile versiotarkistusta, esimerkiksi `git --version`."
     ]
   },
@@ -71,7 +71,7 @@
     "steps": [
       "Asenna Homebrew alla olevalla komennolla. Se kysyy Macisi salasanaa: kirjoita se ja paina Enter. Salasana ei näy kirjoittaessa, ja se on normaalia.",
       "Asennuksen lopussa Homebrew tulostaa otsikon ”Next steps” ja sen alle komentoja. Kopioi ja aja ne yksi kerrallaan, jotta Pääte löytää brew-komennon.",
-      "Sulje Pääte (Cmd+Q), avaa se uudelleen ja kokeile `brew --version`."
+      "Sulje Pääte valitsemalla valikkoriviltä Pääte → Lopeta Pääte (tai paina Cmd+Q), avaa se uudelleen ja kokeile `brew --version`."
     ],
     "commands": ["install-homebrew"]
   },
@@ -81,7 +81,7 @@
     "symptom": "VS Code on asennettu, mutta `code .` tai `code --version` vastaa, ettei komentoa löydy.",
     "steps": [
       "Windowsilla: VS Coden asennusohjelma lisää code-komennon automaattisesti. Sulje terminaali, avaa se uudelleen ja kokeile uudelleen.",
-      "Macilla: code-komento pitää ottaa käyttöön itse. Avaa VS Code, paina Cmd+Shift+P ja kirjoita `shell command`. Valitse vaihtoehto ”Shell Command: Install 'code' and optionally 'copilot' commands in PATH” (vanhemmissa versioissa ”Shell Command: Install 'code' command in PATH”).",
+      "Macilla: code-komento pitää ottaa käyttöön itse. Avaa VS Code, valitse valikosta View → Command Palette… (tai paina Cmd+Shift+P) ja kirjoita `shell command`. Valitse vaihtoehto ”Shell Command: Install 'code' and optionally 'copilot' commands in PATH” (vanhemmissa versioissa ”Shell Command: Install 'code' command in PATH”).",
       "Macilla tarkista myös, että VS Code on siirretty Ohjelmat-kansioon (Applications) eikä sitä ajeta suoraan Lataukset-kansiosta.",
       "Käynnistä terminaali uudelleen ja kokeile `code --version`."
     ]
@@ -124,8 +124,8 @@
     "os": ["windows", "mac"],
     "symptom": "Kopioit komennon sivulta, mutta terminaaliin ei tule mitään.",
     "steps": [
-      "Windowsilla: liitä näppäinyhdistelmällä Ctrl+V tai napsauttamalla hiiren oikealla painikkeella terminaali-ikkunan sisällä.",
-      "Macilla: liitä näppäinyhdistelmällä Cmd+V.",
+      "Windowsilla: liitä napsauttamalla terminaali-ikkunan sisällä hiiren oikealla painikkeella (tai paina Ctrl+V).",
+      "Macilla: liitä valitsemalla valikkoriviltä Muokkaa → Sijoita (tai paina Cmd+V).",
       "Varmista, että terminaali-ikkuna on aktiivinen: napsauta sitä kerran ennen liittämistä.",
       "Kun komento on liitetty, paina Enter."
     ]
@@ -150,7 +150,7 @@
       "Odota muutama minuutti. Julkaisu kestää yleensä hetken.",
       "Tarkista repon asetuksista (Settings → Pages), että julkaisun lähteeksi on valittu haara main ja kansio / (root).",
       "Varmista, että etusivun tiedoston nimi on täsmälleen `index.html` ja että se on projektikansion juuressa eikä alikansiossa.",
-      "Lataa sivu uudelleen ohittaen välimuisti: Windowsilla Ctrl+F5, Macilla Cmd+Shift+R."
+      "Avaa sivu selaimen yksityisessä ikkunassa (selaimen valikosta, esimerkiksi Uusi yksityinen ikkuna), jolloin selain ei näytä vanhaa tallennettua versiota. (Voit myös ladata sivun uudelleen ohittaen välimuistin: Windowsilla Ctrl+F5, Macilla Cmd+Shift+R.)"
     ]
   },
   "tyopoyta-jumissa": {

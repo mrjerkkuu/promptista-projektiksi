@@ -57,7 +57,9 @@ Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Vaiheesta
 
 - Clauden työpöytäsovelluksen asennus Macilla: tuleeko näkyviin ikkuna, jossa kuvake vedetään Ohjelmat-kansioon (1.2)?
 - macOS:n suomenkieliset nimet: omenavalikko → Tietoja tästä Macista (1.2), Finderin Siirry → Koti, Arkisto → Uusi kansio ja Näytä → Näytä polkupalkki (0.3), Finderin sivupalkin Ohjelmat (1.2).
-- Windowsin Resurssienhallinnan hiiren oikean painikkeen valikko Uusi → Kansio (0.3).
+- Windowsin Resurssienhallinnan hiiren oikean painikkeen valikko Uusi → Kansio ja polku Tämä tietokone → Paikallinen levy (C:) → Käyttäjät (0.3).
+
+**Tarkista terminaalipolulta** (pikanäppäinten tilalle tulleet nimet): macOS:n Pääte → Lopeta Pääte ja Muokkaa → Sijoita, valikkorivin Spotlight-suurennuslasi (1.1), selainten ”Uusi yksityinen ikkuna” (vianmääritys: GitHub Pages).
 - Windowsin suomenkielinen polku Asetukset → Järjestelmä → Tietoja → Järjestelmän tyyppi (1.2, ARM).
 - Resurssienhallinnan osoiterivi ja `%USERPROFILE%` (0.3).
 - Sovelluksen kirjautumisen kulku ja Code-välilehden valintarivi (1.3). Anthropicin ohjeen mukaan välilehdet ovat sivupalkin yläosassa ja valintarivi kirjoituskentän alla.
