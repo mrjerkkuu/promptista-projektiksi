@@ -1,4 +1,5 @@
 import { paths } from '../content'
+import { useProgress } from '../features/progress'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import { PathCard } from './PathCard'
 import './pages.css'
@@ -9,6 +10,7 @@ import './pages.css'
  */
 export function PathsPage() {
   useDocumentTitle('Oppimispolut')
+  const { progress } = useProgress()
   return (
     <div className="paths-page">
       <h1>Oppimispolut</h1>
@@ -20,7 +22,7 @@ export function PathsPage() {
       <ul className="path-grid">
         {paths.map((p) => (
           <li key={p.id} className="path-grid__item">
-            <PathCard path={p} headingLevel={2} showAudience />
+            <PathCard path={p} headingLevel={2} showAudience selected={p.id === progress.activePath} />
           </li>
         ))}
       </ul>

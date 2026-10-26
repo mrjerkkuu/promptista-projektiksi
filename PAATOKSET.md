@@ -214,3 +214,11 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset tehtiin omistajan kanssa.
     - Merkkien ehtojen ja viittausten avainmuoto on yksi skeema (`moduleKeySchema`). Muoto tiukkeni: väliviiva ei saa olla tunnisteen alussa tai lopussa eikä kahdesti peräkkäin, kuten muissakin tunnisteissa (`idSchema`). Nykyiset merkit täyttävät sen.
     - `npm run check:mobile` käy läpi kaikki polut eikä vain terminaalipolkua.
     - Tallennukseen ei tehty muutoksia: avaimet ovat samat kuin ennen.
+115. **Vaihe 14 toteutettu: valittu polku ja tallennuksen versio 2.** Tämä on ensimmäinen muutos tallennusmuotoon.
+    - Uusi kenttä `activePath` (polun tunnus tai `null`). `CURRENT_VERSION` on 2, ja avain on edelleen `pp-progress-v1`.
+    - Migraatio v1 → v2 säilyttää kaikki kentät ennallaan ja lisää `activePath`-kentän: `"claude-code"`, jos `modules`- tai `quizAnswers`-kentässä on polun avaimia, muuten `null`. Polku tunnistetaan etuliitteestä vinoviivan kanssa (`claude-code/`), jotta `claude-code-desktop/…` ei sekoitu siihen (kohta 108). Testit: vanhat tiedot säilyvät täsmälleen, pelkät visavastaukset riittävät, etuliitteen raja, sekä selaimen tallennus että vanha siirtokoodi migroituvat.
+    - Polku valitaan, kun kävijä avaa polun sivun tai sen aiheen (myös suoralla linkillä). Valinta tehdään osoitteen polusta, joten yhteisen aiheen kautta kävijä pysyy polullaan (kohta 110). Sama valinta uudelleen ei muuta tilaa, joten tallennusta ei kirjoiteta turhaan.
+    - Etusivu: jos polkua ei ole valittu tai valittua polkua ei enää ole, pääpainike on "Aloita tästä: Valitse oppimispolku" ja vie sivulle `/polut`. Muuten painike vie valitun polun seuraavaan keskeneräiseen aiheeseen. Etusivulla näkyy vain valitun polun kortti ja linkki "Kaikki oppimispolut" (omistajan valinta).
+    - Etusivun johdannosta poistettiin maininta "aloitetaan siitä, mikä terminaali on", koska työpöytäpolulla terminaalia ei käsitellä.
+    - Valintasivulla valittu polku on merkitty tekstillä "Valitsemasi polku". Merkintä käyttää aiheen "Valmis"-tilan tyyliä, jonka kontrasti on jo testattu.
+    - Nollaus ("Aloita alusta") tyhjentää myös valinnan.

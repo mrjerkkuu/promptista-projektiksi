@@ -21,8 +21,11 @@ export function ModulePage() {
   const { progress, dispatch } = useProgress()
 
   useEffect(() => {
-    if (module) dispatch({ type: 'visitModule', key: module.key })
-  }, [module, dispatch])
+    if (!path || !module) return
+    dispatch({ type: 'visitModule', key: module.key })
+    // Polku osoitteesta, ei avaimesta: yhteisen aiheen kautta kävijä jatkaa sillä polulla, jota hän kulkee.
+    dispatch({ type: 'selectPath', pathId: path.id })
+  }, [path, module, dispatch])
 
   if (!path || !module) return <NotFoundPage />
   const place = { key: module.key, pathId: path.id, moduleId: module.id }

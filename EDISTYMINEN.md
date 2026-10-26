@@ -44,14 +44,14 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100
 | 11 | Suunnitelma ja päätökset | ✅ |
 | 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ✅ |
 | 13 | Yhteiset aiheet (`ref`) + validointi + testit | ✅ |
-| 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ⬜ |
+| 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ✅ |
 | 15 | Polun `claude-code-desktop` sisältö | ⬜ |
 | 16 | Merkit, varmistus, vianmääritys, sanasto, CONTRIBUTING.md | ⬜ |
 | 17 | Saavutettavuus, mobiili ja Lighthouse | ⬜ |
 
 ## Seuraavaksi
 
-Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–13 on tehty. Seuraavaksi vaihe 14: valittu polku (`activePath`) ja tallennuksen migraatio v1 → v2.
+Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Seuraavaksi vaihe 15: polun `claude-code-desktop` sisältö.
 
 ## Avoimet ongelmat
 

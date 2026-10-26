@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { Icon } from '../components/Icon'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
-import { paths } from '../content'
+import { getPath } from '../content'
 import { getNextModule, hasAnyProgress, useProgress } from '../features/progress'
 import { OS_LABEL } from '../lib/os'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
@@ -14,10 +14,10 @@ export function HomePage() {
   const { progress } = useProgress()
   const started = hasAnyProgress(progress)
 
-  // Jatketaan polulta, jolla on jo edistymistä; muuten ensimmäiseltä polulta.
-  const activePath = paths.find((p) => p.modules.some((m) => progress.modules[m.key])) ?? paths[0]
+  // Jatketaan valitulta polulta. Jos polkua ei ole valittu (tai sitä ei enää ole), ohjataan valintaan.
+  const activePath = progress.activePath === null ? undefined : getPath(progress.activePath)
   const next = activePath ? getNextModule(progress, activePath.modules) : undefined
-  const allDone = activePath && !next
+  const allDone = activePath !== undefined && !next
   const pose = allDone ? 'iloitsee' : progress.os === null ? 'vilkuttaa' : 'osoittaa'
 
   return (
@@ -26,9 +26,23 @@ export function HomePage() {
         <div className="hero__main">
           <h1 className="hero__title">Promptista projektiksi</h1>
           <p className="hero__lead">
-            Opettele tekemään omia verkkosivuja ja sovelluksia tekoälyn kanssa. Et tarvitse aiempaa kokemusta: aloitetaan siitä, mikä terminaali
-            on, ja päädytään siihen, että sinulla on oma projekti netissä.
+            Opettele tekemään omia verkkosivuja ja sovelluksia tekoälyn kanssa. Et tarvitse aiempaa kokemusta: aloitetaan perusteista, ja
+            päädytään siihen, että sinulla on oma projekti netissä.
           </p>
+          {!activePath && (
+            <p className="hero__cta-row">
+              <Link className="button hero__cta" to="/polut">
+                <span className="hero__cta-label">
+                  Aloita tästä
+                  <span className="visually-hidden">:</span>
+                </span>{' '}
+                <span className="hero__cta-module">
+                  Valitse oppimispolku
+                  <Icon name="arrowRight" />
+                </span>
+              </Link>
+            </p>
+          )}
           {next && (
             <p className="hero__cta-row">
               {/* Kaksirivinen painike. Kaksoispiste on vain ruudunlukijalle, jotta nimi kuuluu yhtenä lauseena. */}
@@ -66,10 +80,22 @@ export function HomePage() {
       </section>
 
       <section aria-labelledby="polut-otsikko" className="home-section">
-        <h2 id="polut-otsikko">Oppimispolut</h2>
-        {paths.map((p) => (
-          <PathCard key={p.id} path={p} headingLevel={3} />
-        ))}
+        {activePath ? (
+          <>
+            <h2 id="polut-otsikko">Oppimispolkusi</h2>
+            <PathCard path={activePath} headingLevel={3} />
+            <p>
+              <Link to="/polut">Kaikki oppimispolut</Link>
+            </p>
+          </>
+        ) : (
+          <>
+            <h2 id="polut-otsikko">Oppimispolut</h2>
+            <p>
+              Valitse, mitä haluat oppia. <Link to="/polut">Katso oppimispolut</Link>
+            </p>
+          </>
+        )}
       </section>
 
       <section aria-labelledby="miten-otsikko" className="home-section">

@@ -8,11 +8,29 @@ import { CURRENT_VERSION, STORAGE_KEY, createDefaultProgress, progressSchema, ty
 
 export type Migration = (data: Record<string, unknown>) => Record<string, unknown>
 
+/** Onko tallennuksen kentässä (esim. modules) avaimia, jotka kuuluvat polulle? */
+function hasKeysOnPath(field: unknown, pathId: string): boolean {
+  if (typeof field !== 'object' || field === null) return false
+  // Vinoviiva mukaan: "claude-code-desktop/…" ei kuulu polulle "claude-code".
+  return Object.keys(field).some((key) => key.startsWith(`${pathId}/`))
+}
+
 /**
  * Migraatiot: avain on versio, JOSTA migroidaan. Esim. kun skeema muuttuu
- * versioon 2, lisää tänne `1: (v1) => ({ ...v1, version: 2, uusiKenttä: … })`.
+ * versioon 3, lisää tänne `2: (v2) => ({ ...v2, version: 3, uusiKenttä: … })`.
+ * Migraatio ei saa poistaa vanhoja tietoja, ja jokaisella on testi (storage.test.ts).
  */
-export const migrations: Record<number, Migration> = {}
+export const migrations: Record<number, Migration> = {
+  /**
+   * v1 → v2: valittu polku (activePath). Versiossa 1 oli vain polku claude-code, joten jos sillä on
+   * edistymistä, kävijä on kulkenut sitä. Muuten polkua ei ole valittu.
+   */
+  1: (v1) => ({
+    ...v1,
+    version: 2,
+    activePath: hasKeysOnPath(v1.modules, 'claude-code') || hasKeysOnPath(v1.quizAnswers, 'claude-code') ? 'claude-code' : null,
+  }),
+}
 
 export class ProgressFormatError extends Error {}
 

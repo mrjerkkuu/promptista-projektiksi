@@ -170,6 +170,10 @@
   color: var(--color-text-muted);
 }
 
+.path-card__selected {
+  margin-top: 0;
+}
+
 .path-card__audience {
   max-width: 45rem;
   font-size: var(--font-size-base);

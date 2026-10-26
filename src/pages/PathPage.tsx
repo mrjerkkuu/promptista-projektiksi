@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { FeedbackPrompt } from '../components/FeedbackPrompt'
 import { ProgressBar } from '../components/ProgressBar'
@@ -13,7 +13,11 @@ export function PathPage() {
   const { pathId = '' } = useParams()
   const path = getPath(pathId)
   useDocumentTitle(path?.title)
-  const { progress } = useProgress()
+  const { progress, dispatch } = useProgress()
+  // Polun avaaminen valitsee sen: etusivun "Jatka" vie tämän polun seuraavaan aiheeseen.
+  useEffect(() => {
+    if (path) dispatch({ type: 'selectPath', pathId: path.id })
+  }, [path, dispatch])
   if (!path) return <NotFoundPage />
   const count = countProgress(progress, path.modules)
 

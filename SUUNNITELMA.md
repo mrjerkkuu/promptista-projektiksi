@@ -271,6 +271,7 @@ Sivustolla on jatkossa useita oppimispolkuja ("kursseja"). Kävijä valitsee, mi
 - **Päävalikon linkki "Oppimispolut" vie aina sivulle `/polut`.** Nykyinen linkki katoaa, kun polkuja on useampi, joten se korjataan.
 - **Valinnan avuksi lyhyt vertailu:** "Haluan graafisen sovelluksen, en terminaalia" → työpöytä. "Haluan oppia terminaalin käytön" → terminaali.
 - **Etusivu:** jos polkua ei ole valittu, pääpainike "Aloita tästä" vie sivulle `/polut`. Kun polku on valittu, painike "Jatka siitä mihin jäit" vie valitun polun seuraavaan keskeneräiseen aiheeseen.
+- **Etusivulla näkyy vain valitun polun kortti** ja linkki "Kaikki oppimispolut". Jos polkua ei ole valittu, kortin paikalla on linkki valintasivulle. Näin etusivu ei pitene, kun polkuja tulee lisää.
 - **Valittu polku muistetaan** (`activePath` tallennukseen, ks. 15.5). Polku valitaan, kun kävijä avaa polun sivun tai sen aiheen. Valinnan voi vaihtaa milloin tahansa sivulta `/polut`.
 - `path.json` saa uudet kentät:
   - `order`: järjestys sivulla `/polut`. Nyt polut ovat aakkosjärjestyksessä.
