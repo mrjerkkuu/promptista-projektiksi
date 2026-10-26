@@ -35,9 +35,23 @@ Komentojen tarkistus virallisista lähteistä (luku 12) ajettiin taustalla heti 
 - **Vaihe 9 valmis:** axe-testit, kontrastitestit, `npm run check:mobile`, `npm run lighthouse`, CLS-korjaus.
 - **Vaihe 10 valmis:** `.github/workflows/deploy.yml`, README.md, CONTRIBUTING.md, LICENSE, `engines.node`. Lisäksi kokeiltiin, että uusi polku löytyy ilman koodimuutoksia.
 
+## Laajennus: useampi oppimispolku ja työpöytäpolku (26.10.2026)
+
+Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100–107.
+
+| Vaihe | Sisältö | Tila |
+|---|---|---|
+| 11 | Suunnitelma ja päätökset | ✅ |
+| 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ⬜ |
+| 13 | Yhteiset aiheet (`ref`) + validointi + testit | ⬜ |
+| 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ⬜ |
+| 15 | Polun `claude-desktop` sisältö | ⬜ |
+| 16 | Merkit, varmistus, vianmääritys, sanasto, CONTRIBUTING.md | ⬜ |
+| 17 | Saavutettavuus, mobiili ja Lighthouse | ⬜ |
+
 ## Seuraavaksi
 
-Kaikki vaiheet on tehty. Seuraavaksi omistaja tarkistaa työn (lista alla). Sen jälkeen vuorossa ovat design ja julkaisu.
+Alkuperäiset vaiheet 1–10 on tehty. Seuraavaksi laajennuksen vaihe 12 (yllä).
 
 ## Avoimet ongelmat
 

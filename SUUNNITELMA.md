@@ -78,7 +78,7 @@ promptista-projektiksi/
 └─ .github/workflows/deploy.yml
 ```
 
-**Uuden polun lisääminen (esim. Lovable):** luo kansio `src/content/paths/lovable/` + `path.json` + moduulit. Sovellus löytää polun automaattisesti (Viten `import.meta.glob`). Ohje kirjoitetaan `CONTRIBUTING.md`-tiedostoon.
+**Uuden polun lisääminen (esim. Lovable):** luo kansio `src/content/paths/lovable/` + `path.json` + moduulit. Sovellus löytää polun automaattisesti (Viten `import.meta.glob`). Ohje kirjoitetaan `CONTRIBUTING.md`-tiedostoon. Polkujen välillä yhteiset aiheet ja polun valinta: luku 15.
 
 ## 5. Sisältö: polku "Claude Code alusta alkaen"
 
@@ -247,4 +247,101 @@ Jokaisen vaiheen lopuksi: testit ja build läpi → commit.
 - Analytiikka
 - Muut kielet kuin suomi (valmius on olemassa)
 - Linux-ohjeet
-- Muut oppimispolut (Lovable ym.) – arkkitehtuuri tukee niitä
+- Muut oppimispolut (Lovable ym.) – arkkitehtuuri tukee niitä. Poikkeus: työpöytäsovelluksen polku, ks. luku 15.
+
+## 15. Useampi oppimispolku ja polku "Claude Code työpöytäsovelluksessa"
+
+> Lisätty 26.10.2026. Päätökset ja perustelut: `PAATOKSET.md`, kohdat 100–107.
+
+### 15.1 Tavoite
+
+Claude Codea voi nyt käyttää myös Clauden työpöytäsovelluksen **Code**-välilehdeltä. Silloin terminaalia ja asennuskomentoja ei tarvita, koska sovellus sisältää Claude Coden valmiina. Täydelle aloittelijalle se on helpompi reitti kuin terminaali.
+
+Sivustolla on jatkossa useita oppimispolkuja ("kursseja"). Kävijä valitsee, mitä haluaa oppia, ja uuden polun lisääminen myöhemmin on edelleen pelkkä sisältökansio.
+
+| Termi | Käyttöliittymässä | Koodissa |
+|---|---|---|
+| Kurssi | oppimispolku | `path` (`path.json`) |
+| Kurssin osa (esim. Perusteet) | aihealue | `topic` |
+| Yksittäinen sivu | aihe / tietopaketti | `module` |
+
+### 15.2 Polun valinta
+
+- **Uusi sivu `/polut` ("Oppimispolut").** Polut näytetään kortteina: nimi, kuvaus, "Sopii sinulle, jos…", aihealueet ja edistyminen.
+- **Päävalikon linkki "Oppimispolut" vie aina sivulle `/polut`.** Nykyinen linkki katoaa, kun polkuja on useampi, joten se korjataan.
+- **Valinnan avuksi lyhyt vertailu:** "Haluan graafisen sovelluksen, en terminaalia" → työpöytä. "Haluan oppia terminaalin käytön" → terminaali.
+- **Etusivu:** jos polkua ei ole valittu, pääpainike "Aloita tästä" vie sivulle `/polut`. Kun polku on valittu, painike "Jatka siitä mihin jäit" vie valitun polun seuraavaan keskeneräiseen aiheeseen.
+- **Valittu polku muistetaan** (`activePath` tallennukseen, ks. 15.5). Polku valitaan, kun kävijä avaa polun sivun tai sen aiheen. Valinnan voi vaihtaa milloin tahansa sivulta `/polut`.
+- `path.json` saa uudet kentät:
+  - `order`: järjestys sivulla `/polut`. Nyt polut ovat aakkosjärjestyksessä.
+  - `audience`: lyhyt "Sopii sinulle, jos…" -teksti.
+
+### 15.3 Yhteiset aiheet (viittaus)
+
+Osa aiheista sopii sellaisenaan useaan polkuun. Niitä ei kopioida, vaan polku viittaa toisen polun aiheeseen:
+
+```json
+{ "ref": "claude-code/hyva-prompti" }
+```
+
+| Asia | Toiminta |
+|---|---|
+| Sisältö | Yksi tiedosto (alkuperäisen polun kansiossa). Nimi, tiivistelmä, tietopaketti ja visa tulevat alkuperäisestä. |
+| Osoite | Polun oma: `/polku/claude-desktop/hyva-prompti`. "Seuraava aihe" pysyy samalla polulla. |
+| Edistyminen | Tallennetaan alkuperäisellä avaimella (`claude-code/hyva-prompti`). Kerran tehty aihe on valmis kummallakin polulla. |
+| Validointi (build) | Viittauksen kohde on olemassa, kohde ei ole itse viittaus (ei ketjuja), ja aiheen ID on polun sisällä yksilöllinen. |
+
+Vaihtoehdot olivat kopio (korjaukset kahteen paikkaan, edistyminen erikseen) ja erillinen "Perusteet"-polku (ID:t vaihtuisivat, migraatio). Viittaus valittiin, koska yhtään olemassa olevaa ID:tä ei tarvitse muuttaa.
+
+**Yhteiseksi sopivat** vain aiheet, joissa ei ole terminaalikohtaista sisältöä:
+
+| Aihe | Yhteinen? |
+|---|---|
+| Mitä vibekoodaus on, Git ja GitHub, Hyvä prompti | Kyllä |
+| Chat vai AI-agentti, CLAUDE.md, Konteksti | Todennäköisesti. Maininnat terminaalista, `/init`, `/clear` ja `/compact` tarkistetaan työpöytäsovelluksessa ennen käyttöönottoa. |
+| Plan mode, Luvat ja turvallisuus, Git tallennuspisteinä | Ei: Shift+Tab, komentorivin lupakyselyt ja git-komennot. Työpöytäpolulle kirjoitetaan oma versio. |
+| Kansiot ja polut, Claude-tilaus | Ei: terminaalisimulaattori ja Console-tili. |
+
+### 15.4 Polku "Claude Code työpöytäsovelluksessa" (`claude-desktop`)
+
+**Kohderyhmä:** täysi aloittelija, kuten terminaalipolussa. Polku on itsenäinen: terminaalipolkua ei tarvitse käydä ensin.
+
+**Git ja GitHub ovat bonusta.** Ydinpolku toimii ilman Gitiä. GitHubiin vienti ja julkaisu on valinnainen lopputehtävä.
+
+Luonnos (↗ = viittaus terminaalipolun aiheeseen). Aiheiden ID:t lyödään lukkoon ennen julkaisua, koska niitä ei voi myöhemmin vaihtaa ilman migraatiota.
+
+| Aihealue | Aiheet |
+|---|---|
+| **0. Perusteet** | ↗ Mitä vibekoodaus on · ↗ Chat vai AI-agentti · Projektikansio ja tiedostot (uusi, ilman terminaalia) · ↗ Git ja GitHub |
+| **1. Käyttöönotto** | Claude-tilaus (työpöytäversio: Pro, Max, Team tai Enterprise) · Sovelluksen asennus · Kirjautuminen ja Code-välilehti · Tarkistuslista |
+| **2. Sovellus tutuksi** | Ensimmäinen istunto (ympäristö, kansio, malli) · Tilat ja turvallisuus (Manual, Accept edits, Plan, Auto) · Muutosten tarkistus (diff-näkymä, rivikommentit, keskeytys) · Esikatselu · ↗ Hyvä prompti · ↗ CLAUDE.md · ↗ Konteksti |
+| **3. Ensimmäinen projekti** | Projektikansio · Suunnittele (Plan-tila) · Rakenna ja esikatsele · Tallenna · ★ Bonus: GitHubiin ja julkaise |
+
+**Sisällön lähteet:** Anthropicin dokumentaatio (`code.claude.com/docs/en/desktop-quickstart` ja `…/desktop`). Kuten luvussa 12, käyttöliittymän nimet ja vaiheet tarkistetaan toteutushetkellä eikä kirjoiteta muistista. Hintoja ei kirjoiteta sivulle.
+
+**Varmistus:** asennuksen varmistus on monivalinta "Näetkö Code-välilehden?" (`verify.json`), koska versiokomentoa ei ole. Virhevalinnat ohjaavat vianmääritykseen (esim. kehotus päivittää tilaus tai 403-virhe).
+
+**Merkit (luonnos):** "Code-välilehti auki" (varmistus läpäisty) ja "Työpöytäkoodari" (koko polku). Nykyisiin merkkeihin ei kosketa.
+
+**Avoin kysymys:** kuvakaappaukset. Käyttöliittymä muuttuu usein, joten aluksi käytetään tekstikuvauksia. Kuvat harkitaan erikseen.
+
+### 15.5 Tallennus
+
+- Uusi kenttä `activePath: string | null`, oletus `null`.
+- `CURRENT_VERSION` 1 → 2. Migraatio v1 → v2: jos edistymistä on polulla `claude-code`, `activePath` = `"claude-code"`, muuten `null`. Kaikki vanhat tiedot säilyvät. Migraatiolle kirjoitetaan testi (`storage.test.ts`).
+- Avain `pp-progress-v1` pysyy ennallaan.
+- Jos tallennettua polkua ei enää ole, sitä käsitellään kuin valintaa ei olisi tehty.
+
+### 15.6 Toteutusvaiheet
+
+Jokaisen vaiheen lopuksi `npm run check` → commit.
+
+| Vaihe | Sisältö |
+|---|---|
+| 11 | Suunnitelma ja päätökset (tämä luku) |
+| 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `path.json`:n `order` ja `audience` |
+| 13 | Yhteiset aiheet: `ref` skeemaan, lataukseen ja build-validointiin + testit |
+| 14 | Valittu polku: `activePath`, migraatio v1 → v2 + testit, etusivun painike |
+| 15 | Polun `claude-desktop` sisältö (aihealueet 0–3), tarkistettuna virallisesta dokumentaatiosta |
+| 16 | Merkit, varmistus, vianmääritys, sanasto, `CONTRIBUTING.md` (viittaukset) |
+| 17 | Saavutettavuus, mobiili ja Lighthouse uusille sivuille |
