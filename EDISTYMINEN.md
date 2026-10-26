@@ -45,13 +45,13 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 100
 | 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ✅ |
 | 13 | Yhteiset aiheet (`ref`) + validointi + testit | ✅ |
 | 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ✅ |
-| 15 | Polun `claude-code-desktop` sisältö | 🟡 aihealueet 0–1 valmiit, 2–3 tekemättä |
+| 15 | Polun `claude-code-desktop` sisältö | 🟡 aihealueet 0–2 valmiit, 3 tekemättä |
 | 16 | Merkit, varmistus, vianmääritys, sanasto, CONTRIBUTING.md | ⬜ |
 | 17 | Saavutettavuus, mobiili ja Lighthouse | ⬜ |
 
 ## Seuraavaksi
 
-Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Vaiheesta 15 on tehty aihealueet 0–1. Seuraavaksi aihealue 2 (Sovellus tutuksi), kun omistaja on lukenut aihealueiden 0–1 tekstit.
+Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Vaiheesta 15 on tehty aihealueet 0–2. Seuraavaksi aihealue 3 (Ensimmäinen projekti ja bonus), kun omistaja on lukenut aihealueen 2 tekstit.
 
 **Tarkista työpöytäpolulta ennen julkaisua** (käyttöliittymän nimet, joita ei ole tarkistettu oikealta koneelta):
 
@@ -64,6 +64,8 @@ Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Vaiheesta
 - Resurssienhallinnan osoiterivi ja `%USERPROFILE%` (0.3).
 - Sovelluksen kirjautumisen kulku ja Code-välilehden valintarivi (1.3). Anthropicin ohjeen mukaan välilehdet ovat sivupalkin yläosassa ja valintarivi kirjoituskentän alla.
 - Onko sovelluksen käyttöliittymä saatavilla suomeksi? Oppaassa nimet ovat englanniksi kuten Anthropicin ohjeissa.
+- Aihealue 2: sivupalkin **+ New**, kansion valinnan **Open folder…**, Manual-tilan hyväksymisen kulku (painikkeiden nimiä ei ole Anthropicin ohjeessa, joten oppaassa lukee vain ”hyväksy”), **Changes**-kortti ja `+12 -1`-luvut, rivikommenttien lähetys Ctrl/Cmd+Enter, **Context**-kortin prosenttiluku, Browser-paneelin **Open**-painike ja lupakysely (Allow once / Always allow / Deny).
+- Toimiiko `/compact` ja `/context` työpöytäsovelluksen kirjoituskentässä (Anthropicin ohjeen mukaan toimivat).
 
 ## Avoimet ongelmat
 

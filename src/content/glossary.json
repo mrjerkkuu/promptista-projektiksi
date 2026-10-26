@@ -17,6 +17,17 @@
     "definition": "Clauden sovellus Windowsille ja Macille. Sen Code-välilehdellä käytetään Claude Codea ilman terminaalia.",
     "readMore": "https://code.claude.com/docs/en/desktop-quickstart"
   },
+  "istunto": {
+    "term": "istunto",
+    "category": "tekoaly",
+    "definition": "Yksi keskustelu Claude Coden kanssa. Jokaisella istunnolla on oma projektikansio ja oma konteksti. Työpöytäsovelluksessa istunnot näkyvät sivupalkissa.",
+    "readMore": "https://code.claude.com/docs/en/desktop"
+  },
+  "diff": {
+    "term": "diff",
+    "category": "tekoaly",
+    "definition": "Näkymä, joka näyttää, mitä tiedostoissa muuttui: lisätyt ja poistetut rivit erottuvat toisistaan väreillä. Sana tulee englannin sanasta difference, ero."
+  },
   "kielimalli": {
     "term": "kielimalli",
     "category": "tekoaly",

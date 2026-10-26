@@ -26,6 +26,20 @@
         { "id": "code-valilehti", "title": "Kirjautuminen ja Code-välilehti", "summary": "Kirjaudut sisään ja avaat välilehden, jolla Claude Code toimii." },
         { "id": "tarkistuslista", "title": "Tarkistuslista", "summary": "Kaikki varmistukset yhdellä sivulla: onko kaikki valmiina?" }
       ]
+    },
+    {
+      "id": "sovellus-tutuksi",
+      "title": "Sovellus tutuksi",
+      "description": "Annat Claudelle ensimmäisen tehtävän, valitset sopivan tilan, tarkistat muutokset ja opit ohjaamaan Claudea hyvin.",
+      "modules": [
+        { "id": "ensimmainen-istunto", "title": "Ensimmäinen istunto", "summary": "Valitset kansion ja tilan ja annat Claudelle ensimmäisen pienen tehtävän." },
+        { "id": "tilat-ja-turvallisuus", "title": "Tilat ja turvallisuus", "summary": "Päätät, kuinka vapaasti Claude saa toimia. Salasanat ja avaimet pysyvät poissa keskustelusta." },
+        { "id": "muutosten-tarkistus", "title": "Muutosten tarkistus", "summary": "Näet, mitä Claude muutti, kommentoit rivejä ja keskeytät tarvittaessa." },
+        { "id": "esikatselu", "title": "Esikatselu", "summary": "Katsot tekemääsi sivua suoraan sovelluksessa tai omassa selaimessasi." },
+        { "ref": "claude-code/hyva-prompti" },
+        { "id": "claude-md", "title": "CLAUDE.md", "summary": "Projektin muistilappu, jonka Claude lukee joka istunnon alussa." },
+        { "id": "konteksti", "title": "Konteksti", "summary": "Mitä Claude muistaa istunnosta ja milloin kannattaa aloittaa uusi." }
+      ]
     }
   ]
 }

@@ -1,0 +1,28 @@
+Claude tekee asioita koneellasi, joten turvallisuus on sinun ja Clauden yhteistyötä. Tärkein työkalusi on **tila**, jonka valitset kirjoituskentän alta.
+
+## Tilat
+
+| Tila | Mitä Claude tekee | Milloin |
+|---|---|---|
+| **Manual** | kysyy lupaa ennen jokaista muutosta ja komentoa | kun olet vasta aloittamassa |
+| **Accept edits** | muokkaa tiedostoja kysymättä, mutta kysyy ennen muita komentoja | kun luotat muutoksiin ja haluat edetä nopeammin |
+| **Plan** | tutkii ja tekee suunnitelman muuttamatta tiedostoja | ennen isoa muutosta |
+| **Auto** | toimii kysymättä, mutta taustalla oleva tarkistus estää riskialttiit toimet | kun olet jo tottunut ohjaamaan Claudea |
+
+Aloita Manual-tilassa ja siirry Accept edits -tilaan, kun olet tottunut. Tilaa voi vaihtaa kesken istunnon. Sovellus muistaa valintasi kansiokohtaisesti, paitsi <Term id="plan-mode">Plan</Term>-tilan, joka koskee vain nykyistä istuntoa.
+
+## Kolme turvallisuussääntöä
+
+1. **Lue, mitä hyväksyt.** Jos et ymmärrä, mitä Claude aikoo tehdä, hylkää muutos ja kysy: ”Mitä tuo tekee?” Ole erityisen tarkka, jos jotain ollaan poistamassa tai muutos koskee kansioita projektin ulkopuolella.
+2. **Älä anna salasanoja.** Älä kirjoita keskusteluun salasanoja, pankkitunnuksia tai henkilötunnusta. Claude ei tarvitse niitä.
+3. **Avaimet erilliseen tiedostoon.** Jos projekti joskus tarvitsee <Term id="api-avain">API-avaimen</Term>, se tallennetaan <Term id="env-tiedosto">.env-tiedostoon</Term> eikä koodiin.
+
+<ReadMore title="Entä Bypass permissions?">
+
+Asetuksista voi ottaa käyttöön tilan, jossa Claude ei kysy lupaa juuri mistään. Anthropic suosittelee sitä vain erillisiin, suojattuihin ympäristöihin. Älä ota sitä käyttöön omalla koneellasi.
+
+Lähde: [Clauden työpöytäsovelluksen tilat](https://code.claude.com/docs/en/desktop).
+
+</ReadMore>
+
+<Quiz />

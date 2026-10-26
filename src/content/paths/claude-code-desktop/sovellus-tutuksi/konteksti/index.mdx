@@ -1,0 +1,32 @@
+<Term id="konteksti">Konteksti</Term> on kaikki se, mitä Claude pitää mielessään istunnon aikana: viestisi, sen omat vastaukset, luetut tiedostot ja komentojen tulokset. Se on kuin työpöytä, jolla paperit ovat esillä.
+
+Työpöytä on rajallisen kokoinen. Kun istunto venyy pitkäksi, pöytä täyttyy. Silloin Claude tiivistää vanhoja asioita, ja jotain voi unohtua.
+
+## Näin näet, kuinka täynnä konteksti on
+
+Keskustelun vieressä on **Context**-kortti, jonka otsikossa näkyy prosenttiluku. Mitä suurempi luku, sitä täydempi työpöytä. Voit myös kirjoittaa kirjoituskenttään `/context`, niin Claude näyttää tarkemman erittelyn.
+
+## Merkit, että on aika tehdä jotain
+
+- Claude unohtaa aiemmin sovitun asian.
+- Se toistaa samaa virhettä tai kiertää kehää.
+- Olet siirtymässä kokonaan uuteen tehtävään.
+
+## Mitä silloin tehdään?
+
+| Keino | Mitä se tekee |
+|---|---|
+| `/compact` | tiivistää istunnon ja vapauttaa tilaa, mutta jatkaa samaa istuntoa |
+| **+ New** sivupalkissa | aloittaa uuden istunnon tyhjästä |
+
+Uusi istunto ei ole epäonnistuminen. Se on usein paras tapa jatkaa, kun aihe vaihtuu. Kaikki tärkeä on tallessa tiedostoissa, ja <Term id="claude-md">CLAUDE.md</Term> kertoo Claudelle projektin perusasiat joka kerta uudelleen. Vanhat istunnot jäävät sivupalkkiin, joten voit palata niihin.
+
+Lähde: [Clauden työpöytäsovellus: kontekstin seuranta](https://code.claude.com/docs/en/desktop).
+
+<ReadMore title="Mitä kontekstissa oikeastaan lasketaan?">
+
+Kielimalli lukee tekstiä pieninä paloina, joita kutsutaan <Term id="tokeni">tokeneiksi</Term>. Kontekstin koko mitataan tokeneina. Pitkät tiedostot ja komentojen pitkät tulosteet vievät paljon tilaa. Siksi kannattaa pyytää Claudea keskittymään vain tarvittaviin tiedostoihin.
+
+</ReadMore>
+
+<Quiz />
