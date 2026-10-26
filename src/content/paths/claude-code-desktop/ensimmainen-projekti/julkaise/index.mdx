@@ -1,0 +1,40 @@
+Tämä on valinnainen lisätehtävä. Viet sivusi <Term id="github">GitHubiin</Term> ja julkaiset sen <Term id="github-pages">GitHub Pagesilla</Term> omaan osoitteeseen, jonka voit lähettää kenelle tahansa. Palvelu on ilmainen julkisille repoille. Kaikki tehdään selaimessa, eikä mitään tarvitse asentaa.
+
+## 1. Luo repo
+
+1. Kirjaudu osoitteessa [github.com](https://github.com).
+2. Napsauta oikeasta yläkulmasta plusmerkkiä ja valitse **New repository**.
+3. Kirjoita nimeksi `oma-sivu` ja valitse näkyvyydeksi **Public**.
+4. Valitse README-tiedoston lisääminen päälle. Silloin repossa on heti valmiina tiedostovalikko, jota tarvitset seuraavaksi.
+5. Napsauta **Create repository**.
+
+## 2. Lataa sivun tiedostot
+
+1. Valitse repon sivulla tiedostolistan yläpuolelta **Add file** → **Upload files**.
+2. Avaa `oma-sivu`-kansio Resurssienhallinnassa tai Finderissa. Valitse sivun tiedostot (esimerkiksi `index.html` ja `style.css`) ja vedä ne selaimen ikkunaan. Vedä tiedostot, älä koko kansiota: muuten `index.html` päätyy alikansioon, eikä sivu näy osoitteessaan.
+3. Kirjoita kenttään lyhyt kuvaus, esimerkiksi ”Ensimmäinen versio”.
+4. Valitse, että muutos tallennetaan suoraan **main**-haaraan, ja vahvista vihreällä painikkeella.
+
+Jokainen lataus tallentuu GitHubiin <Term id="commit">committina</Term> eli versiona, johon voi myöhemmin palata.
+
+## 3. Ota GitHub Pages käyttöön
+
+1. Valitse repon ylävalikosta **Settings** ja vasemmalta **Pages**.
+2. Kohdassa **Build and deployment** valitse **Source**-valikosta **Deploy from a branch**.
+3. Valitse haaraksi **main** ja kansioksi **/ (root)**. Napsauta **Save**.
+
+Julkaisu kestää yleensä muutaman minuutin. Sivusi osoite on muotoa `https://käyttäjänimesi.github.io/oma-sivu/`, ja se näkyy myös samalla Pages-sivulla, kun julkaisu on valmis.
+
+Lähteet: GitHubin ohjeet [tiedostojen lisäämisestä](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) ja [julkaisulähteen asetuksista](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+
+<Tip type="warning" title="Kaikki näkevät sivun">
+
+Julkinen repo ja Pages-sivu näkyvät kaikille. Älä julkaise henkilötietoja, joita et halua kaikkien näkevän, kuten osoitettasi tai puhelinnumeroasi.
+
+</Tip>
+
+<ReadMore title="Kun muutat sivua myöhemmin">
+
+Lataa muuttuneet tiedostot uudelleen samalla tavalla (**Add file** → **Upload files**). GitHub korvaa vanhan version ja päivittää julkaistun sivun muutaman minuutin kuluessa. Jos sivu ei näy tai näyttää vanhaa versiota, katso [vianmääritys](#/vianmaaritys/pages-ei-nay).
+
+</ReadMore>
