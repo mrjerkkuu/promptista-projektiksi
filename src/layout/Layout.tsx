@@ -56,7 +56,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <header className="site-header">
         <div className="site-header__inner">
           <NavLink to="/" className="site-header__brand">
-            <Nuppu pose="vilkuttaa" size={40} />
+            <Nuppu pose="kurkistaa" size={40} />
             <span className="site-header__name">Promptista projektiksi</span>
           </NavLink>
           <nav aria-label="Päävalikko" className="site-header__nav">

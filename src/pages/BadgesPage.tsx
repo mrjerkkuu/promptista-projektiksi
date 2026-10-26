@@ -11,7 +11,7 @@ export function BadgesPage() {
   const main = list.filter(([, b]) => !b.bonus)
   const bonus = list.filter(([, b]) => b.bonus)
   const earned = list.filter(([id]) => progress.badges[id]).length
-  const pose = earned === 0 ? 'lepaa' : earned === list.length ? 'iloitsee' : 'vilkuttaa'
+  const pose = earned === 0 ? 'lepaa' : earned === list.length ? 'iloitsee' : 'osoittaa'
   return (
     <>
       <header className="page-header">
