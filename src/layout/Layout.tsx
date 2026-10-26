@@ -96,6 +96,9 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <footer className="site-footer">
+        <div className="site-footer__mascot">
+          <Nuppu pose="vilkuttaa" size={72} />
+        </div>
         <p className="site-footer__text">
           © 2026 Jeremia Vepsäläinen <span aria-hidden="true">·</span>{' '}
           <a href={REPO_URL} target="_blank" rel="noreferrer">

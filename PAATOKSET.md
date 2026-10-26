@@ -183,3 +183,7 @@ Valvomattoman toteutuksen aikana tehdyt tulkinnat ja valinnat. Jokaisessa päät
 ## Nupun asento sanastossa (25.10.2026)
 
 98. **Sanaston otsikon Nuppu vilkuttaa (`vilkuttaa`) osoittamisen sijaan** (palaute: issue #7). Muutos on vain asennon vaihto `GlossaryPage.tsx`:ssä; kuvan koko (110 px) ja muu ulkoasu ovat ennallaan. Kuva on koriste, joten saavutettavuus ei muutu. `design-handoff/`-kansion ohjetta (kohta ”Käyttökohteet”) ei muutettu, koska se on suunnittelun luovutusaineisto. Tallennukseen ei tehty muutoksia.
+
+## Maskotti alatunnisteessa (26.10.2026)
+
+99. **Alatunnisteessa on vilkuttava Nuppu** (palaute: issue #9). Palautteessa toivottiin kissamaskottia, mutta sivuston maskotti on Nuppu, ja omistaja päätti käyttää sitä (`vilkuttaa`-asento). Uutta hahmoa ei piirretty. Nuppu (72 px) on alatunnisteen tekstien yläpuolella keskellä, ja se on paikallaan (ei kellu, kohta 66). Kuva on koriste (`aria-hidden`), joten saavutettavuus ei muutu. Väli tulee `tokens.css`:n tokenista. Tallennukseen ei tehty muutoksia.
