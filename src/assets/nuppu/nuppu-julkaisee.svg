@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" aria-hidden="true" focusable="false" style="stroke: var(--color-text); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--color-border-subtle); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--color-surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--color-topic-1-bg)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--color-topic-0-bg)"></path>
+<ellipse cx="72" cy="116" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<ellipse cx="130" cy="114" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<circle cx="90" cy="96" r="4.5" style="fill: var(--color-text); stroke: none"></circle>
+<circle cx="120" cy="96" r="4.5" style="fill: var(--color-text); stroke: none"></circle>
+<path d="M92 110 Q105 128 118 110 Z" style="fill: var(--color-surface-muted)"></path>
+<path d="M46 108 C 34 98 30 86 32 72"></path>
+<path d="M154 106 C 162 98 164 90 162 82"></path>
+<circle cx="146" cy="72" r="4" style="stroke: var(--color-text-muted); stroke-width: 2.5"></circle>
+<circle cx="154" cy="60" r="5.5" style="stroke: var(--color-text-muted); stroke-width: 2.5"></circle>
+<g transform="rotate(32 172 34)">
+<path d="M166 52 Q172 68 178 52 Z" style="fill: var(--color-nuppu-gold)"></path>
+<path d="M164 42 L155 56 L165 52 Z M180 42 L189 56 L179 52 Z" style="fill: var(--color-primary)"></path>
+<path d="M172 8 C 182 18 184 36 180 52 L164 52 C 160 36 162 18 172 8 Z" style="fill: var(--color-surface)"></path>
+<circle cx="172" cy="30" r="5.5" style="fill: var(--color-topic-0-bg)"></circle>
+</g>
+<path d="M28 50 L28 62 M22 56 L34 56" style="stroke: var(--color-primary)"></path>
+<circle cx="52" cy="40" r="2.5" style="fill: var(--color-primary); stroke: none"></circle>
+</svg>

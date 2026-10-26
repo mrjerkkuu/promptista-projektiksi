@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" aria-hidden="true" focusable="false" style="stroke: var(--color-text); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; overflow: visible;">
+<ellipse cx="100" cy="172" rx="46" ry="6" style="fill: var(--color-border-subtle); stroke: none"></ellipse>
+<path d="M84 150 L82 166 M116 150 L118 166 M74 167 L88 167 M112 167 L126 167"></path>
+<path d="M64 152 C 46 152 40 132 42 110 C 45 76 68 56 100 56 C 132 56 155 76 158 110 C 160 132 154 152 136 152 Z" style="fill: var(--color-surface)"></path>
+<path d="M100 56 C 100 46 98 38 101 28"></path>
+<path d="M100 42 C 90 30 76 30 70 38 C 80 48 92 48 100 42 Z" style="fill: var(--color-topic-1-bg)"></path>
+<path d="M101 30 C 108 18 124 16 132 22 C 126 34 112 36 101 30 Z" style="fill: var(--color-topic-0-bg)"></path>
+<ellipse cx="72" cy="116" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<ellipse cx="128" cy="116" rx="8" ry="5" style="fill: var(--color-topic-2-bg); stroke: none"></ellipse>
+<path d="M78 90 Q85 87 92 91 M108 91 Q115 87 122 90"></path>
+<circle cx="86" cy="101" r="4.5" style="fill: var(--color-text); stroke: none"></circle>
+<circle cx="114" cy="101" r="4.5" style="fill: var(--color-text); stroke: none"></circle>
+<path d="M88 115 Q100 128 112 115 Z" style="fill: var(--color-surface-muted)"></path>
+<path d="M46 116 C 36 122 32 130 34 138"></path>
+<path d="M154 108 C 166 100 172 90 172 80"></path>
+<path d="M172 84 L166 38" style="stroke-width: 8"></path>
+<path d="M172 83 L166 39" style="stroke: var(--color-topic-1-bg); stroke-width: 3"></path>
+<path d="M146 30 L184 25 L186 41 L148 46 Z" style="fill: var(--color-text-muted)"></path>
+<path d="M192 18 L199 13 M195 32 L203 32 M140 18 L134 12" style="stroke: var(--color-primary)"></path>
+</svg>
