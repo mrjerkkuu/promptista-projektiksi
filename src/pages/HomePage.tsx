@@ -18,7 +18,8 @@ export function HomePage() {
   const activePath = paths.find((p) => p.modules.some((m) => progress.modules[m.key])) ?? paths[0]
   const next = activePath ? getNextModule(progress, activePath.modules) : undefined
   const allDone = activePath && !next
-  const pose = allDone ? 'iloitsee' : progress.os === null ? 'vilkuttaa' : 'osoittaa'
+  // Nuppu vilkuttaa etusivulla aina; koko polun valmistuttua se iloitsee.
+  const pose = allDone ? 'iloitsee' : 'vilkuttaa'
 
   return (
     <>
