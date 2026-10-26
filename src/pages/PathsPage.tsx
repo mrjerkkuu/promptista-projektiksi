@@ -16,9 +16,14 @@ export function PathsPage() {
         Valitse, mitä haluat oppia. Jokainen polku alkaa alusta, joten aiempaa kokemusta ei tarvita. Voit vaihtaa polkua milloin tahansa, eikä
         edistymisesi katoa.
       </p>
-      {paths.map((p) => (
-        <PathCard key={p.id} path={p} headingLevel={2} showAudience />
-      ))}
+      {/* Lista: ruudunlukija kertoo polkujen määrän ("lista, 2 kohdetta"), mikä auttaa, kun polkuja on paljon. */}
+      <ul className="path-grid">
+        {paths.map((p) => (
+          <li key={p.id} className="path-grid__item">
+            <PathCard path={p} headingLevel={2} showAudience />
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

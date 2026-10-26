@@ -289,6 +289,42 @@
   color: var(--color-topic-3-ink);
 }
 
+/* ---------- Oppimispolut-sivu ---------- */
+
+/* Ruudukko ilman mediakyselyä: sarakkeen vähimmäisleveys on vähintään puolet rivistä,
+   joten rinnakkain mahtuu enintään kaksi korttia. Kun puolikas jäisi alle 20 remin,
+   kortti vie koko rivin (kapea näyttö). min(100%, …) estää vaakavierityksen hyvin kapealla näytöllä. */
+.path-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, max(20rem, (100% - var(--space-5)) / 2)), 1fr));
+}
+
+.path-grid__item {
+  display: flex;
+}
+
+/* base.css lisää peräkkäisille listan kohdille ylämarginaalin; ruudukossa välit tulevat gapista. */
+.path-grid__item + .path-grid__item {
+  margin-top: 0;
+}
+
+/* Kortit venyvät rivin korkuisiksi, ja edistymispalkki asettuu kortin pohjalle,
+   jotta rinnakkaisten korttien palkit ovat samalla korkeudella. */
+.path-grid .path-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.path-grid .path-card > .progress {
+  margin-top: auto;
+}
+
 /* ---------- Polkusivu ---------- */
 
 .path-page {
