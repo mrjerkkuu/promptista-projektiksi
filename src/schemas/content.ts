@@ -109,6 +109,8 @@ export const troubleshootingEntrySchema = z
     symptom: text,
     steps: z.array(text).min(1),
     commands: z.array(idSchema).optional(),
+    /** Polku, jota ongelma koskee. Vianmäärityssivu ryhmittelee kohdat poluittain. Ilman polkua kohta on yleinen. */
+    path: idSchema.optional(),
   })
   .strict()
 export type TroubleshootingEntry = z.infer<typeof troubleshootingEntrySchema>
@@ -161,7 +163,14 @@ export const moduleKeySchema = z
 export const badgeConditionSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('commandsRun'), min: z.number().int().positive() }).strict(),
   z.object({ type: z.literal('missionsComplete'), missions: z.array(idSchema).min(1) }).strict(),
-  z.object({ type: z.literal('modulesComplete'), modules: z.array(moduleKeySchema).min(1) }).strict(),
+  z
+    .object({
+      type: z.literal('modulesComplete'),
+      modules: z.array(moduleKeySchema).min(1),
+      /** all (oletus): kaikki aiheet valmiina. any: yksikin riittää, esim. saman tehtävän versiot eri poluilla. */
+      match: z.enum(['all', 'any']).optional(),
+    })
+    .strict(),
   z.object({ type: z.literal('topicComplete'), path: idSchema, topic: idSchema }).strict(),
   z.object({ type: z.literal('verifyPassed'), steps: z.array(idSchema).min(1) }).strict(),
   z.object({ type: z.literal('pathComplete'), path: idSchema }).strict(),
@@ -175,6 +184,8 @@ export const badgeSchema = z
     /** Lyhyt symboli (esim. emoji). Placeholder, kunnes design tuo omat kuvakkeet. */
     icon: text,
     bonus: z.boolean().optional(),
+    /** Polku, jonka merkki on. Merkkisivu ryhmittelee merkit poluittain. Ilman polkua merkki on yhteinen. */
+    path: idSchema.optional(),
     condition: badgeConditionSchema,
   })
   .strict()

@@ -152,9 +152,9 @@ Kaikki komennot ovat yhdessä tiedostossa, joten päivitys on yksi muutos yhteen
 |---|---|
 | `glossary.json` | Sanasto: `term`, `definition` (1–2 virkettä), valinnainen `readMore`-linkki. |
 | `missions.json` | Simulaattorin harjoitukset. Onnistumisen ehdot: `cwdIs`, `dirExists`, `visited` ja `commandUsed`. Polut kirjoitetaan muodossa `~/kansio`. |
-| `verify.json` | Varmistukset: tasan yksi oikea vaihtoehto. Jokainen väärä vaihtoehto ohjaa vianmääritykseen (`troubleshooting`, voi olla eri Windowsille ja Macille). |
-| `troubleshooting.json` | Vianmääritys: `os`, `symptom`, `steps` (takahipsujen väliin kirjoitettu teksti näytetään koodina), valinnaiset `commands`. |
-| `badges.json` | Merkit ja ehdot: `commandsRun`, `missionsComplete`, `modulesComplete` (`"polku/moduuli"`), `topicComplete`, `verifyPassed` ja `pathComplete`. |
+| `verify.json` | Varmistukset: tasan yksi oikea vaihtoehto. Jokainen väärä vaihtoehto ohjaa vianmääritykseen (`troubleshooting`, voi olla eri Windowsille ja Macille). `command` on valinnainen: ilman sitä varmistus kysyy, mitä sovelluksessa näkyy. |
+| `troubleshooting.json` | Vianmääritys: `os`, `symptom`, `steps` (takahipsujen väliin kirjoitettu teksti näytetään koodina), valinnaiset `commands` ja `path` (polku, jota ongelma koskee; sivu ryhmittelee kohdat poluittain, ja ilman polkua kohta näkyy kohdassa ”Kaikilla poluilla”). |
+| `badges.json` | Merkit ja ehdot: `commandsRun`, `missionsComplete`, `modulesComplete` (`"polku/moduuli"`, valinnainen `"match": "any"`, kun yksikin aihe riittää), `topicComplete`, `verifyPassed` ja `pathComplete`. Valinnainen `path` kertoo, minkä polun merkki on; ilman sitä merkki on yhteinen. Älä kiristä ehtoja: jo ansaittu merkki säilyy, mutta ehto ei saa muuttua niin, ettei sitä enää voi ansaita samalla tavalla. |
 
 ## Koodi
 

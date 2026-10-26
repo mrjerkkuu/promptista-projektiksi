@@ -166,6 +166,16 @@ describe('sivut', () => {
     expect(screen.getByText(/Haulla ”xyzzy” ei löytynyt termejä/)).toBeInTheDocument()
   })
 
+  it('merkit ja vianmääritys ryhmitellään poluittain, valittu polku ensin', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), activePath: 'claude-code-desktop' }))
+    const h2 = () => screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent)
+    const { unmount } = renderAt('/merkit')
+    expect(h2()).toEqual(['Claude Code työpöytäsovelluksessa', 'Claude Code terminaalissa', 'Yhteiset merkit', 'Bonusmerkit'])
+    unmount()
+    renderAt('/vianmaaritys')
+    expect(h2()).toEqual(['Claude Code työpöytäsovelluksessa', 'Claude Code terminaalissa', 'Kaikilla poluilla'])
+  })
+
   it('sanasto, vianmääritys, merkit ja asetukset avautuvat', () => {
     for (const [route, title] of [
       ['/sanasto', 'Sanasto'],

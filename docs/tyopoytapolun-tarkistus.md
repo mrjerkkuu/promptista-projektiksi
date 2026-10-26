@@ -38,6 +38,8 @@ Lisäksi:
 - [ ] Uudet varmistukset (`src/content/verify.json`): `claude-sovellus`, `code-valilehti`.
 - [ ] Sanaston uudet termit: Clauden työpöytäsovellus, istunto, diff. Claude Coden määritelmä muuttui (”käytetään terminaalissa tai Clauden työpöytäsovelluksessa”).
 - [ ] Polun kuvaus ja ”Kenelle?”-teksti valintasivulla (`claude-code-desktop/path.json`).
+- [ ] Uudet merkit (`src/content/badges.json`): Code-välilehti auki, Ohjaimissa, Työpöytäkoodari. Kuvakkeet (`src/assets/merkit/`) on piirretty samaan tyyliin kuin designin merkit, mutta designer ei ole nähnyt niitä.
+- [ ] Uusi vianmäärityksen kohta `tyopoyta-vaara-muutos` (Claude teki muutoksen, jota en halunnut).
 
 ## 2. Tehdyt valinnat, jotka voit muuttaa
 

@@ -2,6 +2,7 @@
   "komentoa-ei-tunnisteta": {
     "title": "Komentoa ei tunnisteta",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "Windowsilla terminaali vastaa esimerkiksi `git: The term 'git' is not recognized…`, Macilla `zsh: command not found: git`. Terminaali ei siis löydä ohjelmaa, jota yrität käyttää.",
     "steps": [
       "Tarkista kirjoitusasu. Pienikin kirjoitusvirhe riittää, ja välilyönneillä on väliä: `git --version` toimii, `git--version` ei.",
@@ -15,6 +16,7 @@
   "terminaali-uudelleen": {
     "title": "Asensin ohjelman, mutta terminaali ei löydä sitä",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "Asennus näytti onnistuvan, mutta samassa terminaali-ikkunassa ohjelma ei toimi.",
     "steps": [
       "Tämä on tavallisin asennusongelma ja helppo korjata: terminaali pitää käynnistää uudelleen asennuksen jälkeen.",
@@ -25,6 +27,7 @@
   "suoritusoikeudet": {
     "title": "PowerShell ei suostu ajamaan skriptiä",
     "os": ["windows"],
+    "path": "claude-code",
     "symptom": "Virheilmoituksessa lukee `cannot be loaded because running scripts is disabled on this system`. Windows estää oletuksena joidenkin skriptien ajamisen turvallisuussyistä.",
     "steps": [
       "Tarkista ensin nykyiset asetukset alla olevalla Get-ExecutionPolicy-komennolla.",
@@ -37,6 +40,7 @@
   "winget-puuttuu": {
     "title": "winget-komentoa ei löydy",
     "os": ["windows"],
+    "path": "claude-code",
     "symptom": "PowerShell vastaa `winget: The term 'winget' is not recognized…`.",
     "steps": [
       "WinGet tulee Windowsin mukana Sovellusasennusohjelma-nimisessä paketissa (App Installer). Avaa Microsoft Store, hae ”App Installer” tai ”Sovellusasennusohjelma” ja päivitä tai asenna se.",
@@ -47,6 +51,7 @@
   "vaara-powershell": {
     "title": "Avasin vanhan Windows PowerShellin",
     "os": ["windows"],
+    "path": "claude-code",
     "symptom": "Ikkunan otsikossa lukee ”Windows PowerShell” tai komento `pwsh -Version` ei toimi. Windowsissa on valmiina vanha PowerShell 5.1, ja PowerShell 7 on erillinen ohjelma.",
     "steps": [
       "Avaa Käynnistä-valikko ja kirjoita hakuun `PowerShell 7`. Valitse se, ei ”Windows PowerShell”.",
@@ -57,6 +62,7 @@
   "xcode-tyokalut": {
     "title": "Macissa aukeaa ikkuna komentorivityökalujen asentamisesta",
     "os": ["mac"],
+    "path": "claude-code",
     "symptom": "Kun kirjoitat `git` tai `xcode-select --install`, näytölle ilmestyy ikkuna, joka tarjoaa komentorivin kehitystyökalujen (Command Line Tools) asentamista. Tai terminaali vastaa `xcode-select: error: command line tools are already installed`.",
     "steps": [
       "Ikkuna on Applen oma ja turvallinen. Valitse Asenna (Install) ja hyväksy käyttöehdot. Asennus voi kestää useita minuutteja.",
@@ -67,6 +73,7 @@
   "brew-puuttuu": {
     "title": "brew-komentoa ei löydy",
     "os": ["mac"],
+    "path": "claude-code",
     "symptom": "Pääte vastaa `zsh: command not found: brew`. GitHub CLI:n Mac-asennus käyttää Homebrew-pakettienhallintaa, eikä sitä ole valmiina Macissa.",
     "steps": [
       "Asenna Homebrew alla olevalla komennolla. Se kysyy Macisi salasanaa: kirjoita se ja paina Enter. Salasana ei näy kirjoittaessa, ja se on normaalia.",
@@ -78,6 +85,7 @@
   "code-komento-puuttuu": {
     "title": "code-komento ei toimi",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "VS Code on asennettu, mutta `code .` tai `code --version` vastaa, ettei komentoa löydy.",
     "steps": [
       "Windowsilla: VS Coden asennusohjelma lisää code-komennon automaattisesti. Sulje terminaali, avaa se uudelleen ja kokeile uudelleen.",
@@ -89,6 +97,7 @@
   "gh-kirjautuminen": {
     "title": "GitHub-kirjautuminen gh-työkalulla ei onnistu",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "Komento `gh auth login` jää jumiin, selain ei aukea tai kirjautuminen epäonnistuu.",
     "steps": [
       "Valitse kysymyksiin nuolinäppäimillä ja Enterillä: GitHub.com, HTTPS ja kirjautuminen selaimella (Login with a web browser). Kun gh kysyy, saako Git käyttää GitHub-tunnuksiasi, vastaa kyllä (Y).",
@@ -100,6 +109,7 @@
   "push-ei-onnistu": {
     "title": "git push tai gh repo create ei onnistu",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "Lähetys GitHubiin päättyy virheeseen, jossa puhutaan esimerkiksi oikeuksista (permission denied), tunnistautumisesta (authentication failed) tai siitä, että repo on jo olemassa (already exists).",
     "steps": [
       "Jos virhe koskee oikeuksia tai tunnistautumista, kirjaudu uudelleen komennolla `gh auth login` ja vastaa kyllä, kun gh kysyy Gitin tunnuksista.",
@@ -111,6 +121,7 @@
   "claude-kirjautuminen": {
     "title": "Claude Code ei kirjaudu tai valittaa tilauksesta",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "Kirjautuminen ei onnistu, tai Claude Code kertoo, ettei tililläsi ole pääsyä.",
     "steps": [
       "Tarkista, että sinulla on tilaus, johon Claude Code kuuluu. Ilmainen Claude-tili ei riitä. Katso Claude-tilaus-oppitunti.",
@@ -122,6 +133,7 @@
   "liittaminen-ei-toimi": {
     "title": "Kopioitu komento ei liity terminaaliin",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "Kopioit komennon sivulta, mutta terminaaliin ei tule mitään.",
     "steps": [
       "Windowsilla: liitä napsauttamalla terminaali-ikkunan sisällä hiiren oikealla painikkeella (tai paina Ctrl+V).",
@@ -133,6 +145,7 @@
   "vaara-muutos": {
     "title": "Claude teki muutoksen, jota en halunnut",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "Sivu meni rikki tai näyttää huonommalta kuin ennen Clauden muutosta.",
     "steps": [
       "Älä hätäile: jos teit commitin ennen muutosta, mitään ei ole menetetty.",
@@ -156,6 +169,7 @@
   "tyopoyta-jumissa": {
     "title": "Clauden työpöytäsovellus näyttää tyhjää tai jumittaa",
     "os": ["windows", "mac"],
+    "path": "claude-code-desktop",
     "symptom": "Sovellus aukeaa, mutta ikkuna on tyhjä tai ei reagoi.",
     "steps": [
       "Sulje sovellus kokonaan ja käynnistä se uudelleen.",
@@ -167,6 +181,7 @@
   "tyopoyta-ei-loydy": {
     "title": "En löydä Clauden työpöytäsovellusta",
     "os": ["windows", "mac"],
+    "path": "claude-code-desktop",
     "symptom": "Asensit sovelluksen, mutta et löydä sitä mistään.",
     "steps": [
       "Windowsilla: napsauta tehtäväpalkin Käynnistä-painiketta, kirjoita Claude ja valitse sovellus hakutuloksista.",
@@ -177,6 +192,7 @@
   "code-tilaus": {
     "title": "Code-välilehti pyytää päivittämään tilauksen",
     "os": ["windows", "mac"],
+    "path": "claude-code-desktop",
     "symptom": "Kun napsautat Code-välilehteä, sovellus pyytää päivittämään tilauksen tai kirjautumaan selaimessa.",
     "steps": [
       "Tarkista, että sinulla on Pro-, Max-, Team- tai Enterprise-tilaus. Ilmainen Claude-tili ei riitä. Katso Claude-tilaus-aihe.",
@@ -187,6 +203,7 @@
   "code-403": {
     "title": "Code-välilehti näyttää virheen 403",
     "os": ["windows", "mac"],
+    "path": "claude-code-desktop",
     "symptom": "Code-välilehdellä näkyy Error 403: Forbidden tai muu kirjautumisvirhe.",
     "steps": [
       "Kirjaudu ulos sovelluksen valikosta ja kirjaudu takaisin sisään. Tämä auttaa useimmiten.",
@@ -198,6 +215,7 @@
   "code-vanha-nakyma": {
     "title": "Code-välilehdellä ei ole valintariviä",
     "os": ["windows", "mac"],
+    "path": "claude-code-desktop",
     "symptom": "Kirjoituskentän alla ei ole ympäristön valintaa, tai näkymä ei vastaa tämän oppaan kuvausta.",
     "steps": [
       "Sovelluksesi on todennäköisesti vanhempi versio. Windowsilla valitse valikosta Help → Check for Updates…, Macilla valikkoriviltä Claude → Check for Updates….",
@@ -205,9 +223,23 @@
       "Jos käytät työpaikan tai oppilaitoksen tiliä, organisaatio voi hallita päivityksiä. Kysy silloin ylläpitäjältä."
     ]
   },
+  "tyopoyta-vaara-muutos": {
+    "title": "Claude teki muutoksen, jota en halunnut",
+    "os": ["windows", "mac"],
+    "path": "claude-code-desktop",
+    "symptom": "Sivu meni rikki tai näyttää huonommalta kuin ennen Clauden muutosta.",
+    "steps": [
+      "Älä hätäile: Claude voi yleensä perua oman muutoksensa.",
+      "Pyydä Claudea: ”Peru äskeinen muutos ja palauta sivu siihen tilaan, jossa se oli ennen sitä.”",
+      "Katso Changes-kortista, mitä tiedostoja muutettiin, ja tarkista diffistä, että peruminen onnistui.",
+      "Jos otit projektikansiosta kopion, voit myös kopioida vanhan tiedoston takaisin.",
+      "Jatkossa voit käyttää Manual-tilaa, jolloin näet jokaisen muutoksen ennen kuin se tehdään."
+    ]
+  },
   "tyopoyta-muu-ongelma": {
     "title": "Jotain muuta meni pieleen työpöytäsovelluksessa",
     "os": ["windows", "mac"],
+    "path": "claude-code-desktop",
     "symptom": "Sovellus ei toiminut odotetusti, eikä ongelmaa löydy tältä listalta.",
     "steps": [
       "Lue virheilmoitus rauhassa ja kirjoita se talteen.",
@@ -219,6 +251,7 @@
   "muu-ongelma": {
     "title": "Jotain muuta meni pieleen",
     "os": ["windows", "mac"],
+    "path": "claude-code",
     "symptom": "Tulos ei vastannut mitään odotettua, eikä ongelmaa löydy tältä listalta.",
     "steps": [
       "Lue virheilmoitus rauhassa. Usein tärkein tieto on viimeisillä riveillä.",

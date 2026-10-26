@@ -15,6 +15,10 @@ const BADGE_TOPIC: Record<string, number> = {
   'ensimmainen-commit': 3,
   vibekoodaaja: 3,
   julkaistu: 3,
+  // Työpöytäpolku: sama aihealueiden värijako kuin terminaalipolulla.
+  'code-valilehti-auki': 1,
+  ohjaimissa: 2,
+  tyopoytakoodari: 3,
 }
 
 interface BadgeIconProps {

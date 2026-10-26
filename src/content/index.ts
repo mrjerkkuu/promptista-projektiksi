@@ -146,6 +146,12 @@ export const paths: LearningPath[] = buildPaths(
   { quiz: quizFiles, mdx: mdxFiles },
 ).sort((a, b) => a.order - b.order)
 
+/** Polut niin, että kävijän valitsema polku on ensimmäisenä (merkki- ja vianmäärityssivujen ryhmittely). */
+export function pathsActiveFirst(activePath: string | null): LearningPath[] {
+  const active = paths.find((p) => p.id === activePath)
+  return active ? [active, ...paths.filter((p) => p !== active)] : paths
+}
+
 export function getPath(pathId: string): LearningPath | undefined {
   return paths.find((p) => p.id === pathId)
 }

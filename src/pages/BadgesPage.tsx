@@ -1,15 +1,24 @@
 import { Badge } from '../components/Badge'
 import { Nuppu } from '../components/Nuppu'
-import { badges } from '../content'
+import { badges, pathsActiveFirst } from '../content'
 import { useProgress } from '../features/progress'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
+import type { Badge as BadgeData } from '../schemas/content'
 
 export function BadgesPage() {
   useDocumentTitle('Merkit')
   const { progress } = useProgress()
   const list = Object.entries(badges)
-  const main = list.filter(([, b]) => !b.bonus)
-  const bonus = list.filter(([, b]) => b.bonus)
+  // Ryhmät: jokaisen polun merkit (valittu polku ensin), yhteiset merkit ja lopuksi bonusmerkit.
+  const groups: { key: string; title: string; items: [string, BadgeData][] }[] = [
+    ...pathsActiveFirst(progress.activePath).map((p) => ({
+      key: p.id,
+      title: p.title,
+      items: list.filter(([, b]) => !b.bonus && b.path === p.id),
+    })),
+    { key: 'yhteiset', title: 'Yhteiset merkit', items: list.filter(([, b]) => !b.bonus && b.path === undefined) },
+    { key: 'bonus', title: 'Bonusmerkit', items: list.filter(([, b]) => b.bonus) },
+  ].filter((g) => g.items.length > 0)
   const earned = list.filter(([id]) => progress.badges[id]).length
   const pose = earned === 0 ? 'lepaa' : earned === list.length ? 'iloitsee' : 'vilkuttaa'
   return (
@@ -28,22 +37,16 @@ export function BadgesPage() {
           </p>
         </div>
       </header>
-      <h2>Polun merkit</h2>
-      <div className="badge-grid">
-        {main.map(([id, b]) => (
-          <Badge key={id} id={id} badge={b} earnedAt={progress.badges[id]} />
-        ))}
-      </div>
-      {bonus.length > 0 && (
-        <>
-          <h2>Bonusmerkit</h2>
+      {groups.map((g) => (
+        <section key={g.key} aria-labelledby={`merkit-${g.key}`}>
+          <h2 id={`merkit-${g.key}`}>{g.title}</h2>
           <div className="badge-grid">
-            {bonus.map(([id, b]) => (
+            {g.items.map(([id, b]) => (
               <Badge key={id} id={id} badge={b} earnedAt={progress.badges[id]} />
             ))}
           </div>
-        </>
-      )}
+        </section>
+      ))}
     </>
   )
 }

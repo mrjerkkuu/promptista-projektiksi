@@ -164,6 +164,15 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
     expect(validateContent(d).errors.join()).toMatch(/tuntematon moduuli "polku\/olematon"/)
   })
 
+  it('merkin tai vianmäärityksen tuntematon polku', () => {
+    const d = fixture()
+    replaceIn(path.join(d, 'badges.json'), '"icon":"*"', '"icon":"*","path":"olematon"')
+    replaceIn(path.join(d, 'troubleshooting.json'), '"steps":["A"]', '"steps":["A"],"path":"toinen"')
+    const errors = validateContent(d).errors.join('\n')
+    expect(errors).toMatch(/badges.json: "b" tuntematon polku "olematon"/)
+    expect(errors).toMatch(/troubleshooting.json: "ei-loydy" tuntematon polku "toinen"/)
+  })
+
   it('väärä vaihtoehto ilman vianmääritystä', () => {
     const d = fixture()
     replaceIn(path.join(d, 'verify.json'), ',"troubleshooting":"ei-loydy"', '')

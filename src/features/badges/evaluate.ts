@@ -20,11 +20,13 @@ export function isConditionMet(condition: BadgeCondition, progress: Progress, ct
       return progress.stats.commandsRun >= condition.min
     case 'missionsComplete':
       return condition.missions.every((m) => progress.missions[m] !== undefined)
-    case 'modulesComplete':
-      return condition.modules.every((ref) => {
+    case 'modulesComplete': {
+      const done = (ref: string) => {
         const m = findModule(ref)
         return m !== undefined && isModuleComplete(progress, m)
-      })
+      }
+      return condition.match === 'any' ? condition.modules.some(done) : condition.modules.every(done)
+    }
     case 'topicComplete': {
       const topic = ctx.paths.find((p) => p.id === condition.path)?.topics.find((t) => t.id === condition.topic)
       if (!topic) return false

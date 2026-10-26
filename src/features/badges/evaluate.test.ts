@@ -5,10 +5,11 @@ import { awardBadges, findNewBadges, isConditionMet, type BadgeContext } from '.
 
 const ctx: BadgeContext = { badges, paths, verifySteps }
 const path = paths.find((p) => p.id === 'claude-code')!
+const desktop = paths.find((p) => p.id === 'claude-code-desktop')!
 
 /** Merkitsee moduulin luetuksi ja vastaa visaan oikein. */
-function complete(progress: Progress, moduleId: string): Progress {
-  const m = path.modules.find((x) => x.id === moduleId)!
+function complete(progress: Progress, moduleId: string, on = path): Progress {
+  const m = on.modules.find((x) => x.id === moduleId)!
   let p = progressReducer(progress, { type: 'markRead', key: m.key, read: true })
   for (const q of m.quiz?.questions ?? []) {
     p = progressReducer(p, { type: 'answerQuiz', key: m.key, questionId: q.id, optionId: q.options.find((o) => o.correct)!.id })
@@ -51,6 +52,28 @@ describe('merkkien ehdot', () => {
     // Bonusmerkki vaatii bonusmoduulin.
     expect(findNewBadges(p, ctx)).not.toContain('julkaistu')
     expect(findNewBadges(complete(p, 'julkaise'), ctx)).toContain('julkaistu')
+  })
+
+  it('Julkaistu! tulee kummalta tahansa polulta (match: any)', () => {
+    expect(findNewBadges(complete(createDefaultProgress(), 'julkaise', desktop), ctx)).toContain('julkaistu')
+    expect(findNewBadges(complete(createDefaultProgress(), 'julkaise'), ctx)).toContain('julkaistu')
+    expect(findNewBadges(createDefaultProgress(), ctx)).not.toContain('julkaistu')
+  })
+
+  it('työpöytäpolun merkit', () => {
+    let p = createDefaultProgress()
+    for (const step of ['claude-sovellus', 'code-valilehti']) {
+      p = progressReducer(p, { type: 'answerVerify', stepId: step, optionId: verifySteps[step].options.find((o) => o.correct)!.id })
+    }
+    expect(findNewBadges(p, ctx)).toContain('code-valilehti-auki')
+    expect(findNewBadges(p, ctx)).not.toContain('tyopoytakoodari')
+    for (const m of desktop.topics.find((t) => t.id === 'sovellus-tutuksi')!.modules) p = complete(p, m.id, desktop)
+    expect(findNewBadges(p, ctx)).toContain('ohjaimissa')
+    // Yhteinen aihe Hyvä prompti antaa terminaalipolun Promptiseppä-merkin myös työpöytäpolulla.
+    expect(findNewBadges(p, ctx)).toContain('promptiseppa')
+    for (const m of desktop.modules.filter((x) => !x.optional)) p = complete(p, m.id, desktop)
+    expect(findNewBadges(p, ctx)).toContain('tyopoytakoodari')
+    expect(findNewBadges(p, ctx)).not.toContain('vibekoodaaja')
   })
 
   it('moduulimerkki vaatii visan läpäisyn', () => {

@@ -248,6 +248,14 @@ export function validateContent(contentDir: string): ValidationResult {
     }
   }
 
+  // Merkkien ja vianmäärityksen polut
+  for (const [id, badge] of Object.entries(badges)) {
+    if (badge.path && !paths.has(badge.path)) errors.push(`badges.json: "${id}" tuntematon polku "${badge.path}"`)
+  }
+  for (const [id, entry] of Object.entries(troubleshooting)) {
+    if (entry.path && !paths.has(entry.path)) errors.push(`troubleshooting.json: "${id}" tuntematon polku "${entry.path}"`)
+  }
+
   // Merkkien ehdot
   for (const [id, badge] of Object.entries(badges)) {
     const c = badge.condition
