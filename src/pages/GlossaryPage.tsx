@@ -45,7 +45,7 @@ export function GlossaryPage() {
           <h1>Sanasto</h1>
           <p>Kaikki sivuston termit lyhyesti aiheittain. Tekstissä alleviivattua sanaa napauttamalla näet saman selityksen.</p>
         </div>
-        <Nuppu pose="vilkuttaa" size={110} />
+        <Nuppu pose="lukee" size={110} />
       </header>
       <div role="search" className="glossary-search">
         <label htmlFor={searchId}>Hae sanastosta</label>
