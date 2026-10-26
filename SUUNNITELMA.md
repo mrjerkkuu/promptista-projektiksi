@@ -322,14 +322,16 @@ Vaihtoehdot olivat kopio (korjaukset kahteen paikkaan, edistyminen erikseen) ja 
 
 **Git ja GitHub ovat bonusta.** Ydinpolku toimii ilman Gitiä. GitHubiin vienti ja julkaisu on valinnainen lopputehtävä.
 
-Luonnos (↗ = viittaus terminaalipolun aiheeseen). Aiheiden ID:t lyödään lukkoon ennen julkaisua, koska niitä ei voi myöhemmin vaihtaa ilman migraatiota.
+Toteutus (↗ = viittaus terminaalipolun aiheeseen, ★ = bonus). Aiheiden ID:t lyödään lukkoon ennen julkaisua, koska niitä ei voi myöhemmin vaihtaa ilman migraatiota.
 
 | Aihealue | Aiheet |
 |---|---|
-| **0. Perusteet** | ↗ Mitä vibekoodaus on · ↗ Chat vai AI-agentti · Projektikansio ja tiedostot (uusi, ilman terminaalia) · ↗ Git ja GitHub |
-| **1. Käyttöönotto** | Claude-tilaus (työpöytäversio: Pro, Max, Team tai Enterprise) · Sovelluksen asennus · Kirjautuminen ja Code-välilehti · Tarkistuslista |
-| **2. Sovellus tutuksi** | Ensimmäinen istunto (ympäristö, kansio, malli) · Tilat ja turvallisuus (Manual, Accept edits, Plan, Auto) · Muutosten tarkistus (diff-näkymä, rivikommentit, keskeytys) · Esikatselu · ↗ Hyvä prompti · ↗ CLAUDE.md · ↗ Konteksti |
-| **3. Ensimmäinen projekti** | Projektikansio · Suunnittele (Plan-tila) · Rakenna ja esikatsele · Tallenna · ★ Bonus: GitHubiin ja julkaise |
+| **0. Perusteet** | ↗ Mitä vibekoodaus on · Chat vai AI-agentti · Kansiot ja tiedostot · ↗ Git ja GitHub |
+| **1. Käyttöönotto** | Claude-tilaus · Sovelluksen asennus · Kirjautuminen ja Code-välilehti · Tarkistuslista |
+| **2. Sovellus tutuksi** | Ensimmäinen istunto · Tilat ja turvallisuus · Muutosten tarkistus · Esikatselu · ↗ Hyvä prompti · CLAUDE.md · Konteksti |
+| **3. Ensimmäinen projekti** | Projektikansio · Suunnittele · Rakenna · Viimeistele · ★ ↗ GitHub-tili · ★ Bonus: julkaise |
+
+Toteutuksessa yhteisiä aiheita tuli vähemmän kuin luvussa 15.3 arvioitiin: Chat vai AI-agentti, CLAUDE.md ja Konteksti saivat oman version (PAATOKSET.md, kohdat 116 ja 120). Bonuksessa sivu julkaistaan GitHubin verkkosivun kautta ilman Gitiä ja terminaalia (kohta 121).
 
 **Sisällön lähteet:** Anthropicin dokumentaatio (`code.claude.com/docs/en/desktop-quickstart` ja `…/desktop`). Kuten luvussa 12, käyttöliittymän nimet ja vaiheet tarkistetaan toteutushetkellä eikä kirjoiteta muistista. Hintoja ei kirjoiteta sivulle.
 
