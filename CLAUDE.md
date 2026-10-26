@@ -45,4 +45,8 @@ Tämä repo on **Promptista projektiksi**: pelillistetty suomenkielinen verkkosi
   - Uusi tallennettava kenttä tarvitsee oletusarvon, jotta vanha tallennus läpäisee validoinnin.
   - Merkkien ehdot (`badges.json`): älä kiristä ehtoja niin, että jo myönnetty merkki katoaa. Myönnetyt merkit säilyvät.
   - Kerro PAATOKSET.md:ssä, jos muutos koskee tallennusta.
-- Commitit pieninä ja selkeinä. Älä pushaa ilman lupaa.
+- Commitit pieninä ja selkeinä.
+- **Pushaus:**
+  - **Pilvessä** (Claude Code verkossa tai mobiilissa; ympäristömuuttuja `CLAUDE_CODE_REMOTE=true`) saat pushata ilman erillistä lupaa istunnolle annettuun työhaaraan, kun `npm run check` menee läpi. Pilviympäristö poistuu käytöstä, joten pushaamaton työ katoaisi.
+  - **Omalla koneella** älä pushaa ilman lupaa.
+  - Älä koskaan pushaa suoraan `main`-haaraan äläkä avaa pull requestia pyytämättä.
