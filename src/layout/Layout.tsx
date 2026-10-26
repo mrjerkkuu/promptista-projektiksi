@@ -56,7 +56,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <header className="site-header">
         <div className="site-header__inner">
           <NavLink to="/" className="site-header__brand">
-            <Nuppu pose="vilkuttaa" size={40} />
+            <Nuppu pose="kurkistaa" size={40} />
             <span className="site-header__name">Promptista projektiksi</span>
           </NavLink>
           <nav aria-label="Päävalikko" className="site-header__nav">
@@ -96,22 +96,22 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <footer className="site-footer">
-        <div className="site-footer__mascot">
-          <Nuppu pose="vilkuttaa" size={72} />
+        <Nuppu pose="istuu" size={64} />
+        <div className="site-footer__texts">
+          <p className="site-footer__text">
+            © 2026 Jeremia Vepsäläinen <span aria-hidden="true">·</span>{' '}
+            <a href={REPO_URL} target="_blank" rel="noreferrer">
+              GitHub
+              <span className="visually-hidden"> (avautuu uuteen välilehteen)</span>
+            </a>
+          </p>
+          <p className="site-footer__text">
+            Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.
+          </p>
+          <p className="site-footer__text">
+            Löysitkö virheen tai keksitkö parannuksen? <NavLink to="/palaute">Anna palautetta</NavLink>
+          </p>
         </div>
-        <p className="site-footer__text">
-          © 2026 Jeremia Vepsäläinen <span aria-hidden="true">·</span>{' '}
-          <a href={REPO_URL} target="_blank" rel="noreferrer">
-            GitHub
-            <span className="visually-hidden"> (avautuu uuteen välilehteen)</span>
-          </a>
-        </p>
-        <p className="site-footer__text">
-          Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.
-        </p>
-        <p className="site-footer__text">
-          Löysitkö virheen tai keksitkö parannuksen? <NavLink to="/palaute">Anna palautetta</NavLink>
-        </p>
       </footer>
     </div>
   )

@@ -18,7 +18,8 @@ export function HomePage() {
   const activePath = paths.find((p) => p.modules.some((m) => progress.modules[m.key])) ?? paths[0]
   const next = activePath ? getNextModule(progress, activePath.modules) : undefined
   const allDone = activePath && !next
-  const pose = allDone ? 'iloitsee' : progress.os === null ? 'vilkuttaa' : 'osoittaa'
+  // Nuppu vilkuttaa etusivulla aina; koko polun valmistuttua se iloitsee.
+  const pose = allDone ? 'iloitsee' : 'vilkuttaa'
 
   return (
     <>
@@ -47,7 +48,7 @@ export function HomePage() {
           {allDone && <p className="notice notice--success">Olet käynyt koko polun läpi. Mahtavaa työtä!</p>}
         </div>
         <div className="hero__aside">
-          <Nuppu pose={pose} size={150} float />
+          <Nuppu pose={pose} size={150} wave />
           {/* Nupun SVG on koriste, joten esittely on tavallista tekstiä ruudunlukijalle. */}
           <p className="hero__nuppu-intro">
             <strong>Moi, olen Nuppu!</strong> Kuljen mukanasi koko polun alusta loppuun.

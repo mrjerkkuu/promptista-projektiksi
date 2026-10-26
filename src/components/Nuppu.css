@@ -36,7 +36,7 @@
   filter: var(--nuppu-sticker);
 }
 
-/* Kellunta vain, kun se on pyydetty (etusivu, merkit). Oma piirtokerros
+/* Kellunta vain, kun se on pyydetty (merkit). Oma piirtokerros
    (will-change) pitää hitaan liikkeen tasaisena: muuten selain pyöristää
    sijainnin kokonaisiin pikseleihin ja liike nykii. */
 .nuppu--float {
@@ -47,6 +47,14 @@
 /* Iloitseva Nuppu heiluu kahdesti eikä kellu. */
 .nuppu--iloitsee {
   animation: nuppu-wiggle var(--duration-badge) var(--easing-spring) 2;
+}
+
+/* Vilkutus: käsi ja liikeviivat (SVG:n ryhmä .nuppu__arm) kääntyvät olkapään
+   ympäri. Pisteen koordinaatit ovat SVG:n viewBoxin (200 × 200) yksiköitä. */
+.nuppu--wave .nuppu__arm {
+  transform-box: view-box;
+  transform-origin: 154px 106px;
+  animation: nuppu-wave var(--duration-wave) ease-in-out infinite;
 }
 
 /* Nopea pompahdus jakson alussa (noin 0,5 s), sitten paikallaan jakson loppuun.
@@ -64,6 +72,26 @@
   }
   18% {
     transform: translateY(-1px);
+  }
+}
+
+/* Kaksi heilautusta jakson alussa (noin 1 s), sitten käsi lepää vilkutusasennossa
+   jakson loppuun. Heilautusten väli = --duration-wave. */
+@keyframes nuppu-wave {
+  0%,
+  28%,
+  100% {
+    transform: rotate(0);
+  }
+  /* ulos, sisään, ulos, sisään */
+  7% {
+    transform: rotate(14deg);
+  }
+  14% {
+    transform: rotate(-10deg);
+  }
+  21% {
+    transform: rotate(12deg);
   }
 }
 
