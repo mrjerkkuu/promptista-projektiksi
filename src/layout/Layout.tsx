@@ -96,7 +96,7 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <footer className="site-footer">
-        <Nuppu pose="vilkuttaa" size={64} />
+        <Nuppu pose="istuu" size={64} />
         <div className="site-footer__texts">
           <p className="site-footer__text">
             © 2026 Jeremia Vepsäläinen <span aria-hidden="true">·</span>{' '}

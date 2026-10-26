@@ -1,14 +1,16 @@
 import iloitsee from '../assets/nuppu/nuppu-iloitsee.svg?raw'
+import istuu from '../assets/nuppu/nuppu-istuu.svg?raw'
 import kurkistaa from '../assets/nuppu/nuppu-kurkistaa.svg?raw'
 import lepaa from '../assets/nuppu/nuppu-lepaa.svg?raw'
 import miettii from '../assets/nuppu/nuppu-miettii.svg?raw'
+import mitali from '../assets/nuppu/nuppu-mitali.svg?raw'
 import osoittaa from '../assets/nuppu/nuppu-osoittaa.svg?raw'
 import vilkuttaa from '../assets/nuppu/nuppu-vilkuttaa.svg?raw'
 import './Nuppu.css'
 
-export type NuppuPose = 'vilkuttaa' | 'iloitsee' | 'miettii' | 'osoittaa' | 'lepaa' | 'kurkistaa'
+export type NuppuPose = 'vilkuttaa' | 'iloitsee' | 'miettii' | 'osoittaa' | 'lepaa' | 'kurkistaa' | 'istuu' | 'mitali'
 
-const SVG: Record<NuppuPose, string> = { vilkuttaa, iloitsee, miettii, osoittaa, lepaa, kurkistaa }
+const SVG: Record<NuppuPose, string> = { vilkuttaa, iloitsee, miettii, osoittaa, lepaa, kurkistaa, istuu, mitali }
 
 interface NuppuProps {
   pose: NuppuPose
