@@ -1,6 +1,7 @@
 import type { MDXComponents } from 'mdx/types'
 import { Command } from './Command'
 import { MdxLink } from './MdxLink'
+import { NuppuSays } from './NuppuSays'
 import { Os } from './Os'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
@@ -18,6 +19,7 @@ export const mdxComponents: MDXComponents = {
   a: MdxLink,
   table: TableWrap,
   Command,
+  NuppuSays,
   Os,
   Quiz,
   ReadMore,

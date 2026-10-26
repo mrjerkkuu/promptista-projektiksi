@@ -3,6 +3,7 @@ import path from 'node:path'
 import type { z } from 'zod'
 import {
   MDX_COMPONENTS,
+  NUPPU_POSES,
   badgesFileSchema,
   commandsFileSchema,
   glossaryFileSchema,
@@ -194,6 +195,10 @@ export function validateContent(contentDir: string): ValidationResult {
               break
             case 'Quiz':
               quizTags++
+              break
+            case 'NuppuSays':
+              if (!tag.attrs.pose) errors.push(`${where} puuttuu pose`)
+              else if (!(NUPPU_POSES as readonly string[]).includes(tag.attrs.pose)) errors.push(`${where} tuntematon Nupun asento "${tag.attrs.pose}"`)
               break
           }
         }

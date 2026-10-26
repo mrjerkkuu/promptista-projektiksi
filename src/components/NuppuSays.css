@@ -1,0 +1,72 @@
+/* Nupun kommentti tekstin seassa: Nuppu vasemmalla, kuplan nuoli osoittaa siihen. */
+.nuppu-says {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.nuppu-says__bubble {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-primary-soft);
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.nuppu-says__bubble::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(var(--space-2) * -1 - var(--border-width));
+  width: var(--space-3);
+  height: var(--space-3);
+  margin-top: calc(var(--space-3) / -2);
+  background: var(--color-primary-soft);
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+  border-left: var(--border-width) solid var(--color-border-subtle);
+  transform: rotate(45deg);
+}
+
+.nuppu-says__bubble p {
+  margin: 0;
+}
+
+.nuppu-says__bubble p + p {
+  margin-top: var(--space-2);
+}
+
+/* Leveällä näytöllä kommentti kelluu tekstipalstan oikealla puolella
+   (reunahuomautus). Negatiivinen oikea marginaali siirtää sen palstan ulkopuolelle,
+   joten teksti ei kavennu. Nuppu on kuplan yläpuolella ja nuoli osoittaa ylös.
+   Raja: tekstipalsta 48rem + kahdesti (kommentti 12rem + väli 2rem + reunavara 2rem).
+   Mediakyselyssä ei voi käyttää muuttujia, joten raja on kirjoitettu tähän. */
+@media (min-width: 80rem) {
+  .nuppu-says {
+    float: right;
+    clear: right;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: var(--margin-note-width);
+    margin: var(--space-1) calc(-1 * (var(--margin-note-width) + var(--margin-note-gap))) var(--space-4) 0;
+  }
+
+  .nuppu-says__bubble {
+    align-self: stretch;
+  }
+
+  .nuppu-says__bubble::before {
+    top: calc(var(--space-2) * -1 - var(--border-width));
+    left: 50%;
+    margin-top: 0;
+    margin-left: calc(var(--space-3) / -2);
+    border-bottom: none;
+    border-top: var(--border-width) solid var(--color-border-subtle);
+  }
+}

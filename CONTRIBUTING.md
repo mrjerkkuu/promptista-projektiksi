@@ -97,6 +97,7 @@ Tietopaketti on Markdownia, jonka sekaan voi kirjoittaa komponentteja. Otsikko t
 | `<VerifyStep id="git" />` | Asennuksen varmistus `verify.json`:sta. |
 | `<ReadMore title="Otsikko">…</ReadMore>` | Avattava syventävä osio. |
 | `<Tip title="Vinkki" type="warning">…</Tip>` | Vinkki- tai huomiolaatikko (`type` valinnainen). |
+| `<NuppuSays pose="koodaa">…</NuppuSays>` | Nupun lyhyt kommentti puhekuplassa. Kirjoita se omalle rivilleen väliotsikon tai kappaleen edelle; leveällä näytöllä se näkyy tekstin vieressä. Asennot: `NUPPU_POSES` (`src/schemas/content.ts`). Yksi kommentti aihetta kohden riittää. |
 
 Linkit:
 

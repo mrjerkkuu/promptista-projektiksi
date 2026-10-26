@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { renderWithProviders, storedProgress } from '../test/render'
 import { Command } from './Command'
+import { NuppuSays } from './NuppuSays'
 import { Os } from './Os'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
@@ -155,6 +156,15 @@ describe('<Term>', () => {
     renderWithProviders(<Term id="tuntematon">sana</Term>)
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
     expect(screen.getByText('sana')).toBeInTheDocument()
+  })
+})
+
+describe('<NuppuSays>', () => {
+  it('kertoo ruudunlukijalle, kuka puhuu, ja piilottaa koristekuvan', () => {
+    const { container } = renderWithProviders(<NuppuSays pose="koodaa">Kokeile rohkeasti!</NuppuSays>)
+    const note = screen.getByRole('note')
+    expect(note).toHaveTextContent('Nuppu sanoo: Kokeile rohkeasti!')
+    expect(container.querySelector('.nuppu--koodaa')).toHaveAttribute('aria-hidden', 'true')
   })
 })
 
