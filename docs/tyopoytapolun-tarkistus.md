@@ -90,8 +90,8 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 - [ ] Rivikommentit diffissä ja niiden lähetys Ctrl+Enter / Cmd+Enter (2.3). *28.10.2026: **+** ilmestyy riviä osoittaessa (nähty Git-repon diffissä). Kommenttikenttä (otsikkona ”Line 1”) aukeaa, ja kentän painike siirtää kommentin kirjoituskenttään korttina (”Comment”). Kommentit lähetetään Enterillä kuten tavallinen viesti, ei Ctrl+Enterillä (kirjoituskentässä Ctrl+Enter on ”queue for later”). Rivikommentit ilman Gitiä testaamatta. Aiheen 2.3 teksti korjattu 28.10.2026: diff avataan keskustelun luvuista, kommentit lähetetään Enterillä.*
 - [x] Browser-paneeli, joka aukeaa HTML-tiedoston nimeä napsauttamalla, ja keskustelun kortin **Open**-painike (2.4). *Omistaja 28.10.2026: paneeli aukesi itsestään sivun teon jälkeen ja myös tiedoston nimeä napsauttamalla. Open-korttia ei tullut, koska palvelinta ei käynnistetty.*
 - [ ] Sivuston lupakysely **Allow once**, **Always allow**, **Deny** (2.4).
-- [ ] Tiedostopaneeli, joka aukeaa tiedoston nimeä napsauttamalla, ja automaattinen tallennus (2.6). *Omistaja 28.10.2026: paneeli aukeaa nimeä napsauttamalla. Automaattinen tallennus testaamatta.*
-- [x] **Context**-kortin prosenttiluku sekä `/context` ja `/compact` kirjoituskentässä (2.7). *Prosenttiluku näkyi omistajan kuvakaappauksessa 27.10.2026; komennot ovat Anthropicin ohjeessa.*
+- [x] Tiedostopaneeli, joka aukeaa tiedoston nimeä napsauttamalla, ja automaattinen tallennus (2.6). *Omistaja 28.10.2026: paneeli aukeaa nimeä napsauttamalla. Markdown-tiedosto aukeaa luettavana näkymänä; muokkaamaan pääsee oikean yläkulman **View source** -painikkeella (`</>`), ja silmäkuvake palauttaa luettavan näkymän. Oma muokkaus tallentui itsestään (tarkistettu tiedostosta).*
+- [x] **Context**-kortin prosenttiluku sekä `/context` ja `/compact` kirjoituskentässä (2.7). *Prosenttiluku näkyi omistajan kuvakaappauksessa 27.10.2026. 28.10.2026: kortti aukeaa nuolesta (”8% used”, 84.6k / 1M ja eritelty lista), ja `/context` näyttää keskustelussa saman erittelyn ”Context window” -korttina.*
 - [ ] Päivitys: Windowsilla **Help → Check for Updates…**, Macilla **Claude → Check for Updates…** (1.3, vianmääritys).
 
 **macOS** (suomenkieliset nimet):
@@ -131,7 +131,7 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 - **Yksityisyys:** ennen kuvaamista piilota tai rajaa pois sähköpostiosoite, nimi, tilin tiedot, muiden istuntojen nimet ja polut, joissa näkyy käyttäjänimesi (esimerkiksi `C:\Users\nimi`). Kuvat päätyvät julkiselle sivulle.
 - **Ikkuna:** sovellus noin 1280 × 800 pikselin kokoisena, vaalea teema. Rajaa kuva niin, että olennainen kohta näkyy selvästi. Koko ikkunaa ei tarvita.
 - **Käyttöjärjestelmä:** kun sovellus näyttää samalta kummallakin koneella, yksi kuva riittää (merkintä *kumpi tahansa*). Resurssienhallinnasta ja Finderista tarvitaan omat kuvat.
-- **Tummasta muutetut kuvat:** `s04-tilat`, `s06-pysaytys`, `s07-changes-kortti`, `s08-diff`, `s09-rivikommentti`, `s09b-kommentti-kirjoituskentassa`, `s10-tiedostolinkki`, `s02-ymparisto`, `s11-browser` (vain paneelin yläpalkki) ja `k07-code-valilehti` otettiin tummassa teemassa, ja Claude muutti ne vaaleiksi kääntämällä vaaleuden (sävyt säilyvät). Ne ovat arvio vaaleasta teemasta. Jos otat ne joskus uudelleen vaaleassa teemassa, korvaa nämä.
+- **Tummasta muutetut kuvat:** `s04-tilat`, `s06-pysaytys`, `s07-changes-kortti`, `s08-diff`, `s09-rivikommentti`, `s09b-kommentti-kirjoituskentassa`, `s10-tiedostolinkki`, `s02-ymparisto`, `s11-browser` (vain paneelin yläpalkki), `s14-tiedostopaneeli`, `s14b-tiedostopaneeli-muokkaus`, `s15-context-kortti` ja `k07-code-valilehti` otettiin tummassa teemassa, ja Claude muutti ne vaaleiksi kääntämällä vaaleuden (sävyt säilyvät). Ne ovat arvio vaaleasta teemasta. Jos otat ne joskus uudelleen vaaleassa teemassa, korvaa nämä.
 - **Kuvaustapa:** Windowsilla Käynnistä → `Näyttökuvatyökalu`, Macilla Finder → Ohjelmat → Lisäohjelmat → Kuvakaappaus.
 
 ### Käyttöönotto (aihealue 1)
@@ -174,8 +174,8 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 | ☑ | `s11-browser.png` | Browser-paneeli, jossa näkyy ”Hei maailma” -sivu | kumpi tahansa | 2.4 |
 | ☐ | `s12-open-kortti.png` | keskustelun kortti, jossa on **Open**-painike (jos tulee vastaan) | kumpi tahansa | 2.4 |
 | ☐ | `s13-sivuston-lupa.png` | sivuston lupakysely Allow once / Always allow / Deny (jos tulee vastaan) | kumpi tahansa | 2.4 |
-| ☐ | `s14-tiedostopaneeli.png` | CLAUDE.md auki tiedostopaneelissa | kumpi tahansa | 2.6 |
-| ☐ | `s15-context-kortti.png` | Context-kortti ja prosenttiluku | kumpi tahansa | 2.7 |
+| ☑ | `s14-tiedostopaneeli.png` | CLAUDE.md auki tiedostopaneelissa | kumpi tahansa | 2.6 |
+| ☑ | `s15-context-kortti.png` | Context-kortti ja prosenttiluku | kumpi tahansa | 2.7 |
 
 ### Ensimmäinen projekti (aihealue 3)
 
