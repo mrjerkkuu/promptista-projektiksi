@@ -165,7 +165,7 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 |---|---|---|---|---|
 | ☑ | `s01-new.png` | sivupalkin **+ New** | kumpi tahansa | 2.1 |
 | ☑ | `s02-ymparisto.png` | ympäristövalikko auki, Local-ryhmä näkyvissä | kumpi tahansa | 2.1 |
-| ☐ | `s03-open-folder.png` | kansion valinta auki, **Open folder…** näkyvissä | kumpi tahansa | 2.1 |
+| ☑ | `s03-open-folder.png` | kansion valinta auki, **Open folder…** näkyvissä | kumpi tahansa | 2.1 |
 | ☑ | `s04-tilat.png` | tilavalikko auki: Manual, Accept edits, Plan, Auto | kumpi tahansa | 2.2 |
 | ☑ | `s05-lupakysely.png` | Manual-tilan lupakysely: Claude ehdottaa muutosta ja odottaa (painikkeet näkyvissä) | kumpi tahansa | 2.1, 2.2 |
 | ☑ | `s06-pysaytys.png` | pysäytyspainike, kun Claude työskentelee | kumpi tahansa | 2.1, 2.3 |
