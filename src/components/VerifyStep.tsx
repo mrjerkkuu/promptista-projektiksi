@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import { Link } from 'react-router'
-import { troubleshooting, verifySteps } from '../content'
 import { useProgress } from '../features/progress'
+import { useContent, useT } from '../i18n'
 import { resolveOsText } from '../lib/os'
 import type { Os, OsText } from '../schemas/content'
 import { ChoiceList } from './ChoiceList'
@@ -34,8 +34,10 @@ function optionLabel(label: OsText, os: Os | null) {
 export function VerifyStep({ id }: VerifyStepProps) {
   const { progress, dispatch } = useProgress()
   const headingId = useId()
+  const { verify: t } = useT()
+  const { troubleshooting, verifySteps } = useContent()
   const step = verifySteps[id]
-  if (!step) return <p className="notice notice--error">Varmistusta ”{id}” ei löytynyt.</p>
+  if (!step) return <p className="notice notice--error">{t.notFound(id)}</p>
 
   return (
     <section className="card verify" aria-labelledby={headingId}>
@@ -44,7 +46,7 @@ export function VerifyStep({ id }: VerifyStepProps) {
           <Icon name="shield" />
         </span>
         <h3 id={headingId} className="verify__title">
-          Varmistus: {step.title}
+          {t.title(step.title)}
         </h3>
       </div>
       <p>{step.question}</p>
@@ -63,7 +65,7 @@ export function VerifyStep({ id }: VerifyStepProps) {
             explanation: o.explanation,
             extra: entry && (
               <p>
-                <Link to={`/vianmaaritys/${entryId}`}>Vianmääritys: {entry.title}</Link>
+                <Link to={`/vianmaaritys/${entryId}`}>{t.troubleshooting(entry.title)}</Link>
               </p>
             ),
           }

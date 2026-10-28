@@ -12,8 +12,8 @@ import { STORAGE_KEY, createDefaultProgress } from './features/progress'
  * koska jsdom ei laske tyylejä.
  */
 
-async function checkPage(route: string, os: 'windows' | 'mac' | null) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), os }))
+async function checkPage(route: string, os: 'windows' | 'mac' | null, language: 'fi' | 'en' = 'fi') {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), os, language }))
   const { container, unmount } = render(
     <MemoryRouter initialEntries={[route]}>
       <AppShell />
@@ -21,7 +21,7 @@ async function checkPage(route: string, os: 'windows' | 'mac' | null) {
   )
   await screen.findByRole('heading', { level: 1 })
   // Odotetaan, että laiskasti ladattu tietopaketti on näkyvissä.
-  if (route.split('/').length === 4) await screen.findByRole('button', { name: /Olen lukenut tämän/ })
+  if (route.split('/').length === 4) await screen.findByRole('button', { name: /Olen lukenut tämän|I’ve read this/ })
   await new Promise((r) => setTimeout(r, 0))
   const result = await axe.run(container, {
     rules: { 'color-contrast': { enabled: false } },
@@ -44,5 +44,14 @@ describe('saavutettavuus (axe)', () => {
 
   it.each(moduleRoutes)('%s (Mac)', async (route) => {
     expect(await checkPage(route, 'mac')).toEqual([])
+  })
+
+  it.each(staticRoutes)('%s (englanti)', async (route) => {
+    expect(await checkPage(route, null, 'en')).toEqual([])
+  })
+
+  // Ilman käyttöjärjestelmän valintaa näkyvät molempien ohjeet, joten yksi ajo kattaa koko käännöksen.
+  it.each(moduleRoutes)('%s (englanti)', async (route) => {
+    expect(await checkPage(route, null, 'en')).toEqual([])
   })
 })

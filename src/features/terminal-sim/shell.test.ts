@@ -181,6 +181,18 @@ describe('missiot', () => {
     expect(isMissionComplete(state, mission)).toBe(true)
   })
 
+  it('englanniksi vihjeet, ohje ja harjoituskoneen nimet ovat englanninkielisiä, virheilmoitukset samat', () => {
+    const s = createShell('mac', undefined, 'en')
+    expect(prompt(s)).toBe('learner@MacBook ~ % ')
+    expect(text(execute(s, 'ls Documents'))).toBe('notes.txt')
+    expect(text(execute(s, 'help'))).toContain('These commands work in this practice terminal:')
+    const r = execute(s, 'cd olematon')
+    expect(r.output[0].text).toBe('cd: no such file or directory: olematon')
+    expect(r.output[1].text).toMatch(/^Hint: Folder not found/)
+    const mission = { conditions: [{ type: 'cwdIs' as const, path: '~/project' }] }
+    expect(isMissionComplete(run(s, 'mkdir project', 'cd project').state, mission)).toBe(true)
+  })
+
   it('aloituskansiot ja -sijainti tulevat missiosta', () => {
     const s = createShell('mac', { startDirs: ['~/koulu/kurssi'], startCwd: '~/koulu' })
     expect(prompt(s)).toBe('oppija@MacBook koulu % ')

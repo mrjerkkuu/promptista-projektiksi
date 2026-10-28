@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "mika",
+      "question": "What does context mean?",
+      "options": [
+        {
+          "id": "muisti",
+          "text": "Everything Claude keeps in mind during this session",
+          "explanation": "Correct. Messages, files and the results of commands all take up space in the context."
+        },
+        {
+          "id": "kaikki",
+          "text": "All the sessions you’ve ever had with Claude",
+          "explanation": "Claude can’t see the conversations of earlier sessions. That’s why lasting instructions are written in CLAUDE.md."
+        },
+        {
+          "id": "kansio",
+          "text": "The folder where the project is",
+          "explanation": "The folder is where the project lives. The context is the session’s “desk”."
+        }
+      ]
+    },
+    {
+      "id": "uusi",
+      "question": "You’re moving on to a completely new task, and Claude has started going round in circles. What do you do?",
+      "options": [
+        {
+          "id": "new",
+          "text": "I start a new session with the + New button in the sidebar",
+          "explanation": "Exactly. A clean context often helps right away, and CLAUDE.md tells Claude the project’s basics again."
+        },
+        {
+          "id": "jatka",
+          "text": "I keep going in the same session forever",
+          "explanation": "A session that runs too long fills up the context, and Claude’s work gets worse."
+        },
+        {
+          "id": "asenna",
+          "text": "I reinstall the app",
+          "explanation": "There’s nothing wrong with the app. A new session is enough."
+        }
+      ]
+    }
+  ]
+}

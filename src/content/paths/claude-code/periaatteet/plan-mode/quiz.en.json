@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "mika",
+      "question": "What does Claude do in plan mode?",
+      "options": [
+        {
+          "id": "suunnittelee",
+          "text": "It investigates and proposes a plan, but doesn’t change files",
+          "explanation": "Correct. You read the plan and decide whether to build it."
+        },
+        {
+          "id": "rakentaa",
+          "text": "It builds everything as fast as possible",
+          "explanation": "Quite the opposite: nothing is built yet in plan mode."
+        },
+        {
+          "id": "poistaa",
+          "text": "It deletes old plans",
+          "explanation": "Plan mode doesn’t delete anything. It’s planning before doing."
+        }
+      ]
+    },
+    {
+      "id": "nappain",
+      "question": "Which keys do you press to switch to plan mode in Claude Code?",
+      "options": [
+        {
+          "id": "ctrl-p",
+          "text": "Ctrl+P",
+          "explanation": "Not this one. You switch modes with the key combination Shift+Tab."
+        },
+        {
+          "id": "shift-tab",
+          "text": "Shift+Tab (several times if needed)",
+          "explanation": "Exactly. Press it until it says plan mode at the bottom."
+        },
+        {
+          "id": "enter",
+          "text": "Enter three times",
+          "explanation": "Enter sends the message. You switch modes with the key combination Shift+Tab."
+        }
+      ]
+    }
+  ]
+}

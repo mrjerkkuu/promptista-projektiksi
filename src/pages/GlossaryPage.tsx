@@ -1,28 +1,29 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import { useParams } from 'react-router'
 import { Nuppu } from '../components/Nuppu'
-import { glossary } from '../content'
+import { useContent, useLanguage, useT, type Language } from '../i18n'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
-import { GLOSSARY_CATEGORIES, type GlossaryCategory } from '../schemas/content'
+import { GLOSSARY_CATEGORIES, type GlossaryCategory, type GlossaryEntry } from '../schemas/content'
 import './pages.css'
 
-const entries = Object.entries(glossary).sort(([, a], [, b]) => a.term.localeCompare(b.term, 'fi'))
-
 /** Haun vertailumuoto: pienet kirjaimet ilman tarkkeita, jotta ”paate” löytää Päätteen. */
-function normalize(text: string) {
-  return text.toLocaleLowerCase('fi').normalize('NFD').replace(/\p{M}/gu, '')
+function normalize(text: string, language: Language) {
+  return text.toLocaleLowerCase(language).normalize('NFD').replace(/\p{M}/gu, '')
 }
 
-const searchable = new Map(entries.map(([id, e]) => [id, normalize(`${e.term} ${e.definition}`)]))
-
-function statusText(query: string, count: number) {
-  if (!query) return ''
-  if (count === 0) return `Haulla ”${query}” ei löytynyt termejä. Kokeile jotain toista sanaa.`
-  return count === 1 ? 'Löytyi 1 termi.' : `Löytyi ${count} termiä.`
+/** Termit aakkosjärjestyksessä ja hakua varten normalisoituina. Aakkosjärjestys riippuu kielestä. */
+function sortedEntries(glossary: Record<string, GlossaryEntry>, language: Language) {
+  const entries = Object.entries(glossary).sort(([, a], [, b]) => a.term.localeCompare(b.term, language))
+  const searchable = new Map(entries.map(([id, e]) => [id, normalize(`${e.term} ${e.definition}`, language)]))
+  return { entries, searchable }
 }
 
 export function GlossaryPage() {
-  useDocumentTitle('Sanasto')
+  const t = useT()
+  const language = useLanguage()
+  const { glossary } = useContent()
+  const { entries, searchable } = useMemo(() => sortedEntries(glossary, language), [glossary, language])
+  useDocumentTitle(t.glossary.title)
   const { termId } = useParams()
   const [query, setQuery] = useState('')
   const searchId = useId()
@@ -32,7 +33,7 @@ export function GlossaryPage() {
   }, [termId])
 
   const trimmed = query.trim()
-  const needle = normalize(trimmed)
+  const needle = normalize(trimmed, language)
   const matches = needle ? entries.filter(([id]) => searchable.get(id)!.includes(needle)) : entries
   const groups = (Object.keys(GLOSSARY_CATEGORIES) as GlossaryCategory[])
     .map((category) => ({ category, items: matches.filter(([, e]) => e.category === category) }))
@@ -42,21 +43,21 @@ export function GlossaryPage() {
     <>
       <header className="page-header">
         <div className="page-header__text">
-          <h1>Sanasto</h1>
-          <p>Kaikki sivuston termit lyhyesti aiheittain. Tekstissä alleviivattua sanaa napauttamalla näet saman selityksen.</p>
+          <h1>{t.glossary.title}</h1>
+          <p>{t.glossary.intro}</p>
         </div>
         <Nuppu pose="lukee" size={110} />
       </header>
       <div role="search" className="glossary-search">
-        <label htmlFor={searchId}>Hae sanastosta</label>
+        <label htmlFor={searchId}>{t.glossary.search}</label>
         <input id={searchId} type="search" value={query} onChange={(e) => setQuery(e.target.value)} autoComplete="off" spellCheck={false} />
       </div>
       <p className="glossary-search__status" aria-live="polite">
-        {statusText(trimmed, matches.length)}
+        {trimmed && (matches.length === 0 ? t.glossary.noResults(trimmed) : t.glossary.results(matches.length))}
       </p>
       {groups.map(({ category, items }) => (
         <section key={category} aria-labelledby={`aihe-${category}`} className="glossary-group">
-          <h2 id={`aihe-${category}`}>{GLOSSARY_CATEGORIES[category]}</h2>
+          <h2 id={`aihe-${category}`}>{t.glossary.categories[category]}</h2>
           <dl className="glossary">
             {items.map(([id, entry]) => (
               <div key={id} id={`termi-${id}`} className={`glossary__entry${id === termId ? ' glossary__entry--active' : ''}`}>
@@ -67,7 +68,8 @@ export function GlossaryPage() {
                     <>
                       {' '}
                       <a href={entry.readMore} target="_blank" rel="noreferrer">
-                        Lue lisää<span className="visually-hidden"> termistä {entry.term}</span>
+                        {t.glossary.readMore}
+                        <span className="visually-hidden">{t.glossary.readMoreHidden(entry.term)}</span>
                       </a>
                     </>
                   )}

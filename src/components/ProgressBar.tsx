@@ -1,4 +1,5 @@
 import type { ProgressCount } from '../features/progress'
+import { useT } from '../i18n'
 import './ProgressBar.css'
 
 interface ProgressBarProps {
@@ -10,6 +11,7 @@ interface ProgressBarProps {
 
 /** Edistymispalkki. Luku kerrotaan myös tekstinä, ei pelkkänä palkkina. */
 export function ProgressBar({ label, count, topic }: ProgressBarProps) {
+  const { progress: t } = useT()
   return (
     <div className={topic === undefined ? 'progress' : `progress progress--topic progress--topic-${topic % 4}`}>
       <div
@@ -19,7 +21,7 @@ export function ProgressBar({ label, count, topic }: ProgressBarProps) {
         aria-valuemin={0}
         aria-valuemax={count.total}
         aria-valuenow={count.complete}
-        aria-valuetext={`${count.complete}/${count.total} valmiina`}
+        aria-valuetext={t.valueText(count.complete, count.total)}
       >
         <div className="progress__fill" style={{ width: `${count.percent}%` }} />
       </div>
@@ -27,7 +29,7 @@ export function ProgressBar({ label, count, topic }: ProgressBarProps) {
         <span className="mono">
           {count.complete}/{count.total}
         </span>{' '}
-        valmiina (<span className="mono">{count.percent} %</span>)
+        {t.complete} (<span className="mono">{t.percent(count.percent)}</span>)
       </p>
     </div>
   )

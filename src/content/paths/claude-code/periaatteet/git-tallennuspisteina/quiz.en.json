@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "milloin",
+      "question": "When is it worth making a commit?",
+      "options": [
+        {
+          "id": "ennen",
+          "text": "Before a big change and whenever something works",
+          "explanation": "Correct. Then it’s easy to go back if the next change fails."
+        },
+        {
+          "id": "lopuksi",
+          "text": "Only once, when the whole project is finished",
+          "explanation": "Then you can’t go back to the steps in between. Commit often."
+        },
+        {
+          "id": "ei-koskaan",
+          "text": "Never, Claude remembers everything",
+          "explanation": "Claude can’t see the content of earlier conversations, and /rewind doesn’t replace Git."
+        }
+      ]
+    },
+    {
+      "id": "jarjestys",
+      "question": "In which order are the commands run?",
+      "options": [
+        {
+          "id": "oikea",
+          "text": "git add -A, then git commit -m \"message\"",
+          "explanation": "Exactly. First you choose the changes, then you make the checkpoint."
+        },
+        {
+          "id": "vaara",
+          "text": "git commit, then git add",
+          "explanation": "A commit only saves the chosen changes, so git add comes first."
+        },
+        {
+          "id": "log",
+          "text": "git log, then git restore",
+          "explanation": "These show the history and restore a file. A checkpoint is made with the commands git add and git commit."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "questions": [
+    {
+      "id": "aloittelija",
+      "question": "Which mode suits you best when you’re just getting started?",
+      "options": [
+        {
+          "id": "manual",
+          "text": "Manual",
+          "explanation": "Correct. In Manual mode, you see every change before it’s made."
+        },
+        {
+          "id": "auto",
+          "text": "Auto",
+          "explanation": "In Auto mode, Claude acts without asking. It suits you once you’re used to steering Claude."
+        },
+        {
+          "id": "bypass",
+          "text": "Bypass permissions",
+          "explanation": "Don’t use this mode on your own computer. Anthropic recommends it only for separate, isolated environments."
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "question": "What happens in Plan mode?",
+      "options": [
+        {
+          "id": "suunnitelma",
+          "text": "Claude investigates the project and makes a plan without changing files",
+          "explanation": "Exactly. When the plan is good, you switch modes and Claude carries it out."
+        },
+        {
+          "id": "nopea",
+          "text": "Claude makes all the changes at once without asking",
+          "explanation": "In Plan mode, Claude doesn’t change any files. It only plans."
+        },
+        {
+          "id": "pilvi",
+          "text": "Claude moves the work to the cloud",
+          "explanation": "The cloud is an environment, not a mode. Plan mode means planning before doing."
+        }
+      ]
+    },
+    {
+      "id": "salasana",
+      "question": "Claude asks for your GitHub password. What do you do?",
+      "options": [
+        {
+          "id": "ei",
+          "text": "I don’t give it. Signing in is always done in the browser",
+          "explanation": "Correct. Passwords don’t belong in the conversation."
+        },
+        {
+          "id": "annan",
+          "text": "I give it, because Claude needs it",
+          "explanation": "Don’t give it. Claude doesn’t need passwords, and signing in is done in the browser."
+        },
+        {
+          "id": "osittain",
+          "text": "I only give the first part of the password",
+          "explanation": "Not even part of a password is given out. Signing in is always done in the browser."
+        }
+      ]
+    }
+  ]
+}

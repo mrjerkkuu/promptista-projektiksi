@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "ilmainen",
+      "question": "Is a free Claude account enough for using Claude Code?",
+      "options": [
+        {
+          "id": "ei",
+          "text": "No, you need a plan that includes Claude Code",
+          "explanation": "Correct. Claude Code is included in, for example, the Pro and Max plans."
+        },
+        {
+          "id": "kylla",
+          "text": "Yes, everything works for free",
+          "explanation": "Unfortunately not. According to Anthropic’s documentation, a free account doesn’t include Claude Code."
+        },
+        {
+          "id": "kokeilu",
+          "text": "Yes, as long as you sign in every day",
+          "explanation": "How often you sign in makes no difference. You need a plan that includes Claude Code."
+        }
+      ]
+    },
+    {
+      "id": "hinnat",
+      "question": "Where can you see up-to-date prices for the plans?",
+      "options": [
+        {
+          "id": "virallinen",
+          "text": "In Anthropic’s official pricing",
+          "explanation": "Exactly. Prices change, so it’s always worth checking them from the official source."
+        },
+        {
+          "id": "tama-sivu",
+          "text": "On this page",
+          "explanation": "This page doesn’t list prices precisely because they change. The link to the official pricing is above."
+        },
+        {
+          "id": "arvaus",
+          "text": "From a friend who bought a plan last year",
+          "explanation": "That information may be out of date. Always check the official pricing."
+        }
+      ]
+    }
+  ]
+}

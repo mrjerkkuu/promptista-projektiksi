@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
-import { getNextModule, missions } from '../content'
 import { useProgress } from '../features/progress'
+import { useContent, useLanguage, useT, type Language, type UiStrings } from '../i18n'
 import { createShell, execute, isMissionComplete, prompt, type Line, type ShellState } from '../features/terminal-sim/shell'
 import { InlineText } from '../lib/InlineText'
 import { OS_LABEL } from '../lib/os'
@@ -16,11 +16,13 @@ interface TerminalProps {
 /** Terminaalisimulaattori: turvallinen harjoitusympäristö selaimessa (SUUNNITELMA.md luku 7). */
 export function Terminal({ mission: missionId }: TerminalProps) {
   const { progress } = useProgress()
-  const mission = missions[missionId]
-  if (!mission) return <p className="notice notice--error">Harjoitusta ”{missionId}” ei löytynyt.</p>
+  const t = useT()
+  const language = useLanguage()
+  const mission = useContent().missions[missionId]
+  if (!mission) return <p className="notice notice--error">{t.terminal.notFound(missionId)}</p>
   const os: Os = progress.os ?? 'windows'
-  // key: käyttöjärjestelmän vaihtuessa simulaattori alkaa alusta oikealla kehotteella.
-  return <TerminalSession key={os} missionId={missionId} mission={mission} os={os} osChosen={progress.os !== null} />
+  // key: käyttöjärjestelmän tai kielen vaihtuessa simulaattori alkaa alusta oikealla kehotteella.
+  return <TerminalSession key={`${os}-${language}`} missionId={missionId} mission={mission} os={os} osChosen={progress.os !== null} language={language} />
 }
 
 interface SessionProps {
@@ -28,13 +30,11 @@ interface SessionProps {
   mission: Mission
   os: Os
   osChosen: boolean
+  language: Language
 }
 
-/** Yläpalkin nimi käyttöjärjestelmän mukaan. */
-const SHELL_NAME: Record<Os, string> = {
-  windows: 'PowerShell',
-  mac: 'Pääte (zsh)',
-}
+/** Yläpalkin nimi käyttöjärjestelmän mukaan. Macin Pääte-sovelluksen nimi on käännetty. */
+const shellName = (os: Os, t: UiStrings) => (os === 'windows' ? 'PowerShell' : t.terminal.macShell)
 
 /** Monirivinen tuloste (help, dir, pwd Windowsilla) on taulukko: se vierii vaakasuunnassa eikä rivity. */
 function lineClass(line: Line): string {
@@ -53,19 +53,18 @@ interface HistoryEntry {
  */
 function useNextStepHint() {
   const place = useModulePlace()
+  const { getNextModule } = useContent()
+  const t = useT()
   // Tietopaketin ulkopuolella (esim. testeissä) sivulla ei ole siirtymispainiketta.
   if (place === null) return null
   // Polku osoitteesta, ei avaimesta: yhteisen aiheen seuraava aihe riippuu polusta, jolla kävijä on.
-  return getNextModule(place.pathId, place.moduleId) ? (
-    <> Jatka sitten sivua alaspäin: sivun lopusta pääset <strong>Seuraava</strong>-painikkeella seuraavaan aiheeseen.</>
-  ) : (
-    <> Jatka sitten sivua alaspäin: tämä on polun viimeinen aihe, ja sivun lopusta pääset takaisin polun etusivulle.</>
-  )
+  return getNextModule(place.pathId, place.moduleId) ? t.terminal.nextStep : t.terminal.lastStep
 }
 
-function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
+function TerminalSession({ missionId, mission, os, osChosen, language }: SessionProps) {
   const { progress, dispatch } = useProgress()
-  const [shell, setShell] = useState<ShellState>(() => createShell(os, mission))
+  const t = useT()
+  const [shell, setShell] = useState<ShellState>(() => createShell(os, mission, language))
   const [entries, setEntries] = useState<HistoryEntry[]>([])
   const [input, setInput] = useState('')
   const [history, setHistory] = useState<string[]>([])
@@ -117,22 +116,22 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
   }
 
   function restart() {
-    setShell(createShell(os, mission))
+    setShell(createShell(os, mission, language))
     setEntries([])
     setInput('')
     inputRef.current?.focus()
   }
 
   return (
-    <section className="terminal" aria-label={`Harjoitus: ${mission.title}`}>
+    <section className="terminal" aria-label={t.terminal.exercise(mission.title)}>
       <div className="terminal__mission">
-        <h3 className="terminal__title">Harjoitus: {mission.title}</h3>
+        <h3 className="terminal__title">{t.terminal.exercise(mission.title)}</h3>
         <p id={goalId}>
           <InlineText text={mission.goal} />
         </p>
         {mission.hint && (
           <details className="read-more terminal__hint">
-            <summary className="read-more__summary">Näytä vihje</summary>
+            <summary className="read-more__summary">{t.terminal.showHint}</summary>
             <div className="read-more__body">
               <p>
                 <InlineText text={mission.hint} />
@@ -140,16 +139,16 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
             </div>
           </details>
         )}
-        {!osChosen && <p className="muted">Harjoitus on nyt {OS_LABEL[os]}-tyylinen. Valitse oma käyttöjärjestelmäsi yläpalkista.</p>}
+        {!osChosen && <p className="muted">{t.terminal.osNotChosen(OS_LABEL[os])}</p>}
       </div>
 
       <div className="terminal__window">
         <div className="terminal__bar">
           <Icon name="terminal" />
-          {SHELL_NAME[os]}
+          {shellName(os, t)}
         </div>
-        <div className="terminal__screen" ref={screen} role="log" aria-label="Terminaalin tulosteet">
-          {entries.length === 0 && <p className="terminal__line terminal__line--hint">Kirjoita komento alle ja paina Enter. Komento help näyttää ohjeen.</p>}
+        <div className="terminal__screen" ref={screen} role="log" aria-label={t.terminal.output}>
+          {entries.length === 0 && <p className="terminal__line terminal__line--hint">{t.terminal.emptyHint}</p>}
           {entries.map((entry, i) => (
             <div key={i}>
               {entry.lines.map((line, j) => (
@@ -163,7 +162,7 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
         </div>
         <form className="terminal__form" onSubmit={submit}>
           <label htmlFor={inputId} className="terminal__prompt terminal__prompt--input">
-            <span className="visually-hidden">Komento, kehote: </span>
+            <span className="visually-hidden">{t.terminal.promptHidden}</span>
             {prompt(shell)}
           </label>
           <input
@@ -181,7 +180,7 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
             enterKeyHint="send"
           />
           <button type="submit" className="button button--small terminal__run">
-            Suorita
+            {t.terminal.run}
           </button>
         </form>
       </div>
@@ -189,13 +188,13 @@ function TerminalSession({ missionId, mission, os, osChosen }: SessionProps) {
       <div aria-live="polite">
         {(justCompleted || alreadyDone) && (
           <p className="notice notice--success">
-            {justCompleted ? mission.success : 'Olet jo suorittanut tämän harjoituksen. Voit harjoitella lisää niin paljon kuin haluat.'}
+            {justCompleted ? mission.success : t.terminal.alreadyDone}
             {nextStep}
           </p>
         )}
       </div>
       <button type="button" className="button button--secondary button--small" onClick={restart}>
-        Aloita harjoitus alusta
+        {t.terminal.restart}
       </button>
     </section>
   )

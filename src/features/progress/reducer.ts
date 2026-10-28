@@ -1,3 +1,4 @@
+import type { Language } from '../../i18n/languages'
 import type { Os } from '../../schemas/content'
 import type { Progress, Theme } from './schema'
 import { resetProgress } from './storage'
@@ -5,6 +6,7 @@ import { resetProgress } from './storage'
 export type ProgressAction =
   | { type: 'setOs'; os: Os }
   | { type: 'setTheme'; theme: Theme }
+  | { type: 'setLanguage'; language: Language }
   | { type: 'visitModule'; key: string }
   | { type: 'selectPath'; pathId: string }
   | { type: 'markRead'; key: string; read: boolean }
@@ -22,6 +24,8 @@ export function progressReducer(state: Progress, action: ProgressAction): Progre
       return state.os === action.os ? state : { ...state, os: action.os }
     case 'setTheme':
       return state.theme === action.theme ? state : { ...state, theme: action.theme }
+    case 'setLanguage':
+      return state.language === action.language ? state : { ...state, language: action.language }
     case 'visitModule': {
       const current = state.modules[action.key]
       if (current?.visited) return state

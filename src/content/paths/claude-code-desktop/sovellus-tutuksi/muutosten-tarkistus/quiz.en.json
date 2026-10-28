@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "luvut",
+      "question": "Next to a change it says +12 -1. What does that mean?",
+      "options": [
+        {
+          "id": "rivit",
+          "text": "Twelve lines were added and one was removed",
+          "explanation": "Correct. Click the numbers to see the changes in more detail in the diff."
+        },
+        {
+          "id": "virheet",
+          "text": "There are twelve errors in the code",
+          "explanation": "The numbers say nothing about errors. They tell you how many lines were added and removed."
+        },
+        {
+          "id": "pisteet",
+          "text": "You got twelve points",
+          "explanation": "There are no points to collect here. The numbers tell you how many lines changed."
+        }
+      ]
+    },
+    {
+      "id": "ymmarrys",
+      "question": "Do you need to understand every line of code in the diff?",
+      "options": [
+        {
+          "id": "ei",
+          "text": "No. It’s enough that the change is in the right file and looks sensible",
+          "explanation": "Exactly. If something looks odd, comment on the line or ask Claude."
+        },
+        {
+          "id": "kylla",
+          "text": "Yes, otherwise you can’t accept the change",
+          "explanation": "Nobody expects that of a beginner. Ask Claude if a change puzzles you."
+        },
+        {
+          "id": "ei-katsota",
+          "text": "You don’t need to look at the diff at all",
+          "explanation": "It’s worth looking. That way you’ll notice if Claude changed the wrong file."
+        }
+      ]
+    }
+  ]
+}

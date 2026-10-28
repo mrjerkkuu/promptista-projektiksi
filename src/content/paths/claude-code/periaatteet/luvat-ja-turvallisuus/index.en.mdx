@@ -1,0 +1,45 @@
+Claude Code does things on your computer, so safety is teamwork between you and Claude. Three rules go a long way.
+
+## 1. Read what you approve
+
+Before Claude edits a file or runs a command, it asks for permission (a <Term id="lupa">permission prompt</Term>). There are usually three options:
+
+- **Yes:** allow it this once.
+- **Yes, and don't ask again:** also allow the same kind of action from now on in this project.
+- **No:** don’t do it, and tell Claude what you want instead.
+
+If you don’t understand what a command does, answer No and ask: “What does that command do?” Be especially careful with commands that delete files or touch folders outside the project.
+
+<NuppuSays pose="suojaa">Your passwords are yours alone. Claude doesn’t need them for anything, so they don’t belong in the conversation.</NuppuSays>
+
+## 2. Don’t give out passwords
+
+Never type passwords, bank credentials or personal ID numbers into the conversation. Claude doesn’t need them. Signing in (GitHub, Claude) is always done in the browser.
+
+## 3. API keys go in a .env file
+
+If your project ever needs an <Term id="api-avain">API key</Term>, it’s saved in a <Term id="env-tiedosto">.env file</Term>, not in the code. The file’s name is added to the <Term id="gitignore">.gitignore</Term> file so that Git doesn’t send it to GitHub:
+
+```
+.env
+```
+
+Always assume that a key that ended up in a public GitHub repo has leaked. If that happens, revoke the key right away in the service’s settings and create a new one.
+
+<ReadMore title="Stop Claude from reading the .env file">
+
+You can add a rule to Claude Code’s settings that prevents it from reading certain files. Add this to the project file `.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "deny": ["Read(./.env)", "Read(./.env.*)", "Read(./secrets/**)"]
+  }
+}
+```
+
+Sources: [Claude Code’s permissions](https://code.claude.com/docs/en/permissions) and [security](https://code.claude.com/docs/en/security).
+
+</ReadMore>
+
+<Quiz />

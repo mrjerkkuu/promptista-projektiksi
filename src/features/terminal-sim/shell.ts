@@ -1,9 +1,13 @@
+import type { Language } from '../../i18n/languages'
 import type { Mission, MissionCondition, Os } from '../../schemas/content'
 
 /**
  * Terminaalisimulaattorin ydin: muistissa toimiva kansiorakenne ja komennot.
  * Kaikki funktiot ovat puhtaita: ne saavat tilan ja palauttavat uuden tilan.
  * Mitään oikeaa tiedostojärjestelmää ei käytetä.
+ *
+ * Oikean terminaalin virheilmoitukset ovat englanniksi kaikilla kielillä, kuten oikeassakin
+ * terminaalissa. Vihjeet, ohje ja harjoituksen käyttäjä- ja tiedostonimet ovat sivuston kielellä.
  */
 
 export type LineKind = 'input' | 'output' | 'error' | 'hint'
@@ -15,6 +19,10 @@ export interface Line {
 
 export interface ShellState {
   os: Os
+  /** Vihjeiden ja ohjeen kieli. */
+  language: Language
+  /** Kotikansio polkuna juuresta (esim. ["Users", "oppija"]). */
+  home: string[]
   /** Kaikki kansiot polkuina juuresta (esim. ["Users", "oppija", "Desktop"]). */
   dirs: string[][]
   /** Tiedostot polkuina juuresta. */
@@ -33,10 +41,13 @@ export interface ExecResult {
   clear: boolean
 }
 
-export const USER_NAME = 'oppija'
-const HOME: string[] = ['Users', USER_NAME]
+/** Harjoituskoneen käyttäjä ja valmiina oleva tiedosto kielittäin. */
+export const USER_NAME: Record<Language, string> = { fi: 'oppija', en: 'learner' }
 const DEFAULT_DIRS = ['Desktop', 'Documents', 'Downloads']
-const DEFAULT_FILES = [['Documents', 'muistiinpanot.txt']]
+const DEFAULT_FILES: Record<Language, string[][]> = {
+  fi: [['Documents', 'muistiinpanot.txt']],
+  en: [['Documents', 'notes.txt']],
+}
 
 /** Esimerkkiversiot "feikeille" versiotarkistuksille. */
 export const FAKE_VERSIONS = {
@@ -59,8 +70,8 @@ function findFile(state: ShellState, path: string[]): string[] | undefined {
 }
 
 /** Muuttaa missioiden polun ("~/a/b") polkutaulukoksi. */
-export function virtualPath(path: string): string[] {
-  return [...HOME, ...path.split('/').slice(1)]
+export function virtualPath(path: string, home: string[] = ['Users', USER_NAME.fi]): string[] {
+  return [...home, ...path.split('/').slice(1)]
 }
 
 function withAncestors(path: string[]): string[][] {
@@ -73,17 +84,20 @@ function addDir(dirs: string[][], path: string[]): string[][] {
   return result
 }
 
-export function createShell(os: Os, mission?: Pick<Mission, 'startDirs' | 'startCwd'>): ShellState {
+export function createShell(os: Os, mission?: Pick<Mission, 'startDirs' | 'startCwd'>, language: Language = 'fi'): ShellState {
+  const home = ['Users', USER_NAME[language]]
   let dirs: string[][] = []
-  dirs = addDir(dirs, HOME)
-  for (const d of DEFAULT_DIRS) dirs = addDir(dirs, [...HOME, d])
-  for (const d of mission?.startDirs ?? []) dirs = addDir(dirs, virtualPath(d))
-  const cwd = mission?.startCwd ? virtualPath(mission.startCwd) : HOME
+  dirs = addDir(dirs, home)
+  for (const d of DEFAULT_DIRS) dirs = addDir(dirs, [...home, d])
+  for (const d of mission?.startDirs ?? []) dirs = addDir(dirs, virtualPath(d, home))
+  const cwd = mission?.startCwd ? virtualPath(mission.startCwd, home) : home
   dirs = addDir(dirs, cwd)
   return {
     os,
+    language,
+    home,
     dirs,
-    files: DEFAULT_FILES.map((f) => [...HOME, ...f]),
+    files: DEFAULT_FILES[language].map((f) => [...home, ...f]),
     cwd,
     visited: [key(cwd)],
     usedCommands: [],
@@ -98,8 +112,8 @@ export function displayPath(os: Os, path: string[]): string {
 /** Kehote: Mac (zsh) "oppija@MacBook ~ % ", Windows (PowerShell) "PS C:\Users\oppija> ". */
 export function prompt(state: ShellState): string {
   if (state.os === 'windows') return `PS ${displayPath('windows', state.cwd)}> `
-  const here = samePath(state.cwd, HOME) ? '~' : state.cwd.length === 0 ? '/' : state.cwd[state.cwd.length - 1]
-  return `${USER_NAME}@MacBook ${here} % `
+  const here = samePath(state.cwd, state.home) ? '~' : state.cwd.length === 0 ? '/' : state.cwd[state.cwd.length - 1]
+  return `${state.home[state.home.length - 1]}@MacBook ${here} % `
 }
 
 /** Pilkkoo komentorivin sanoiksi. Lainausmerkit ("Oma kansio") pitävät sanat yhdessä. */
@@ -123,7 +137,7 @@ export function resolvePath(state: ShellState, input: string): string[] {
     }
   }
   if (text === '~' || text.startsWith('~/')) {
-    base = HOME
+    base = state.home
     text = text.slice(1)
   } else if (text.startsWith('/')) {
     base = []
@@ -160,7 +174,6 @@ function notRecognized(os: Os, name: string): Line[] {
   return [{ kind: 'error', text: `zsh: command not found: ${name}` }]
 }
 
-const hint = (text: string): Line => ({ kind: 'hint', text: `Vihje: ${text}` })
 const out = (text: string): Line => ({ kind: 'output', text })
 
 function windowsListing(state: ShellState, dir: string[], entries: { dirs: string[][]; files: string[][] }): Line[] {
@@ -172,32 +185,65 @@ function windowsListing(state: ShellState, dir: string[], entries: { dirs: strin
   return [out(`\n    Directory: ${displayPath(state.os, dir)}\n\nMode    Name\n----    ----\n${rows.join('\n')}\n`)]
 }
 
-const HELP_TEXT: Record<Os, string> = {
-  windows: [
-    'Tässä harjoitusterminaalissa toimivat nämä komennot:',
-    '  help            näyttää tämän ohjeen',
-    '  pwd             kertoo, missä kansiossa olet',
-    '  ls  tai  dir    listaa kansion sisällön',
-    '  cd kansio       siirtyy kansioon',
-    '  cd ..           siirtyy yhden kansion ylöspäin',
-    '  mkdir nimi      luo uuden kansion',
-    '  clear  tai  cls tyhjentää näytön',
-    '  git --version   näyttää Gitin version (esimerkki)',
-    '  claude --version  näyttää Claude Coden version (esimerkki)',
-  ].join('\n'),
-  mac: [
-    'Tässä harjoitusterminaalissa toimivat nämä komennot:',
-    '  help            näyttää tämän ohjeen',
-    '  pwd             kertoo, missä kansiossa olet',
-    '  ls              listaa kansion sisällön',
-    '  cd kansio       siirtyy kansioon',
-    '  cd ..           siirtyy yhden kansion ylöspäin',
-    '  mkdir nimi      luo uuden kansion',
-    '  clear           tyhjentää näytön',
-    '  git --version   näyttää Gitin version (esimerkki)',
-    '  claude --version  näyttää Claude Coden version (esimerkki)',
-  ].join('\n'),
-}
+/** Simulaattorin omat tekstit (vihjeet ja help-ohje) kielittäin. */
+const MESSAGES = {
+  fi: {
+    hint: 'Vihje',
+    help: (os: Os) =>
+      [
+        'Tässä harjoitusterminaalissa toimivat nämä komennot:',
+        '  help            näyttää tämän ohjeen',
+        '  pwd             kertoo, missä kansiossa olet',
+        os === 'windows' ? '  ls  tai  dir    listaa kansion sisällön' : '  ls              listaa kansion sisällön',
+        '  cd kansio       siirtyy kansioon',
+        '  cd ..           siirtyy yhden kansion ylöspäin',
+        '  mkdir nimi      luo uuden kansion',
+        os === 'windows' ? '  clear  tai  cls tyhjentää näytön' : '  clear           tyhjentää näytön',
+        '  git --version   näyttää Gitin version (esimerkki)',
+        '  claude --version  näyttää Claude Coden version (esimerkki)',
+      ].join('\n'),
+    macDir: 'Macissa kansion sisältö listataan komennolla ls.',
+    lsNotFound: 'Tarkista kansion nimi. Komento ls ilman lisäyksiä listaa nykyisen kansion.',
+    cdSpace: 'Muista välilyönti: cd ..',
+    cdFile: (name: string) => `${name} on tiedosto eikä kansio. Kansioon voi siirtyä, tiedostoon ei.`,
+    cdNotFound: 'Kansiota ei löytynyt. Katso komennolla ls, mitä kansioita tässä on, ja tarkista kirjoitusasu.',
+    macMd: 'Macissa kansio luodaan komennolla mkdir.',
+    mkdirName: 'Kerro kansion nimi, esimerkiksi: mkdir projekti',
+    mkdirExists: 'Samanniminen kansio on jo olemassa. Voit siirtyä siihen komennolla cd.',
+    mkdirParent: 'Yläkansiota ei ole. Luo kansiot yksi kerrallaan.',
+    macCls: 'Macissa näyttö tyhjennetään komennolla clear.',
+    versionOnly: (name: string) => `Tässä harjoitusterminaalissa ${name}-komennosta toimii vain ${name} --version. Oikeassa terminaalissa voit tehdä enemmän.`,
+    unknown: 'Kirjoita help, niin näet komennot, joita tässä harjoituksessa voi käyttää.',
+  },
+  en: {
+    hint: 'Hint',
+    help: (os: Os) =>
+      [
+        'These commands work in this practice terminal:',
+        '  help            shows these instructions',
+        '  pwd             tells you which folder you are in',
+        os === 'windows' ? '  ls  or  dir     lists what is in the folder' : '  ls              lists what is in the folder',
+        '  cd folder       moves into a folder',
+        '  cd ..           moves one folder up',
+        '  mkdir name      creates a new folder',
+        os === 'windows' ? '  clear  or  cls  clears the screen' : '  clear           clears the screen',
+        '  git --version   shows the Git version (example)',
+        '  claude --version  shows the Claude Code version (example)',
+      ].join('\n'),
+    macDir: 'On a Mac, you list a folder’s contents with the command ls.',
+    lsNotFound: 'Check the folder name. The command ls on its own lists the current folder.',
+    cdSpace: 'Remember the space: cd ..',
+    cdFile: (name: string) => `${name} is a file, not a folder. You can move into a folder, but not into a file.`,
+    cdNotFound: 'Folder not found. Use the command ls to see which folders are here, and check the spelling.',
+    macMd: 'On a Mac, you create a folder with the command mkdir.',
+    mkdirName: 'Give the folder a name, for example: mkdir project',
+    mkdirExists: 'A folder with that name already exists. You can move into it with the command cd.',
+    mkdirParent: 'The parent folder doesn’t exist. Create the folders one at a time.',
+    macCls: 'On a Mac, you clear the screen with the command clear.',
+    versionOnly: (name: string) => `In this practice terminal, only ${name} --version works for the ${name} command. In a real terminal you can do much more.`,
+    unknown: 'Type help to see the commands you can use in this exercise.',
+  },
+} satisfies Record<Language, unknown>
 
 // ---------------------------------------------------------------- komennot
 
@@ -214,12 +260,14 @@ export function execute(state: ShellState, input: string): ExecResult {
   const [rawName, ...args] = tokens
   const name = rawName.toLowerCase()
   const { os } = state
+  const m = MESSAGES[state.language]
+  const hint = (text: string): Line => ({ kind: 'hint', text: `${m.hint}: ${text}` })
   const flags = args.filter((a) => a.startsWith('-'))
   const operands = args.filter((a) => !a.startsWith('-'))
 
   switch (name) {
     case 'help':
-      return result(used(state, 'help'), [out(HELP_TEXT[os])])
+      return result(used(state, 'help'), [out(m.help(os))])
 
     case 'pwd': {
       const path = displayPath(os, state.cwd)
@@ -229,7 +277,7 @@ export function execute(state: ShellState, input: string): ExecResult {
     case 'dir':
     case 'ls': {
       if (name === 'dir' && os === 'mac') {
-        return result(state, [...notRecognized(os, rawName), hint('Macissa kansion sisältö listataan komennolla ls.')])
+        return result(state, [...notRecognized(os, rawName), hint(m.macDir)])
       }
       const target = operands[0] ? resolvePath(state, operands[0]) : state.cwd
       const dir = findDir(state, target)
@@ -239,7 +287,7 @@ export function execute(state: ShellState, input: string): ExecResult {
           os === 'windows'
             ? { kind: 'error', text: `Get-ChildItem: Cannot find path '${displayPath(os, target)}' because it does not exist.` }
             : { kind: 'error', text: `ls: ${shown}: No such file or directory` },
-          hint('Tarkista kansion nimi. Komento ls ilman lisäyksiä listaa nykyisen kansion.'),
+          hint(m.lsNotFound),
         ])
       }
       const entries = children(state, dir)
@@ -254,10 +302,10 @@ export function execute(state: ShellState, input: string): ExecResult {
 
     case 'cd..':
       if (os === 'windows') return execute(state, 'cd ..')
-      return result(state, [...notRecognized(os, rawName), hint('Muista välilyönti: cd ..')])
+      return result(state, [...notRecognized(os, rawName), hint(m.cdSpace)])
 
     case 'cd': {
-      const target = operands[0] === undefined ? [...HOME] : resolvePath(state, operands[0])
+      const target = operands[0] === undefined ? [...state.home] : resolvePath(state, operands[0])
       const dir = findDir(state, target)
       if (!dir) {
         const shown = operands[0] ?? '~'
@@ -266,14 +314,14 @@ export function execute(state: ShellState, input: string): ExecResult {
             os === 'windows'
               ? { kind: 'error', text: `Set-Location: Cannot find path '${displayPath(os, target)}' because it does not exist.` }
               : { kind: 'error', text: `cd: not a directory: ${shown}` },
-            hint(`${target[target.length - 1]} on tiedosto eikä kansio. Kansioon voi siirtyä, tiedostoon ei.`),
+            hint(m.cdFile(target[target.length - 1])),
           ])
         }
         return result(state, [
           os === 'windows'
             ? { kind: 'error', text: `Set-Location: Cannot find path '${displayPath(os, target)}' because it does not exist.` }
             : { kind: 'error', text: `cd: no such file or directory: ${shown}` },
-          hint('Kansiota ei löytynyt. Katso komennolla ls, mitä kansioita tässä on, ja tarkista kirjoitusasu.'),
+          hint(m.cdNotFound),
         ])
       }
       const visited = state.visited.includes(key(dir)) ? state.visited : [...state.visited, key(dir)]
@@ -282,13 +330,13 @@ export function execute(state: ShellState, input: string): ExecResult {
 
     case 'mkdir':
     case 'md': {
-      if (name === 'md' && os === 'mac') return result(state, [...notRecognized(os, rawName), hint('Macissa kansio luodaan komennolla mkdir.')])
+      if (name === 'md' && os === 'mac') return result(state, [...notRecognized(os, rawName), hint(m.macMd)])
       if (operands.length === 0) {
         return result(state, [
           os === 'windows'
             ? { kind: 'error', text: 'mkdir: Missing an argument for parameter \'Path\'.' }
             : { kind: 'error', text: 'usage: mkdir [-pv] [-m mode] directory_name ...' },
-          hint('Kerro kansion nimi, esimerkiksi: mkdir projekti'),
+          hint(m.mkdirName),
         ])
       }
       let next = state
@@ -301,12 +349,12 @@ export function execute(state: ShellState, input: string): ExecResult {
             os === 'windows'
               ? { kind: 'error', text: `New-Item: An item with the specified name ${displayPath(os, target)} already exists.` }
               : { kind: 'error', text: `mkdir: ${operand}: File exists` },
-            hint('Samanniminen kansio on jo olemassa. Voit siirtyä siihen komennolla cd.'),
+            hint(m.mkdirExists),
           )
           continue
         }
         if (!createParents && !findDir(next, target.slice(0, -1))) {
-          output.push({ kind: 'error', text: `mkdir: ${operand}: No such file or directory` }, hint('Yläkansiota ei ole. Luo kansiot yksi kerrallaan.'))
+          output.push({ kind: 'error', text: `mkdir: ${operand}: No such file or directory` }, hint(m.mkdirParent))
           continue
         }
         next = { ...next, dirs: addDir(next.dirs, target) }
@@ -317,7 +365,7 @@ export function execute(state: ShellState, input: string): ExecResult {
 
     case 'clear':
     case 'cls':
-      if (name === 'cls' && os === 'mac') return result(state, [...notRecognized(os, rawName), hint('Macissa näyttö tyhjennetään komennolla clear.')])
+      if (name === 'cls' && os === 'mac') return result(state, [...notRecognized(os, rawName), hint(m.macCls)])
       return result(used(state, 'clear'), [], true)
 
     case 'git':
@@ -326,11 +374,11 @@ export function execute(state: ShellState, input: string): ExecResult {
         const text = name === 'git' ? FAKE_VERSIONS.git[os] : FAKE_VERSIONS.claude
         return result(used(state, name), [out(text)])
       }
-      return result(state, [hint(`Tässä harjoitusterminaalissa ${name}-komennosta toimii vain ${name} --version. Oikeassa terminaalissa voit tehdä enemmän.`)])
+      return result(state, [hint(m.versionOnly(name))])
     }
 
     default:
-      return result(state, [...notRecognized(os, rawName), hint('Kirjoita help, niin näet komennot, joita tässä harjoituksessa voi käyttää.')])
+      return result(state, [...notRecognized(os, rawName), hint(m.unknown)])
   }
 }
 
@@ -339,11 +387,11 @@ export function execute(state: ShellState, input: string): ExecResult {
 export function isConditionMet(state: ShellState, condition: MissionCondition): boolean {
   switch (condition.type) {
     case 'cwdIs':
-      return samePath(state.cwd, virtualPath(condition.path))
+      return samePath(state.cwd, virtualPath(condition.path, state.home))
     case 'dirExists':
-      return findDir(state, virtualPath(condition.path)) !== undefined
+      return findDir(state, virtualPath(condition.path, state.home)) !== undefined
     case 'visited':
-      return state.visited.includes(key(virtualPath(condition.path)))
+      return state.visited.includes(key(virtualPath(condition.path, state.home)))
     case 'commandUsed':
       return state.usedCommands.includes(condition.command.toLowerCase())
   }

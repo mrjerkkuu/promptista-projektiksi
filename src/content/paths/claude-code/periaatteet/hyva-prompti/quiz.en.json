@@ -1,0 +1,67 @@
+{
+  "questions": [
+    {
+      "id": "paras",
+      "question": "Which of these is the best prompt?",
+      "options": [
+        {
+          "id": "lyhyt",
+          "text": "“Make a game.”",
+          "explanation": "Too short: Claude has to guess what kind of game you want and for whom."
+        },
+        {
+          "id": "hyva",
+          "text": "“Make a memory game that works in the browser for an 8-year-old. There are 12 cards, and the pictures are animals. Use only HTML, CSS and JavaScript.”",
+          "explanation": "Great! The prompt says what, for whom and within which limits."
+        },
+        {
+          "id": "kohtelias",
+          "text": "“Would you be so kind as to make something nice?”",
+          "explanation": "Being polite is nice, but the request has no content."
+        }
+      ]
+    },
+    {
+      "id": "virhe",
+      "question": "Your site has a bug. How do you ask for a fix?",
+      "options": [
+        {
+          "id": "korjaa",
+          "text": "“Fix it.”",
+          "explanation": "Claude doesn’t know what’s wrong. Tell it what happened and what you expected."
+        },
+        {
+          "id": "kuvaus",
+          "text": "I explain what I did, what happened and what I expected, and paste in the error message",
+          "explanation": "Correct. That way Claude can get straight to the point."
+        },
+        {
+          "id": "alusta",
+          "text": "“Make the whole site again.”",
+          "explanation": "Parts that work may break at the same time. First ask it to fix just this bug."
+        }
+      ]
+    },
+    {
+      "id": "rajat",
+      "question": "Why is it worth writing limits into your prompt, for example “don’t change the design”?",
+      "options": [
+        {
+          "id": "rajat",
+          "text": "So that Claude doesn’t change things that are already good",
+          "explanation": "Exactly. Limits keep the changes where you want them."
+        },
+        {
+          "id": "nopeus",
+          "text": "So that Claude works faster",
+          "explanation": "The point of limits isn’t speed but making the result match your wishes."
+        },
+        {
+          "id": "turhaa",
+          "text": "There’s no point, Claude knows that anyway",
+          "explanation": "Claude can’t know what you like unless you tell it."
+        }
+      ]
+    }
+  ]
+}

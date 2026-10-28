@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "ero",
+      "question": "What is the most important difference between a chat and an agent?",
+      "options": [
+        {
+          "id": "tekee",
+          "text": "An agent can do things on your computer, a chat only answers",
+          "explanation": "Correct. An agent creates files and runs commands when you give it permission."
+        },
+        {
+          "id": "fiksumpi",
+          "text": "An agent is always smarter than a chat",
+          "explanation": "The same AI may be behind both. The difference is in what it can do."
+        },
+        {
+          "id": "ei-eroa",
+          "text": "There’s no difference, just the name",
+          "explanation": "The difference is big: a chat writes an answer, an agent does the work."
+        }
+      ]
+    },
+    {
+      "id": "lupa",
+      "question": "Claude Code wants to edit a file. What happens?",
+      "options": [
+        {
+          "id": "kysyy",
+          "text": "It shows the change and asks for permission",
+          "explanation": "Exactly. You decide. Always read what you approve."
+        },
+        {
+          "id": "salaa",
+          "text": "It makes the change secretly",
+          "explanation": "By default, Claude Code asks for permission before editing files and running commands."
+        },
+        {
+          "id": "ei-voi",
+          "text": "It can’t edit files",
+          "explanation": "It can, and that’s exactly why it’s an agent. But edits are made with your permission."
+        }
+      ]
+    }
+  ]
+}

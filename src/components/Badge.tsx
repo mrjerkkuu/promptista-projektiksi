@@ -1,3 +1,5 @@
+import { useLanguage, useT } from '../i18n'
+import { formatDay } from '../lib/format'
 import type { Badge as BadgeData } from '../schemas/content'
 import './Badge.css'
 
@@ -46,30 +48,28 @@ interface BadgeProps {
   earnedAt?: string
 }
 
-function formatEarned(iso: string): string {
-  const d = new Date(iso)
-  return Number.isNaN(d.getTime()) ? '' : `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`
-}
-
 /** Yksi merkki: ansaittu tai vielä lukittu. */
 export function Badge({ id, badge, earnedAt }: BadgeProps) {
   const earned = earnedAt !== undefined
+  const t = useT()
+  const language = useLanguage()
   return (
     <article className={`badge ${earned ? 'badge--earned' : 'badge--locked'}`}>
       <BadgeIcon id={id} badge={badge} earned={earned} />
       <div className="badge__body">
         <h3 className="badge__title">
           {badge.title}
-          {badge.bonus && <span className="badge__bonus"> (bonus)</span>}
+          {badge.bonus && <span className="badge__bonus">{t.badges.bonus}</span>}
         </h3>
         <p className="badge__description">{badge.description}</p>
         <p className="badge__state">
           {earned ? (
             <>
-              <span aria-hidden="true">✓ </span>Ansaittu {formatEarned(earnedAt)}
+              <span aria-hidden="true">✓ </span>
+              {t.badges.earned(formatDay(earnedAt, language))}
             </>
           ) : (
-            'Ei vielä ansaittu'
+            t.badges.notEarned
           )}
         </p>
       </div>

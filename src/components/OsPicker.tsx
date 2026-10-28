@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { useProgress } from '../features/progress'
+import { useT } from '../i18n'
 import { OS_LABEL, OS_LIST } from '../lib/os'
 import { Icon } from './Icon'
 import './OsPicker.css'
@@ -13,10 +14,11 @@ interface OsPickerProps {
 export function OsPicker({ compact = false }: OsPickerProps) {
   const { progress, dispatch } = useProgress()
   const labelId = useId()
+  const t = useT()
   return (
     <div className={`os-picker${compact ? ' os-picker--compact' : ''}`} role="group" aria-labelledby={labelId}>
       <span id={labelId} className={compact ? 'os-picker__label' : 'os-picker__question'}>
-        {compact ? 'Ohjeet:' : 'Kumpaa tietokonetta käytät?'}
+        {compact ? t.os.compactLabel : t.os.question}
       </span>
       <div className="os-picker__options">
         {OS_LIST.map((os) => {

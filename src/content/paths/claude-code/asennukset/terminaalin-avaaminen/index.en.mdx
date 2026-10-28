@@ -1,0 +1,62 @@
+<NuppuSays pose="rakentaa">Now let’s put the toolkit together! You install the tools one at a time, and after each one we check that it works.</NuppuSays>
+
+<Os only="windows">
+
+Windows comes with the old Windows PowerShell 5.1. This guide uses the newer **PowerShell 7**, which Microsoft recommends. You’ll install it now with the <Term id="winget">WinGet</Term> command, which is Windows’ own way of installing programs.
+
+## 1. Open the old PowerShell
+
+Open the Start menu, type `PowerShell` and choose **Windows PowerShell**. A window opens with a prompt.
+
+## 2. Install PowerShell 7
+
+Copy the command and paste it into the PowerShell window by right-clicking inside the window (or press Ctrl+V). Then press Enter.
+
+<Command id="install-powershell" />
+
+If the terminal asks something, read the question. To accept the installation terms, answer `Y` and press Enter. Windows may also ask in a separate window whether the program may make changes. Answer yes.
+
+## 3. Open PowerShell 7
+
+Close the old window. Open the Start menu, type `PowerShell 7` and choose it. **From now on, always use this program.**
+
+<Tip title="Tip: pin it to the taskbar">
+
+Pin PowerShell 7 to the taskbar: right-click it and choose “Pin to taskbar”.
+
+</Tip>
+
+<VerifyStep id="powershell" />
+
+</Os>
+
+<Os only="mac">
+
+On a Mac, the terminal comes built in, and you don’t need to install anything. The program is called <Term id="paate">Terminal</Term>.
+
+## Open Terminal
+
+Choose one of these ways:
+
+- Open Finder and choose Applications in the sidebar. Open the Utilities folder and double-click Terminal.
+- Click the magnifying glass at the right end of the menu bar at the top of the screen, and Spotlight search opens. Type `Terminal` and press Enter. (You can also open the search by pressing Cmd+Space.)
+
+A window opens with a prompt, for example `alex@MacBook ~ %`. Done!
+
+<Tip title="Tip: keep it in the Dock">
+
+Keep Terminal in the Dock: while the program is open, right-click its icon in the Dock (or hold down the Control key and click) and choose Options → Keep in Dock.
+
+</Tip>
+
+## Try it out
+
+Type `pwd` in Terminal and press Enter. Terminal replies with the path of your home folder, for example `/Users/alex`. You already practiced this in the simulator.
+
+</Os>
+
+<ReadMore title="Why this terminal?">
+
+On Windows, PowerShell 7 is Microsoft’s current, actively developed version, and it’s also used in the instructions for Claude and other tools. The Mac’s Terminal uses a shell called zsh, which has been the macOS default for years. The commands in this guide work in both.
+
+</ReadMore>

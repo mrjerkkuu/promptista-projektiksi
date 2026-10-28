@@ -53,6 +53,14 @@ describe('palaute', () => {
     expect(new URLSearchParams(url.slice(url.indexOf('?'))).get('subject')).toBe('[Promptista projektiksi] Kehitysidea')
   })
 
+  it('englanninkielinen viesti käyttää samoja lomakepohjia ja kenttiä', () => {
+    const english: Feedback = { ...feedback, language: 'en' }
+    expect(feedbackTitle(english)).toBe('Mistake: Kirjoitusvirhe & muuta')
+    expect(feedbackBody(english).split('\n').slice(0, 3)).toEqual(['Feedback type: Mistake or unclear part', `Page: ${feedback.page}`, 'Operating system: Windows'])
+    expect(new URL(issueUrl(english)).searchParams.get('template')).toBe('2-virhe.yml')
+    expect(feedbackBody({ ...english, os: '' })).toContain('Operating system: not chosen')
+  })
+
   it.each(Object.values(FEEDBACK_TYPES))('lomakepohjassa $template on kentät, jotka sivu täyttää', ({ template }) => {
     const yml = readFileSync(`.github/ISSUE_TEMPLATE/${template}`, 'utf8')
     expect(yml).toMatch(/^\s+id: kuvaus$/m)

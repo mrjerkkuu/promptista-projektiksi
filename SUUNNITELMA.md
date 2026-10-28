@@ -22,7 +22,7 @@ Pelillistetty verkkosivusto, jolla täysi aloittelija – joku, joka ei tiedä m
 | Osaamistaso | Ei aiempaa kokemusta komentorivistä tai ohjelmoinnista |
 | Käyttöjärjestelmät | Windows ja Mac, erilliset ohjeet. Valinta tehdään aloitusnäytössä ja sitä voi vaihtaa myöhemmin. |
 | Laite | Useimmiten tietokone (komennot kopioidaan sivulta), mutta sivun on toimittava myös puhelimella |
-| Kieli | Suomi. Tekstit sisältötiedostoissa, jotta käännös on myöhemmin mahdollinen. |
+| Kieli | Suomi ja englanti (lisätty 28.10.2026). Suomi on lähdekieli, ja käännökset ovat lähdetiedostojen rinnalla. Kieliä voi lisätä ilman komponenttien muutoksia (CLAUDE.md, Monikielisyys). |
 | Sävy | Rento sinuttelu, leikkisä mutta ei lapsellinen. Ei ammattijargonia ilman selitystä. |
 
 ## 3. Tekniset päätökset
@@ -245,7 +245,7 @@ Jokaisen vaiheen lopuksi: testit ja build läpi → commit.
 
 - Kirjautuminen ja palvelinpuoli
 - Analytiikka
-- Muut kielet kuin suomi (valmius on olemassa)
+- Muut kielet kuin suomi ja englanti (valmius on olemassa)
 - Linux-ohjeet
 - Muut oppimispolut (Lovable ym.) – arkkitehtuuri tukee niitä. Poikkeus: työpöytäsovelluksen polku, ks. luku 15.
 

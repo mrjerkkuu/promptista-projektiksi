@@ -1,6 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router'
-import { glossary } from '../content'
+import { useContent, useT } from '../i18n'
 import './Term.css'
 
 interface TermProps {
@@ -13,7 +13,8 @@ interface TermProps {
  * (mobiili ja näppäimistö) näyttää lyhyen selityksen ja linkin sanastoon.
  */
 export function Term({ id, children }: TermProps) {
-  const entry = glossary[id]
+  const entry = useContent().glossary[id]
+  const t = useT()
   const [hovered, setHovered] = useState(false)
   const [pinned, setPinned] = useState(false)
   const wrapper = useRef<HTMLSpanElement>(null)
@@ -104,7 +105,7 @@ export function Term({ id, children }: TermProps) {
         hidden={!open}
       >
         <strong>{entry.term}:</strong> {entry.definition}{' '}
-        <Link to={`/sanasto/${id}`}>Katso sanastosta</Link>
+        <Link to={`/sanasto/${id}`}>{t.glossary.seeInGlossary}</Link>
       </span>
     </span>
   )

@@ -7,15 +7,17 @@ import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { StatusLabel } from '../components/StatusLabel'
 import { UnreviewedNotice } from '../components/UnreviewedNotice'
-import { getPath } from '../content'
 import { countProgress, getModuleStatus, isQuizPassed, useProgress } from '../features/progress'
+import { useContent, useLanguage, useT } from '../i18n'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import { NotFoundPage } from './NotFoundPage'
 import './pages.css'
 
 export function ModulePage() {
   const { pathId = '', moduleId = '' } = useParams()
-  const path = getPath(pathId)
+  const t = useT()
+  const language = useLanguage()
+  const path = useContent().getPath(pathId)
   const index = path?.modules.findIndex((m) => m.id === moduleId) ?? -1
   const module = path?.modules[index]
   useDocumentTitle(module ? `${module.number} ${module.title}` : undefined)
@@ -47,7 +49,7 @@ export function ModulePage() {
 
   return (
     <article className="module reading">
-      <nav aria-label="Murupolku" className="breadcrumb">
+      <nav aria-label={t.module.breadcrumb} className="breadcrumb">
         <Link to={`/polku/${path.id}`}>{path.title}</Link>
         <span aria-hidden="true"> › </span>
         <span>
@@ -65,7 +67,7 @@ export function ModulePage() {
             {topic.number}
           </span>
           <StatusLabel status={status} />
-          {module.optional && <span className="muted"> Valinnainen bonustehtävä</span>}
+          {module.optional && <span className="muted"> {t.module.optionalBonus}</span>}
         </p>
       </div>
 
@@ -75,7 +77,7 @@ export function ModulePage() {
       {progress.os === null && (
         <div className="notice notice--plain module__os">
           <OsPicker />
-          <p>Kun valitset käyttöjärjestelmän, näet vain sinua koskevat ohjeet.</p>
+          <p>{t.module.osPrompt}</p>
         </div>
       )}
 
@@ -84,47 +86,46 @@ export function ModulePage() {
         fallback={
           <p role="status" className="module__loading">
             <Nuppu pose="miettii" size={96} />
-            Ladataan tietopakettia…
+            {t.module.loading}
           </p>
         }
       >
+        {/* Kääntämätön tietopaketti näytetään lähdekielellä, ja lang-attribuutti kertoo sen ruudunlukijalle. */}
+        {module.contentLanguage !== language && <p className="notice notice--plain">{t.module.untranslated}</p>}
         <ModuleContext.Provider value={place}>
-          <div className="module__content">
+          <div className="module__content" lang={module.contentLanguage === language ? undefined : module.contentLanguage}>
             <module.Content components={mdxComponents} />
           </div>
         </ModuleContext.Provider>
 
         <section className="card module__done" aria-labelledby="valmis-otsikko">
           <h2 id="valmis-otsikko" className="module__done-title">
-            Valmista?
+            {t.module.doneHeading}
           </h2>
           <div aria-live="polite">
-            {status === 'complete' && <p className="notice notice--success notice--rise">Tämä aihe on valmis!</p>}
-            {read && !quizPassed && <p className="notice notice--rise">Merkitsit tämän luetuksi. Aihe on valmis, kun olet vastannut visan kaikkiin kysymyksiin oikein.</p>}
+            {status === 'complete' && <p className="notice notice--success notice--rise">{t.module.complete}</p>}
+            {read && !quizPassed && <p className="notice notice--rise">{t.module.readNotPassed}</p>}
             {pathComplete ? (
-              <FeedbackPrompt to={`/palaute?polku=${path.id}`}>Kävit koko polun läpi! Miltä se tuntui?</FeedbackPrompt>
+              <FeedbackPrompt to={`/palaute?polku=${path.id}`}>{t.paths.pathDoneFeedback}</FeedbackPrompt>
             ) : (
-              topicComplete && (
-                <FeedbackPrompt to={`/palaute?aihealue=${path.id}/${topic.id}`}>
-                  Koko aihealue ”{topic.title}” on valmis! Miltä se tuntui?
-                </FeedbackPrompt>
-              )
+              topicComplete && <FeedbackPrompt to={`/palaute?aihealue=${path.id}/${topic.id}`}>{t.module.topicDoneFeedback(topic.title)}</FeedbackPrompt>
             )}
           </div>
           <button type="button" className={`button ${read ? 'button--secondary button--small' : ''}`} aria-pressed={read} onClick={() => dispatch({ type: 'markRead', key: module.key, read: !read })}>
-            {read ? 'Luettu ✓ (peru merkintä)' : 'Olen lukenut tämän'}
+            {read ? t.module.unmarkRead : t.module.markRead}
           </button>
         </section>
 
         <p className="module__feedback muted">
-          Löysitkö virheen, tai jäikö jokin epäselväksi? <Link to={`/palaute?moduuli=${module.key}`}>Kerro siitä</Link>
+          {t.module.feedback((label) => <Link to={`/palaute?moduuli=${module.key}`}>{label}</Link>)}
         </p>
 
-        <nav aria-label="Edellinen ja seuraava aihe" className="pager">
+        <nav aria-label={t.module.pager} className="pager">
           {prev ? (
             <Link to={`/polku/${path.id}/${prev.id}`} className="pager__link">
               <span className="pager__dir">
-                <span aria-hidden="true">← </span>Edellinen
+                <span aria-hidden="true">← </span>
+                {t.module.previous}
               </span>
               <span className="pager__title">
                 {prev.number} {prev.title}
@@ -136,7 +137,8 @@ export function ModulePage() {
           {next ? (
             <Link to={`/polku/${path.id}/${next.id}`} className="pager__link pager__link--next">
               <span className="pager__dir">
-                Seuraava<span aria-hidden="true"> →</span>
+                {t.module.next}
+                <span aria-hidden="true"> →</span>
               </span>
               <span className="pager__title">
                 {next.number} {next.title}
@@ -144,8 +146,8 @@ export function ModulePage() {
             </Link>
           ) : (
             <Link to={`/polku/${path.id}`} className="pager__link pager__link--next">
-              <span className="pager__dir">Polun loppu</span>
-              <span className="pager__title">Takaisin polun etusivulle</span>
+              <span className="pager__dir">{t.module.pathEnd}</span>
+              <span className="pager__title">{t.module.backToPath}</span>
             </Link>
           )}
         </nav>

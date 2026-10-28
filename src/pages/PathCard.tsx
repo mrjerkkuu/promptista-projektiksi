@@ -5,6 +5,7 @@ import '../components/StatusLabel.css'
 import { UnreviewedNotice } from '../components/UnreviewedNotice'
 import type { LearningPath } from '../content'
 import { countProgress, useProgress } from '../features/progress'
+import { useT } from '../i18n'
 import './pages.css'
 
 interface PathCardProps {
@@ -20,6 +21,7 @@ interface PathCardProps {
 /** Oppimispolun kortti: nimi, kuvaus, aihealueet ja edistyminen. */
 export function PathCard({ path, headingLevel, showAudience = false, selected = false }: PathCardProps) {
   const { progress } = useProgress()
+  const t = useT()
   const count = countProgress(progress, path.modules)
   const Heading = headingLevel === 2 ? 'h2' : 'h3'
   return (
@@ -31,7 +33,7 @@ export function PathCard({ path, headingLevel, showAudience = false, selected = 
         <p className="path-card__selected">
           {/* Sama ulkoasu kuin aiheen "Valmis"-tilalla (StatusLabel), joten kontrasti on jo tarkistettu. */}
           <span className="status status--complete">
-            <Icon name="check" /> Valitsemasi polku
+            <Icon name="check" /> {t.paths.selected}
           </span>
         </p>
       )}
@@ -39,10 +41,10 @@ export function PathCard({ path, headingLevel, showAudience = false, selected = 
       <p className="path-card__description">{path.description}</p>
       {showAudience && (
         <p className="path-card__audience">
-          <strong>Kenelle?</strong> {path.audience}
+          <strong>{t.paths.audience}</strong> {path.audience}
         </p>
       )}
-      <ul className="topic-chips" aria-label="Aiheet">
+      <ul className="topic-chips" aria-label={t.paths.topics}>
         {path.topics.map((t) => (
           <li key={t.id} className={`topic-chip topic-chip--${t.number % 4}`}>
             <span className="topic-chip__number mono">{t.number}</span>
@@ -50,7 +52,7 @@ export function PathCard({ path, headingLevel, showAudience = false, selected = 
           </li>
         ))}
       </ul>
-      <ProgressBar label={`Edistyminen: ${path.title}`} count={count} />
+      <ProgressBar label={t.paths.progressOf(path.title)} count={count} />
     </article>
   )
 }

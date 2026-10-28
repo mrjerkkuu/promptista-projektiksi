@@ -1,0 +1,67 @@
+{
+  "questions": [
+    {
+      "id": "outo-komento",
+      "question": "Claude asks permission to run a command you don’t understand. What do you do?",
+      "options": [
+        {
+          "id": "kysy",
+          "text": "I answer No and ask what the command does",
+          "explanation": "Correct. Only approve once you know what you’re approving."
+        },
+        {
+          "id": "hyvaksy",
+          "text": "I approve, Claude surely knows",
+          "explanation": "Claude is usually right, but you’re responsible for your computer. Read and ask."
+        },
+        {
+          "id": "aina",
+          "text": "I choose “don’t ask again” so I don’t have to read",
+          "explanation": "Then similar commands will be run without asking from now on. Only choose it for actions you understand."
+        }
+      ]
+    },
+    {
+      "id": "salasana",
+      "question": "Claude needs access to GitHub. What do you do?",
+      "options": [
+        {
+          "id": "anna",
+          "text": "I type my GitHub password into the conversation",
+          "explanation": "Never type passwords into the conversation."
+        },
+        {
+          "id": "gh",
+          "text": "I sign in myself with the gh tool in the browser",
+          "explanation": "Exactly. Signing in is done in the browser, and the password stays with you."
+        },
+        {
+          "id": "kaveri",
+          "text": "I borrow a friend’s credentials",
+          "explanation": "Don’t use other people’s credentials. Sign in with your own account."
+        }
+      ]
+    },
+    {
+      "id": "api-avain",
+      "question": "Where does an API key belong?",
+      "options": [
+        {
+          "id": "koodi",
+          "text": "Directly in the code, so it’s easy to find",
+          "explanation": "The code goes to GitHub, and then the key becomes public."
+        },
+        {
+          "id": "env",
+          "text": "In a .env file that has been added to .gitignore",
+          "explanation": "Correct. That way the key stays on your own computer and doesn’t end up on GitHub."
+        },
+        {
+          "id": "readme",
+          "text": "In the README file, so others can use it too",
+          "explanation": "An API key is like a password: it isn’t shared."
+        }
+      ]
+    }
+  ]
+}

@@ -302,6 +302,52 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
     })
   })
 
+  describe('käännökset', () => {
+    const writeJson = (d: string, rel: string, data: unknown) => fs.writeFileSync(path.join(d, rel), JSON.stringify(data))
+
+    it('puuttuva käännös on varoitus, ei virhe', () => {
+      const result = validateContent(fixture())
+      expect(result.errors).toEqual([])
+      expect(result.warnings.join('\n')).toMatch(/glossary\.en\.json: käännös puuttuu/)
+      expect(result.warnings.join('\n')).toMatch(/moduuli\/index\.en\.mdx: tietopaketin käännös puuttuu/)
+    })
+
+    it('kelvollinen käännös menee läpi, ja kääntämättömät tekstit luetellaan', () => {
+      const d = fixture()
+      writeJson(d, 'glossary.en.json', { git: { term: 'Git' } })
+      const result = validateContent(d)
+      expect(result.errors).toEqual([])
+      expect(result.warnings.join('\n')).toMatch(/glossary\.en\.json: 1 kääntämätöntä tekstiä \(git\.definition\)/)
+    })
+
+    it('tuntematon tunniste, väärä tyyppi ja rikottu skeema kaatuvat', () => {
+      const d = fixture()
+      writeJson(d, 'glossary.en.json', { olematon: { term: 'X' }, git: { definition: 5 } })
+      writeJson(d, 'paths/polku/aihe/moduuli/quiz.en.json', { questions: [{ id: 'q1', question: '' }] })
+      const errors = validateContent(d).errors.join('\n')
+      expect(errors).toMatch(/glossary\.en\.json: olematon: tuntematon tunniste/)
+      expect(errors).toMatch(/glossary\.en\.json: git\.definition: käännöksen pitää olla tekstiä/)
+      expect(errors).toMatch(/quiz\.en\.json: questions\.0\.question/)
+    })
+
+    it('käännös ilman lähdetiedostoa ja tuntematon kieli kaatuvat', () => {
+      const d = fixture()
+      writeJson(d, 'olematon.en.json', {})
+      writeJson(d, 'glossary.sv.json', {})
+      const errors = validateContent(d).errors.join('\n')
+      expect(errors).toMatch(/olematon\.en\.json: käännöksellä ei ole lähdetiedostoa/)
+      expect(errors).toMatch(/glossary\.sv\.json: tuntematon käännöskieli "sv"/)
+    })
+
+    it('käännetty tietopaketti tarkistetaan samoin kuin lähde', () => {
+      const d = fixture()
+      fs.writeFileSync(path.join(d, 'paths/polku/aihe/moduuli/index.en.mdx'), '## M\n\n<Term id="olematon">x</Term>\n')
+      const errors = validateContent(d).errors.join('\n')
+      expect(errors).toMatch(/index\.en\.mdx: <Term> tuntematon sanastotermi "olematon"/)
+      expect(errors).toMatch(/index\.en\.mdx: visa on olemassa/)
+    })
+  })
+
   describe('kuvakaappaukset', () => {
     /** Kuvakansio, jossa on kuva "kuva" (kuvan sisällöllä ei ole väliä, vain olemassaololla). */
     const addScreenshots = (d: string) => {
@@ -318,7 +364,8 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
       replaceIn(mdx(d), '<Quiz />', '<Screenshot id="kuva" alt="Valikko auki" title="valikko" />\nNapsauta <Screenshot id="kuva" alt="kuvake" inline />.\n<Quiz />')
       const result = validateContent(d, shots)
       expect(result.errors).toEqual([])
-      expect(result.warnings).toEqual([])
+      // Fixturessa ei ole käännöksiä, joten niiden puuttumisesta varoitetaan.
+      expect(result.warnings.filter((w) => !w.includes('käännös puuttuu'))).toEqual([])
     })
 
     it('tuntematon kuva, puuttuva id, puuttuva tai tyhjä vaihtoehtoinen teksti ja puuttuva title', () => {

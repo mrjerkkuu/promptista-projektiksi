@@ -116,7 +116,7 @@ describe('migraatiot', () => {
       const v1 = v1Save()
       const { version, ...rest } = v1
       expect(version).toBe(1)
-      expect(parseProgress(v1)).toEqual({ ...rest, version: 2, activePath: 'claude-code' })
+      expect(parseProgress(v1)).toEqual({ ...rest, version: 3, language: 'fi', activePath: 'claude-code' })
     })
 
     it('ilman edistymistä polkua ei valita', () => {
@@ -135,9 +135,30 @@ describe('migraatiot', () => {
     it('toimii sekä selaimen tallennuksesta että vanhasta siirtokoodista', () => {
       const storage = memoryStorage()
       storage.setItem(STORAGE_KEY, JSON.stringify(v1Save()))
-      expect(loadProgress(storage)).toMatchObject({ corrupted: false, progress: { version: 2, activePath: 'claude-code' } })
+      expect(loadProgress(storage)).toMatchObject({ corrupted: false, progress: { version: 3, activePath: 'claude-code' } })
       const oldCode = btoa(JSON.stringify(v1Save()))
       expect(importProgress(oldCode).activePath).toBe('claude-code')
+    })
+  })
+
+  describe('v2 → v3: kieli', () => {
+    /** Tallennus sellaisena kuin versio 2 sen kirjoitti (ennen language-kenttää). */
+    function v2Save() {
+      const { language, ...rest } = { ...sampleProgress(), version: 2, activePath: 'claude-code' }
+      expect(language).toBeNull()
+      return rest
+    }
+
+    it('säilyttää kaikki vanhat tiedot ja pitää kielen suomena', () => {
+      const v2 = v2Save()
+      expect(parseProgress(v2)).toEqual({ ...v2, version: 3, language: 'fi' })
+    })
+
+    it('toimii sekä selaimen tallennuksesta että vanhasta siirtokoodista', () => {
+      const storage = memoryStorage()
+      storage.setItem(STORAGE_KEY, JSON.stringify(v2Save()))
+      expect(loadProgress(storage)).toMatchObject({ corrupted: false, progress: { version: 3, language: 'fi', os: 'mac' } })
+      expect(importProgress(btoa(JSON.stringify(v2Save()))).language).toBe('fi')
     })
   })
 
@@ -178,8 +199,8 @@ describe('vienti ja tuonti', () => {
 })
 
 describe('nollaus', () => {
-  it('tyhjentää edistymisen mutta säilyttää teeman', () => {
-    const reset = resetProgress(sampleProgress())
-    expect(reset).toEqual({ ...createDefaultProgress(), theme: 'dark' })
+  it('tyhjentää edistymisen mutta säilyttää teeman ja kielen', () => {
+    const reset = resetProgress({ ...sampleProgress(), language: 'en' })
+    expect(reset).toEqual({ ...createDefaultProgress(), theme: 'dark', language: 'en' })
   })
 })

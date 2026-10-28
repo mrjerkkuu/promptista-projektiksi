@@ -1,0 +1,55 @@
+<Term id="vs-code">VS Code</Term> is a free code editor. Claude writes the code, but in VS Code you can conveniently see your project’s files and peek at what Claude has done.
+
+<Tip title="Not required">
+
+Claude Code works in the terminal without VS Code. We recommend it because browsing files and making small edits is easy with it, and we use it in later topics. If you don’t want to browse files yourself, you can skip this topic and mark it as read. You can then also see the files with your ordinary file manager: File Explorer on Windows and Finder on a Mac.
+
+</Tip>
+
+## 1. Install VS Code
+
+<Os only="windows">
+
+1. Go to [code.visualstudio.com](https://code.visualstudio.com/) and download the Windows version.
+2. Open the installer you downloaded. It doesn’t need administrator rights.
+3. Accept the default settings. The installer also makes the `code` command available in the terminal.
+
+Source: [VS Code’s installation instructions for Windows](https://code.visualstudio.com/docs/setup/windows).
+
+</Os>
+
+<Os only="mac">
+
+1. Go to [code.visualstudio.com](https://code.visualstudio.com/) and download the Mac version.
+2. Open the downloaded file and drag **Visual Studio Code** into the Applications folder.
+3. Start VS Code from the Applications folder.
+4. Turn on the `code` command: in VS Code’s menu, choose **View → Command Palette…** (or press Cmd+Shift+P), type `shell command` and choose **Shell Command: Install 'code' and optionally 'copilot' commands in PATH**. (In some versions the option is called Shell Command: Install 'code' command in PATH.)
+
+Source: [VS Code’s installation instructions for the Mac](https://code.visualstudio.com/docs/setup/mac).
+
+</Os>
+
+## 2. Restart the terminal
+
+Close the terminal and open it again.
+
+<VerifyStep id="vscode" />
+
+<NuppuSays pose="tutkii">In VS Code you can peek at what Claude did. You don’t need to understand every line; the file names alone tell you a lot.</NuppuSays>
+
+## 3. How to open a folder
+
+You can open a folder in two ways:
+
+- **From the menu:** in VS Code, choose File → Open Folder… and choose the folder.
+- **From the terminal:** move into the folder with the `cd` command and run the command below. The dot means “this folder”.
+
+<Command id="code-open-folder" />
+
+VS Code may ask whether you trust the authors of the files in the folder (“Do you trust the authors…”). For your own projects, you can answer yes.
+
+<ReadMore title="Can I change VS Code’s language?">
+
+Yes. In VS Code’s menu, choose **View → Command Palette…** (or press Ctrl+Shift+P on Windows, Cmd+Shift+P on a Mac), type `Configure Display Language` and choose a language, or install a language pack. In this guide, the menu names are in English, because that’s VS Code’s default.
+
+</ReadMore>

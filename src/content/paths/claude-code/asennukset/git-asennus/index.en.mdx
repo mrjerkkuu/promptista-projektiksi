@@ -1,0 +1,61 @@
+<Term id="git">Git</Term> makes save points of your project. Claude Code uses it too, so it’s one of the first things to install.
+
+## 1. Install Git
+
+<Os only="windows">
+
+Run the command in PowerShell 7:
+
+<Command id="install-git" />
+
+<ReadMore title="Installing without a command">
+
+Git’s official site says that the WinGet package isn’t maintained by the Git for Windows project itself, so it may be slightly behind the latest version. If you like, you can also install Git by downloading the installer from [git-scm.com/install/windows](https://git-scm.com/install/windows). The default settings are fine.
+
+</ReadMore>
+
+</Os>
+
+<Os only="mac">
+
+On a Mac, Git comes with Apple’s command line tools. Run the command in Terminal:
+
+<Command id="install-git" />
+
+A window opens on the screen. Choose Install and accept the terms. The installation may take several minutes. If Terminal says the tools are already installed (“already installed”), Git is ready.
+
+<ReadMore title="Another way: Homebrew">
+
+If you use <Term id="homebrew">Homebrew</Term>, you can also install Git with the command `brew install git`. Git’s official site lists both options. Either one is fine.
+
+</ReadMore>
+
+</Os>
+
+## 2. Restart the terminal
+
+Close the terminal and open it again so that it finds the program you just installed.
+
+<VerifyStep id="git" />
+
+<NuppuSays pose="osoittaa">Introduce yourself to Git! You only run these commands once, and after that Git remembers who made the save points.</NuppuSays>
+
+## 3. Tell Git your name
+
+Git attaches the author’s name and email address to every save point. Write your own details inside the quotation marks and in place of the email address. Use the same email address you created your GitHub account with in the previous topic.
+
+<Command id="git-config-name" />
+
+<Command id="git-config-email" />
+
+Finally, set the name of the main branch of new projects to `main`, which GitHub uses:
+
+<Command id="git-config-default-branch" />
+
+These commands don’t print anything when they succeed. You only need to run them once.
+
+<Tip title="Note">
+
+Your name and email address are visible to the public if you publish the project on GitHub. GitHub also offers a privacy-protecting address for this (in the settings under Emails).
+
+</Tip>

@@ -1,8 +1,10 @@
 import { Route, Routes } from 'react-router'
 import { BadgeToaster } from './components/BadgeToaster'
+import { LanguageRoute, LanguageSync } from './components/LanguageSelect'
 import { ThemeSync } from './components/ThemeSelect'
 import { deriveBadges } from './features/badges'
 import { ProgressProvider } from './features/progress'
+import { LANGUAGES } from './i18n'
 import { Layout } from './layout/Layout'
 import { BadgesPage } from './pages/BadgesPage'
 import { FeedbackPage } from './pages/FeedbackPage'
@@ -20,6 +22,7 @@ export function AppShell() {
   return (
     <ProgressProvider derive={deriveBadges}>
       <ThemeSync />
+      <LanguageSync />
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -31,6 +34,10 @@ export function AppShell() {
           <Route path="/merkit" element={<BadgesPage />} />
           <Route path="/asetukset" element={<SettingsPage />} />
           <Route path="/palaute" element={<FeedbackPage />} />
+          {/* Jaettavat kielilinkit: #/en ja #/fi. */}
+          {LANGUAGES.map((l) => (
+            <Route key={l} path={`/${l}`} element={<LanguageRoute language={l} />} />
+          ))}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>

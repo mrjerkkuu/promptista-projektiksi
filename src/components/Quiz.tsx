@@ -1,6 +1,6 @@
 import { useId } from 'react'
-import { getModuleByKey } from '../content'
 import { isQuizPassed, useProgress } from '../features/progress'
+import { useContent, useT } from '../i18n'
 import type { QuizQuestion } from '../schemas/content'
 import { useModuleKey } from './moduleContext'
 import { ChoiceList } from './ChoiceList'
@@ -13,14 +13,16 @@ import { Nuppu } from './Nuppu'
 export function Quiz() {
   const moduleKey = useModuleKey()
   const { progress } = useProgress()
+  const { quiz: t } = useT()
+  const { getModuleByKey } = useContent()
   const module = moduleKey ? getModuleByKey(moduleKey) : undefined
-  if (!module?.quiz) return <p className="notice notice--error">Visaa ei löytynyt.</p>
+  if (!module?.quiz) return <p className="notice notice--error">{t.notFound}</p>
 
   const passed = isQuizPassed(progress, module)
   return (
     <section className="card quiz" aria-labelledby={`visa-${module.id}`}>
-      <h2 id={`visa-${module.id}`}>Visa</h2>
-      <p className="muted">Valitse vastaus. Saat palautteen heti, ja voit yrittää uudelleen niin monta kertaa kuin haluat.</p>
+      <h2 id={`visa-${module.id}`}>{t.title}</h2>
+      <p className="muted">{t.intro}</p>
       {module.quiz.questions.map((q, i) => (
         <QuizQuestionView key={q.id} moduleKey={module.key} question={q} number={i + 1} />
       ))}
@@ -28,7 +30,7 @@ export function Quiz() {
         {passed && (
           <p className="notice notice--success notice--mascot notice--rise">
             <Nuppu pose="iloitsee" size={56} />
-            Visa läpäisty! Kaikki vastaukset ovat oikein.
+            {t.passed}
           </p>
         )}
       </div>

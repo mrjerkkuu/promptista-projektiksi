@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useT } from '../i18n'
 import { Icon } from './Icon'
 import './ChoiceList.css'
 
@@ -26,6 +27,7 @@ interface ChoiceListProps {
  * eikä esimerkiksi nuolinäppäimillä liikkuessa.
  */
 export function ChoiceList({ labelledBy, options, selectedId, onSelect, revealAllWhenCorrect }: ChoiceListProps) {
+  const { choices: t } = useT()
   const selected = options.find((o) => o.id === selectedId)
   const revealAll = revealAllWhenCorrect && selected?.correct
 
@@ -48,7 +50,7 @@ export function ChoiceList({ labelledBy, options, selectedId, onSelect, revealAl
                   {state === 'wrong' && <Icon name="cross" />}
                 </span>
                 <span className="choices__label">{o.label}</span>
-                {isSelected && <span className="visually-hidden">{o.correct ? ' (oikein)' : ' (väärin)'}</span>}
+                {isSelected && <span className="visually-hidden">{o.correct ? t.correctHidden : t.wrongHidden}</span>}
               </button>
               {revealAll && !isSelected && <p className="choices__explanation choices__explanation--muted">{o.explanation}</p>}
             </li>
@@ -59,7 +61,7 @@ export function ChoiceList({ labelledBy, options, selectedId, onSelect, revealAl
         {selected && (
           <div key={selected.id} className={`notice notice--rise ${selected.correct ? 'notice--success' : 'notice--error'}`}>
             <p>
-              <strong>{selected.correct ? 'Oikein!' : 'Ei aivan.'}</strong> {selected.explanation}
+              <strong>{selected.correct ? t.correct : t.wrong}</strong> {selected.explanation}
             </p>
             {selected.extra}
           </div>

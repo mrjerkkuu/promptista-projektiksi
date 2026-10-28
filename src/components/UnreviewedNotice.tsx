@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { useT } from '../i18n'
 import { Nuppu } from './Nuppu'
 import './UnreviewedNotice.css'
 
@@ -13,20 +14,13 @@ interface UnreviewedNoticeProps {
  * Ilmoitus poistuu, kun kenttä poistetaan.
  */
 export function UnreviewedNotice({ pathId, compact = false }: UnreviewedNoticeProps) {
+  const { unreviewed: t } = useT()
   return (
-    <aside className={`unreviewed${compact ? ' unreviewed--compact' : ''}`} aria-label="Ei vielä tarkastettu">
+    <aside className={`unreviewed${compact ? ' unreviewed--compact' : ''}`} aria-label={t.label}>
       <Nuppu pose="varoittaa" size={compact ? 56 : 80} />
       <div className="unreviewed__bubble">
-        <p className="unreviewed__label">Ei vielä tarkastettu</p>
-        {compact ? (
-          <p>Tämä polku on uusi, eikä sivuston tekijä ole vielä käynyt sitä läpi. Ohjeissa voi olla virheitä.</p>
-        ) : (
-          <p>
-            Moi, Nuppu tässä! Tämä polku on aivan uusi, eikä sivuston tekijä ole vielä käynyt sitä läpi. Ohjeissa voi olla virheitä tai
-            kohtia, jotka eivät vastaa sovellusta. Jos huomaat jotain outoa, <Link to={`/palaute?polku=${pathId}`}>kerro siitä</Link>, niin
-            autat korjaamaan polun.
-          </p>
-        )}
+        <p className="unreviewed__label">{t.label}</p>
+        {compact ? <p>{t.compact}</p> : <p>{t.full((label) => <Link to={`/palaute?polku=${pathId}`}>{label}</Link>)}</p>}
       </div>
     </aside>
   )

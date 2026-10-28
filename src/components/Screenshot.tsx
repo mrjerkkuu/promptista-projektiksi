@@ -1,3 +1,4 @@
+import { useT } from '../i18n'
 import type { ScreenshotSizes } from '../schemas/content'
 import sizes from '../assets/kuvakaappaukset/kuvat.json'
 import './Screenshot.css'
@@ -27,6 +28,7 @@ interface ScreenshotProps {
  * Build tarkistaa, että kuva on olemassa ja tekstit on kirjoitettu.
  */
 export function Screenshot({ id, alt, title, inline = false }: ScreenshotProps) {
+  const { screenshot: t } = useT()
   const src = URLS[`../assets/kuvakaappaukset/${id}.webp`]
   const size = SIZES[id]
   if (!src || !size) return null
@@ -46,8 +48,8 @@ export function Screenshot({ id, alt, title, inline = false }: ScreenshotProps) 
     <details className="screenshot">
       <summary className="screenshot__toggle">
         <span>
-          <span className="screenshot__show">Näytä</span>
-          <span className="screenshot__hide">Piilota</span> kuva: {title}
+          <span className="screenshot__show">{t.show}</span>
+          <span className="screenshot__hide">{t.hide}</span> {t.image(title ?? '')}
         </span>
       </summary>
       {img}

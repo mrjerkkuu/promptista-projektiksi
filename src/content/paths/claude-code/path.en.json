@@ -1,0 +1,60 @@
+{
+  "title": "Claude Code in the terminal",
+  "description": "You’ll learn what the terminal is, install the tools you need and build your first website of your own with Claude Code. No prior experience needed.",
+  "audience": "For you if you want to learn to use the terminal, also known as the command line. You install the tools yourself and learn how programmers work along the way.",
+  "topics": [
+    {
+      "id": "perusteet",
+      "title": "Basics",
+      "description": "What vibe coding is and the basic ideas behind the terminal, folders and Git.",
+      "modules": [
+        { "id": "mita-on-vibekoodaus", "title": "What is vibe coding?", "summary": "AI writes the code, you steer. What it’s good for and what it isn’t (yet)." },
+        { "id": "terminaali", "title": "The terminal and commands", "summary": "The terminal is like texting with your computer. Try it in the simulator." },
+        { "id": "kansiot-ja-polut", "title": "Folders and paths", "summary": "What a folder and a path are, and how you know which folder you’re in." },
+        { "id": "git-ja-github", "title": "Git and GitHub", "summary": "Git is like save points in a game, GitHub is the cloud where your saves are kept." },
+        { "id": "chat-vai-agentti", "title": "Chat or AI agent?", "summary": "A chat answers, an agent acts: it creates files and runs commands on your computer." }
+      ]
+    },
+    {
+      "id": "asennukset",
+      "title": "Installations",
+      "description": "Step by step, you install all the tools you need for Claude Code and check that they work.",
+      "modules": [
+        { "id": "terminaalin-avaaminen", "title": "The terminal", "summary": "On Windows you install PowerShell 7, on a Mac you open the built-in Terminal." },
+        { "id": "github-tili", "title": "GitHub account", "summary": "You create a GitHub account and protect it with two-factor authentication." },
+        { "id": "git-asennus", "title": "Git", "summary": "You install Git, which you use to make checkpoints of your project." },
+        { "id": "vs-code", "title": "VS Code", "summary": "A recommended code editor that shows your project’s files. Not required." },
+        { "id": "github-cli", "title": "GitHub CLI", "summary": "You install the gh tool and use it to sign in to GitHub." },
+        { "id": "claude-tilaus", "title": "Claude plan", "summary": "What kind of plan you need for Claude Code and where to find up-to-date prices." },
+        { "id": "claude-code-asennus", "title": "Claude Code", "summary": "You install Claude Code and sign in." },
+        { "id": "tarkistuslista", "title": "Checklist", "summary": "All the version checks on one page: is everything ready?" }
+      ]
+    },
+    {
+      "id": "periaatteet",
+      "title": "Claude Code principles",
+      "description": "How to steer Claude Code well and safely.",
+      "modules": [
+        { "id": "ensimmainen-keskustelu", "title": "Your first conversation", "summary": "How to start Claude Code in a folder and how to talk to it." },
+        { "id": "hyva-prompti", "title": "A good prompt", "summary": "Say what, why and within which limits. Bad and good examples side by side." },
+        { "id": "plan-mode", "title": "Plan mode", "summary": "Plan first, build second." },
+        { "id": "claude-md", "title": "CLAUDE.md", "summary": "The project’s sticky note that Claude reads every time." },
+        { "id": "luvat-ja-turvallisuus", "title": "Permissions and safety", "summary": "Read what you approve. Passwords and keys stay out of the conversation and out of GitHub." },
+        { "id": "git-tallennuspisteina", "title": "Git as checkpoints", "summary": "Save before a big change and learn how to go back." },
+        { "id": "konteksti", "title": "Context", "summary": "What Claude remembers from the conversation and when it’s worth starting with a clean slate." }
+      ]
+    },
+    {
+      "id": "ensimmainen-projekti",
+      "title": "Your first project",
+      "description": "You build a small website of your own (HTML, CSS and JavaScript) with Claude Code and send it to GitHub.",
+      "modules": [
+        { "id": "projektikansio", "title": "Project folder", "summary": "You create a folder for the project and start Git tracking." },
+        { "id": "suunnittele", "title": "Plan", "summary": "You plan with Claude in plan mode what goes on the site." },
+        { "id": "rakenna", "title": "Build", "summary": "Claude builds the site, you open it in the browser and ask for changes." },
+        { "id": "githubiin", "title": "To GitHub", "summary": "You save your work as a commit and send it to your own GitHub repo." },
+        { "id": "julkaise", "title": "Bonus: publish", "summary": "Optional extra task: put your site on the web at its own address with GitHub Pages." }
+      ]
+    }
+  ]
+}

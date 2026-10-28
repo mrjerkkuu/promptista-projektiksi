@@ -1,0 +1,42 @@
+This is an optional extra task. You send your site to <Term id="github">GitHub</Term> and publish it with <Term id="github-pages">GitHub Pages</Term> at its own address that you can send to anyone. The service is free for public repos. Everything is done in the browser, and you don’t need to install anything.
+
+## 1. Create a repo
+
+1. Sign in at [github.com](https://github.com).
+2. Click the plus sign in the top-right corner and choose **New repository**.
+3. Type `my-site` as the name and choose **Public** as the visibility.
+4. Turn on adding a README file. Then the repo immediately has the file menu you need next.
+5. Click **Create repository**.
+
+## 2. Upload the site’s files
+
+1. On the repo’s page, choose **Add file** → **Upload files** above the file list.
+2. Open the `my-site` folder in File Explorer or Finder. Select the site’s files (for example `index.html` and `style.css`) and drag them into the browser window. Drag the contents of the `my-site` folder, not the folder itself: otherwise `index.html` ends up in a subfolder, and the site won’t show up at its address. If the site’s images are in a folder of their own, drag that folder along too. You don’t need to upload CLAUDE.md, because it’s a sticky note meant for Claude. If you do upload it, remember that it’s visible to everyone too.
+3. Type a short description in the box, for example “First version”.
+4. Choose to save the change directly to the **main** branch, and confirm with the green button.
+
+Every upload is saved on GitHub as a <Term id="commit">commit</Term>, a version you can go back to later.
+
+<NuppuSays pose="julkaisee">Three, two, one… launch! Once the site is on the web, you can send the link to anyone.</NuppuSays>
+
+## 3. Turn on GitHub Pages
+
+1. Choose **Settings** in the repo’s top menu and **Pages** on the left.
+2. Under **Build and deployment**, choose **Deploy from a branch** in the **Source** menu.
+3. Choose **main** as the branch and **/ (root)** as the folder. Click **Save**.
+
+Publishing usually takes a few minutes. Your site’s address looks like `https://your-username.github.io/my-site/`, and it also appears on the same Pages page once publishing is done.
+
+Sources: GitHub’s documentation on [adding files](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) and [publishing source settings](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+
+<Tip type="warning" title="Everyone can see the site">
+
+A public repo and a Pages site are visible to everyone. Don’t publish personal information you don’t want everyone to see, such as your address or phone number.
+
+</Tip>
+
+<ReadMore title="When you change the site later">
+
+Upload the changed files again the same way (**Add file** → **Upload files**). GitHub replaces the old version and updates the published site within a few minutes. If the site doesn’t show up or shows an old version, see [troubleshooting](#/vianmaaritys/pages-ei-nay).
+
+</ReadMore>

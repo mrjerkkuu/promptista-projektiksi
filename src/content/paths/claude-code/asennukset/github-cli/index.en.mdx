@@ -1,0 +1,52 @@
+<Term id="gh">GitHub CLI</Term> is GitHub’s own terminal tool, and its command is `gh`. With it, you sign in to GitHub once, and after that you can create repos and send your work to GitHub directly from the terminal.
+
+## 1. Install GitHub CLI
+
+<Os only="windows">
+
+<Command id="install-gh" />
+
+</Os>
+
+<Os only="mac">
+
+The official way to install it on a Mac uses the <Term id="homebrew">Homebrew</Term> package manager:
+
+<Command id="install-gh" />
+
+If Terminal replies `zsh: command not found: brew`, install Homebrew first. The command asks for your Mac’s password: type it and press Enter. The password isn’t shown while you type, and that’s normal. Read the “Next steps” section shown at the end of the installation and run its commands.
+
+<Command id="install-homebrew" />
+
+<ReadMore title="Installing without Homebrew">
+
+GitHub also offers a Mac installer package (.pkg) at [github.com/cli/cli/releases/latest](https://github.com/cli/cli/releases/latest). According to the official instructions, the package is currently unsigned, so macOS may warn you about it. That’s why Homebrew is the recommended way.
+
+</ReadMore>
+
+</Os>
+
+## 2. Restart the terminal
+
+<Os only="windows">If you use Windows Terminal, open a completely new window. A new tab isn’t enough.</Os>
+
+<VerifyStep id="gh" />
+
+## 3. Sign in to GitHub
+
+<Command id="gh-auth-login" />
+
+gh asks a few questions. Choose with the arrow keys and confirm with Enter:
+
+1. **Where do you use GitHub?** → GitHub.com
+2. **What is your preferred protocol?** → HTTPS
+3. **Authenticate Git with your GitHub credentials?** → Yes
+4. **How would you like to authenticate?** → Login with a web browser
+
+gh shows a one-time code (e.g. `ABCD-1234`). Press Enter, and the browser opens. Sign in to GitHub, enter the code and approve. When the terminal says “Logged in as” followed by your username, you’re done.
+
+<Tip>
+
+If something goes wrong, see the troubleshooting entry [Signing in to GitHub with the gh tool doesn’t work](#/vianmaaritys/gh-kirjautuminen).
+
+</Tip>

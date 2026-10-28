@@ -1,0 +1,67 @@
+{
+  "questions": [
+    {
+      "id": "mika-terminaali",
+      "question": "What is the terminal?",
+      "options": [
+        {
+          "id": "teksti",
+          "text": "A program where you use the computer by typing commands",
+          "explanation": "Correct. The terminal is like texting with your computer."
+        },
+        {
+          "id": "selain",
+          "text": "A new web browser",
+          "explanation": "A browser opens websites. In the terminal, you give instructions to the whole computer."
+        },
+        {
+          "id": "virus",
+          "text": "Malware you should avoid",
+          "explanation": "Not at all! The terminal is an ordinary and safe part of every computer."
+        }
+      ]
+    },
+    {
+      "id": "kehote",
+      "question": "What does the prompt (e.g. PS C:\\Users\\alex> or alex@MacBook ~ %) mean?",
+      "options": [
+        {
+          "id": "virhe",
+          "text": "Something has gone wrong",
+          "explanation": "The prompt isn’t an error. It appears whenever the terminal is waiting for a new command."
+        },
+        {
+          "id": "valmis",
+          "text": "The terminal is ready to receive a command",
+          "explanation": "Exactly. Type a command after the prompt and press Enter."
+        },
+        {
+          "id": "kirjoita",
+          "text": "Text you have to type yourself before every command",
+          "explanation": "The prompt appears automatically. You only type the command."
+        }
+      ]
+    },
+    {
+      "id": "suoritus",
+      "question": "You’ve typed a command. How do you run it?",
+      "options": [
+        {
+          "id": "enter",
+          "text": "I press Enter",
+          "explanation": "Correct. Enter is like the send button for a message."
+        },
+        {
+          "id": "odota",
+          "text": "I wait a moment, and it goes by itself",
+          "explanation": "The terminal waits patiently until you press Enter."
+        },
+        {
+          "id": "tuplaklikkaa",
+          "text": "I double-click the command with the mouse",
+          "explanation": "In the terminal, you send a command with the Enter key."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "questions": [
+    {
+      "id": "missa",
+      "question": "Which folder does Claude Code work in?",
+      "options": [
+        {
+          "id": "kaynnistys",
+          "text": "The folder where you started it",
+          "explanation": "Correct. That’s why you first move to the project folder with the cd command and only then start Claude."
+        },
+        {
+          "id": "koko-kone",
+          "text": "Always on the whole computer",
+          "explanation": "Claude Code works in the folder where it was started."
+        },
+        {
+          "id": "pilvi",
+          "text": "Only in the cloud, not on your own computer",
+          "explanation": "Claude Code edits files on your own computer. That’s why it asks for permission."
+        }
+      ]
+    },
+    {
+      "id": "keskeytys",
+      "question": "Claude started doing something you didn’t mean. What do you do?",
+      "options": [
+        {
+          "id": "esc",
+          "text": "I press Esc and explain more precisely what I want",
+          "explanation": "Exactly. Esc stops the work, and you can steer Claude in the right direction."
+        },
+        {
+          "id": "sulje",
+          "text": "I turn off the computer with the power button",
+          "explanation": "Far too drastic. Esc is enough, and the work done so far is kept."
+        },
+        {
+          "id": "odota",
+          "text": "I wait and hope for the best",
+          "explanation": "You’re at the controls. Interrupt and clarify, that’s completely normal."
+        }
+      ]
+    },
+    {
+      "id": "exit",
+      "question": "How do you quit Claude Code?",
+      "options": [
+        {
+          "id": "lopeta",
+          "text": "I type to Claude: quit",
+          "explanation": "An ordinary message goes to Claude as part of the conversation. You quit the program with the command /exit."
+        },
+        {
+          "id": "exit",
+          "text": "I type /exit and press Enter",
+          "explanation": "Correct. Commands that start with a slash are Claude Code’s own commands."
+        },
+        {
+          "id": "help",
+          "text": "I type /help",
+          "explanation": "/help shows the instructions. You quit with the command /exit."
+        }
+      ]
+    }
+  ]
+}

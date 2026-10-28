@@ -1,0 +1,49 @@
+{
+  "install-powershell": { "description": "Installs PowerShell 7 with Windows’ own WinGet package manager." },
+  "check-powershell": { "description": "Shows the PowerShell version." },
+  "install-git": { "description": "Installs Git." },
+  "install-homebrew": { "description": "Installs the Homebrew package manager for the Mac." },
+  "install-gh": { "description": "Installs GitHub CLI (the gh command)." },
+  "gh-auth-login": { "description": "Signs in to GitHub with the gh tool. By default, you sign in in the browser." },
+  "install-claude-code": { "description": "Installs Claude Code with Anthropic’s official install script." },
+  "check-claude": { "description": "Shows the Claude Code version." },
+  "claude-doctor": { "description": "Checks your Claude Code installation and reports any problems." },
+  "start-claude": { "description": "Starts Claude Code in the current folder. The first time, it asks you to sign in." },
+  "claude-plan-mode": { "description": "Starts Claude Code directly in plan mode." },
+  "git-config-name": {
+    "description": "Tells Git your name. The name appears in your checkpoints (commits).",
+    "windows": "git config --global user.name \"First Last\"",
+    "mac": "git config --global user.name \"First Last\""
+  },
+  "git-config-email": {
+    "description": "Tells Git your email address. Use the same address as on GitHub.",
+    "windows": "git config --global user.email your.address@example.com",
+    "mac": "git config --global user.email your.address@example.com"
+  },
+  "git-config-default-branch": { "description": "Sets the name of the main branch of new projects to main." },
+  "set-execution-policy": { "description": "Allows your own user account to run local and signed PowerShell scripts." },
+  "get-execution-policy": { "description": "Shows PowerShell’s current execution policy settings." },
+  "gh-repo-create": {
+    "description": "Creates a new public repo on GitHub from the current folder and sends (pushes) your checkpoints there.",
+    "windows": "gh repo create my-site --public --source=. --remote=origin --push",
+    "mac": "gh repo create my-site --public --source=. --remote=origin --push"
+  },
+  "check-git": { "description": "Shows the Git version." },
+  "check-vscode": { "description": "Shows the VS Code version." },
+  "check-gh": { "description": "Shows the GitHub CLI version." },
+  "code-open-folder": { "description": "Opens the current folder in VS Code. The dot means “this folder”." },
+  "git-init": { "description": "Starts Git tracking in the current folder." },
+  "git-status": { "description": "Shows which files have changed since the last checkpoint." },
+  "git-add-all": { "description": "Includes all changes in the next checkpoint." },
+  "git-commit": {
+    "description": "Makes a checkpoint (a commit) and attaches a message to it.",
+    "windows": "git commit -m \"First version\"",
+    "mac": "git commit -m \"First version\""
+  },
+  "git-log": { "description": "Lists your checkpoints briefly, newest first." },
+  "git-restore": { "description": "Restores a file to how it was in the latest checkpoint. Unsaved changes are lost." },
+  "git-push": { "description": "Sends new checkpoints to GitHub." },
+  "gh-browse": { "description": "Opens your project’s GitHub page in the browser." },
+  "open-file-windows": { "description": "Opens the file in its default program (an HTML file in the browser)." },
+  "open-file-mac": { "description": "Opens the file in its default program (an HTML file in the browser)." }
+}

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useT } from '../i18n'
 import { Nuppu, type NuppuPose } from './Nuppu'
 import './NuppuSays.css'
 
@@ -17,11 +18,12 @@ interface NuppuSaysProps {
  * piilotetusta tekstistä.
  */
 export function NuppuSays({ pose, children }: NuppuSaysProps) {
+  const t = useT()
   return (
     <div className="nuppu-says" role="note">
       <Nuppu pose={pose} size={88} />
       <div className="nuppu-says__bubble">
-        <span className="visually-hidden">Nuppu sanoo: </span>
+        <span className="visually-hidden">{t.mdx.nuppuSays}</span>
         {children}
       </div>
     </div>

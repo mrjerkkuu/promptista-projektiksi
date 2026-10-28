@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import type { TranslationOptions } from '../i18n/translate'
 
 /**
  * Sisällön zod-skeemat. Samoja skeemoja käytetään sekä selaimessa
@@ -316,6 +317,14 @@ export const quizSchema = z
     message: 'Kysymysten tunnisteiden pitää olla yksilöllisiä',
   })
 export type Quiz = z.infer<typeof quizSchema>
+
+/**
+ * Tiedostokohtaiset käännösasetukset (src/i18n/translate.ts). Käytetään sekä selaimessa että validoinnissa.
+ * Komennot ovat komentoja eivätkä tekstiä, mutta käännös voi vaihtaa niistä esim. kansion nimen.
+ */
+export const TRANSLATION_OPTIONS: Record<string, TranslationOptions> = {
+  'commands.json': { structuralKeys: ['windows', 'mac'] },
+}
 
 /** MDX:ssä sallitut komponentit. Muut isolla alkavat tagit kaatavat buildin. */
 export const MDX_COMPONENTS = ['Os', 'Path', 'Command', 'Term', 'Quiz', 'Terminal', 'ReadMore', 'VerifyStep', 'Tip', 'NuppuSays', 'Screenshot'] as const

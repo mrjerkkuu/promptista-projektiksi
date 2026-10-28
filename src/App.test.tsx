@@ -363,3 +363,64 @@ describe('asetukset', () => {
     expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!)).toEqual({ ...createDefaultProgress(), theme: 'dark' })
   })
 })
+
+describe('kieli', () => {
+  it('englanninkielinen kävijä näkee sivun englanniksi, ja html-elementin kieli vaihtuu', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), language: 'en' }))
+    renderAt('/')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('From Prompt to Project')
+    expect(screen.getByText('Which computer do you use?')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Learning paths' })).toHaveAttribute('href', '/polut')
+    expect(document.documentElement.lang).toBe('en')
+    expect(document.title).toBe('From Prompt to Project')
+  })
+
+  it('ilman valintaa kieli päätellään selaimesta', () => {
+    const languages = Object.getOwnPropertyDescriptor(window.navigator, 'languages')!
+    Object.defineProperty(window.navigator, 'languages', { value: ['en-US'], configurable: true })
+    try {
+      renderAt('/')
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('From Prompt to Project')
+      // Päätelty kieli ei tallennu: valinta jää kävijälle.
+      expect(localStorage.getItem(STORAGE_KEY)).toBeNull()
+    } finally {
+      Object.defineProperty(window.navigator, 'languages', languages)
+    }
+  })
+
+  it('yläpalkin painike vaihtaa kielen, ja valinta tallentuu', async () => {
+    const user = userEvent.setup()
+    renderAt('/')
+    await user.click(screen.getByRole('button', { name: 'English' }))
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('From Prompt to Project')
+    expect(storedProgress().language).toBe('en')
+    await user.click(screen.getByRole('button', { name: 'Suomeksi' }))
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Promptista projektiksi')
+    expect(storedProgress().language).toBe('fi')
+  })
+
+  it('jaettava linkki #/en avaa sivuston englanniksi etusivulle', async () => {
+    renderAt('/en')
+    expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent('From Prompt to Project')
+    expect(storedProgress().language).toBe('en')
+  })
+
+  it('tietopaketti, visa ja sanasto näkyvät englanniksi', async () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), language: 'en', os: 'mac' }))
+    renderAt('/polku/claude-code/terminaali')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('0.2 The terminal and commands')
+    expect(await screen.findByRole('button', { name: 'I’ve read this' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /What is the terminal?/, level: 3 })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'terminal' })).toBeInTheDocument()
+    expect(screen.queryByText(/hasn’t been translated/)).not.toBeInTheDocument()
+  })
+
+  it('nollaus säilyttää kielen', async () => {
+    const user = userEvent.setup()
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...createDefaultProgress(), language: 'en', stats: { commandsRun: 3 } }))
+    renderAt('/asetukset')
+    await user.click(screen.getByRole('button', { name: 'Start over…' }))
+    await user.click(screen.getByRole('button', { name: 'Yes, start over' }))
+    expect(storedProgress()).toEqual({ ...createDefaultProgress(), language: 'en' })
+  })
+})
