@@ -318,7 +318,7 @@ export const quizSchema = z
 export type Quiz = z.infer<typeof quizSchema>
 
 /** MDX:ssä sallitut komponentit. Muut isolla alkavat tagit kaatavat buildin. */
-export const MDX_COMPONENTS = ['Os', 'Command', 'Term', 'Quiz', 'Terminal', 'ReadMore', 'VerifyStep', 'Tip', 'NuppuSays'] as const
+export const MDX_COMPONENTS = ['Os', 'Path', 'Command', 'Term', 'Quiz', 'Terminal', 'ReadMore', 'VerifyStep', 'Tip', 'NuppuSays'] as const
 
 /**
  * Nupun asennot. Jokaisella on kuva src/assets/nuppu/nuppu-<asento>.svg.

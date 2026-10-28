@@ -146,6 +146,15 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
     expect(validateContent(d).errors.join()).toMatch(/only-arvon/)
   })
 
+  it('Path-komponentin tuntematon tai puuttuva polku', () => {
+    const d = fixture()
+    replaceIn(mdx(d), '<Quiz />', '<Path only="polku">x</Path>\n<Path only="vieras">y</Path>\n<Path>z</Path>\n<Quiz />')
+    const errors = validateContent(d).errors.join('\n')
+    expect(errors).toMatch(/tuntematon polku "vieras"/)
+    expect(errors).toMatch(/<Path> puuttuu only/)
+    expect(errors).not.toMatch(/"polku"/)
+  })
+
   it('Nupun tuntematon tai puuttuva asento', () => {
     const d = fixture()
     replaceIn(mdx(d), 'pose="koodaa"', 'pose="lentaa"')
