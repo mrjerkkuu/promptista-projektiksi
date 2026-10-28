@@ -231,7 +231,7 @@
     "steps": [
       "Älä hätäile: Claude voi yleensä perua oman muutoksensa.",
       "Pyydä Claudea: ”Peru äskeinen muutos ja palauta sivu siihen tilaan, jossa se oli ennen sitä.”",
-      "Katso Changes-kortista, mitä tiedostoja muutettiin, ja tarkista diffistä, että peruminen onnistui.",
+      "Napsauta keskustelussa muutoksen lukuja (esim. +2 -1) ja tarkista diffistä, että peruminen onnistui.",
       "Jos otit projektikansiosta kopion, voit myös kopioida vanhan tiedoston takaisin.",
       "Jatkossa voit käyttää Manual-tilaa, jolloin näet jokaisen muutoksen ennen kuin se tehdään."
     ]

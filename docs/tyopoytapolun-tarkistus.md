@@ -82,12 +82,12 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 - [ ] Ympäristövalikon **Local**-ryhmä (2.1).
 - [x] Kansion valinnan **Open folder…** (2.1, 3.1). *Omistaja 28.10.2026: valikossa Search folders…, No folder, Recent-lista ja alimpana Open folder…; Windowsin ikkunassa painike Select Folder.*
 - [x] Tilat **Manual**, **Accept edits**, **Plan** ja **Auto** (2.2). *Omistaja 28.10.2026: valikon otsikko ”Permissions · this session”, järjestys Auto, Manual, Accept edits, Plan ja harmaana Bypass permissions (”Enable in Claude Code settings”). Uudessa istunnossa valmiina oli Auto.*
-- [x] Manual-tilan hyväksyminen: miltä lupakysely näyttää ja mitä painikkeissa lukee? Oppaassa lukee vain ”hyväksy” (2.1, 3.3). *Omistaja 28.10.2026: ”Needs your input”, kortti ”Allow Claude to write muistilista.txt?”, polku ja diff, painikkeet **Deny** ja **Always allow** (Ctrl+Shift+Enter) sekä alasvetonuoli. Kortissa: ”Always allow” switches this session to Accept edits. Alasvetonuolen takana: **Allow once** (Ctrl+Enter) ja **Allow and switch to Auto** (”Auto reviews the rest of this session.”).*
+- [x] Manual-tilan hyväksyminen: miltä lupakysely näyttää ja mitä painikkeissa lukee? Oppaassa lukee vain ”hyväksy” (2.1, 3.3). *Omistaja 28.10.2026: ”Needs your input”, kortti ”Allow Claude to write muistilista.txt?”, polku ja diff, painikkeet **Deny** ja **Always allow** (Ctrl+Shift+Enter) sekä alasvetonuoli. Kortissa: ”Always allow” switches this session to Accept edits. Alasvetonuolen takana: **Allow once** (Ctrl+Enter) ja **Allow and switch to Auto** (”Auto reviews the rest of this session.”). Kun Allow once on valittu kerran, se näkyy seuraavassa kyselyssä pääpainikkeena.*
 - [x] Suunnitelman hyväksyminen (3.2, 3.3): kortti **Claude proposed a plan**, **Open plan** avaa paneelin (tekstiä voi kommentoida), painikkeet **Reject**, **Revise…**, **Accept** ja korostettu **Accept and use auto mode** (Ctrl+Enter). Pelkkä Accept vaihtaa tilaksi Manual, ja Claude aloittaa heti. *Omistaja testasi 27.10.2026.*
 - [ ] Mitä **Revise…** tekee ja mitä Accept-painikkeen alasvetonuolen takana on (3.2).
 - [x] Pysäytyspainike (2.1, 2.3). *Omistaja 28.10.2026: neliö kirjoituskentän oikeassa reunassa mikrofonin vieressä, kun Claude työskentelee.*
-- [x] **Changes**-kortti ja luvut kuten `+12 -1` (2.3). *Omistajan kuvakaappaus 27.10.2026.*
-- [ ] Rivikommentit diffissä ja niiden lähetys Ctrl+Enter / Cmd+Enter (2.3).
+- [ ] **Changes**-kortti ja luvut kuten `+12 -1` (2.3). *Omistajan kuvakaappaus 27.10.2026 (Git-repossa). 28.10.2026: kansiossa, joka ei ole Git-repo (harjoitus), Changes-korttia ei näy, vaan tilalla on **Outputs**-kortti tiedostoineen. Diff aukeaa napsauttamalla keskustelun lukuja (esim. `+2 -1`). Kun Claude teki kansiosta Git-repon, Changes-kortti (`+1 -1` ja **Commit changes**) ilmestyi. Kortti näkyy siis vain Git-repossa. Aiheen 2.3 teksti pitää korjata, koska työpöytäpolulla ei käytetä Gitiä.*
+- [ ] Rivikommentit diffissä ja niiden lähetys Ctrl+Enter / Cmd+Enter (2.3). *28.10.2026: **+** ilmestyy riviä osoittaessa (nähty Git-repon diffissä). Kommenttikenttä (otsikkona ”Line 1”) aukeaa, ja kentän painike siirtää kommentin kirjoituskenttään korttina (”Comment”). Kommentit lähetetään Enterillä kuten tavallinen viesti, ei Ctrl+Enterillä (kirjoituskentässä Ctrl+Enter on ”queue for later”). Rivikommentit ilman Gitiä testaamatta. Aiheen 2.3 teksti korjattu 28.10.2026: diff avataan keskustelun luvuista, kommentit lähetetään Enterillä.*
 - [ ] Browser-paneeli, joka aukeaa HTML-tiedoston nimeä napsauttamalla, ja keskustelun kortin **Open**-painike (2.4).
 - [ ] Sivuston lupakysely **Allow once**, **Always allow**, **Deny** (2.4).
 - [ ] Tiedostopaneeli, joka aukeaa tiedoston nimeä napsauttamalla, ja automaattinen tallennus (2.6). *Omistaja 28.10.2026: paneeli aukeaa nimeä napsauttamalla. Automaattinen tallennus testaamatta.*
@@ -131,7 +131,7 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 - **Yksityisyys:** ennen kuvaamista piilota tai rajaa pois sähköpostiosoite, nimi, tilin tiedot, muiden istuntojen nimet ja polut, joissa näkyy käyttäjänimesi (esimerkiksi `C:\Users\nimi`). Kuvat päätyvät julkiselle sivulle.
 - **Ikkuna:** sovellus noin 1280 × 800 pikselin kokoisena, vaalea teema. Rajaa kuva niin, että olennainen kohta näkyy selvästi. Koko ikkunaa ei tarvita.
 - **Käyttöjärjestelmä:** kun sovellus näyttää samalta kummallakin koneella, yksi kuva riittää (merkintä *kumpi tahansa*). Resurssienhallinnasta ja Finderista tarvitaan omat kuvat.
-- **Tummasta muutetut kuvat:** `s04-tilat`, `s06-pysaytys`, `s10-tiedostolinkki` ja `k07-code-valilehti` otettiin tummassa teemassa, ja Claude muutti ne vaaleiksi kääntämällä vaaleuden (sävyt säilyvät). Ne ovat arvio vaaleasta teemasta. Jos otat ne joskus uudelleen vaaleassa teemassa, korvaa nämä.
+- **Tummasta muutetut kuvat:** `s04-tilat`, `s06-pysaytys`, `s07-changes-kortti`, `s08-diff`, `s09-rivikommentti`, `s09b-kommentti-kirjoituskentassa`, `s10-tiedostolinkki` ja `k07-code-valilehti` otettiin tummassa teemassa, ja Claude muutti ne vaaleiksi kääntämällä vaaleuden (sävyt säilyvät). Ne ovat arvio vaaleasta teemasta. Jos otat ne joskus uudelleen vaaleassa teemassa, korvaa nämä.
 - **Kuvaustapa:** Windowsilla Käynnistä → `Näyttökuvatyökalu`, Macilla Finder → Ohjelmat → Lisäohjelmat → Kuvakaappaus.
 
 ### Käyttöönotto (aihealue 1)
@@ -167,9 +167,9 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 | ☑ | `s04-tilat.png` | tilavalikko auki: Manual, Accept edits, Plan, Auto | kumpi tahansa | 2.2 |
 | ☑ | `s05-lupakysely.png` | Manual-tilan lupakysely: Claude ehdottaa muutosta ja odottaa (painikkeet näkyvissä) | kumpi tahansa | 2.1, 2.2 |
 | ☑ | `s06-pysaytys.png` | pysäytyspainike, kun Claude työskentelee | kumpi tahansa | 2.1, 2.3 |
-| ☐ | `s07-changes-kortti.png` | Changes-kortti ja luvut kuten `+12 -1` | kumpi tahansa | 2.3 |
-| ☐ | `s08-diff.png` | diff-näkymä, jossa on lisättyjä ja poistettuja rivejä | kumpi tahansa | 2.3 |
-| ☐ | `s09-rivikommentti.png` | diffin rivikommentin kenttä auki | kumpi tahansa | 2.3 |
+| ☑ | `s07-changes-kortti.png` | Changes-kortti ja luvut kuten `+12 -1` | kumpi tahansa | 2.3 |
+| ☑ | `s08-diff.png` | diff-näkymä, jossa on lisättyjä ja poistettuja rivejä | kumpi tahansa | 2.3 |
+| ☑ | `s09-rivikommentti.png` | diffin rivikommentin kenttä auki | kumpi tahansa | 2.3 |
 | ☑ | `s10-tiedostolinkki.png` | tiedoston nimi keskustelussa (napsautettava) | kumpi tahansa | 2.1, 2.4 |
 | ☐ | `s11-browser.png` | Browser-paneeli, jossa näkyy ”Hei maailma” -sivu | kumpi tahansa | 2.4 |
 | ☐ | `s12-open-kortti.png` | keskustelun kortti, jossa on **Open**-painike (jos tulee vastaan) | kumpi tahansa | 2.4 |
