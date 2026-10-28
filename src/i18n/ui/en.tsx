@@ -313,7 +313,7 @@ export const en: UiStrings = {
     emptyHint: 'Type a command below and press Enter. The command help shows instructions.',
     promptHidden: 'Command, prompt: ',
     run: 'Run',
-    alreadyDone: 'You’ve already completed this exercise. You can keep practising as much as you like.',
+    alreadyDone: 'You’ve already completed this exercise. You can keep practicing as much as you like.',
     restart: 'Restart the exercise',
     nextStep: (
       <>
