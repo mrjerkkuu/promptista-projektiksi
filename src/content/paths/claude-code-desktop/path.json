@@ -2,14 +2,14 @@
   "id": "claude-code-desktop",
   "title": "Claude Code työpöytäsovelluksessa",
   "description": "Opit käyttämään Claude Codea Clauden työpöytäsovelluksessa ja teet sen avulla ensimmäisen oman verkkosivusi. Terminaalia ei tarvita, eikä aiempaa kokemusta.",
-  "order": 2,
+  "order": 1,
   "reviewed": false,
   "audience": "Sinulle, joka haluat päästä alkuun helpoimmalla tavalla: tavallisella sovelluksella, jossa on painikkeet ja valikot. Komentoriviä ei tarvitse opetella.",
   "topics": [
     {
       "id": "perusteet",
       "title": "Perusteet",
-      "description": "Mitä vibekoodaus on, miten agentti eroaa chatista ja miksi jokaiselle projektille tehdään oma kansio.",
+      "description": "Mitä vibekoodaus on, miten agentti eroaa chatista ja miksi jokaiselle projektille tehdään oma kansio. Lisäksi kuulet, mitä Git ja GitHub ovat.",
       "modules": [
         { "ref": "claude-code/mita-on-vibekoodaus" },
         { "id": "chat-vai-agentti", "title": "Chat vai AI-agentti?", "summary": "Samassa sovelluksessa on chat, joka vastaa, ja Claude Code, joka tekee." },

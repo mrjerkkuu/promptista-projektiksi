@@ -175,7 +175,7 @@
       "Sulje sovellus kokonaan ja käynnistä se uudelleen.",
       "Odota hetki käynnistyksen jälkeen: sovellus asentaa päivitykset käynnistyessään.",
       "Jos olet työpaikan tai oppilaitoksen verkossa, verkko voi estää yhteyden. Kokeile toisessa verkossa tai kysy ylläpitäjältä.",
-      "Jos mikään ei auta, lataa sovellus uudelleen osoitteesta claude.ai/download ja asenna se."
+      "Jos mikään ei auta, lataa sovellus uudelleen osoitteesta claude.com/download ja asenna se."
     ]
   },
   "tyopoyta-ei-loydy": {
@@ -186,7 +186,7 @@
     "steps": [
       "Windowsilla: napsauta tehtäväpalkin Käynnistä-painiketta, kirjoita Claude ja valitse sovellus hakutuloksista.",
       "Macilla: avaa Finder ja valitse sivupalkista Ohjelmat. Jos Claudea ei ole siellä, avaa Lataukset-kansiosta ladattu asennustiedosto uudelleen ja vedä Clauden kuvake Ohjelmat-kansioon.",
-      "Jos sovellusta ei vieläkään löydy, lataa se uudelleen osoitteesta claude.ai/download ja asenna se."
+      "Jos sovellusta ei vieläkään löydy, lataa se uudelleen osoitteesta claude.com/download ja asenna se."
     ]
   },
   "code-tilaus": {

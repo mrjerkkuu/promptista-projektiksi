@@ -2,7 +2,7 @@
   "id": "claude-code",
   "title": "Claude Code terminaalissa",
   "description": "Opit, mikä terminaali on, asennat tarvittavat työkalut ja teet Claude Coden kanssa ensimmäisen oman verkkosivusi. Aiempaa kokemusta ei tarvita.",
-  "order": 1,
+  "order": 2,
   "audience": "Sinulle, joka haluat oppia käyttämään terminaalia eli komentoriviä. Asennat työkalut itse ja opit samalla, miten ohjelmoijat työskentelevät.",
   "topics": [
     {

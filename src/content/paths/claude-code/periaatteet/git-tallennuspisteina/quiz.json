@@ -6,7 +6,7 @@
       "options": [
         { "id": "ennen", "text": "Ennen isoa muutosta ja aina, kun jokin toimii", "correct": true, "explanation": "Oikein. Silloin palaaminen on helppoa, jos seuraava muutos epäonnistuu." },
         { "id": "lopuksi", "text": "Vain kerran, kun koko projekti on valmis", "correct": false, "explanation": "Silloin välivaiheisiin ei voi palata. Tee commiteja usein." },
-        { "id": "ei-koskaan", "text": "Ei koskaan, Claude muistaa kaiken", "correct": false, "explanation": "Claude ei muista edellisiä keskusteluja, eikä /rewind korvaa Gitiä." }
+        { "id": "ei-koskaan", "text": "Ei koskaan, Claude muistaa kaiken", "correct": false, "explanation": "Claude ei näe aiempien keskustelujen sisältöä, eikä /rewind korvaa Gitiä." }
       ]
     },
     {

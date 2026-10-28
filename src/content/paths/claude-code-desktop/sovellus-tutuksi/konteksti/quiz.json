@@ -5,8 +5,8 @@
       "question": "Mitä konteksti tarkoittaa?",
       "options": [
         { "id": "muisti", "text": "Kaikki, mitä Claude pitää mielessään tämän istunnon aikana", "correct": true, "explanation": "Oikein. Viestit, tiedostot ja komentojen tulokset vievät kaikki tilaa kontekstissa." },
-        { "id": "kaikki", "text": "Kaikki istunnot, joita olet koskaan käynyt Clauden kanssa", "correct": false, "explanation": "Claude ei muista aiempia istuntoja. Siksi pysyvät ohjeet kirjoitetaan CLAUDE.md:hen." },
-        { "id": "kansio", "text": "Kansio, jossa projekti on", "correct": false, "explanation": "Kansio on projektin paikka. Konteksti on istunnon ”työpöytä”." }
+        { "id": "kaikki", "text": "Kaikki istunnot, joita olet koskaan käynyt Clauden kanssa", "correct": false, "explanation": "Claude ei näe aiempien istuntojen keskusteluja. Siksi pysyvät ohjeet kirjoitetaan CLAUDE.md:hen." },
+        { "id": "kansio", "text": "Kansio, jossa projekti on", "correct": false, "explanation": "Kansio on projektin paikka. Konteksti on istunnon ”kirjoituspöytä”." }
       ]
     },
     {

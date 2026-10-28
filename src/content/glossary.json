@@ -8,19 +8,19 @@
   "claude-code": {
     "term": "Claude Code",
     "category": "tekoaly",
-    "definition": "Anthropicin tekoälyavustaja, joka osaa lukea ja muokata tiedostoja sekä ajaa komentoja koneellasi, kun annat siihen luvan. Sitä käytetään terminaalissa tai Clauden työpöytäsovelluksessa.",
+    "definition": "Anthropicin tekoälyavustaja, joka osaa lukea ja muokata tiedostoja sekä ajaa komentoja koneellasi, kun annat siihen luvan. Sitä voi käyttää esimerkiksi terminaalissa tai Clauden työpöytäsovelluksessa.",
     "readMore": "https://code.claude.com/docs/en/overview"
   },
   "claude-tyopoytasovellus": {
     "term": "Clauden työpöytäsovellus",
     "category": "tekoaly",
-    "definition": "Clauden sovellus Windowsille ja Macille. Sen Code-välilehdellä käytetään Claude Codea ilman terminaalia.",
+    "definition": "Clauden sovellus tietokoneelle, esimerkiksi Windowsille ja Macille. Sen Code-välilehdellä käytetään Claude Codea ilman terminaalia.",
     "readMore": "https://code.claude.com/docs/en/desktop-quickstart"
   },
   "istunto": {
     "term": "istunto",
     "category": "tekoaly",
-    "definition": "Yksi keskustelu Claude Coden kanssa. Jokaisella istunnolla on oma projektikansio ja oma konteksti. Työpöytäsovelluksessa istunnot näkyvät sivupalkissa.",
+    "definition": "Yksi keskustelu Claude Coden kanssa. Istunto työskentelee valitussa projektikansiossa, ja sillä on oma konteksti. Työpöytäsovelluksessa istunnot näkyvät sivupalkissa.",
     "readMore": "https://code.claude.com/docs/en/desktop"
   },
   "diff": {
