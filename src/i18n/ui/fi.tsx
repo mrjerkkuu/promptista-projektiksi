@@ -336,6 +336,13 @@ export const fi = {
     lastStep: <> Jatka sitten sivua alaspäin: tämä on polun viimeinen aihe, ja sivun lopusta pääset takaisin polun etusivulle.</>,
   },
 
+  /** Kuvakaappauksen avauspainike: ”Näytä kuva: …” ja auki ollessa ”Piilota kuva: …”. */
+  screenshot: {
+    show: 'Näytä',
+    hide: 'Piilota',
+    image: (title: string) => `kuva: ${title}`,
+  },
+
   mdx: {
     readMore: 'Lue lisää',
     nuppuSays: 'Nuppu sanoo: ',

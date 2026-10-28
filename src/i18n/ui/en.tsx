@@ -324,6 +324,12 @@ export const en: UiStrings = {
     lastStep: <> Then keep scrolling down: this is the last topic on the path, and the bottom of the page takes you back to the path’s front page.</>,
   },
 
+  screenshot: {
+    show: 'Show',
+    hide: 'Hide',
+    image: (title: string) => `image: ${title}`,
+  },
+
   mdx: {
     readMore: 'Read more',
     nuppuSays: 'Nuppu says: ',

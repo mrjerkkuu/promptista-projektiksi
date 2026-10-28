@@ -6,15 +6,21 @@ When Claude has changed a file, the conversation shows the number of changed lin
 
 In the diff, you see file by file which lines were added and which were removed. You don’t need to understand every line of code. It’s enough to check whether the right file changed and whether the change looks sensible.
 
+<Screenshot id="s08-diff" title="diff" alt="A diff of the file muistilista.txt. The header shows the numbers +1 and −1. On a red background is the removed line (four tips for brewing good coffee, in Finnish) and on a green background the added line (five tips). The other lines are unchanged." />
+
 <NuppuSays pose="tutkii">I examine changes with a magnifying glass. If something looks odd, I ask Claude: “What does this change do?”</NuppuSays>
 
 ## Comment on lines
 
 If a line needs to change, hover the mouse over the line in the diff and click the **+** sign that appears next to the line number. Type your feedback in the box and press Enter. The comment moves to the text box. When you’ve commented on all the lines you want, send the comments to Claude by pressing Enter in the text box. Claude makes the requested changes, and you see them as a new diff.
 
+<Screenshot id="s09-rivikommentti" title="line comment" alt="A comment box opened below a line in the diff, with the heading Line 1. Feedback in Finnish has been typed in the box, asking for a period at the end of the sentence." />
+
+<Screenshot id="s09b-kommentti-kirjoituskentassa" title="comment in the text box" alt="The comment has moved into the text box as a card with the feedback text and the label Comment. The comment is sent to Claude when you press Enter in the text box." />
+
 ## If something goes wrong
 
-- **Interrupt:** click the stop button. (You can also press Esc.)
+- **Interrupt:** click the stop button <Screenshot id="i03-pysaytys" alt="black square" inline />. (You can also press Esc.)
 - **Steer:** type a correction while it’s working and press Enter.
 - **Undo:** ask Claude to undo the change, for example “Undo your last change to index.html”.
 
