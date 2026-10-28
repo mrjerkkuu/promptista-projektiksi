@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { commands } from '../content'
 import { useProgress } from '../features/progress'
+import { useContent, useLanguage, useT } from '../i18n'
 import { copyText } from '../lib/clipboard'
 import { formatDate, sourceLabel } from '../lib/format'
 import { OS_LABEL, OS_LIST } from '../lib/os'
@@ -19,8 +19,9 @@ function sourceFor(command: CommandData, os: Os): string {
 /** Kopioitava komento commands.json:sta valitun käyttöjärjestelmän mukaan. */
 export function Command({ id }: CommandProps) {
   const { progress } = useProgress()
-  const command = commands[id]
-  if (!command) return <p className="notice notice--error">Komentoa ”{id}” ei löytynyt.</p>
+  const t = useT()
+  const command = useContent().commands[id]
+  if (!command) return <p className="notice notice--error">{t.command.notFound(id)}</p>
 
   const variants = OS_LIST.filter((os) => command[os] !== undefined && (progress.os === null || progress.os === os))
   if (variants.length === 0) {
@@ -28,7 +29,7 @@ export function Command({ id }: CommandProps) {
     return (
       <p className="muted command__not-needed">
         <Icon name="info" />
-        Tätä komentoa tarvitaan vain {OS_LABEL[other]}-koneilla.
+        {t.command.onlyOn(OS_LABEL[other])}
       </p>
     )
   }
@@ -60,6 +61,8 @@ interface CommandLineProps {
 }
 
 function CommandLine({ text, os, showOs, source, verifiedAt }: CommandLineProps) {
+  const { command: t } = useT()
+  const language = useLanguage()
   const [status, setStatus] = useState<'idle' | 'copied' | 'failed'>('idle')
   const timer = useRef<number | undefined>(undefined)
   useEffect(() => () => window.clearTimeout(timer.current), [])
@@ -87,26 +90,26 @@ function CommandLine({ text, os, showOs, source, verifiedAt }: CommandLineProps)
         </pre>
         <button type="button" className={`command__copy${status === 'copied' ? ' command__copy--copied' : ''}`} onClick={handleCopy}>
           <Icon name={status === 'copied' ? 'check' : 'copy'} />
-          {status === 'copied' ? 'Kopioitu!' : 'Kopioi'}
-          <span className="visually-hidden"> komento {text}</span>
+          {status === 'copied' ? t.copied : t.copy}
+          <span className="visually-hidden">{t.copyHidden(text)}</span>
         </button>
       </div>
       <p className="command__meta">
         <span aria-live="polite" className="visually-hidden">
-          {status === 'copied' ? 'Komento kopioitu leikepöydälle.' : status === 'failed' ? 'Kopiointi ei onnistunut. Valitse komento ja kopioi se itse.' : ''}
+          {status === 'copied' ? t.copiedLive : status === 'failed' ? t.copyFailedLive : ''}
         </span>
         {status === 'failed' && (
           <span className="command__error">
             <Icon name="error" />
-            Kopiointi ei onnistunut, valitse teksti ja kopioi se itse.{' '}
+            {t.copyFailed}{' '}
           </span>
         )}
-        Lähde:{' '}
+        {t.source}{' '}
         <a href={source} target="_blank" rel="noreferrer">
           {sourceLabel(source)}
         </a>
         {' · '}
-        {verifiedAt === 'TODO' ? 'tarkistamatta' : `tarkistettu ${formatDate(verifiedAt)}`}
+        {verifiedAt === 'TODO' ? t.unverified : t.verified(formatDate(verifiedAt, language))}
       </p>
     </div>
   )

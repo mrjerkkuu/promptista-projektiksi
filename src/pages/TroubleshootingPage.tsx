@@ -2,8 +2,8 @@ import { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Command } from '../components/Command'
 import { Nuppu } from '../components/Nuppu'
-import { pathsActiveFirst, troubleshooting } from '../content'
 import { useProgress } from '../features/progress'
+import { useContent, useT } from '../i18n'
 import { InlineText } from '../lib/InlineText'
 import { OS_LABEL } from '../lib/os'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
@@ -11,7 +11,9 @@ import type { TroubleshootingEntry } from '../schemas/content'
 import './pages.css'
 
 export function TroubleshootingPage() {
-  useDocumentTitle('Vianmääritys')
+  const t = useT()
+  const { pathsActiveFirst, troubleshooting } = useContent()
+  useDocumentTitle(t.troubleshooting.title)
   const { entryId } = useParams()
   const { progress } = useProgress()
   const [showAll, setShowAll] = useState(false)
@@ -22,7 +24,7 @@ export function TroubleshootingPage() {
   // Ryhmät: jokaisen polun ongelmat (valittu polku ensin) ja lopuksi kaikkia polkuja koskevat.
   const groups: { key: string; title: string; items: [string, TroubleshootingEntry][] }[] = [
     ...pathsActiveFirst(progress.activePath).map((p) => ({ key: p.id, title: p.title, items: entries.filter(([, e]) => e.path === p.id) })),
-    { key: 'yleiset', title: 'Kaikilla poluilla', items: entries.filter(([, e]) => e.path === undefined) },
+    { key: 'yleiset', title: t.troubleshooting.allPaths, items: entries.filter(([, e]) => e.path === undefined) },
   ].filter((g) => g.items.length > 0)
 
   useEffect(() => {
@@ -33,18 +35,14 @@ export function TroubleshootingPage() {
     <div className="reading">
       <header className="page-header">
         <div className="page-header__text">
-          <h1>Vianmääritys</h1>
-          <p>
-            Jumissa? Se on täysin normaalia, ja jokainen koodaaja törmää näihin. Etsi alta ongelma, joka muistuttaa omaasi. Jos mikään ei auta,
-            voit myös kopioida virheilmoituksen Claudelle ja kysyä, mitä se tarkoittaa.
-          </p>
+          <h1>{t.troubleshooting.title}</h1>
+          <p>{t.troubleshooting.intro}</p>
         </div>
         <Nuppu pose="miettii" size={100} />
       </header>
       {progress.os !== null && (
         <label className="checkbox">
-          <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} /> Näytä myös muiden käyttöjärjestelmien
-          ongelmat (nyt näytetään: {OS_LABEL[progress.os]})
+          <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} /> {t.troubleshooting.showAll(OS_LABEL[progress.os])}
         </label>
       )}
       {groups.map((g) => (
@@ -76,10 +74,10 @@ export function TroubleshootingPage() {
                 </summary>
                 <div className="read-more__body">
                   <p>
-                    <strong>Oire:</strong> <InlineText text={entry.symptom} />
+                    <strong>{t.troubleshooting.symptom}</strong> <InlineText text={entry.symptom} />
                   </p>
                   <p>
-                    <strong>Näin korjaat:</strong>
+                    <strong>{t.troubleshooting.fix}</strong>
                   </p>
                   <ol>
                     {entry.steps.map((step, i) => (

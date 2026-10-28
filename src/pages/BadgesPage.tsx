@@ -1,12 +1,14 @@
 import { Badge } from '../components/Badge'
 import { Nuppu } from '../components/Nuppu'
-import { badges, pathsActiveFirst } from '../content'
 import { useProgress } from '../features/progress'
+import { useContent, useT } from '../i18n'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import type { Badge as BadgeData } from '../schemas/content'
 
 export function BadgesPage() {
-  useDocumentTitle('Merkit')
+  const t = useT()
+  const { badges, pathsActiveFirst } = useContent()
+  useDocumentTitle(t.badges.title)
   const { progress } = useProgress()
   const list = Object.entries(badges)
   // Ryhmät: jokaisen polun merkit (valittu polku ensin), yhteiset merkit ja lopuksi bonusmerkit.
@@ -16,8 +18,8 @@ export function BadgesPage() {
       title: p.title,
       items: list.filter(([, b]) => !b.bonus && b.path === p.id),
     })),
-    { key: 'yhteiset', title: 'Yhteiset merkit', items: list.filter(([, b]) => !b.bonus && b.path === undefined) },
-    { key: 'bonus', title: 'Bonusmerkit', items: list.filter(([, b]) => b.bonus) },
+    { key: 'yhteiset', title: t.badges.shared, items: list.filter(([, b]) => !b.bonus && b.path === undefined) },
+    { key: 'bonus', title: t.badges.bonusGroup, items: list.filter(([, b]) => b.bonus) },
   ].filter((g) => g.items.length > 0)
   const earned = list.filter(([id]) => progress.badges[id]).length
   const pose = earned === 0 ? 'lepaa' : earned === list.length ? 'iloitsee' : 'mitali'
@@ -27,13 +29,13 @@ export function BadgesPage() {
         {/* Nukkuva Nuppu ei kellu. */}
         <Nuppu pose={pose} size={120} float={pose !== 'lepaa'} />
         <div className="page-header__text">
-          <h1>Merkit</h1>
+          <h1>{t.badges.title}</h1>
           <p>
-            Merkkejä saat, kun etenet polulla, teet harjoituksia ja saat asennukset kuntoon. Olet ansainnut{' '}
-            <strong className="mono">
-              {earned}/{list.length}
-            </strong>{' '}
-            merkkiä.
+            {t.badges.intro(
+              <strong className="mono">
+                {earned}/{list.length}
+              </strong>,
+            )}
           </p>
         </div>
       </header>

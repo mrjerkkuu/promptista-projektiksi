@@ -6,13 +6,8 @@ import type { Progress } from './schema'
  * tallenneta erikseen, vaan se lasketaan tallennetuista teoista.
  */
 
+/** Moduulin tila. Tilojen nimet ovat käyttöliittymän sanakirjassa (src/i18n/ui/). */
 export type ModuleStatus = 'not-started' | 'in-progress' | 'complete'
-
-export const MODULE_STATUS_LABEL: Record<ModuleStatus, string> = {
-  'not-started': 'Ei aloitettu',
-  'in-progress': 'Kesken',
-  complete: 'Valmis',
-}
 
 /** Moduulin tiedot, joita laskenta tarvitsee (ModuleEntry täyttää tämän). */
 export interface ModuleLike {

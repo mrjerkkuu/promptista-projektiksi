@@ -35,7 +35,7 @@ vi.mock('../content', () => {
     ],
   }
   const module = { key: 'p/m', id: 'm', quiz }
-  return {
+  const content = {
     commands: {
       'install-git': {
         description: 'Asentaa Gitin.',
@@ -78,6 +78,8 @@ vi.mock('../content', () => {
     },
     getModuleByKey: (key: string) => (key === 'p/m' ? module : undefined),
   }
+  // Komponentit hakevat sisällön kävijän kielellä (useContent → getContent).
+  return { ...content, getContent: () => content }
 })
 
 describe('<Os>', () => {

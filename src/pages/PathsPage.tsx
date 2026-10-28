@@ -1,5 +1,5 @@
-import { paths } from '../content'
 import { useProgress } from '../features/progress'
+import { useContent, useT } from '../i18n'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import { PathCard } from './PathCard'
 import './pages.css'
@@ -9,15 +9,14 @@ import './pages.css'
  * order-kentän mukaisessa järjestyksessä, joten uusi polku ilmestyy tänne ilman koodimuutoksia.
  */
 export function PathsPage() {
-  useDocumentTitle('Oppimispolut')
+  const t = useT()
+  const { paths } = useContent()
+  useDocumentTitle(t.paths.title)
   const { progress } = useProgress()
   return (
     <div className="paths-page">
-      <h1>Oppimispolut</h1>
-      <p className="lead">
-        Valitse, mitä haluat oppia. Jokainen polku alkaa alusta, joten aiempaa kokemusta ei tarvita. Voit vaihtaa polkua milloin tahansa, eikä
-        edistymisesi katoa.
-      </p>
+      <h1>{t.paths.title}</h1>
+      <p className="lead">{t.paths.lead}</p>
       {/* Lista: ruudunlukija kertoo polkujen määrän ("lista, 2 kohdetta"), mikä auttaa, kun polkuja on paljon. */}
       <ul className="path-grid">
         {paths.map((p) => (

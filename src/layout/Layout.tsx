@@ -1,20 +1,22 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { NavLink, useLocation } from 'react-router'
 import { Icon } from '../components/Icon'
+import { LanguageToggle } from '../components/LanguageSelect'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { ThemeSelect } from '../components/ThemeSelect'
 import { useProgress } from '../features/progress'
+import { useT, type UiStrings } from '../i18n'
 import { REPO_URL } from '../lib/feedback'
 import './Layout.css'
 
-const NAV_LINKS = [
-  { to: '/', label: 'Etusivu', end: true },
-  { to: '/polut', label: 'Oppimispolut', end: false },
-  { to: '/sanasto', label: 'Sanasto', end: false },
-  { to: '/vianmaaritys', label: 'Vianmääritys', end: false },
-  { to: '/merkit', label: 'Merkit', end: false },
-  { to: '/asetukset', label: 'Asetukset', end: false },
+const NAV_LINKS: { to: string; label: keyof UiStrings['layout']['nav']; end: boolean }[] = [
+  { to: '/', label: 'home', end: true },
+  { to: '/polut', label: 'paths', end: false },
+  { to: '/sanasto', label: 'glossary', end: false },
+  { to: '/vianmaaritys', label: 'troubleshooting', end: false },
+  { to: '/merkit', label: 'badges', end: false },
+  { to: '/asetukset', label: 'settings', end: false },
 ]
 
 /**
@@ -28,6 +30,8 @@ function navLinkClass(to: string, pathname: string): string {
 
 export function Layout({ children }: { children: ReactNode }) {
   const { storageAvailable, storageCorrupted } = useProgress()
+  const t = useT()
+  const settingsLink = (label: ReactNode) => <NavLink to="/asetukset">{label}</NavLink>
   const main = useRef<HTMLElement>(null)
   const location = useLocation()
   const firstRender = useRef(true)
@@ -58,31 +62,32 @@ export function Layout({ children }: { children: ReactNode }) {
           main.current?.focus()
         }}
       >
-        Siirry sisältöön
+        {t.layout.skipLink}
       </a>
       <header className="site-header">
         <div className="site-header__inner">
           <NavLink to="/" className="site-header__brand">
             <Nuppu pose="kurkistaa" size={40} />
-            <span className="site-header__name">Promptista projektiksi</span>
+            <span className="site-header__name">{t.siteName}</span>
           </NavLink>
-          <nav aria-label="Päävalikko" className="site-header__nav">
+          <nav aria-label={t.layout.mainNav} className="site-header__nav">
             <ul className="site-nav">
               {NAV_LINKS.map((l) => (
                 <li key={l.to}>
                   <NavLink to={l.to} end={l.end} className={() => navLinkClass(l.to, location.pathname)}>
-                    {l.label}
+                    {t.layout.nav[l.label]}
                   </NavLink>
                 </li>
               ))}
             </ul>
           </nav>
           <div className="site-header__tools">
+            <LanguageToggle />
             <OsPicker compact />
             <ThemeSelect />
             <NavLink to="/palaute" className="button button--secondary button--small site-header__feedback">
               <Icon name="message" />
-              Anna palautetta
+              {t.layout.feedback}
             </NavLink>
           </div>
         </div>
@@ -90,14 +95,12 @@ export function Layout({ children }: { children: ReactNode }) {
       <main id="sisalto" ref={main} tabIndex={-1} className="site-main">
         {!storageAvailable && (
           <p className="notice notice--warning" role="status">
-            Selaimesi ei salli tallennusta (esimerkiksi yksityinen selausikkuna). Sivu toimii, mutta edistymisesi ei säily, kun suljet välilehden.
-            Voit siirtää edistymisen talteen <NavLink to="/asetukset">asetuksista</NavLink>.
+            {t.layout.storageUnavailable(settingsLink)}
           </p>
         )}
         {storageCorrupted && (
           <p className="notice notice--warning" role="status">
-            Aiemmin tallennettua edistymistä ei voitu lukea, joten aloitetaan alusta. Jos sinulla on siirtokoodi, voit tuoda sen{' '}
-            <NavLink to="/asetukset">asetuksista</NavLink>.
+            {t.layout.storageCorrupted(settingsLink)}
           </p>
         )}
         {children}
@@ -109,15 +112,11 @@ export function Layout({ children }: { children: ReactNode }) {
             © 2026 Jeremia Vepsäläinen <span aria-hidden="true">·</span>{' '}
             <a href={REPO_URL} target="_blank" rel="noreferrer">
               GitHub
-              <span className="visually-hidden"> (avautuu uuteen välilehteen)</span>
+              <span className="visually-hidden">{t.newTab}</span>
             </a>
           </p>
-          <p className="site-footer__text">
-            Avoin lähdekoodi (MIT). Ei evästeitä, ei seurantaa: edistymisesi tallentuu vain omaan selaimeesi.
-          </p>
-          <p className="site-footer__text">
-            Löysitkö virheen tai keksitkö parannuksen? <NavLink to="/palaute">Anna palautetta</NavLink>
-          </p>
+          <p className="site-footer__text">{t.layout.footerLicense}</p>
+          <p className="site-footer__text">{t.layout.footerFeedback((label) => <NavLink to="/palaute">{label}</NavLink>)}</p>
         </div>
       </footer>
     </div>

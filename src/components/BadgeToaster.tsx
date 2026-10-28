@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router'
-import { badges } from '../content'
 import { useProgress } from '../features/progress'
+import { useContent, useT } from '../i18n'
 import { BadgeIcon } from './Badge'
 import './Badge.css'
 
@@ -29,7 +29,8 @@ export function BadgeToaster() {
 }
 
 function BadgeToast({ id, onClose }: { id: string; onClose: () => void }) {
-  const badge = badges[id]
+  const badge = useContent().badges[id]
+  const { badges: t } = useT()
   useEffect(() => {
     const timer = window.setTimeout(onClose, visibleMs())
     return () => window.clearTimeout(timer)
@@ -40,13 +41,14 @@ function BadgeToast({ id, onClose }: { id: string; onClose: () => void }) {
       <BadgeIcon id={id} badge={badge} earned />
       <div className="badge-toast__body">
         <p className="badge-toast__title">
-          <strong>Uusi merkki: {badge.title}!</strong>
+          <strong>{t.toastTitle(badge.title)}</strong>
         </p>
         <p className="badge-toast__description">{badge.description}</p>
         <div className="badge-toast__actions">
-          <Link to="/merkit">Katso merkit</Link>
+          <Link to="/merkit">{t.seeAll}</Link>
           <button type="button" className="button button--secondary button--small" onClick={onClose}>
-            Sulje<span className="visually-hidden"> ilmoitus</span>
+            {t.close}
+            <span className="visually-hidden">{t.closeHidden}</span>
           </button>
         </div>
       </div>

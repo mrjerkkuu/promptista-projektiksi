@@ -1,24 +1,20 @@
 import { useEffect, useId } from 'react'
-import { themeSchema, useProgress, type Theme } from '../features/progress'
-
-const THEME_LABEL: Record<Theme, string> = {
-  system: 'Laitteen mukaan',
-  light: 'Vaalea',
-  dark: 'Tumma',
-}
+import { themeSchema, useProgress } from '../features/progress'
+import { useT } from '../i18n'
 
 /** Vaalean ja tumman teeman valinta. "Laitteen mukaan" seuraa prefers-color-scheme-asetusta. */
 export function ThemeSelect() {
   const { progress, dispatch } = useProgress()
   const id = useId()
+  const t = useT()
   return (
     <div className="theme-select">
-      <label htmlFor={id}>Teema </label>
+      <label htmlFor={id}>{t.theme.label} </label>
       <span className="select">
         <select id={id} value={progress.theme} onChange={(e) => dispatch({ type: 'setTheme', theme: themeSchema.parse(e.target.value) })}>
-          {themeSchema.options.map((t) => (
-            <option key={t} value={t}>
-              {THEME_LABEL[t]}
+          {themeSchema.options.map((option) => (
+            <option key={option} value={option}>
+              {t.theme.options[option]}
             </option>
           ))}
         </select>

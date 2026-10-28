@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
+import { useT } from '../i18n'
 
-const SITE_NAME = 'Promptista projektiksi'
-
-/** Asettaa selaimen välilehden otsikon. */
+/** Asettaa selaimen välilehden otsikon. Sivuston nimi on sivuston kielellä. */
 export function useDocumentTitle(title?: string) {
+  const { siteName } = useT()
   useEffect(() => {
-    document.title = title ? `${title} – ${SITE_NAME}` : SITE_NAME
-  }, [title])
+    document.title = title ? `${title} – ${siteName}` : siteName
+  }, [title, siteName])
 }

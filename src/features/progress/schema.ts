@@ -1,11 +1,12 @@
 import { z } from 'zod'
+import { languageSchema } from '../../i18n/languages'
 import { idSchema, osSchema } from '../../schemas/content'
 
 /** localStorage-avain (SUUNNITELMA.md luku 9). */
 export const STORAGE_KEY = 'pp-progress-v1'
 
 /** Tallennusskeeman nykyinen versio. Nosta, kun skeema muuttuu, ja lisää migraatio storage.ts:ään. */
-export const CURRENT_VERSION = 2
+export const CURRENT_VERSION = 3
 
 export const themeSchema = z.enum(['system', 'light', 'dark'])
 export type Theme = z.infer<typeof themeSchema>
@@ -25,6 +26,11 @@ export const progressSchema = z
     version: z.literal(CURRENT_VERSION),
     os: osSchema.nullable(),
     theme: themeSchema,
+    /**
+     * Sivuston kieli. null = kävijä ei ole valinnut, jolloin kieli päätellään selaimen kielistä
+     * (src/i18n/languages.ts). Lisätty versiossa 3.
+     */
+    language: languageSchema.nullable(),
     /**
      * Polku, jota kävijä kulkee (SUUNNITELMA.md 15.5): etusivun "Jatka"-painike vie sen seuraavaan aiheeseen.
      * null = polkua ei ole valittu. Lisätty versiossa 2.
@@ -54,6 +60,7 @@ export function createDefaultProgress(): Progress {
     version: CURRENT_VERSION,
     os: null,
     theme: 'system',
+    language: null,
     activePath: null,
     modules: {},
     quizAnswers: {},

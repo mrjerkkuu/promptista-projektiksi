@@ -4,15 +4,17 @@ import { FeedbackPrompt } from '../components/FeedbackPrompt'
 import { ProgressBar } from '../components/ProgressBar'
 import { StatusLabel } from '../components/StatusLabel'
 import { UnreviewedNotice } from '../components/UnreviewedNotice'
-import { getPath, type TopicEntry } from '../content'
+import type { TopicEntry } from '../content'
 import { countProgress, getModuleStatus, useProgress } from '../features/progress'
+import { useContent, useT } from '../i18n'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import { NotFoundPage } from './NotFoundPage'
 import './pages.css'
 
 export function PathPage() {
   const { pathId = '' } = useParams()
-  const path = getPath(pathId)
+  const t = useT()
+  const path = useContent().getPath(pathId)
   useDocumentTitle(path?.title)
   const { progress, dispatch } = useProgress()
   // Polun avaaminen valitsee sen: etusivun "Jatka" vie tämän polun seuraavaan aiheeseen.
@@ -28,12 +30,12 @@ export function PathPage() {
       <p className="lead">{path.description}</p>
       {path.reviewed === false && <UnreviewedNotice pathId={path.id} />}
       <div className="card card--small path-page__progress">
-        <ProgressBar label="Koko polun edistyminen" count={count} />
+        <ProgressBar label={t.paths.pathProgress} count={count} />
       </div>
       {count.total > 0 && count.complete === count.total && (
-        <FeedbackPrompt to={`/palaute?polku=${path.id}`}>Kävit koko polun läpi! Miltä se tuntui?</FeedbackPrompt>
+        <FeedbackPrompt to={`/palaute?polku=${path.id}`}>{t.paths.pathDoneFeedback}</FeedbackPrompt>
       )}
-      <p className="muted">Suositeltu järjestys on alla, mutta voit aloittaa mistä tahansa. Valinnainen bonustehtävä ei vaikuta edistymiseen.</p>
+      <p className="muted">{t.paths.orderNote}</p>
       {path.topics.map((topic) => (
         <TopicSection key={topic.id} pathId={path.id} topic={topic} />
       ))}
@@ -66,6 +68,7 @@ function saveTopicOpen(key: string, open: boolean) {
 /** Aihe on aluksi suljettu; otsikon painike avaa ja sulkee moduulilistan. */
 function TopicSection({ pathId, topic }: { pathId: string; topic: TopicEntry }) {
   const { progress } = useProgress()
+  const t = useT()
   const openKey = `${pathId}/${topic.id}`
   const [open, setOpen] = useState(() => readOpenTopics().includes(openKey))
   const toggle = () => {
@@ -100,7 +103,7 @@ function TopicSection({ pathId, topic }: { pathId: string; topic: TopicEntry }) 
           <p>{topic.description}</p>
         </div>
       </div>
-      <ProgressBar label={`Edistyminen: ${topic.title}`} count={count} topic={topic.number} />
+      <ProgressBar label={t.paths.progressOf(topic.title)} count={count} topic={topic.number} />
       <div id={panelId} className={open ? 'topic__panel topic__panel--open' : 'topic__panel'}>
         <div className="topic__panel-inner">
           <ol className="module-list">
@@ -116,7 +119,7 @@ function TopicSection({ pathId, topic }: { pathId: string; topic: TopicEntry }) 
                     {m.number} {m.title}
                   </Link>
                   <p className="module-list__summary">
-                    {m.optional && <strong>Valinnainen. </strong>}
+                    {m.optional && <strong>{t.paths.optional}</strong>}
                     {m.summary}
                   </p>
                 </div>

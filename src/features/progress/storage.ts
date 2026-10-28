@@ -30,6 +30,11 @@ export const migrations: Record<number, Migration> = {
     version: 2,
     activePath: hasKeysOnPath(v1.modules, 'claude-code') || hasKeysOnPath(v1.quizAnswers, 'claude-code') ? 'claude-code' : null,
   }),
+  /**
+   * v2 → v3: sivuston kieli (language). Ennen versiota 3 sivu oli vain suomeksi, joten vanha kävijä on
+   * käyttänyt sitä suomeksi: kieli pysyy suomena, vaikka selaimen kieli olisi muu.
+   */
+  2: (v2) => ({ ...v2, version: 3, language: 'fi' }),
 }
 
 export class ProgressFormatError extends Error {}
@@ -156,7 +161,7 @@ export function importProgress(input: string): Progress {
   return parseProgress(raw)
 }
 
-/** "Aloita alusta": nollaa edistymisen, mutta säilyttää teemavalinnan. */
+/** "Aloita alusta": nollaa edistymisen, mutta säilyttää teema- ja kielivalinnan. */
 export function resetProgress(previous: Progress): Progress {
-  return { ...createDefaultProgress(), theme: previous.theme }
+  return { ...createDefaultProgress(), theme: previous.theme, language: previous.language }
 }

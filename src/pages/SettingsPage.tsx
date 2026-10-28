@@ -1,20 +1,24 @@
 import { useId, useRef, useState } from 'react'
 import { Icon } from '../components/Icon'
+import { LanguageSelect } from '../components/LanguageSelect'
 import { Nuppu } from '../components/Nuppu'
 import { OsPicker } from '../components/OsPicker'
 import { ThemeSelect } from '../components/ThemeSelect'
 import { exportCode, exportFileContent, importProgress, useProgress } from '../features/progress'
+import { useT } from '../i18n'
 import { copyText } from '../lib/clipboard'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
 import './pages.css'
 
 export function SettingsPage() {
-  useDocumentTitle('Asetukset')
+  const t = useT()
+  useDocumentTitle(t.settings.title)
   return (
     <div className="reading">
-      <h1>Asetukset</h1>
+      <h1>{t.settings.title}</h1>
       <section aria-labelledby="ulkoasu-otsikko" className="card settings-section">
-        <h2 id="ulkoasu-otsikko">Käyttöjärjestelmä ja ulkoasu</h2>
+        <h2 id="ulkoasu-otsikko">{t.settings.appearance}</h2>
+        <LanguageSelect />
         <OsPicker />
         <ThemeSelect />
       </section>
@@ -26,6 +30,7 @@ export function SettingsPage() {
 
 function TransferSection() {
   const { progress, dispatch } = useProgress()
+  const { settings: t } = useT()
   const [code, setCode] = useState<string | null>(null)
   const [copyStatus, setCopyStatus] = useState('')
   const [importText, setImportText] = useState('')
@@ -40,7 +45,7 @@ function TransferSection() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'promptista-projektiksi-edistyminen.json'
+    a.download = t.fileName
     a.click()
     URL.revokeObjectURL(url)
   }
@@ -48,44 +53,41 @@ function TransferSection() {
   function runImport(text: string) {
     try {
       dispatch({ type: 'replace', progress: importProgress(text) })
-      setImportStatus({ ok: true, message: 'Edistyminen tuotu! Olet nyt samassa kohdassa kuin toisella laitteella.' })
+      setImportStatus({ ok: true, message: t.importOk })
       setImportText('')
     } catch {
-      setImportStatus({ ok: false, message: 'Koodia ei voitu lukea. Tarkista, että kopioit koko koodin, ja yritä uudelleen.' })
+      setImportStatus({ ok: false, message: t.importFailed })
     }
   }
 
   return (
     <section aria-labelledby="siirto-otsikko" className="card settings-section">
-      <h2 id="siirto-otsikko">Siirrä edistyminen toiselle laitteelle</h2>
-      <p className="muted">
-        Edistymisesi on tallessa vain tässä selaimessa. Jos haluat jatkaa toisella laitteella tai toisessa selaimessa, siirrä se koodilla tai
-        tiedostolla.
-      </p>
+      <h2 id="siirto-otsikko">{t.transferHeading}</h2>
+      <p className="muted">{t.transferIntro}</p>
 
       <div className="settings-panel">
         <h3>
-          <span className="settings-panel__number mono">1.</span> Vie tältä laitteelta
+          <span className="settings-panel__number mono">1.</span> {t.exportHeading}
         </h3>
         <div className="button-row">
           <button type="button" className="button" onClick={() => setCode(exportCode(progress))}>
-            Näytä siirtokoodi
+            {t.showCode}
           </button>
           <button type="button" className="button button--secondary" onClick={download}>
             <Icon name="download" />
-            Lataa tiedostona
+            {t.download}
           </button>
         </div>
         {code !== null && (
           <div className="stack settings-panel__reveal">
-            <label htmlFor={exportId}>Siirtokoodi (kopioi tämä kokonaan):</label>
+            <label htmlFor={exportId}>{t.codeLabel}</label>
             <textarea id={exportId} readOnly rows={4} value={code} onFocus={(e) => e.currentTarget.select()} />
             <button
               type="button"
               className="button button--secondary button--small"
-              onClick={async () => setCopyStatus((await copyText(code)) ? 'Koodi kopioitu!' : 'Kopiointi ei onnistunut. Valitse koodi ja kopioi se itse.')}
+              onClick={async () => setCopyStatus((await copyText(code)) ? t.codeCopied : t.codeCopyFailed)}
             >
-              Kopioi koodi
+              {t.copyCode}
             </button>
             <p aria-live="polite" className="settings-panel__status">
               {copyStatus}
@@ -96,21 +98,21 @@ function TransferSection() {
 
       <div className="settings-panel">
         <h3>
-          <span className="settings-panel__number mono">2.</span> Tuo toisella laitteella
+          <span className="settings-panel__number mono">2.</span> {t.importHeading}
         </h3>
         <p className="muted settings-panel__warning">
           <Icon name="warning" />
-          Huom! Tuonti korvaa tällä laitteella olevan edistymisen.
+          {t.importWarning}
         </p>
         <div className="stack">
-          <label htmlFor={importId}>Liitä siirtokoodi:</label>
+          <label htmlFor={importId}>{t.pasteLabel}</label>
           <textarea id={importId} rows={4} value={importText} onChange={(e) => setImportText(e.target.value)} />
           <button type="button" className="button" disabled={importText.trim() === ''} onClick={() => runImport(importText)}>
-            Tuo koodista
+            {t.importButton}
           </button>
           {/* Natiivi tiedostovalitsin piilotetaan näkyvistä; sen label näytetään painikkeena. */}
           <div className="file-picker">
-            <span>Tai valitse ladattu tiedosto:</span>
+            <span>{t.orFile}</span>
             <input
               id={fileId}
               type="file"
@@ -124,10 +126,10 @@ function TransferSection() {
               }}
             />
             <label htmlFor={fileId} className="button button--secondary button--small">
-              Valitse tiedosto
+              {t.chooseFile}
             </label>
             <span id={fileStatusId} className="muted file-picker__status">
-              Ei valittua tiedostoa
+              {t.noFile}
             </span>
           </div>
         </div>
@@ -143,14 +145,15 @@ function TransferSection() {
 
 function ResetSection() {
   const { dispatch } = useProgress()
+  const { settings: t } = useT()
   const [confirming, setConfirming] = useState(false)
   const [done, setDone] = useState(false)
   const cancelRef = useRef<HTMLButtonElement>(null)
 
   return (
     <section aria-labelledby="nollaus-otsikko" className="card settings-section">
-      <h2 id="nollaus-otsikko">Aloita alusta</h2>
-      <p className="muted">Poistaa kaiken edistymisesi tästä selaimesta: luetut aiheet, visavastaukset, merkit ja harjoitukset. Teemavalinta säilyy.</p>
+      <h2 id="nollaus-otsikko">{t.resetHeading}</h2>
+      <p className="muted">{t.resetIntro}</p>
       {!confirming ? (
         <button
           type="button"
@@ -161,13 +164,13 @@ function ResetSection() {
             requestAnimationFrame(() => cancelRef.current?.focus())
           }}
         >
-          Aloita alusta…
+          {t.resetButton}
         </button>
       ) : (
         <div className="notice notice--warning notice--mascot notice--rise reset-confirm" role="alertdialog" aria-labelledby="nollaus-varmistus">
           <Nuppu pose="miettii" size={64} />
           <p id="nollaus-varmistus" className="reset-confirm__text">
-            <strong>Haluatko varmasti poistaa kaiken edistymisesi?</strong> Tätä ei voi perua.
+            <strong>{t.resetConfirm}</strong> {t.resetCannotUndo}
           </p>
           <div className="button-row reset-confirm__actions">
             <button
@@ -179,15 +182,15 @@ function ResetSection() {
                 setDone(true)
               }}
             >
-              Kyllä, aloita alusta
+              {t.resetYes}
             </button>
             <button type="button" className="button button--secondary button--small" ref={cancelRef} onClick={() => setConfirming(false)}>
-              Peruuta
+              {t.cancel}
             </button>
           </div>
         </div>
       )}
-      <div aria-live="polite">{done && <p className="notice notice--success notice--rise">Edistyminen nollattu. Tervetuloa uudelleen alkuun!</p>}</div>
+      <div aria-live="polite">{done && <p className="notice notice--success notice--rise">{t.resetDone}</p>}</div>
     </section>
   )
 }
