@@ -1,0 +1,34 @@
+{
+  "ensimmaiset-komennot": {
+    "title": "First commands",
+    "goal": "First type `help` and press Enter. Then try what the command `git --version` replies.",
+    "hint": "Type the letters exactly like this: `help`. The second command has a space and two hyphens: `git --version`",
+    "success": "Great, you’ve run your first commands! This is exactly how the terminal is used: you type an instruction, press Enter and read the answer."
+  },
+  "kansioissa-liikkuminen": {
+    "title": "From folder to folder",
+    "goal": "Use the command `pwd` to find out which folder you are in. Then move into the Documents folder and look at what’s there. Finally, go back to your home folder.",
+    "hint": "You need the commands `pwd`, `cd Documents`, `ls` (or `dir` on Windows) and `cd ..`",
+    "success": "Awesome! You can now check where you are, move from one folder to another and look at what a folder contains."
+  },
+  "luo-projektikansio": {
+    "title": "A folder of your own",
+    "goal": "Create a folder called `project` and move into it.",
+    "hint": "You create the folder with the command `mkdir project` and move into it with the command `cd project`.",
+    "success": "You created a folder and moved into it. That’s exactly how every new project begins!",
+    "conditions": [
+      { "type": "dirExists", "path": "~/project" },
+      { "type": "cwdIs", "path": "~/project" }
+    ]
+  },
+  "projektikansio-harjoitus": {
+    "title": "Project folder ready",
+    "goal": "Practice before you do the same for real: create a folder `projects` in your home folder, a folder `my-site` inside it, and move into the my-site folder.",
+    "hint": "The commands in order: `mkdir projects`, `cd projects`, `mkdir my-site` and `cd my-site`. The command `pwd` shows you whether you’ve arrived.",
+    "success": "Perfect! Next, you’ll do the same in your own terminal.",
+    "conditions": [
+      { "type": "dirExists", "path": "~/projects/my-site" },
+      { "type": "cwdIs", "path": "~/projects/my-site" }
+    ]
+  }
+}

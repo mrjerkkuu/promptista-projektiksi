@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "mika",
+      "question": "What does context mean?",
+      "options": [
+        {
+          "id": "muisti",
+          "text": "Everything Claude keeps in mind during this conversation",
+          "explanation": "Correct. Messages, files and the results of commands all take up space in the context."
+        },
+        {
+          "id": "kaikki",
+          "text": "All the conversations you’ve ever had with Claude",
+          "explanation": "Claude can’t see the content of earlier conversations. That’s why lasting instructions are written in CLAUDE.md."
+        },
+        {
+          "id": "kansio",
+          "text": "The folder where the project is",
+          "explanation": "The folder is where the project lives. The context is the conversation’s “desk”."
+        }
+      ]
+    },
+    {
+      "id": "uusi",
+      "question": "You’re moving on to a completely new task, and Claude has started going round in circles. What do you do?",
+      "options": [
+        {
+          "id": "clear",
+          "text": "I start a new conversation with the command /clear",
+          "explanation": "Exactly. A clean context often helps right away."
+        },
+        {
+          "id": "jatka",
+          "text": "I keep going in the same conversation forever",
+          "explanation": "A conversation that runs too long fills up the context, and Claude’s work gets worse."
+        },
+        {
+          "id": "asenna",
+          "text": "I reinstall Claude Code",
+          "explanation": "There’s nothing wrong with the installation. A new conversation is enough."
+        }
+      ]
+    }
+  ]
+}

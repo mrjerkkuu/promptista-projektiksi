@@ -1,0 +1,172 @@
+{
+  "vibekoodaus": {
+    "term": "vibe coding",
+    "definition": "A way of programming where AI writes the code and a person steers it by describing in their own words what they want."
+  },
+  "claude-code": {
+    "term": "Claude Code",
+    "definition": "Anthropic’s AI assistant that can read and edit files and run commands on your computer when you give it permission. You can use it, for example, in the terminal or in the Claude desktop app."
+  },
+  "claude-tyopoytasovellus": {
+    "term": "Claude desktop app",
+    "definition": "Claude’s app for your computer, for example for Windows and Mac. Its Code tab lets you use Claude Code without a terminal."
+  },
+  "istunto": {
+    "term": "session",
+    "definition": "A single conversation with Claude Code. A session works in the project folder you chose and has its own context. In the desktop app, sessions are listed in the sidebar."
+  },
+  "diff": {
+    "term": "diff",
+    "definition": "A view that shows what changed in the files: added and removed lines stand out in different colors. The word comes from “difference”."
+  },
+  "kielimalli": {
+    "term": "language model",
+    "definition": "An AI program trained on a huge amount of text, which is why it can produce text and code. Claude is a language model.",
+    "readMore": "https://en.wikipedia.org/wiki/Large_language_model"
+  },
+  "agentti": {
+    "term": "agent",
+    "definition": "An AI that doesn’t just answer but also acts: it reads and creates files and runs commands to reach a goal."
+  },
+  "prompti": {
+    "term": "prompt",
+    "definition": "The text you use to tell an AI what you want. An instruction or request."
+  },
+  "terminaali": {
+    "term": "terminal",
+    "definition": "A program where you give the computer instructions by typing instead of clicking with the mouse. On Windows it’s PowerShell, on a Mac it’s Terminal.",
+    "readMore": "https://en.wikipedia.org/wiki/Command-line_interface"
+  },
+  "komento": {
+    "term": "command",
+    "definition": "An instruction you type into the terminal, for example git --version. The command runs when you press Enter."
+  },
+  "kehote": {
+    "term": "prompt (terminal)",
+    "definition": "The text at the start of a terminal line that tells you the terminal is waiting for a command. It often also shows which folder you are in."
+  },
+  "powershell": {
+    "term": "PowerShell",
+    "definition": "Microsoft’s terminal program. Windows comes with the old Windows PowerShell 5.1, but this guide uses the newer PowerShell 7."
+  },
+  "paate": {
+    "term": "Terminal",
+    "definition": "The terminal program that comes with every Mac. You’ll find it in the Utilities folder inside the Applications folder."
+  },
+  "kansio": {
+    "term": "folder",
+    "definition": "A place to keep files and other folders, like a binder. Also called a directory."
+  },
+  "tiedosto": {
+    "term": "file",
+    "definition": "A single saved item, for example a text, an image or the code of a web page. The end of the file name (e.g. .html) tells you its type."
+  },
+  "polku": {
+    "term": "path",
+    "definition": "The address of a folder or file on the computer, for example C:\\Users\\alex\\projects (Windows) or /Users/alex/projects (Mac)."
+  },
+  "kotikansio": {
+    "term": "home folder",
+    "definition": "Your own user folder, which contains for example Desktop, Documents and Downloads. In the terminal it is written as a tilde: ~."
+  },
+  "path": {
+    "term": "PATH",
+    "definition": "A computer setting that tells the terminal which folders to look in for programs. An installer adds the program to PATH, and the terminal reads the setting when it starts."
+  },
+  "winget": {
+    "term": "WinGet",
+    "definition": "Windows’ own package manager, which lets you install programs with a single command (winget install)."
+  },
+  "homebrew": {
+    "term": "Homebrew",
+    "definition": "A popular package manager for the Mac. You install programs with the command brew install."
+  },
+  "git": {
+    "term": "Git",
+    "definition": "A version control program that saves checkpoints of your project. With them you can see what has changed and go back to an earlier version."
+  },
+  "commit": {
+    "term": "commit",
+    "definition": "A Git checkpoint: a saved snapshot of the project’s files plus a short message about what was changed."
+  },
+  "github": {
+    "term": "GitHub",
+    "definition": "An online service that stores Git projects in the cloud. From there you can share a project with others and publish it as a website."
+  },
+  "repo": {
+    "term": "repo",
+    "definition": "Short for repository: a single project’s folder whose history Git keeps track of. On GitHub, every project has its own repo."
+  },
+  "push": {
+    "term": "push",
+    "definition": "The command git push sends the commits you made on your computer to GitHub for safekeeping."
+  },
+  "gh": {
+    "term": "GitHub CLI",
+    "definition": "GitHub’s own command-line tool (gh), which lets you sign in to GitHub and create repos from the terminal."
+  },
+  "kaksivaiheinen-tunnistautuminen": {
+    "term": "two-factor authentication",
+    "definition": "Signing in where, in addition to your password, you need a second check, for example a code shown by an app on your phone. Often shortened to 2FA."
+  },
+  "vs-code": {
+    "term": "VS Code",
+    "definition": "Visual Studio Code, a free code editor. It shows your project’s files and lets you read and edit code."
+  },
+  "plan-mode": {
+    "term": "plan mode",
+    "definition": "Claude Code’s planning mode, where Claude investigates and proposes changes but doesn’t make them yet."
+  },
+  "claude-md": {
+    "term": "CLAUDE.md",
+    "definition": "A text file in the project folder that Claude Code reads at the start of every conversation. You write the project’s lasting instructions in it."
+  },
+  "markdown": {
+    "term": "Markdown",
+    "definition": "A simple way to format text with ordinary characters: for example, # makes a heading and - a list. The file extension is .md."
+  },
+  "lupa": {
+    "term": "permission prompt",
+    "definition": "Claude Code’s question before it edits a file or runs a command. You decide whether to allow it."
+  },
+  "api-avain": {
+    "term": "API key",
+    "definition": "A secret string that a program uses to identify itself to a service’s interface. Treat it like a password."
+  },
+  "env-tiedosto": {
+    "term": ".env file",
+    "definition": "A file where secrets such as API keys are stored separately from the code. It is never sent to GitHub."
+  },
+  "gitignore": {
+    "term": ".gitignore",
+    "definition": "A file that tells Git which files not to track or send to GitHub, for example .env."
+  },
+  "konteksti": {
+    "term": "context",
+    "definition": "Everything Claude “keeps in mind” during a conversation: the messages, the files it has read and the results of commands. The size of the context is limited."
+  },
+  "tokeni": {
+    "term": "token",
+    "definition": "A small piece of text that a language model uses to measure the amount of text. One word can be one or more tokens."
+  },
+  "html": {
+    "term": "HTML",
+    "definition": "The structure and content of a web page: headings, text, images and links. The file extension is .html."
+  },
+  "css": {
+    "term": "CSS",
+    "definition": "The look of a web page: colors, fonts, spacing and layout. The file extension is .css."
+  },
+  "javascript": {
+    "term": "JavaScript",
+    "definition": "A programming language that makes a web page interactive, for example buttons and games. The file extension is .js."
+  },
+  "staattinen-sivu": {
+    "term": "static website",
+    "definition": "A site made of ready-made HTML, CSS and JavaScript files, with no server or database. The browser opens it as it is."
+  },
+  "github-pages": {
+    "term": "GitHub Pages",
+    "definition": "GitHub’s free service that publishes a repo’s static website at its own address."
+  }
+}

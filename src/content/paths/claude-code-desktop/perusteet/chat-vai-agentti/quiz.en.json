@@ -1,0 +1,67 @@
+{
+  "questions": [
+    {
+      "id": "ero",
+      "question": "What is the difference between the chat and the Code tab?",
+      "options": [
+        {
+          "id": "tekee",
+          "text": "Claude on the Code tab can do things on your computer, the chat only answers",
+          "explanation": "Correct. Claude Code creates and edits files in your project folder when you give it permission."
+        },
+        {
+          "id": "sama",
+          "text": "Nothing, they are the same thing with a different name",
+          "explanation": "They are in the same app, but they work differently. The chat writes answers, Claude Code makes changes to files."
+        },
+        {
+          "id": "nopeus",
+          "text": "The Code tab just answers faster",
+          "explanation": "The difference isn’t speed. Claude Code works on your files, the chat only answers."
+        }
+      ]
+    },
+    {
+      "id": "kansio",
+      "question": "Which folder does Claude Code work in?",
+      "options": [
+        {
+          "id": "valittu",
+          "text": "The folder you choose for it",
+          "explanation": "Exactly. That’s why every project gets its own folder."
+        },
+        {
+          "id": "tyopoyta",
+          "text": "Always on the desktop, because it’s a desktop app",
+          "explanation": "The name refers to the app being installed on your computer. You choose the folder yourself."
+        },
+        {
+          "id": "keksii",
+          "text": "Any folder it comes up with itself",
+          "explanation": "You choose the folder when you start working on the Code tab."
+        }
+      ]
+    },
+    {
+      "id": "paattaa",
+      "question": "Who decides how freely Claude may make changes?",
+      "options": [
+        {
+          "id": "sina",
+          "text": "You, by choosing a mode",
+          "explanation": "Correct. The mode determines whether Claude asks permission before a change or you review the changes afterwards."
+        },
+        {
+          "id": "claude",
+          "text": "Claude itself",
+          "explanation": "Claude acts according to the mode you choose. The decision is yours."
+        },
+        {
+          "id": "ei-kukaan",
+          "text": "Nobody, Claude always does everything without asking",
+          "explanation": "Not true. You can choose a mode where Claude asks permission before every change."
+        }
+      ]
+    }
+  ]
+}

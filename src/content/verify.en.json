@@ -1,0 +1,119 @@
+{
+  "powershell": {
+    "title": "PowerShell 7",
+    "question": "Run the command in PowerShell. What did the result look like?",
+    "options": [
+      { "id": "versio", "label": "A single line, for example PowerShell 7.6.0", "explanation": "PowerShell 7 is installed and works. From now on, always use this program." },
+      {
+        "id": "ei-tunnisteta",
+        "label": "An error message that says “not recognized”",
+        "explanation": "PowerShell 7 wasn’t found. Either the installation isn’t finished yet, or the terminal needs to be restarted."
+      },
+      {
+        "id": "vanha",
+        "label": "I opened a program called Windows PowerShell",
+        "explanation": "That’s the old PowerShell 5.1. PowerShell 7 is a different program, and you’ll find it in the Start menu under the name PowerShell 7."
+      },
+      { "id": "muuta", "label": "Something else", "explanation": "No worries, let’s figure it out together." }
+    ]
+  },
+  "git": {
+    "title": "Git",
+    "question": "Run the command in the terminal. What did the result look like?",
+    "options": [
+      { "id": "versio", "label": "git version and a number, for example git version 2.56.0", "explanation": "Git is installed. The exact number may be different, and that’s completely fine." },
+      {
+        "id": "ei-tunnisteta",
+        "label": { "windows": "An error message that says “not recognized”", "mac": "zsh: command not found: git" },
+        "explanation": "The terminal can’t find Git. Most of the time, closing the terminal and opening it again helps."
+      },
+      {
+        "id": "ikkuna",
+        "label": { "windows": "The installation didn’t finish", "mac": "A window popped up about installing the command line developer tools" },
+        "explanation": "The installation isn’t finished yet. See troubleshooting for how to continue."
+      },
+      { "id": "muuta", "label": "Something else", "explanation": "No worries, let’s figure it out together." }
+    ]
+  },
+  "vscode": {
+    "title": "VS Code",
+    "question": "Run the command in the terminal. What did the result look like?",
+    "options": [
+      {
+        "id": "versio",
+        "label": "Three lines: a version number, a long string of letters and numbers, and x64 or arm64",
+        "explanation": "VS Code is installed, and the terminal can find it. You can open folders with the command code ."
+      },
+      { "id": "ei-tunnisteta", "label": "An error message: command not found", "explanation": "VS Code may be installed, but the terminal can’t find the code command yet." },
+      { "id": "muuta", "label": "Something else", "explanation": "No worries, let’s figure it out together." }
+    ]
+  },
+  "gh": {
+    "title": "GitHub CLI",
+    "question": "Run the command in the terminal. What did the result look like?",
+    "options": [
+      { "id": "versio", "label": "gh version, a number and a date, plus a link", "explanation": "GitHub CLI is installed. Next, you’ll sign in." },
+      {
+        "id": "ei-tunnisteta",
+        "label": "An error message: command not found",
+        "explanation": "The terminal can’t find the gh command. Restart the terminal, and it will most likely be fixed."
+      },
+      {
+        "id": "brew",
+        "label": { "windows": "The winget command wasn’t found", "mac": "zsh: command not found: brew" },
+        "explanation": "A tool needed for the installation is missing. Troubleshooting has instructions for installing it."
+      },
+      { "id": "muuta", "label": "Something else", "explanation": "No worries, let’s figure it out together." }
+    ]
+  },
+  "claude": {
+    "title": "Claude Code",
+    "question": "Run the command in a new terminal window. What did the result look like?",
+    "options": [
+      { "id": "versio", "label": "A version number followed by (Claude Code)", "explanation": "Claude Code is installed! Next, you’ll sign in." },
+      {
+        "id": "ei-tunnisteta",
+        "label": "An error message: command not found",
+        "explanation": "The terminal can’t find the claude command. Open a new terminal window and try again."
+      },
+      {
+        "id": "skriptit",
+        "label": { "windows": "An error that says “running scripts is disabled”", "mac": "The installation stopped with an error" },
+        "explanation": "The installation didn’t go through. Troubleshooting has instructions."
+      },
+      { "id": "muuta", "label": "Something else", "explanation": "No worries, let’s figure it out together." }
+    ]
+  },
+  "claude-sovellus": {
+    "title": "Claude desktop app",
+    "question": "Start Claude. What do you see?",
+    "options": [
+      {
+        "id": "kaynnistyy",
+        "label": "A sign-in window or, if you’re already signed in, Claude’s start screen",
+        "explanation": "The app is installed! Next, you’ll sign in and open the Code tab."
+      },
+      { "id": "tyhja", "label": "A blank or frozen window", "explanation": "The app started, but something didn’t finish. Troubleshooting has instructions." },
+      {
+        "id": "ei-loydy",
+        "label": "I can’t find the app after installing it",
+        "explanation": "No worries, the app has most likely been installed, or the installation didn’t finish. Troubleshooting tells you where to look."
+      },
+      { "id": "muuta", "label": "Something else", "explanation": "No worries, let’s figure it out together." }
+    ]
+  },
+  "code-valilehti": {
+    "title": "Code tab",
+    "question": "Click Code at the top of the sidebar. What do you see?",
+    "options": [
+      { "id": "kirjoituskentta", "label": "A text box with a row of options below it", "explanation": "The Code tab works! You’re ready to give Claude its first task." },
+      {
+        "id": "paivita-tilaus",
+        "label": "A prompt to upgrade your plan",
+        "explanation": "Your account doesn’t have a plan that includes Claude Code, or you’re signed in with a different account."
+      },
+      { "id": "virhe-403", "label": "A 403 error or another sign-in error", "explanation": "Something is wrong with signing in. Usually signing in again helps." },
+      { "id": "muuta", "label": "Something else", "explanation": "No worries, let’s figure it out together." }
+    ]
+  }
+}

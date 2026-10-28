@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "miksi-2fa",
+      "question": "What’s the benefit of two-factor authentication?",
+      "options": [
+        {
+          "id": "suoja",
+          "text": "A password alone isn’t enough to get into your account",
+          "explanation": "Correct. Your phone is needed too, so a stolen password isn’t enough on its own."
+        },
+        {
+          "id": "nopeus",
+          "text": "Signing in gets faster",
+          "explanation": "Signing in gets one extra step. In return, your account is much better protected."
+        },
+        {
+          "id": "pakko",
+          "text": "Without it you can’t use GitHub at all",
+          "explanation": "The main reason isn’t that it’s required, it’s your account’s security."
+        }
+      ]
+    },
+    {
+      "id": "palautuskoodit",
+      "question": "What are recovery codes for?",
+      "options": [
+        {
+          "id": "puhelin",
+          "text": "They get you into your account if you lose your phone",
+          "explanation": "Exactly. Keep them in a safe place somewhere other than your phone."
+        },
+        {
+          "id": "salasana",
+          "text": "They replace your password every time you sign in",
+          "explanation": "Recovery codes are a backup for emergencies, not for everyday use."
+        },
+        {
+          "id": "turhat",
+          "text": "They aren’t needed, you can skip them",
+          "explanation": "Without recovery codes, a lost phone can mean losing access to your account."
+        }
+      ]
+    }
+  ]
+}

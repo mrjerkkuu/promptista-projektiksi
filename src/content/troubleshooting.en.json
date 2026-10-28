@@ -1,0 +1,217 @@
+{
+  "komentoa-ei-tunnisteta": {
+    "title": "The command isn’t recognized",
+    "symptom": "On Windows, the terminal replies for example `git: The term 'git' is not recognized…`, on a Mac `zsh: command not found: git`. In other words, the terminal can’t find the program you’re trying to use.",
+    "steps": [
+      "Check the spelling. Even a small typo is enough, and spaces matter: `git --version` works, `git--version` doesn’t.",
+      "If you just installed the program, close the terminal completely and open it again. The terminal only reads which programs are installed when it starts.",
+      "On Windows: if you use Windows Terminal, open a completely new window. A new tab isn’t always enough.",
+      "On a Mac: quit Terminal completely by choosing Terminal → Quit Terminal from the menu bar (or press Cmd+Q), then start it again.",
+      "If the command still doesn’t work, the installation may have been interrupted. Go back to the installation instructions and run the install command again.",
+      "Last resort: restart the whole computer and then try again."
+    ]
+  },
+  "terminaali-uudelleen": {
+    "title": "I installed a program, but the terminal can’t find it",
+    "symptom": "The installation seemed to succeed, but the program doesn’t work in the same terminal window.",
+    "steps": [
+      "This is the most common installation problem, and it’s easy to fix: the terminal needs to be restarted after an installation.",
+      "Close all terminal windows. On Windows, close the PowerShell windows. On a Mac, choose Terminal → Quit Terminal from the menu bar (or press Cmd+Q).",
+      "Open the terminal again and try a version check, for example `git --version`."
+    ]
+  },
+  "suoritusoikeudet": {
+    "title": "PowerShell refuses to run a script",
+    "symptom": "The error message says `cannot be loaded because running scripts is disabled on this system`. By default, Windows blocks running some scripts for security reasons.",
+    "steps": [
+      "First check the current settings with the Get-ExecutionPolicy command below.",
+      "Allow your own user account to run local and signed scripts with the Set-ExecutionPolicy command below. You don’t need administrator rights, because the change only affects you.",
+      "If PowerShell asks for confirmation, answer `Y` and press Enter.",
+      "The change takes effect immediately. Then run the command that didn’t work before again."
+    ]
+  },
+  "winget-puuttuu": {
+    "title": "The winget command isn’t found",
+    "symptom": "PowerShell replies `winget: The term 'winget' is not recognized…`.",
+    "steps": [
+      "WinGet comes with Windows in a package called App Installer. Open Microsoft Store, search for “App Installer” and update or install it.",
+      "Close PowerShell, open it again and try the install command again.",
+      "If winget still doesn’t work, you can also install the program with a regular installer. Below the command there’s a link to the official page where you can download the installer."
+    ]
+  },
+  "vaara-powershell": {
+    "title": "I opened the old Windows PowerShell",
+    "symptom": "The window title says “Windows PowerShell”, or the command `pwsh -Version` doesn’t work. Windows comes with the old PowerShell 5.1, and PowerShell 7 is a separate program.",
+    "steps": [
+      "Open the Start menu and type `PowerShell 7` in the search. Choose it, not “Windows PowerShell”.",
+      "If you can’t find PowerShell 7, it hasn’t been installed yet. Install it by following the Terminal lesson. You can do the installation in the old Windows PowerShell.",
+      "You can check the version with the command `$PSVersionTable`. The PSVersion line should say 7."
+    ]
+  },
+  "xcode-tyokalut": {
+    "title": "On a Mac, a window opens about installing command line tools",
+    "symptom": "When you type `git` or `xcode-select --install`, a window appears offering to install the Command Line Tools. Or the terminal replies `xcode-select: error: command line tools are already installed`.",
+    "steps": [
+      "The window is Apple’s own and safe. Choose Install and accept the terms. The installation may take several minutes.",
+      "If the terminal says the tools are already installed (“already installed”), everything is fine: Git is already on your computer.",
+      "After the installation, open Terminal again and try the command `git --version`."
+    ]
+  },
+  "brew-puuttuu": {
+    "title": "The brew command isn’t found",
+    "symptom": "Terminal replies `zsh: command not found: brew`. The Mac installation of GitHub CLI uses the Homebrew package manager, and it doesn’t come with the Mac.",
+    "steps": [
+      "Install Homebrew with the command below. It asks for your Mac’s password: type it and press Enter. The password isn’t shown while you type, and that’s normal.",
+      "At the end of the installation, Homebrew prints the heading “Next steps” followed by some commands. Copy and run them one at a time so that Terminal can find the brew command.",
+      "Quit Terminal by choosing Terminal → Quit Terminal from the menu bar (or press Cmd+Q), open it again and try `brew --version`."
+    ]
+  },
+  "code-komento-puuttuu": {
+    "title": "The code command doesn’t work",
+    "symptom": "VS Code is installed, but `code .` or `code --version` says the command can’t be found.",
+    "steps": [
+      "On Windows: the VS Code installer adds the code command automatically. Close the terminal, open it again and try again.",
+      "On a Mac: you need to turn on the code command yourself. Open VS Code, choose View → Command Palette… from the menu (or press Cmd+Shift+P) and type `shell command`. Choose “Shell Command: Install 'code' and optionally 'copilot' commands in PATH” (in older versions “Shell Command: Install 'code' command in PATH”).",
+      "On a Mac, also check that VS Code has been moved to the Applications folder and isn’t being run directly from the Downloads folder.",
+      "Restart the terminal and try `code --version`."
+    ]
+  },
+  "gh-kirjautuminen": {
+    "title": "Signing in to GitHub with the gh tool doesn’t work",
+    "symptom": "The command `gh auth login` gets stuck, the browser doesn’t open or signing in fails.",
+    "steps": [
+      "Answer the questions with the arrow keys and Enter: GitHub.com, HTTPS and Login with a web browser. When gh asks whether Git may use your GitHub credentials, answer yes (Y).",
+      "gh shows a one-time code (e.g. ABCD-1234). Copy it and press Enter, and the browser opens. Paste the code into the page that opens in the browser.",
+      "If the browser doesn’t open by itself, open the address https://github.com/login/device yourself and type the code there.",
+      "Finally, check with the command `gh auth status` that you’re signed in."
+    ]
+  },
+  "push-ei-onnistu": {
+    "title": "git push or gh repo create doesn’t work",
+    "symptom": "Sending to GitHub ends in an error that talks about, for example, permissions (permission denied), authentication (authentication failed) or a repo that already exists (already exists).",
+    "steps": [
+      "If the error is about permissions or authentication, sign in again with the command `gh auth login` and answer yes when gh asks about Git credentials.",
+      "If the repo already exists, you already have a repo with the same name on GitHub. Change the name in the command, for example to `my-site-2`.",
+      "If the error says there’s nothing to send (e.g. `src refspec main does not match any`), you haven’t made any commits yet. Make a commit first.",
+      "Copy the error message to Claude and ask what it means. Claude can usually explain it and suggest a fix."
+    ]
+  },
+  "claude-kirjautuminen": {
+    "title": "Claude Code won’t sign in or complains about the plan",
+    "symptom": "Signing in doesn’t work, or Claude Code tells you that your account doesn’t have access.",
+    "steps": [
+      "Check that you have a plan that includes Claude Code. A free Claude account isn’t enough. See the Claude plan lesson.",
+      "Sign in with the same account you used to buy the plan. You can switch accounts by typing `/login` in Claude Code.",
+      "Run `claude doctor`, which checks the installation and reports any problems."
+    ]
+  },
+  "liittaminen-ei-toimi": {
+    "title": "A copied command won’t paste into the terminal",
+    "symptom": "You copied a command from the page, but nothing appears in the terminal.",
+    "steps": [
+      "On Windows: paste by right-clicking inside the terminal window (or press Ctrl+V).",
+      "On a Mac: paste by choosing Edit → Paste from the menu bar (or press Cmd+V).",
+      "Make sure the terminal window is active: click it once before pasting.",
+      "Once the command has been pasted, press Enter."
+    ]
+  },
+  "vaara-muutos": {
+    "title": "Claude made a change I didn’t want",
+    "symptom": "The site broke or looks worse than before Claude’s change.",
+    "steps": [
+      "Don’t panic: if you made a commit before the change, nothing has been lost.",
+      "In Claude Code, you can type `/rewind` (or press Esc twice at an empty prompt) and go back to an earlier point in the conversation and the code.",
+      "With Git, you can restore a single file to the latest checkpoint with the command below. Note that unsaved changes are lost.",
+      "You can also ask Claude: “Undo your last change and restore the site to how it was in the latest commit.”"
+    ]
+  },
+  "pages-ei-nay": {
+    "title": "The GitHub Pages site doesn’t show up or shows an old version",
+    "symptom": "The address shows a 404 error page or an old version of your site.",
+    "steps": [
+      "Wait a few minutes. Publishing usually takes a moment.",
+      "Check in the repo settings (Settings → Pages) that the branch main and the folder / (root) are chosen as the publishing source.",
+      "Make sure the front page’s file name is exactly `index.html` and that it’s at the root of the project folder, not in a subfolder.",
+      "Open the site in a private browser window (from the browser’s menu, for example New private window), so the browser doesn’t show an old saved version. (You can also reload the page bypassing the cache: Ctrl+F5 on Windows, Cmd+Shift+R on a Mac.)"
+    ]
+  },
+  "tyopoyta-jumissa": {
+    "title": "The Claude desktop app shows a blank window or freezes",
+    "symptom": "The app opens, but the window is blank or doesn’t respond.",
+    "steps": [
+      "Quit the app completely and start it again.",
+      "Wait a moment after starting: the app installs updates when it starts.",
+      "If you’re on a workplace or school network, the network may block the connection. Try another network or ask your administrator.",
+      "If nothing helps, download the app again from claude.com/download and install it."
+    ]
+  },
+  "tyopoyta-ei-loydy": {
+    "title": "I can’t find the Claude desktop app",
+    "symptom": "You installed the app, but you can’t find it anywhere.",
+    "steps": [
+      "On Windows: click the Start button on the taskbar, type Claude and choose the app from the search results.",
+      "On a Mac: open Finder and choose Applications in the sidebar. If Claude isn’t there, open the installation file you downloaded from the Downloads folder again and drag the Claude icon into the Applications folder.",
+      "If you still can’t find the app, download it again from claude.com/download and install it."
+    ]
+  },
+  "code-tilaus": {
+    "title": "The Code tab asks you to upgrade your plan",
+    "symptom": "When you click the Code tab, the app asks you to upgrade your plan or to sign in in the browser.",
+    "steps": [
+      "Check that you have a Pro, Max, Team or Enterprise plan. A free Claude account isn’t enough. See the Claude plan topic.",
+      "Make sure you’re signed in to the app with the same account you used to buy the plan.",
+      "If the app asks you to sign in in the browser, finish signing in and restart the app."
+    ]
+  },
+  "code-403": {
+    "title": "The Code tab shows a 403 error",
+    "symptom": "The Code tab shows Error 403: Forbidden or another sign-in error.",
+    "steps": [
+      "Sign out from the app’s menu and sign back in. This helps most of the time.",
+      "Check that your plan is active (Pro, Max, Team or Enterprise).",
+      "Quit the app completely, not just the window. Open it again and sign in.",
+      "Check that your internet connection works."
+    ]
+  },
+  "code-vanha-nakyma": {
+    "title": "The Code tab has no row of options",
+    "symptom": "There’s no environment choice below the text box, or the view doesn’t match this guide’s description.",
+    "steps": [
+      "Your app is most likely an older version. On Windows, click the menu icon (three horizontal lines) in the top-left corner of the sidebar and choose Help → Check for Updates…; on a Mac, choose Claude → Check for Updates… from the menu bar.",
+      "You can see the app’s version on Windows in the same menu under Help → About Claude, and on a Mac from the menu bar under Claude → About Claude.",
+      "If you use a workplace or school account, the organization may manage updates. In that case, ask your administrator."
+    ]
+  },
+  "tyopoyta-vaara-muutos": {
+    "title": "Claude made a change I didn’t want",
+    "symptom": "The site broke or looks worse than before Claude’s change.",
+    "steps": [
+      "Don’t panic: Claude can usually undo its own change.",
+      "Ask Claude: “Undo your last change and restore the site to how it was before it.”",
+      "Click the change numbers in the conversation (e.g. +2 -1) and check in the diff that the undo worked.",
+      "If you made a copy of the project folder, you can also copy the old file back.",
+      "In the future, you can use Manual mode, so you see every change before it’s made."
+    ]
+  },
+  "tyopoyta-muu-ongelma": {
+    "title": "Something else went wrong in the desktop app",
+    "symptom": "The app didn’t work as expected, and the problem isn’t on this list.",
+    "steps": [
+      "Read the error message calmly and write it down.",
+      "Quit the app completely and start it again.",
+      "Ask Claude on the app’s Chat tab or in the browser at claude.ai: “I tried to open the Code tab of the Claude desktop app and got this error. What does it mean and how do I fix it?”",
+      "Anthropic’s documentation has a troubleshooting section: code.claude.com/docs/en/desktop."
+    ]
+  },
+  "muu-ongelma": {
+    "title": "Something else went wrong",
+    "symptom": "The result didn’t match anything expected, and the problem isn’t on this list.",
+    "steps": [
+      "Read the error message calmly. Often the most important information is on the last lines.",
+      "Copy the whole error message and ask Claude about it (if needed, in a claude.ai conversation in the browser): “I tried to install X with the command Y and got this error. What does it mean and how do I fix it?”",
+      "Check that you ran the command in the right program: PowerShell 7 on Windows, Terminal on a Mac.",
+      "Restart the terminal and, if needed, the whole computer, and try again.",
+      "Below every command there’s a link to the official instructions. That’s often where you’ll find the most up-to-date information."
+    ]
+  }
+}

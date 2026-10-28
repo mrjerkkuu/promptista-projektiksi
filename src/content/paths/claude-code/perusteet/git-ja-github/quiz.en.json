@@ -1,0 +1,67 @@
+{
+  "questions": [
+    {
+      "id": "commit",
+      "question": "What is a commit?",
+      "options": [
+        {
+          "id": "tallennus",
+          "text": "A checkpoint you can go back to later",
+          "explanation": "Correct. A commit is like a save point in a game, and it comes with a message about the change."
+        },
+        {
+          "id": "poisto",
+          "text": "A command that deletes old files",
+          "explanation": "A commit doesn’t delete anything. It saves a snapshot of the files."
+        },
+        {
+          "id": "julkaisu",
+          "text": "Publishing the site on the web",
+          "explanation": "Publishing is something else. A commit is made on your own computer, and nobody else sees it."
+        }
+      ]
+    },
+    {
+      "id": "ero",
+      "question": "What is the difference between Git and GitHub?",
+      "options": [
+        {
+          "id": "sama",
+          "text": "They are the same thing with different names",
+          "explanation": "The names are similar, but Git is a program and GitHub is an online service."
+        },
+        {
+          "id": "ero",
+          "text": "Git is a program on your computer, GitHub is an online service where your saves are kept",
+          "explanation": "Exactly. Git makes the checkpoints, GitHub keeps them in the cloud."
+        },
+        {
+          "id": "maksu",
+          "text": "Git costs money, GitHub is free",
+          "explanation": "Git is a free program. GitHub’s basic features are free too."
+        }
+      ]
+    },
+    {
+      "id": "push",
+      "question": "What does push do?",
+      "options": [
+        {
+          "id": "lahettaa",
+          "text": "It sends your commits to GitHub",
+          "explanation": "Correct. After a push, your work is also safe in the cloud."
+        },
+        {
+          "id": "lataa",
+          "text": "It downloads a new version of Git",
+          "explanation": "Push sends your own changes, it doesn’t download programs."
+        },
+        {
+          "id": "commit",
+          "text": "It makes a new commit",
+          "explanation": "The commit is made separately first. Push sends finished commits."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "ensimmainen-komento": {
+    "title": "First command",
+    "description": "You typed your first command into the terminal. That’s how it all begins!"
+  },
+  "kansiomestari": {
+    "title": "Folder master",
+    "description": "You moved from one folder to another and created a folder of your own in the terminal."
+  },
+  "perusteet-hallussa": {
+    "title": "Basics covered",
+    "description": "You went through all the basics: vibe coding, the terminal, folders, Git and agents."
+  },
+  "asennukset-kunnossa": {
+    "title": "All installed",
+    "description": "Git, VS Code, GitHub CLI and Claude Code are installed and checked."
+  },
+  "promptiseppa": {
+    "title": "Prompt smith",
+    "description": "You know how to write a good prompt: what, why and within which limits."
+  },
+  "turvallinen-ohjaaja": {
+    "title": "Safe pilot",
+    "description": "You know how to plan before building, keep secrets secret and go back to a checkpoint."
+  },
+  "ensimmainen-commit": {
+    "title": "First commit",
+    "description": "You saved your own project and sent it to GitHub."
+  },
+  "vibekoodaaja": {
+    "title": "Vibe coder",
+    "description": "You went through the whole path and made your first project of your own. Congratulations!"
+  },
+  "code-valilehti-auki": {
+    "title": "Code tab open",
+    "description": "The Claude desktop app is installed, and the Code tab opens."
+  },
+  "ohjaimissa": {
+    "title": "At the controls",
+    "description": "You know how to choose a mode, review Claude’s changes and keep the context tidy."
+  },
+  "tyopoytakoodari": {
+    "title": "Desktop coder",
+    "description": "You went through the whole path and made your first website of your own in the desktop app. Congratulations!"
+  },
+  "julkaistu": {
+    "title": "Published!",
+    "description": "Your site is on the web at its own address. Send the link to a friend!"
+  }
+}

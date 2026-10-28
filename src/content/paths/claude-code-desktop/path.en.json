@@ -1,0 +1,52 @@
+{
+  "title": "Claude Code in the desktop app",
+  "description": "You’ll learn to use Claude Code in the Claude desktop app and build your first website of your own with it. No terminal needed, and no prior experience.",
+  "audience": "For you if you want to get started the easiest way: with an ordinary app that has buttons and menus. No need to learn the command line.",
+  "topics": [
+    {
+      "id": "perusteet",
+      "title": "Basics",
+      "description": "What vibe coding is, how an agent differs from a chat and why every project gets its own folder. You’ll also hear what Git and GitHub are.",
+      "modules": [
+        { "id": "chat-vai-agentti", "title": "Chat or AI agent?", "summary": "The same app has a chat that answers and Claude Code that acts." },
+        { "id": "kansiot-ja-tiedostot", "title": "Folders and files", "summary": "Claude works in the folder you choose. You make a folder for your projects." }
+      ]
+    },
+    {
+      "id": "kayttoonotto",
+      "title": "Getting set up",
+      "description": "You get a plan, install the Claude desktop app and open the Code tab. No install commands needed.",
+      "modules": [
+        { "id": "claude-tilaus", "title": "Claude plan", "summary": "What kind of plan you need for Claude Code and where to find up-to-date prices." },
+        { "id": "sovelluksen-asennus", "title": "Installing the app", "summary": "You download the Claude desktop app from the official address and install it." },
+        { "id": "code-valilehti", "title": "Signing in and the Code tab", "summary": "You sign in and open the tab where Claude Code works." },
+        { "id": "tarkistuslista", "title": "Checklist", "summary": "All the checks on one page: is everything ready?" }
+      ]
+    },
+    {
+      "id": "sovellus-tutuksi",
+      "title": "Getting to know the app",
+      "description": "You give Claude its first task, choose a suitable mode, review the changes and learn to steer Claude well.",
+      "modules": [
+        { "id": "ensimmainen-istunto", "title": "Your first session", "summary": "You choose a folder and a mode and give Claude its first small task." },
+        { "id": "tilat-ja-turvallisuus", "title": "Modes and safety", "summary": "You decide how freely Claude may act. Passwords and keys stay out of the conversation." },
+        { "id": "muutosten-tarkistus", "title": "Reviewing changes", "summary": "You see what Claude changed, comment on lines and stop it when needed." },
+        { "id": "esikatselu", "title": "Preview", "summary": "You look at the site you’re making right in the app or in your own browser." },
+        { "id": "claude-md", "title": "CLAUDE.md", "summary": "The project’s sticky note that Claude reads at the start of every session." },
+        { "id": "konteksti", "title": "Context", "summary": "What Claude remembers from a session and when it’s worth starting a new one." }
+      ]
+    },
+    {
+      "id": "ensimmainen-projekti",
+      "title": "Your first project",
+      "description": "You build a small website of your own (HTML, CSS and JavaScript) with Claude Code. As a bonus, you publish it on the web.",
+      "modules": [
+        { "id": "projektikansio", "title": "Project folder", "summary": "You come up with a topic, make a folder for the project and start a session for it." },
+        { "id": "suunnittele", "title": "Plan", "summary": "You plan with Claude in Plan mode what goes on the site." },
+        { "id": "rakenna", "title": "Build", "summary": "Claude builds the site, you look at it and ask for changes." },
+        { "id": "viimeistele", "title": "Finishing touches", "summary": "You check the site on a narrow screen, update CLAUDE.md and learn how to continue later." },
+        { "id": "julkaise", "title": "Bonus: publish", "summary": "Optional extra task: you send your site to GitHub and publish it at its own address." }
+      ]
+    }
+  ]
+}

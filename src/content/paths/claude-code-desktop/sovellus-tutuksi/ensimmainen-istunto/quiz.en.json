@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "kansio",
+      "question": "Where does Claude work in a session whose environment is Local?",
+      "options": [
+        {
+          "id": "valittu",
+          "text": "On your own computer, in the folder chosen for the session",
+          "explanation": "Correct. That’s why it’s worth choosing the folder carefully before the first message."
+        },
+        {
+          "id": "pilvi",
+          "text": "In the cloud, without touching your computer’s files",
+          "explanation": "The cloud environment is a separate option. Local means your own computer."
+        },
+        {
+          "id": "kaikki",
+          "text": "On the whole computer, in every folder",
+          "explanation": "Claude works in the folder you choose for the session."
+        }
+      ]
+    },
+    {
+      "id": "suunta",
+      "question": "Claude has started doing something completely different from what you asked. What do you do?",
+      "options": [
+        {
+          "id": "pysayta",
+          "text": "I click the stop button or type a correction",
+          "explanation": "Exactly. You can stop Claude or steer it in a new direction at any time."
+        },
+        {
+          "id": "odota",
+          "text": "I wait until it’s done and start everything over",
+          "explanation": "There’s no need to wait. You can stop it right away or type a correction while it’s working."
+        },
+        {
+          "id": "sulje",
+          "text": "I close the app",
+          "explanation": "That isn’t necessary. The stop button interrupts the work in a controlled way."
+        }
+      ]
+    }
+  ]
+}

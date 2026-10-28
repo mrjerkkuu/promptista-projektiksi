@@ -1,0 +1,67 @@
+{
+  "questions": [
+    {
+      "id": "kuka-kirjoittaa",
+      "question": "In vibe coding, who writes the code?",
+      "options": [
+        {
+          "id": "tekoaly",
+          "text": "The AI writes, you steer and check",
+          "explanation": "Exactly. You say what you want and evaluate the result."
+        },
+        {
+          "id": "sina",
+          "text": "You write everything yourself",
+          "explanation": "That would be traditional programming. In vibe coding, the AI writes the code."
+        },
+        {
+          "id": "kukaan",
+          "text": "The code appears by itself without instructions",
+          "explanation": "The AI always needs your instructions. The clearer you are, the better the result."
+        }
+      ]
+    },
+    {
+      "id": "tarkistus",
+      "question": "The AI answers in a confident voice. What do you do?",
+      "options": [
+        {
+          "id": "luota",
+          "text": "I trust the answer, because it sounds confident",
+          "explanation": "A confident tone doesn’t guarantee a correct answer. The AI can be wrong."
+        },
+        {
+          "id": "tarkista",
+          "text": "I try it out and check the result myself",
+          "explanation": "Good! Open the site, try out the features and ask more if needed."
+        },
+        {
+          "id": "luovu",
+          "text": "I don’t use AI at all",
+          "explanation": "AI is a useful tool. It’s enough that you check the work it produces."
+        }
+      ]
+    },
+    {
+      "id": "rooli",
+      "question": "What is a vibe coder’s most important skill?",
+      "options": [
+        {
+          "id": "konekieli",
+          "text": "Knowing a programming language by heart",
+          "explanation": "You don’t need that. The AI takes care of writing the code."
+        },
+        {
+          "id": "kertominen",
+          "text": "Explaining clearly: what, why and within which limits",
+          "explanation": "Correct! Good instructions are half the work."
+        },
+        {
+          "id": "nopeus",
+          "text": "Typing fast on the keyboard",
+          "explanation": "Speed doesn’t hurt, but clear thinking is far more important."
+        }
+      ]
+    }
+  ]
+}

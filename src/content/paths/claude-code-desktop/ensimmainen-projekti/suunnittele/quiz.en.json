@@ -1,0 +1,46 @@
+{
+  "questions": [
+    {
+      "id": "miksi",
+      "question": "Why is the site planned first in Plan mode?",
+      "options": [
+        {
+          "id": "korjaa",
+          "text": "A plan is easy to change before a single file has been made",
+          "explanation": "Correct. Changing the plan takes one message, changing a finished site takes more work."
+        },
+        {
+          "id": "pakko",
+          "text": "Otherwise Claude refuses to make the site",
+          "explanation": "Claude would make the site even without a plan. Planning is worth it because the result then matches your wishes better."
+        },
+        {
+          "id": "nopea",
+          "text": "In Plan mode, Claude writes code faster",
+          "explanation": "In Plan mode, Claude doesn’t write any code at all. It only plans."
+        }
+      ]
+    },
+    {
+      "id": "rajat",
+      "question": "What does the limits part of the example prompt do?",
+      "options": [
+        {
+          "id": "rajaa",
+          "text": "It tells Claude what it may use and what the site must have",
+          "explanation": "Exactly. Limits keep Claude from making the site too complicated."
+        },
+        {
+          "id": "pituus",
+          "text": "It limits how long Claude’s answer may be",
+          "explanation": "The limits are about how the site is made, not about the length of the answer."
+        },
+        {
+          "id": "turha",
+          "text": "Nothing, Claude ignores it",
+          "explanation": "Claude follows the limits. They are the third part of a good prompt: what, why and within which limits."
+        }
+      ]
+    }
+  ]
+}
