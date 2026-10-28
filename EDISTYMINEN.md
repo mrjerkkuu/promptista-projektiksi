@@ -49,6 +49,20 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 106
 | 16 | Merkit, varmistus, vianmääritys, sanasto, CONTRIBUTING.md | ✅ |
 | 17 | Saavutettavuus, mobiili ja Lighthouse | ✅ |
 
+## Laajennus: englanninkielinen sivusto (28.10.2026)
+
+Päätökset: `PAATOKSET.md`, kohdat 152–161.
+
+| Vaihe | Sisältö | Tila |
+|---|---|---|
+| 18 | Kielikerros: sanakirjat, `useT`/`useContent`, kielivalinta tallennukseen (v3), käännösten yhdistäminen ja validointi | ✅ |
+| 19 | Käyttöliittymän tekstit sanakirjoihin, kielipainike, asetukset, `#/en` ja `#/fi` | ✅ |
+| 20 | Simulaattori, palauteviesti ja päivämäärät kielen mukaan | ✅ |
+| 21 | Käännökset: JSON-sisältö, 19 visaa, 42 tietopakettia ja kuvakaappausten tekstit | ✅ |
+| 22 | Testit (myös axe englanniksi), CLAUDE.md ja CONTRIBUTING.md | ✅ |
+
+Tarkistettavaa: englanninkielinen teksti on käännetty suomenkielisestä, eikä sitä ole verrattu sovellusten englanninkielisiin valikoihin (Windows, macOS) muuten kuin painikkeiden osalta, jotka olivat jo englanniksi. Kuvakaappausten esimerkkisisältö (tiedostot, sivut) on suomeksi.
+
 ## Seuraavaksi
 
 Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Laajennuksen kaikki vaiheet (11–17) on tehty. Omistaja tarkisti työpöytäpolun 27.–28.10.2026 ja testasi aiheet 2.1–3.4 omalla koneellaan, joten ilmoitus ”Ei vielä tarkastettu” on poistettu.

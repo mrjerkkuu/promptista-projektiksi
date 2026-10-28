@@ -163,8 +163,26 @@ Kaikki komennot ovat yhdessä tiedostossa, joten päivitys on yksi muutos yhteen
 | `troubleshooting.json` | Vianmääritys: `os`, `symptom`, `steps` (takahipsujen väliin kirjoitettu teksti näytetään koodina), valinnaiset `commands` ja `path` (polku, jota ongelma koskee; sivu ryhmittelee kohdat poluittain, ja ilman polkua kohta näkyy kohdassa ”Kaikilla poluilla”). |
 | `badges.json` | Merkit ja ehdot: `commandsRun`, `missionsComplete`, `modulesComplete` (`"polku/moduuli"`, valinnainen `"match": "any"`, kun yksikin aihe riittää), `topicComplete`, `verifyPassed` ja `pathComplete`. Valinnainen `path` kertoo, minkä polun merkki on; ilman sitä merkki on yhteinen. Älä kiristä ehtoja: jo ansaittu merkki säilyy, mutta ehto ei saa muuttua niin, ettei sitä enää voi ansaita samalla tavalla. |
 
+## Käännökset
+
+Sivusto on suomeksi ja englanniksi. Suomi on lähdekieli: sisältö kirjoitetaan ensin suomeksi, ja käännös tehdään sen rinnalle samaan kansioon.
+
+| Lähdetiedosto | Käännös | Mitä käännöksessä on |
+|---|---|---|
+| `glossary.json`, `badges.json`, `missions.json`, `troubleshooting.json`, `verify.json`, `commands.json` | `glossary.en.json` jne. | Samat tunnisteet ja vain käännettävät kentät, esim. `{ "git": { "term": "Git", "definition": "…" } }` |
+| `paths/<polku>/path.json` | `path.en.json` | `title`, `description`, `audience` ja aihealueet ja aiheet `id`:n kanssa. Viittauksia (`ref`) ei kirjoiteta käännökseen. |
+| `…/<aihe>/quiz.json` | `quiz.en.json` | Kysymykset ja vaihtoehdot `id`:n kanssa: `question`, `text`, `explanation`. Oikea vastaus tulee lähteestä. |
+| `…/<aihe>/index.mdx` | `index.en.mdx` | Koko tietopaketti käännettynä. Komponentit ja niiden tunnisteet (`<Term id>`, `<Command id>`, `<Screenshot id>` …) ovat samat, `alt`- ja `title`-tekstit käännetään. |
+
+- Rakenne (tunnisteet, ehdot, järjestys, `correct`, `os`, linkit) tulee aina lähdetiedostosta, joten sitä ei kopioida käännökseen. Rakenteen kentän voi silti vaihtaa, kun käännös sitä vaatii: esimerkiksi komennon kansion nimi (`gh repo create my-site`), harjoituksen ehdon polku (`~/projects/my-site`) tai sanaston englanninkielinen `readMore`-linkki.
+- Build tarkistaa käännökset: tuntematon tunniste tai kenttä, väärä tyyppi ja tuntemattoman kielen tiedosto kaatavat buildin. Puuttuva käännös on varoitus, ja sivu näyttää silloin suomenkielisen tekstin (tietopaketin kohdalla myös ilmoituksen).
+- Englanninkielisissä esimerkeissä käytetään kansioita `projects`, `my-site` ja `practice` sekä käyttäjää `alex`, jotta ne vastaavat komentoja ja harjoituksia.
+- Käyttöliittymän omat tekstit ovat sanakirjoissa `src/i18n/ui/fi.tsx` ja `src/i18n/ui/en.tsx`. Älä kirjoita tekstejä suoraan komponentteihin.
+- Uusi kieli lisätään kuten CLAUDE.md:n kohdassa Monikielisyys kerrotaan.
+
 ## Koodi
 
 - Kaikki tyylit tulevat `src/styles/tokens.css`:n muuttujista. Älä kovakoodaa värejä tai mittoja komponentteihin.
+- Kaikki tekstit tulevat sanakirjoista (`useT()`) ja sisältö `useContent()`-hookilla. Älä kovakoodaa tekstejä komponentteihin (ks. Käännökset).
 - Tallennusskeeman muutos: nosta `CURRENT_VERSION`-arvoa (`src/features/progress/schema.ts`) ja lisää migraatio tiedostoon `src/features/progress/storage.ts`.
 - Saavutettavuus (WCAG 2.1 AA) tarkistetaan testeissä axe-corella ja kontrastitestillä. Pidä ne vihreinä.
