@@ -33,7 +33,7 @@ const SHOTS = {
   's04-tilat': { crop: { left: 63, top: 75, width: 987, height: 394 } },
   's05-lupakysely': {},
   's06-pysaytys': {},
-  // Otsikkorivi ”main → working tree” pois: se näkyy vain Git-repossa (PAATOKSET 146).
+  // Otsikkorivi ”main → working tree” pois: se näkyy vain Git-repossa (PAATOKSET 148).
   's08-diff': { crop: { left: 0, top: 38, width: 925, height: 232 } },
   's09-rivikommentti': { crop: { left: 0, top: 38, width: 1018, height: 322 } },
   's09b-kommentti-kirjoituskentassa': {},
