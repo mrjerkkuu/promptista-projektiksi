@@ -4,7 +4,7 @@ import './Screenshot.css'
 
 /**
  * Kuvakaappaukset: tiedoston nimi = kuvan tunniste. no-inline: pienetkään kuvat
- * eivät päädy pääpakettiin, vaan ladataan vasta, kun aihe avataan.
+ * eivät päädy pääpakettiin, vaan ladataan vasta, kun kuva avataan.
  */
 const URLS = import.meta.glob<string>('../assets/kuvakaappaukset/*.webp', { query: '?no-inline', import: 'default', eager: true })
 const SIZES: ScreenshotSizes = sizes
@@ -14,16 +14,19 @@ interface ScreenshotProps {
   id: string
   /** Vaihtoehtoinen teksti: mitä kuvassa on ja mihin kannattaa kiinnittää huomiota. */
   alt: string
-  /** Pieni kuvake tekstin seassa (”napsauta [kuvake]”). Oletuksena kuva on oma lohkonsa. */
+  /** Lyhyt nimi avauspainikkeeseen: ”Näytä kuva: <title>”. Pakollinen, ellei kuva ole inline. */
+  title?: string
+  /** Pieni kuvake tekstin seassa (”napsauta [kuvake]”). Näkyy aina. */
   inline?: boolean
 }
 
 /**
- * Kuvakaappaus tietopaketissa. Kuva latautuu vasta, kun se on tulossa näkyviin,
- * ja width/height varaavat sille tilan, joten teksti ei hypi latauksen aikana.
- * Build tarkistaa, että kuva on olemassa ja vaihtoehtoinen teksti on kirjoitettu.
+ * Kuvakaappaus tietopaketissa. Kuva on piilossa, kunnes lukija avaa sen
+ * painikkeesta ”Näytä kuva”: ohje ei veny pitkäksi, ja kuva latautuu vasta
+ * avattaessa. width/height varaavat kuvalle tilan, joten teksti ei hypi.
+ * Build tarkistaa, että kuva on olemassa ja tekstit on kirjoitettu.
  */
-export function Screenshot({ id, alt, inline = false }: ScreenshotProps) {
+export function Screenshot({ id, alt, title, inline = false }: ScreenshotProps) {
   const src = URLS[`../assets/kuvakaappaukset/${id}.webp`]
   const size = SIZES[id]
   if (!src || !size) return null
@@ -39,5 +42,15 @@ export function Screenshot({ id, alt, inline = false }: ScreenshotProps) {
     />
   )
   if (inline) return img
-  return <figure className="screenshot">{img}</figure>
+  return (
+    <details className="screenshot">
+      <summary className="screenshot__toggle">
+        <span>
+          <span className="screenshot__show">Näytä</span>
+          <span className="screenshot__hide">Piilota</span> kuva: {title}
+        </span>
+      </summary>
+      {img}
+    </details>
+  )
 }

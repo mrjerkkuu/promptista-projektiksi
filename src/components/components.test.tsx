@@ -203,17 +203,25 @@ describe('<NuppuSays>', () => {
 })
 
 describe('<Screenshot>', () => {
-  it('näyttää kuvan omana lohkonaan, laiskasti ladattuna ja tilan varaten', () => {
-    const { container } = renderWithProviders(<Screenshot id="s05-lupakysely" alt="Lupakysely, jossa on painikkeet Deny ja Always allow." />)
-    const img = screen.getByRole('img', { name: 'Lupakysely, jossa on painikkeet Deny ja Always allow.' })
-    expect(img.closest('figure')).toBe(container.querySelector('figure.screenshot'))
+  it('on piilossa, kunnes sen avaa Näytä kuva -painikkeesta', async () => {
+    const user = userEvent.setup()
+    const { container } = renderWithProviders(
+      <Screenshot id="s05-lupakysely" title="lupakysely" alt="Lupakysely, jossa on painikkeet Deny ja Always allow." />,
+    )
+    const toggle = container.querySelector('summary')!
+    expect(toggle).toHaveTextContent('kuva: lupakysely')
+    expect(within(toggle).getByText('Näytä')).toBeInTheDocument()
+    const img = screen.getByAltText('Lupakysely, jossa on painikkeet Deny ja Always allow.')
+    expect(img).not.toBeVisible()
+    await user.click(toggle)
+    expect(img).toBeVisible()
     expect(img).toHaveAttribute('loading', 'lazy')
     expect(img).toHaveAttribute('src', expect.stringMatching(/s05-lupakysely.webp/))
     expect(Number(img.getAttribute('width'))).toBeGreaterThan(0)
     expect(Number(img.getAttribute('height'))).toBeGreaterThan(0)
   })
 
-  it('kuvake tekstin seassa on pelkkä kuva ilman lohkoa', () => {
+  it('kuvake tekstin seassa näkyy aina eikä ole avattava', () => {
     const { container } = renderWithProviders(
       <p>
         Napsauta <Screenshot id="i03-pysaytys" alt="pysäytyspainike" inline />.
@@ -221,11 +229,12 @@ describe('<Screenshot>', () => {
     )
     const img = screen.getByRole('img', { name: 'pysäytyspainike' })
     expect(img).toHaveClass('screenshot-icon')
-    expect(container.querySelector('figure')).toBeNull()
+    expect(img).toBeVisible()
+    expect(container.querySelector('details')).toBeNull()
   })
 
   it('tuntematon kuva ei näytä mitään', () => {
-    const { container } = renderWithProviders(<Screenshot id="olematon" alt="x" />)
+    const { container } = renderWithProviders(<Screenshot id="olematon" alt="x" title="x" />)
     expect(container).toBeEmptyDOMElement()
   })
 })

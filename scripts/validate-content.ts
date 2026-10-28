@@ -86,7 +86,8 @@ export function findTags(mdxSource: string): TagUse[] {
   const tagRe = /<([A-Z][A-Za-z0-9]*)\b([^>]*)>/g
   for (const match of stripCode(mdxSource).matchAll(tagRe)) {
     const attrs: Record<string, string> = {}
-    for (const a of match[2].matchAll(/([a-zA-Z]+)="([^"]*)"/g)) attrs[a[1]] = a[2]
+    // Arvoton attribuutti (esim. <Screenshot … inline />) saa arvon "true".
+    for (const a of match[2].matchAll(/([a-zA-Z]+)(?:="([^"]*)")?/g)) attrs[a[1]] = a[2] ?? 'true'
     tags.push({ name: match[1], attrs })
   }
   return tags
@@ -230,6 +231,7 @@ export function validateContent(contentDir: string, screenshotsDir = path.join(c
               else if (!screenshotSizes[tag.attrs.id]) errors.push(`${where} tuntematon kuva "${tag.attrs.id}" (lisää se scripts/optimize-screenshots.mjs:ään ja aja npm run screenshots)`)
               else usedScreenshots.add(tag.attrs.id)
               if (!tag.attrs.alt?.trim()) errors.push(`${where} puuttuu vaihtoehtoinen teksti (alt)`)
+              if (!tag.attrs.inline && !tag.attrs.title?.trim()) errors.push(`${where} puuttuu title (avauspainikkeen teksti ”Näytä kuva: …”)`)
               break
           }
         }

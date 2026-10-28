@@ -21,6 +21,12 @@ describe('findTags', () => {
       { name: 'Term', attrs: { id: 'git' } },
     ])
   })
+
+  it('arvoton attribuutti saa arvon true', () => {
+    expect(findTags('<Screenshot id="i03" alt="musta neliö" inline />')).toEqual([
+      { name: 'Screenshot', attrs: { id: 'i03', alt: 'musta neliö', inline: 'true' } },
+    ])
+  })
 })
 
 /** Rakentaa väliaikaisen, toimivan sisältökansion, jota testit rikkovat. */
@@ -309,20 +315,25 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
     it('kelvollinen kuva menee läpi', () => {
       const d = fixture()
       const shots = addScreenshots(d)
-      replaceIn(mdx(d), '<Quiz />', '<Screenshot id="kuva" alt="Valikko auki" />\nNapsauta <Screenshot id="kuva" alt="kuvake" inline />.\n<Quiz />')
+      replaceIn(mdx(d), '<Quiz />', '<Screenshot id="kuva" alt="Valikko auki" title="valikko" />\nNapsauta <Screenshot id="kuva" alt="kuvake" inline />.\n<Quiz />')
       const result = validateContent(d, shots)
       expect(result.errors).toEqual([])
       expect(result.warnings).toEqual([])
     })
 
-    it('tuntematon kuva, puuttuva id ja puuttuva tai tyhjä vaihtoehtoinen teksti', () => {
+    it('tuntematon kuva, puuttuva id, puuttuva tai tyhjä vaihtoehtoinen teksti ja puuttuva title', () => {
       const d = fixture()
       const shots = addScreenshots(d)
-      replaceIn(mdx(d), '<Quiz />', '<Screenshot id="olematon" alt="A" />\n<Screenshot alt="B" />\n<Screenshot id="kuva" />\n<Screenshot id="kuva" alt=" " />\n<Quiz />')
+      replaceIn(
+        mdx(d),
+        '<Quiz />',
+        '<Screenshot id="olematon" alt="A" title="a" />\n<Screenshot alt="B" title="b" />\n<Screenshot id="kuva" title="c" />\n<Screenshot id="kuva" alt=" " title="d" />\n<Screenshot id="kuva" alt="E" />\n<Quiz />',
+      )
       const errors = validateContent(d, shots).errors.join('\n')
       expect(errors).toMatch(/tuntematon kuva "olematon"/)
       expect(errors).toMatch(/<Screenshot> puuttuu id/)
       expect(errors.match(/puuttuu vaihtoehtoinen teksti/g)).toHaveLength(2)
+      expect(errors.match(/puuttuu title/g)).toHaveLength(1)
     })
 
     it('kuva ilman kokoa tai koko ilman kuvaa', () => {

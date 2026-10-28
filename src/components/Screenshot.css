@@ -1,17 +1,68 @@
-/* Kuvakaappaus omana lohkonaan. Kuvat ovat vaaleasta teemasta, joten reunus
-   erottaa ne sivusta molemmissa teemoissa, ja tummassa teemassa niitä himmennetään
-   hieman (--screenshot-filter), etteivät ne häikäise. */
+/* Kuvakaappaus avattavana: painike ”Näytä kuva: …”, jonka alle kuva aukeaa.
+   Kuvat ovat vaaleasta teemasta, joten reunus erottaa ne sivusta molemmissa
+   teemoissa, ja tummassa teemassa niitä himmennetään hieman
+   (--screenshot-filter), etteivät ne häikäise. */
 .screenshot {
-  margin: var(--space-5) 0;
+  margin: var(--space-4) 0;
+}
+
+.screenshot__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-target-min);
+  padding: var(--space-1) var(--space-4);
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-link);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  list-style: none;
+  cursor: pointer;
+}
+
+.screenshot__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.screenshot__toggle:hover {
+  background: var(--color-primary-soft);
+}
+
+.screenshot__toggle::after {
+  content: '';
+  flex: none;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  background: currentColor;
+  -webkit-mask: var(--mask-chevron) center / contain no-repeat;
+  mask: var(--mask-chevron) center / contain no-repeat;
+  transition: transform var(--duration-medium) var(--easing-spring);
+}
+
+.screenshot[open] > .screenshot__toggle::after {
+  transform: rotate(180deg);
+}
+
+/* Painikkeen verbi vaihtuu: Näytä ↔ Piilota. Piilotettu sana ei näy ruudunlukijallekaan. */
+.screenshot[open] .screenshot__show,
+.screenshot:not([open]) .screenshot__hide {
+  display: none;
 }
 
 .screenshot__image {
   display: block;
   max-width: 100%;
   height: auto;
+  margin-top: var(--space-3);
   border: var(--border-width) solid var(--color-border-subtle);
   border-radius: var(--radius-sm);
   filter: var(--screenshot-filter);
+}
+
+.screenshot[open] > .screenshot__image {
+  animation: rise var(--duration-medium) var(--easing-standard) both;
 }
 
 /* Kuvake tekstin seassa: rivin korkuinen, ei venytä riviväliä. */
