@@ -44,6 +44,8 @@ Tarkista sävy (rento sinuttelu), asiat ja se, ymmärtääkö täysi aloittelija
 | ☑ ★ 3.5 GitHub-tili | `claude-code/asennukset/github-tili` | yhteinen, bonus |
 | ☑ ★ 3.6 Bonus: julkaise | `claude-code-desktop/ensimmainen-projekti/julkaise` | GitHubin verkkosivun kautta |
 
+*Omistaja kävi aiheet 2.1–3.4 läpi omalla koneellaan (Windows) 28.10.2026 ja korjasi tekstit havaintojen mukaan. Kaikki toimi korjausten jälkeen ohjeiden mukaan.*
+
 Lisäksi:
 
 - [x] Uudet vianmäärityksen kohdat (`src/content/troubleshooting.json`): `tyopoyta-jumissa`, `tyopoyta-ei-loydy`, `code-tilaus`, `code-403`, `code-vanha-nakyma`, `tyopoyta-muu-ongelma`.
