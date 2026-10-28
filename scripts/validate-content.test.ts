@@ -21,6 +21,12 @@ describe('findTags', () => {
       { name: 'Term', attrs: { id: 'git' } },
     ])
   })
+
+  it('arvoton attribuutti saa arvon true', () => {
+    expect(findTags('<Screenshot id="i03" alt="musta neliö" inline />')).toEqual([
+      { name: 'Screenshot', attrs: { id: 'i03', alt: 'musta neliö', inline: 'true' } },
+    ])
+  })
 })
 
 /** Rakentaa väliaikaisen, toimivan sisältökansion, jota testit rikkovat. */
@@ -339,6 +345,59 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
       const errors = validateContent(d).errors.join('\n')
       expect(errors).toMatch(/index\.en\.mdx: <Term> tuntematon sanastotermi "olematon"/)
       expect(errors).toMatch(/index\.en\.mdx: visa on olemassa/)
+    })
+  })
+
+  describe('kuvakaappaukset', () => {
+    /** Kuvakansio, jossa on kuva "kuva" (kuvan sisällöllä ei ole väliä, vain olemassaololla). */
+    const addScreenshots = (d: string) => {
+      const shots = path.join(d, 'kuvat')
+      fs.mkdirSync(shots)
+      fs.writeFileSync(path.join(shots, 'kuvat.json'), JSON.stringify({ kuva: { width: 300, height: 200 } }))
+      fs.writeFileSync(path.join(shots, 'kuva.webp'), '')
+      return shots
+    }
+
+    it('kelvollinen kuva menee läpi', () => {
+      const d = fixture()
+      const shots = addScreenshots(d)
+      replaceIn(mdx(d), '<Quiz />', '<Screenshot id="kuva" alt="Valikko auki" title="valikko" />\nNapsauta <Screenshot id="kuva" alt="kuvake" inline />.\n<Quiz />')
+      const result = validateContent(d, shots)
+      expect(result.errors).toEqual([])
+      // Fixturessa ei ole käännöksiä, joten niiden puuttumisesta varoitetaan.
+      expect(result.warnings.filter((w) => !w.includes('käännös puuttuu'))).toEqual([])
+    })
+
+    it('tuntematon kuva, puuttuva id, puuttuva tai tyhjä vaihtoehtoinen teksti ja puuttuva title', () => {
+      const d = fixture()
+      const shots = addScreenshots(d)
+      replaceIn(
+        mdx(d),
+        '<Quiz />',
+        '<Screenshot id="olematon" alt="A" title="a" />\n<Screenshot alt="B" title="b" />\n<Screenshot id="kuva" title="c" />\n<Screenshot id="kuva" alt=" " title="d" />\n<Screenshot id="kuva" alt="E" />\n<Quiz />',
+      )
+      const errors = validateContent(d, shots).errors.join('\n')
+      expect(errors).toMatch(/tuntematon kuva "olematon"/)
+      expect(errors).toMatch(/<Screenshot> puuttuu id/)
+      expect(errors.match(/puuttuu vaihtoehtoinen teksti/g)).toHaveLength(2)
+      expect(errors.match(/puuttuu title/g)).toHaveLength(1)
+    })
+
+    it('kuva ilman kokoa tai koko ilman kuvaa', () => {
+      const d = fixture()
+      const shots = addScreenshots(d)
+      fs.rmSync(path.join(shots, 'kuva.webp'))
+      fs.writeFileSync(path.join(shots, 'ylimaarainen.webp'), '')
+      const errors = validateContent(d, shots).errors.join('\n')
+      expect(errors).toMatch(/kuvaa "kuva.webp" ei löydy/)
+      expect(errors).toMatch(/kuvalta "ylimaarainen.webp" puuttuu koko/)
+    })
+
+    it('käyttämättömästä kuvasta tulee varoitus', () => {
+      const d = fixture()
+      const result = validateContent(d, addScreenshots(d))
+      expect(result.errors).toEqual([])
+      expect(result.warnings.join()).toMatch(/kuvaa "kuva" ei käytetä/)
     })
   })
 

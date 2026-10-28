@@ -8,6 +8,7 @@ import { Os } from './Os'
 import { Path } from './Path'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
+import { Screenshot } from './Screenshot'
 import { Term } from './Term'
 import { VerifyStep } from './VerifyStep'
 
@@ -200,6 +201,43 @@ describe('<NuppuSays>', () => {
     const note = screen.getByRole('note')
     expect(note).toHaveTextContent('Nuppu sanoo: Kokeile rohkeasti!')
     expect(container.querySelector('.nuppu--koodaa')).toHaveAttribute('aria-hidden', 'true')
+  })
+})
+
+describe('<Screenshot>', () => {
+  it('on piilossa, kunnes sen avaa Näytä kuva -painikkeesta', async () => {
+    const user = userEvent.setup()
+    const { container } = renderWithProviders(
+      <Screenshot id="s05-lupakysely" title="lupakysely" alt="Lupakysely, jossa on painikkeet Deny ja Always allow." />,
+    )
+    const toggle = container.querySelector('summary')!
+    expect(toggle).toHaveTextContent('kuva: lupakysely')
+    expect(within(toggle).getByText('Näytä')).toBeInTheDocument()
+    const img = screen.getByAltText('Lupakysely, jossa on painikkeet Deny ja Always allow.')
+    expect(img).not.toBeVisible()
+    await user.click(toggle)
+    expect(img).toBeVisible()
+    expect(img).toHaveAttribute('loading', 'lazy')
+    expect(img).toHaveAttribute('src', expect.stringMatching(/s05-lupakysely.webp/))
+    expect(Number(img.getAttribute('width'))).toBeGreaterThan(0)
+    expect(Number(img.getAttribute('height'))).toBeGreaterThan(0)
+  })
+
+  it('kuvake tekstin seassa näkyy aina eikä ole avattava', () => {
+    const { container } = renderWithProviders(
+      <p>
+        Napsauta <Screenshot id="i03-pysaytys" alt="pysäytyspainike" inline />.
+      </p>,
+    )
+    const img = screen.getByRole('img', { name: 'pysäytyspainike' })
+    expect(img).toHaveClass('screenshot-icon')
+    expect(img).toBeVisible()
+    expect(container.querySelector('details')).toBeNull()
+  })
+
+  it('tuntematon kuva ei näytä mitään', () => {
+    const { container } = renderWithProviders(<Screenshot id="olematon" alt="x" title="x" />)
+    expect(container).toBeEmptyDOMElement()
   })
 })
 

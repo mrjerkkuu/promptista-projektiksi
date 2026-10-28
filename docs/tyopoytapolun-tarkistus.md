@@ -125,11 +125,11 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 
 ## 4. Kuvakaappaukset
 
-Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämään oikean painikkeen. Kun kuvat ovat valmiina, Claude lisää ne aiheisiin (vaihtoehtoiset tekstit, koot ja tumman teeman tarkistus).
+Kuvat helpottavat aloittelijaa löytämään oikean painikkeen. Valmiit kuvat lisättiin aiheisiin 28.10.2026 (`<Screenshot>`-komponentti, PAATOKSET 146–151). Sarake **Aiheessa** kertoo, missä aiheessa kuva on (☑) tai miksi valmista kuvaa ei käytetty (–). Osa kuvista on rajattu tiukemmin skriptissä `scripts/optimize-screenshots.mjs`, esimerkiksi s08:sta ja s09:stä on poistettu otsikkorivi ”main → working tree”.
 
 ### Ohjeet kuvaamiseen
 
-- **Tallenna** kuvat kansioon `kuvakaappaukset/tyopoyta/` PNG-muodossa ja nimeä ne alla olevan taulukon mukaan.
+- **Tallenna** kuvat kansioon `kuvakaappaukset/tyopoyta/` PNG-muodossa ja nimeä ne alla olevan taulukon mukaan. Kun vaihdat kuvan, tallenna se samalla nimellä ja aja `npm run screenshots` (ks. CONTRIBUTING.md).
 - **Yksityisyys:** ennen kuvaamista piilota tai rajaa pois sähköpostiosoite, nimi, tilin tiedot, muiden istuntojen nimet ja polut, joissa näkyy käyttäjänimesi (esimerkiksi `C:\Users\nimi`). Kuvat päätyvät julkiselle sivulle.
 - **Ikkuna:** sovellus noin 1280 × 800 pikselin kokoisena, vaalea teema. Rajaa kuva niin, että olennainen kohta näkyy selvästi. Koko ikkunaa ei tarvita.
 - **Käyttöjärjestelmä:** kun sovellus näyttää samalta kummallakin koneella, yksi kuva riittää (merkintä *kumpi tahansa*). Resurssienhallinnasta ja Finderista tarvitaan omat kuvat.
@@ -138,73 +138,75 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 
 ### Käyttöönotto (aihealue 1)
 
-| Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
-|---|---|---|---|---|
-| – | `k01-lataussivu.png` | claude.com/download, latauspainikkeet näkyvissä | kumpi tahansa | 1.2 |
-| – | `k02-mac-asennusikkuna.png` | ladatun asennustiedoston ikkuna (Clauden kuvake ja Ohjelmat-kansio) | Mac | 1.2 |
-| – | `k03-win-asennus.png` | asennusohjelma käynnissä tai valmis | Windows | 1.2 |
-| – | `k04-kirjautuminen.png` | kirjautumisnäkymä ensimmäisellä käynnistyksellä | kumpi tahansa | 1.3 |
-| – | `k05-valilehdet.png` | sivupalkin välilehdet nimineen, Code korostettuna | kumpi tahansa | 1.3 |
-| ☑ | `k06-valilehdet-kuvakkeina.png` | sama, kun välilehdissä näkyy pelkät kuvakkeet | kumpi tahansa | 1.3 |
-| ☑ | `k07-code-valilehti.png` | tyhjä Code-välilehti: kirjoituskenttä ja valintarivi | kumpi tahansa | 1.3 |
-| – | `k08-tilauskehotus.png` | kehotus päivittää tilaus (vain jos saat sen esiin, esimerkiksi ilmaistilillä) | kumpi tahansa | vianmääritys |
+| Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe | Aiheessa |
+|---|---|---|---|---|---|
+| – | `k01-lataussivu.png` | claude.com/download, latauspainikkeet näkyvissä | kumpi tahansa | 1.2 |  |
+| – | `k02-mac-asennusikkuna.png` | ladatun asennustiedoston ikkuna (Clauden kuvake ja Ohjelmat-kansio) | Mac | 1.2 |  |
+| – | `k03-win-asennus.png` | asennusohjelma käynnissä tai valmis | Windows | 1.2 |  |
+| – | `k04-kirjautuminen.png` | kirjautumisnäkymä ensimmäisellä käynnistyksellä | kumpi tahansa | 1.3 |  |
+| – | `k05-valilehdet.png` | sivupalkin välilehdet nimineen, Code korostettuna | kumpi tahansa | 1.3 |  |
+| ☑ | `k06-valilehdet-kuvakkeina.png` | sama, kun välilehdissä näkyy pelkät kuvakkeet | kumpi tahansa | 1.3 | ☑ 1.3 |
+| ☑ | `k07-code-valilehti.png` | tyhjä Code-välilehti: kirjoituskenttä ja valintarivi | kumpi tahansa | 1.3 | ☑ 1.3 |
+| – | `k08-tilauskehotus.png` | kehotus päivittää tilaus (vain jos saat sen esiin, esimerkiksi ilmaistilillä) | kumpi tahansa | vianmääritys |  |
 
 ### Perusteet (aihe 0.3)
 
-| Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
-|---|---|---|---|---|
-| – | `p01-win-kayttajat.png` | Resurssienhallinta: vasen reuna (Tämä tietokone) ja Käyttäjät-kansio | Windows | 0.3 |
-| – | `p02-win-uusi-kansio.png` | hiiren oikean painikkeen valikko Uusi → Kansio | Windows | 0.3 |
-| – | `p03-mac-finder-dock.png` | Finderin kuvake Dockissa | Mac | 0.3 |
-| – | `p04-mac-siirry-koti.png` | valikkorivin Siirry → Koti | Mac | 0.3 |
-| – | `p05-mac-uusi-kansio.png` | valikkorivin Arkisto → Uusi kansio | Mac | 0.3 |
+| Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe | Aiheessa |
+|---|---|---|---|---|---|
+| – | `p01-win-kayttajat.png` | Resurssienhallinta: vasen reuna (Tämä tietokone) ja Käyttäjät-kansio | Windows | 0.3 |  |
+| – | `p02-win-uusi-kansio.png` | hiiren oikean painikkeen valikko Uusi → Kansio | Windows | 0.3 |  |
+| – | `p03-mac-finder-dock.png` | Finderin kuvake Dockissa | Mac | 0.3 |  |
+| – | `p04-mac-siirry-koti.png` | valikkorivin Siirry → Koti | Mac | 0.3 |  |
+| – | `p05-mac-uusi-kansio.png` | valikkorivin Arkisto → Uusi kansio | Mac | 0.3 |  |
 
 ### Sovellus tutuksi (aihealue 2)
 
-| Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
-|---|---|---|---|---|
-| ☑ | `s01-new.png` | sivupalkin **+ New** | kumpi tahansa | 2.1 |
-| ☑ | `s02-ymparisto.png` | ympäristövalikko auki, Local-ryhmä näkyvissä | kumpi tahansa | 2.1 |
-| ☑ | `s03-open-folder.png` | kansion valinta auki, **Open folder…** näkyvissä | kumpi tahansa | 2.1 |
-| ☑ | `s04-tilat.png` | tilavalikko auki: Manual, Accept edits, Plan, Auto | kumpi tahansa | 2.2 |
-| ☑ | `s05-lupakysely.png` | Manual-tilan lupakysely: Claude ehdottaa muutosta ja odottaa (painikkeet näkyvissä) | kumpi tahansa | 2.1, 2.2 |
-| ☑ | `s06-pysaytys.png` | pysäytyspainike, kun Claude työskentelee | kumpi tahansa | 2.1, 2.3 |
-| ☑ | `s07-changes-kortti.png` | Changes-kortti ja luvut kuten `+12 -1` | kumpi tahansa | 2.3 |
-| ☑ | `s08-diff.png` | diff-näkymä, jossa on lisättyjä ja poistettuja rivejä | kumpi tahansa | 2.3 |
-| ☑ | `s09-rivikommentti.png` | diffin rivikommentin kenttä auki | kumpi tahansa | 2.3 |
-| ☑ | `s10-tiedostolinkki.png` | tiedoston nimi keskustelussa (napsautettava) | kumpi tahansa | 2.1, 2.4 |
-| ☑ | `s11-browser.png` | Browser-paneeli, jossa näkyy ”Hei maailma” -sivu | kumpi tahansa | 2.4 |
-| – | `s12-open-kortti.png` | keskustelun kortti, jossa on **Open**-painike (jos tulee vastaan) | kumpi tahansa | 2.4 |
-| – | `s13-sivuston-lupa.png` | sivuston lupakysely Allow once / Always allow / Deny (jos tulee vastaan) | kumpi tahansa | 2.4 |
-| ☑ | `s14-tiedostopaneeli.png` | CLAUDE.md auki tiedostopaneelissa | kumpi tahansa | 2.6 |
-| ☑ | `s15-context-kortti.png` | Context-kortti ja prosenttiluku | kumpi tahansa | 2.7 |
+| Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe | Aiheessa |
+|---|---|---|---|---|---|
+| ☑ | `s01-new.png` | sivupalkin **+ New** | kumpi tahansa | 2.1 | – korvattu kuvakkeella i02 |
+| ☑ | `s02-ymparisto.png` | ympäristövalikko auki, Local-ryhmä näkyvissä | kumpi tahansa | 2.1 | ☑ 2.1 |
+| ☑ | `s03-open-folder.png` | kansion valinta auki, **Open folder…** näkyvissä | kumpi tahansa | 2.1 | ☑ 2.1 |
+| ☑ | `s04-tilat.png` | tilavalikko auki: Manual, Accept edits, Plan, Auto | kumpi tahansa | 2.2 | ☑ 2.2 |
+| ☑ | `s05-lupakysely.png` | Manual-tilan lupakysely: Claude ehdottaa muutosta ja odottaa (painikkeet näkyvissä) | kumpi tahansa | 2.1, 2.2 | ☑ 2.1 |
+| ☑ | `s06-pysaytys.png` | pysäytyspainike, kun Claude työskentelee | kumpi tahansa | 2.1, 2.3 | ☑ 2.1 |
+| ☑ | `s07-changes-kortti.png` | Changes-kortti ja luvut kuten `+12 -1` | kumpi tahansa | 2.3 | – vain Git-repossa |
+| ☑ | `s08-diff.png` | diff-näkymä, jossa on lisättyjä ja poistettuja rivejä | kumpi tahansa | 2.3 | ☑ 2.3 |
+| ☑ | `s09-rivikommentti.png` | diffin rivikommentin kenttä auki | kumpi tahansa | 2.3 | ☑ 2.3 |
+| ☑ | `s09b-kommentti-kirjoituskentassa.png` | rivikommentti kirjoituskentässä ennen lähetystä (lisäkuva) | kumpi tahansa | 2.3 | ☑ 2.3 |
+| ☑ | `s10-tiedostolinkki.png` | tiedoston nimi keskustelussa (napsautettava) | kumpi tahansa | 2.1, 2.4 | ☑ 2.1 |
+| ☑ | `s11-browser.png` | Browser-paneeli, jossa näkyy ”Hei maailma” -sivu | kumpi tahansa | 2.4 | ☑ 2.4 |
+| – | `s12-open-kortti.png` | keskustelun kortti, jossa on **Open**-painike (jos tulee vastaan) | kumpi tahansa | 2.4 |  |
+| – | `s13-sivuston-lupa.png` | sivuston lupakysely Allow once / Always allow / Deny (jos tulee vastaan) | kumpi tahansa | 2.4 |  |
+| ☑ | `s14-tiedostopaneeli.png` | CLAUDE.md auki tiedostopaneelissa | kumpi tahansa | 2.6 | ☑ 2.6 |
+| ☑ | `s14b-tiedostopaneeli-muokkaus.png` | CLAUDE.md View source -näkymässä (lisäkuva) | kumpi tahansa | 2.6 | ☑ 2.6 |
+| ☑ | `s15-context-kortti.png` | Context-kortti ja prosenttiluku | kumpi tahansa | 2.7 | ☑ 2.7 |
 
 ### Ensimmäinen projekti (aihealue 3)
 
 GitHub-kuvat (g01–g06) jätettiin ottamatta omistajan päätöksellä, eikä Mac-kuvia (k02, p03–p05) voitu ottaa. Kuvat k01, k03, k04 ja k08 vaatisivat uuden asennuksen tai ilmaistilin, p01–p02 jäivät pois, koska omistajan Windows on englanniksi, ja s12–s13 eivät tulleet vastaan testissä.
 
-| Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
-|---|---|---|---|---|
-| ☑ | `r01-plan.png` | Plan-tila valittuna ja Clauden suunnitelma keskustelussa | kumpi tahansa | 3.2 |
-| ☑ | `r02-valmis-sivu.png` | valmis esimerkkisivu Browser-paneelissa | kumpi tahansa | 3.3 |
-| ☑ | `r03-kapea-ikkuna.png` | sama sivu kavennetussa selainikkunassa | kumpi tahansa | 3.4 |
-| ☑ | `r04-istunnot.png` | sivupalkki, jossa on useampi istunto | kumpi tahansa | 3.4 |
-| – | `g01-new-repository.png` | GitHubin plusvalikko → New repository | kumpi tahansa | 3.6 |
-| – | `g02-repolomake.png` | uuden repon lomake: nimi, Public, README | kumpi tahansa | 3.6 |
-| – | `g03-upload-files.png` | Add file → Upload files | kumpi tahansa | 3.6 |
-| – | `g04-lataus.png` | lataussivu: tiedostot raahattuina, kuvaus ja main-haara | kumpi tahansa | 3.6 |
-| – | `g05-pages-asetukset.png` | Settings → Pages: Deploy from a branch, main, / (root) | kumpi tahansa | 3.6 |
-| – | `g06-pages-osoite.png` | Pages-sivu, jossa julkaistun sivun osoite näkyy | kumpi tahansa | 3.6 |
+| Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe | Aiheessa |
+|---|---|---|---|---|---|
+| ☑ | `r01-plan.png` | Plan-tila valittuna ja Clauden suunnitelma keskustelussa | kumpi tahansa | 3.2 | ☑ 3.2 |
+| ☑ | `r02-valmis-sivu.png` | valmis esimerkkisivu Browser-paneelissa | kumpi tahansa | 3.3 | ☑ 3.3 |
+| ☑ | `r03-kapea-ikkuna.png` | sama sivu kavennetussa selainikkunassa | kumpi tahansa | 3.4 | ☑ 3.4 |
+| ☑ | `r04-istunnot.png` | sivupalkki, jossa on useampi istunto | kumpi tahansa | 3.4 | ☑ 3.4 |
+| – | `g01-new-repository.png` | GitHubin plusvalikko → New repository | kumpi tahansa | 3.6 |  |
+| – | `g02-repolomake.png` | uuden repon lomake: nimi, Public, README | kumpi tahansa | 3.6 |  |
+| – | `g03-upload-files.png` | Add file → Upload files | kumpi tahansa | 3.6 |  |
+| – | `g04-lataus.png` | lataussivu: tiedostot raahattuina, kuvaus ja main-haara | kumpi tahansa | 3.6 |  |
+| – | `g05-pages-asetukset.png` | Settings → Pages: Deploy from a branch, main, / (root) | kumpi tahansa | 3.6 |  |
+| – | `g06-pages-osoite.png` | Pages-sivu, jossa julkaistun sivun osoite näkyy | kumpi tahansa | 3.6 |  |
 
 ### Kuvakkeet
 
 Pienet, tiukasti rajatut kuvat yksittäisistä kuvakkeista. Niitä voi käyttää tekstin seassa (”napsauta [kuvake]”).
 
-| Tehty | Tiedostonimi | Kuvake | Aihe |
-|---|---|---|---|
-| ☑ | `i01-code.png` | Code-välilehden kuvake | 1.3 |
-| ☑ | `i02-new.png` | **+ New** | 2.1 |
-| ☑ | `i03-pysaytys.png` | pysäytyspainike | 2.1, 2.3 |
-| ☑ | `i04-tila.png` | tilan valinta (valintarivillä) | 2.2 |
-| ☑ | `i05-browser.png` | Browser-paneelin kuvake tai painike | 2.4 |
-| ☑ | `i06-paivitys.png` | selaimen päivityspainike (kaareva nuoli) | 2.4, 3.3 |
+| Tehty | Tiedostonimi | Kuvake | Aihe | Aiheessa |
+|---|---|---|---|---|
+| ☑ | `i01-code.png` | Code-välilehden kuvake | 1.3 | ☑ 1.3 |
+| ☑ | `i02-new.png` | **+ New** | 2.1 | ☑ 2.1 |
+| ☑ | `i03-pysaytys.png` | pysäytyspainike | 2.1, 2.3 | ☑ 2.3 |
+| ☑ | `i04-tila.png` | tilan valinta (valintarivillä) | 2.2 | ☑ 2.1 |
+| ☑ | `i05-browser.png` | Browser-paneelin kuvake tai painike | 2.4 | ☑ 2.4 |
+| ☑ | `i06-paivitys.png` | selaimen päivityspainike (kaareva nuoli) | 2.4, 3.3 | ☑ 2.4, 3.3 |

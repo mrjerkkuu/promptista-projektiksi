@@ -21,6 +21,8 @@ const pages = [
   '/polku/claude-code-desktop',
   '/polku/claude-code-desktop/mita-on-vibekoodaus',
   '/polku/claude-code-desktop/code-valilehti',
+  // Aihe, jossa on eniten kuvakaappauksia (PAATOKSET 151).
+  '/polku/claude-code-desktop/ensimmainen-istunto',
   '/merkit',
   '/vianmaaritys',
   '/asetukset',

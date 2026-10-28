@@ -16,6 +16,7 @@ Tämä repo on **Promptista projektiksi**: pelillistetty suomenkielinen verkkosi
 - `npm run build`: tyyppitarkistus + tuotantobuild. **Sisällön validointi ajetaan buildissa**: rikkinäinen viittaus kaataa buildin.
 - `npm run check`: kaikki kolme peräkkäin. Aja tämä ennen jokaista committia.
 - `npm run check:mobile` ja `npm run lighthouse`: 360 px:n vaakavieritystarkistus ja Lighthouse (vaativat buildin ja koneen Chromen, `CHROME_PATH`).
+- `npm run screenshots`: optimoi kuvakaappaukset (`kuvakaappaukset/tyopoyta/` → `src/assets/kuvakaappaukset/`). Aja, kun lisäät tai vaihdat kuvan.
 
 ## Arkkitehtuuri lyhyesti
 

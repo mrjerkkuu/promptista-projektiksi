@@ -30,6 +30,7 @@ npm run check      # lint + testit + build (aja ennen committia)
 | `npm run preview` | buildin esikatselu |
 | `npm run check:mobile` | tarkistaa 360 px leveydellä, ettei mikään sivu vieri vaakasuunnassa (vaatii buildin ja Chromen) |
 | `npm run lighthouse` | Lighthouse-tarkistus, tavoite 90+ (vaatii buildin ja Chromen) |
+| `npm run screenshots` | optimoi kuvakaappaukset (`kuvakaappaukset/tyopoyta/` → `src/assets/kuvakaappaukset/`), ks. CONTRIBUTING.md |
 
 Kaksi viimeistä käyttävät koneelle asennettua Chromea. Jos sitä ei löydy oletuspaikasta, anna polku ympäristömuuttujassa `CHROME_PATH`.
 
