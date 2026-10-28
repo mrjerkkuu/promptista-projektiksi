@@ -1,0 +1,47 @@
+A new conversation can’t see what was said in earlier conversations. So how does Claude know what your project is like? The answer is <Term id="claude-md">CLAUDE.md</Term>.
+
+CLAUDE.md is a text file in the project folder that Claude Code reads **at the start of every conversation**. It’s like a note on the fridge door: lasting instructions you don’t need to repeat every time.
+
+<NuppuSays pose="lukee">I always take a quick look at my shopping list before I go to the store too.</NuppuSays>
+
+## What goes in it?
+
+- What the project is and who it’s for.
+- Technical limits, for example “only HTML, CSS and JavaScript, no libraries”.
+- How you’d like things done: “answer in English”, “explain changes briefly”.
+- Things that must not be done: “never change the files in the images folder”.
+
+An example:
+
+```markdown
+# My site
+
+A page presenting my crafting hobby. The readers are my friends.
+
+## Rules
+- Only HTML, CSS and JavaScript. No libraries, no build step.
+- The site must work well on a phone.
+- Answer me in English and explain changes briefly.
+```
+
+The file is written in <Term id="markdown">Markdown</Term> format, but plain text works too.
+
+## How to create it
+
+- **With a command:** type `/init` in Claude Code. Claude investigates the project and makes a starting version of CLAUDE.md. If the file already exists, Claude suggests improvements.
+- **By asking:** “Add a rule to CLAUDE.md that the site must work on a phone.”
+- **Yourself:** open the file in VS Code and edit it.
+
+<ReadMore title="Does Claude remember anything by itself?">
+
+Yes. Claude can write notes to itself, for example about your corrections and wishes, and it reads them in later conversations. But it decides for itself what to save. When you want an instruction to be in effect for sure, write it in CLAUDE.md.
+
+</ReadMore>
+
+Source: [Claude Code’s memory and CLAUDE.md](https://code.claude.com/docs/en/memory).
+
+<Tip title="Tip">
+
+Noticed that you repeat the same instruction from one conversation to the next? Add it to CLAUDE.md.
+
+</Tip>

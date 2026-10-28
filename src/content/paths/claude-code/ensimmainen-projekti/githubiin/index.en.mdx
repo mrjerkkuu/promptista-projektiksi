@@ -1,0 +1,43 @@
+The site works on your computer. Now let’s make the first save point and send your work to GitHub for safekeeping.
+
+## 1. Make your first commit
+
+Run the commands in the project folder (you can use a second terminal window alongside Claude Code):
+
+<Command id="git-status" />
+
+You’ll see a list of new files. Include them all and make a commit:
+
+<Command id="git-add-all" />
+
+<Command id="git-commit" />
+
+Your first save point is done!
+
+<NuppuSays pose="tallentaa">Your first save point is done! Once your work is on GitHub, it’s safe even if something happens to your computer.</NuppuSays>
+
+## 2. Create a GitHub repo and send your work there
+
+A single command creates a new repo called `my-site` on GitHub, connects it to your folder and sends your commits there:
+
+<Command id="gh-repo-create" />
+
+<Tip type="warning" title="Public means public">
+
+`--public` makes the repo public: anyone can see it. That’s needed if you want to publish the site for free (the next bonus task). So don’t put anything secret in the repo. If you want a private repo, replace `--public` with `--private` in the command.
+
+</Tip>
+
+## 3. Look at the result
+
+<Command id="gh-browse" />
+
+The browser opens your repo on GitHub. There you can see your files and your commit message.
+
+## From now on
+
+When you make changes, save and send them like this: `git add -A`, `git commit -m "What changed"` and finally:
+
+<Command id="git-push" />
+
+You can also ask Claude: “Make a commit and send the changes to GitHub.”

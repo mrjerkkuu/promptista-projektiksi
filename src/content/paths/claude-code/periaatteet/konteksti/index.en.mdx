@@ -1,0 +1,31 @@
+The <Term id="konteksti">context</Term> is everything Claude keeps in mind during this conversation: your messages, its own answers, the files it has read and the results of commands. It’s like a desk with papers spread out on it.
+
+The desk has a limited size. When a conversation goes on for a long time, the desk fills up. Then older things get summarized or forgotten, and Claude may start to get muddled.
+
+## Signs that the context is full or messy
+
+- Claude forgets something you agreed on earlier.
+- It repeats the same mistake or goes round in circles.
+- You’re moving on to a completely new task.
+
+<NuppuSays pose="lepaa">Sometimes it’s worth taking a break and starting with a clean slate. It helps Claude just like it helps me.</NuppuSays>
+
+## What do you do then?
+
+| Command | What it does |
+|---|---|
+| `/context` | shows how full the context is |
+| `/compact` | summarizes the conversation and frees up space |
+| `/clear` | starts a new conversation from scratch |
+
+A new conversation isn’t a failure. It’s often the best way to continue when the topic changes. Everything important is saved in the files, and <Term id="claude-md">CLAUDE.md</Term> tells Claude the project’s basics again every time.
+
+Source: [Claude Code’s commands](https://code.claude.com/docs/en/commands).
+
+<ReadMore title="What actually counts toward the context?">
+
+A language model reads text in small pieces called <Term id="tokeni">tokens</Term>. The size of the context is measured in tokens. Long files and long command output take up a lot of space. That’s why it’s worth asking Claude to focus only on the files it needs.
+
+</ReadMore>
+
+<Quiz />

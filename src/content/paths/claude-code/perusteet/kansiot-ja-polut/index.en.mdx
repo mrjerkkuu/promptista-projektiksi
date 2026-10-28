@@ -1,0 +1,57 @@
+The files on a computer are organized like binders on a shelf. A <Term id="kansio">folder</Term> is a binder, and inside it there can be <Term id="tiedosto">files</Term> and other folders.
+
+A <Term id="polku">path</Term> is a folder’s address. It describes the route from one folder to another, like a street address:
+
+<Os only="windows">
+
+```
+C:\Users\alex\Documents
+```
+
+The backslash `\` separates the folders from each other.
+
+</Os>
+
+<Os only="mac">
+
+```
+/Users/alex/Documents
+```
+
+The slash `/` separates the folders from each other.
+
+</Os>
+
+Your own <Term id="kotikansio">home folder</Term> is the `alex` part above. In the terminal, it’s written briefly as a tilde: `~`.
+
+<NuppuSays pose="kansio">I keep my things in order: a folder of its own for every project. That way everything can be found, and Claude knows where it’s working too.</NuppuSays>
+
+## Which folder am I in?
+
+The terminal is always in some folder, just as if you were walking from room to room in a house. Commands apply to the folder you’re in. That’s why it’s important to know where you are.
+
+| Command | What it does |
+|---|---|
+| `pwd` | tells you which folder you are in |
+| `ls` | lists what’s in the folder (on Windows also `dir`) |
+| `cd folder` | moves into a folder |
+| `cd ..` | moves one folder up |
+| `mkdir name` | creates a new folder |
+
+Try these below. In the first exercise you move between folders, in the second you create a folder of your own.
+
+<Terminal mission="kansioissa-liikkuminen" />
+
+<Terminal mission="luo-projektikansio" />
+
+<Tip title="Tip">
+
+It’s best to avoid spaces and special characters in folder names. The name `my-site` is easier in the terminal than `My site`.
+
+</Tip>
+
+<ReadMore title="What if a folder name has a space in it?">
+
+Then you write the name in quotation marks, for example `cd "My folder"`. Otherwise the terminal thinks they are two different words.
+
+</ReadMore>

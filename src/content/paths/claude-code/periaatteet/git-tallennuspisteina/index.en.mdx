@@ -1,0 +1,42 @@
+Remember save points in games? Now it’s time to start using them. The golden rule: **make a commit before every big change.** If the change fails, you can easily go back.
+
+## A save point in three commands
+
+Run the commands in the project folder:
+
+<Command id="git-status" />
+
+<Command id="git-add-all" />
+
+<Command id="git-commit" />
+
+Replace the text inside the quotation marks with your own message that says what changed, for example “Added a gallery”.
+
+You can also ask Claude: “Make a commit with a message that describes today’s changes.” Claude asks for permission before it runs the Git commands.
+
+## Looking at the history
+
+<Command id="git-log" />
+
+The newest save point is at the top. If the list doesn’t fit on the screen at once, you close it with the q key.
+
+<NuppuSays pose="istuu">Accidents happen to everyone, me included. Once you’ve made a save point, you can relax.</NuppuSays>
+
+## How to go back
+
+- **A single file:** restore the file to how it was in the latest commit. Unsaved changes in that file are lost.
+
+<Command id="git-restore" />
+
+- **A change by Claude:** type `/rewind` in Claude Code, or press Esc twice at an empty prompt. You can go back to an earlier point in the conversation and the code.
+- **Ask for help:** “Restore the site to how it was in the previous commit.”
+
+<Tip title="Note">
+
+Claude’s `/rewind` is handy, but it doesn’t replace Git. According to the official documentation, it doesn’t, for example, track files changed with terminal commands. A commit is the most reliable save point.
+
+</Tip>
+
+Sources: [git commit](https://git-scm.com/docs/git-commit), [git restore](https://git-scm.com/docs/git-restore), [Claude Code’s checkpoints](https://code.claude.com/docs/en/checkpointing).
+
+<Quiz />

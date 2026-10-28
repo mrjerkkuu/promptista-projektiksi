@@ -1,0 +1,47 @@
+Before building, you plan. In this step you decide what goes on the site, and Claude turns it into a plan.
+
+## 1. Come up with a topic
+
+Small and clear is best. Examples:
+
+- a page about a hobby or a pet
+- a recipe card for your favorite food
+- a party invitation with a schedule and instructions for signing up
+- a small memory game or quiz.
+
+## 2. Start Claude in plan mode
+
+Make sure you’re in the `my-site` folder, and start Claude directly in planning mode:
+
+<Command id="claude-plan-mode" />
+
+<NuppuSays pose="tarkistaa">First write down for yourself what goes on the site. After that, writing the prompt is easy.</NuppuSays>
+
+## 3. Say what you want
+
+Write a prompt that says what, why and within which limits. An example:
+
+```
+I want to make a simple website that presents my dog Buttons.
+The page has a heading, a short introduction, three fun facts and a place for a picture.
+The readers are my friends and relatives, so the tone can be warm and playful.
+
+Limits:
+- Use only HTML, CSS and, if needed, JavaScript.
+- No libraries, no build step, no Node.js.
+- The site must also work well on a phone.
+
+Make a plan first. If anything is unclear, ask me.
+```
+
+## 4. Read and adjust the plan
+
+Claude tells you which files it will make and what goes in them. Read the plan calmly. Ask for changes in your own words, for example “Add contact details at the end” or “The colors could be shades of green”.
+
+Finally, ask it to add the project’s sticky note to the plan:
+
+```
+Also add a CLAUDE.md to the plan that records the project's goal and the limits above.
+```
+
+When you’re happy with the plan, don’t approve it yet. Move on to the next lesson, where you start building.

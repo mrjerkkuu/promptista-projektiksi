@@ -1,0 +1,63 @@
+Now it’s time to install the main part: <Term id="claude-code">Claude Code</Term>. The installation is done with Anthropic’s official install command. You don’t need administrator rights.
+
+## 1. Install Claude Code
+
+<Os only="windows">
+
+Run the command in **PowerShell 7**:
+
+<Command id="install-claude-code" />
+
+Claude Code works best when Git has been installed first. You already did that in the Git lesson.
+
+</Os>
+
+<Os only="mac">
+
+Run the command in Terminal:
+
+<Command id="install-claude-code" />
+
+Claude Code requires macOS 13 or newer.
+
+</Os>
+
+The installation may take a moment. Wait until the prompt appears again.
+
+## 2. Open a new terminal window
+
+Close the terminal and open a new window. Then let’s check that the installation worked.
+
+<VerifyStep id="claude" />
+
+<NuppuSays pose="iloitsee">Almost done! Once you’re signed in, Claude Code is ready to use.</NuppuSays>
+
+## 3. Sign in
+
+Start Claude Code by typing:
+
+<Command id="start-claude" />
+
+The first time, Claude Code guides you through signing in:
+
+1. Choose the sign-in method that matches your plan (Claude plan or Console account).
+2. The browser opens. Sign in with the same account you used for the plan, and approve.
+3. Go back to the terminal. When you see the welcome text and the prompt, you’re in.
+
+You can quit by typing `/exit` and pressing Enter. Next time, you won’t be asked to sign in.
+
+<Tip title="Claude asks whether you trust the folder?">
+
+Claude Code may ask whether you trust the folder you started it in. If it’s your own folder, you can answer yes. We’ll look at folders and permissions more closely in section 2.
+
+</Tip>
+
+<ReadMore title="If something doesn’t work">
+
+The command `claude doctor` checks the installation and reports any problems:
+
+<Command id="claude-doctor" />
+
+You can switch accounts or sign in again by typing `/login` in Claude Code. See also [troubleshooting](#/vianmaaritys/claude-kirjautuminen).
+
+</ReadMore>
