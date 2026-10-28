@@ -218,8 +218,8 @@
     "path": "claude-code-desktop",
     "symptom": "Kirjoituskentän alla ei ole ympäristön valintaa, tai näkymä ei vastaa tämän oppaan kuvausta.",
     "steps": [
-      "Sovelluksesi on todennäköisesti vanhempi versio. Windowsilla valitse valikosta Help → Check for Updates…, Macilla valikkoriviltä Claude → Check for Updates….",
-      "Näet sovelluksen version Windowsilla valikosta Help → About Claude ja Macilla valikkoriviltä Claude → About Claude.",
+      "Sovelluksesi on todennäköisesti vanhempi versio. Windowsilla napsauta sivupalkin vasemmasta yläkulmasta valikkokuvaketta (kolme vaakaviivaa) ja valitse Help → Check for Updates…, Macilla valikkoriviltä Claude → Check for Updates….",
+      "Näet sovelluksen version Windowsilla samasta valikosta kohdasta Help → About Claude ja Macilla valikkoriviltä Claude → About Claude.",
       "Jos käytät työpaikan tai oppilaitoksen tiliä, organisaatio voi hallita päivityksiä. Kysy silloin ylläpitäjältä."
     ]
   },

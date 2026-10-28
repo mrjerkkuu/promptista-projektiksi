@@ -45,13 +45,13 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset: `PAATOKSET.md`, kohdat 106
 | 12 | Polun valinta: sivu `/polut`, päävalikon linkki, `order` ja `audience` | ✅ |
 | 13 | Yhteiset aiheet (`ref`) + validointi + testit | ✅ |
 | 14 | Valittu polku (`activePath`), migraatio v1 → v2 + testit, etusivun painike | ✅ |
-| 15 | Polun `claude-code-desktop` sisältö | ✅ (omistajan tarkistus kesken) |
+| 15 | Polun `claude-code-desktop` sisältö | ✅ (omistaja tarkisti 27.–28.10.2026) |
 | 16 | Merkit, varmistus, vianmääritys, sanasto, CONTRIBUTING.md | ✅ |
 | 17 | Saavutettavuus, mobiili ja Lighthouse | ✅ |
 
 ## Seuraavaksi
 
-Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Laajennuksen kaikki vaiheet (11–17) on tehty. Työpöytäpolku on merkitty tarkastamattomaksi (`"reviewed": false`), kunnes omistaja on käynyt sen läpi.
+Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Laajennuksen kaikki vaiheet (11–17) on tehty. Omistaja tarkisti työpöytäpolun 27.–28.10.2026 ja testasi aiheet 2.1–3.4 omalla koneellaan, joten ilmoitus ”Ei vielä tarkastettu” on poistettu.
 
 **Vaiheen 17 tulokset (26.10.2026, pilviympäristö):**
 
@@ -66,7 +66,7 @@ Alkuperäiset vaiheet 1–10 ja laajennuksen vaiheet 12–14 on tehty. Laajennuk
 
 - Työpöytäpolulle bonusaihe Gitin tallennuspisteistä (omistajan päätös, PAATOKSET.md kohta 128). Ei kuulu ydinpolkuun.
 
-**Omistajan tarkistettavat asiat** (luettavat tekstit, tehdyt valinnat, käyttöliittymän nimet ja otettavat kuvakaappaukset) ovat tiedostossa [`docs/tyopoytapolun-tarkistus.md`](docs/tyopoytapolun-tarkistus.md).
+**Työpöytäpolun tarkistus** (luettavat tekstit, tehdyt valinnat, käyttöliittymän nimet ja kuvakaappaukset sekä tarkistamatta jääneet kohdat) on kirjattu tiedostoon [`docs/tyopoytapolun-tarkistus.md`](docs/tyopoytapolun-tarkistus.md).
 
 ## Avoimet ongelmat
 

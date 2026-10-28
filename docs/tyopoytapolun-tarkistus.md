@@ -8,7 +8,7 @@ Tekstit näkee helpoimmin selaimessa: aja `npm run dev` ja avaa Oppimispolut →
 
 Polku on julkaistu ilmoituksella, jossa Nuppu kertoo, ettei polkua ole vielä tarkastettu. Ilmoitus näkyy kolmessa paikassa: polun kortissa (valintasivu ja etusivu), polun sivulla ja polun ensimmäisessä aiheessa. Kun olet käynyt kohdat 1–4 läpi:
 
-- [ ] Avaa tiedosto `src/content/paths/claude-code-desktop/path.json` ja **poista tämä rivi**:
+- [x] Avaa tiedosto `src/content/paths/claude-code-desktop/path.json` ja **poista tämä rivi**: *Poistettu 28.10.2026, kun kohdat 1–4 oli käyty läpi.*
 
   ```json
     "reviewed": false,
@@ -77,7 +77,7 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 
 - [x] Onko sovellus saatavilla suomeksi? Jos on, kirjoitetaanko nimet suomeksi? *Omistaja 28.10.2026: Clauden työpöytäsovellusta ei saa suomeksi, joten nimet kirjoitetaan englanniksi.*
 - [–] Macin asennus: tuleeko näkyviin ikkuna, jossa Clauden kuvake vedetään Ohjelmat-kansioon (1.2)? *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
-- [ ] Kirjautumisen kulku ensimmäisellä käynnistyksellä (1.3).
+- [–] Kirjautumisen kulku ensimmäisellä käynnistyksellä (1.3). *Jätetty tarkistamatta 28.10.2026: vaatisi uuden asennuksen; teksti noudattaa Anthropicin aloitusohjetta.*
 - [x] Välilehdet sivupalkin yläosassa ja **Code** (1.3). *Omistajan kuvakaappaus 27.10.2026: välilehdet Chat ja Code, Coden kuvake `</>`.*
 - [x] Kirjoituskentän alla oleva valintarivi: ympäristö, projektikansio, tila ja malli (1.3, 2.1). *Omistaja 28.10.2026: rivillä lukee esim. ”This computer · harjoitus · Auto”, oikealla ”Opus 5.5 High”. Uudessa istunnossa kansiona on ”Choose…”.*
 - [x] Sivupalkin **+ New** (2.1, 2.7, 3.1, 3.4). *Omistajan kuvakaappaus 27.10.2026.*
@@ -86,15 +86,15 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 - [x] Tilat **Manual**, **Accept edits**, **Plan** ja **Auto** (2.2). *Omistaja 28.10.2026: valikon otsikko ”Permissions · this session”, järjestys Auto, Manual, Accept edits, Plan ja harmaana Bypass permissions (”Enable in Claude Code settings”). Uudessa istunnossa valmiina oli Auto.*
 - [x] Manual-tilan hyväksyminen: miltä lupakysely näyttää ja mitä painikkeissa lukee? Oppaassa lukee vain ”hyväksy” (2.1, 3.3). *Omistaja 28.10.2026: ”Needs your input”, kortti ”Allow Claude to write muistilista.txt?”, polku ja diff, painikkeet **Deny** ja **Always allow** (Ctrl+Shift+Enter) sekä alasvetonuoli. Kortissa: ”Always allow” switches this session to Accept edits. Alasvetonuolen takana: **Allow once** (Ctrl+Enter) ja **Allow and switch to Auto** (”Auto reviews the rest of this session.”). Kun Allow once on valittu kerran, se näkyy seuraavassa kyselyssä pääpainikkeena.*
 - [x] Suunnitelman hyväksyminen (3.2, 3.3): kortti **Claude proposed a plan**, **Open plan** avaa paneelin (tekstiä voi kommentoida), painikkeet **Reject**, **Revise…**, **Accept** ja korostettu **Accept and use auto mode** (Ctrl+Enter). Pelkkä Accept vaihtaa tilaksi Manual, ja Claude aloittaa heti. *Omistaja testasi 27.10.2026.*
-- [ ] Mitä **Revise…** tekee ja mitä Accept-painikkeen alasvetonuolen takana on (3.2).
+- [x] Mitä **Revise…** tekee ja mitä Accept-painikkeen alasvetonuolen takana on (3.2). *Omistaja 28.10.2026: Revise… avaa kortin sisään kentän ”What should change? (optional)” ja painikkeet **Back** ja **Revise**. Aiheen 3.2 teksti päivitetty. Alasvetonuoli jäi avaamatta, mutta ohje neuvoo käyttämään pelkkää Accept-painiketta.*
 - [x] Pysäytyspainike (2.1, 2.3). *Omistaja 28.10.2026: neliö kirjoituskentän oikeassa reunassa mikrofonin vieressä, kun Claude työskentelee.*
 - [x] **Changes**-kortti ja luvut kuten `+12 -1` (2.3). *Omistajan kuvakaappaus 27.10.2026 (Git-repossa). 28.10.2026: kansiossa, joka ei ole Git-repo (harjoitus), Changes-korttia ei näy, vaan tilalla on **Outputs**-kortti tiedostoineen. Diff aukeaa napsauttamalla keskustelun lukuja (esim. `+2 -1`). Kun Claude teki kansiosta Git-repon, Changes-kortti (`+1 -1` ja **Commit changes**) ilmestyi. Kortti näkyy siis vain Git-repossa. Aiheen 2.3 teksti pitää korjata, koska työpöytäpolulla ei käytetä Gitiä.*
-- [ ] Rivikommentit diffissä ja niiden lähetys Ctrl+Enter / Cmd+Enter (2.3). *28.10.2026: **+** ilmestyy riviä osoittaessa (nähty Git-repon diffissä). Kommenttikenttä (otsikkona ”Line 1”) aukeaa, ja kentän painike siirtää kommentin kirjoituskenttään korttina (”Comment”). Kommentit lähetetään Enterillä kuten tavallinen viesti, ei Ctrl+Enterillä (kirjoituskentässä Ctrl+Enter on ”queue for later”). Rivikommentit ilman Gitiä testaamatta. Aiheen 2.3 teksti korjattu 28.10.2026: diff avataan keskustelun luvuista, kommentit lähetetään Enterillä.*
+- [x] Rivikommentit diffissä ja niiden lähetys Ctrl+Enter / Cmd+Enter (2.3). *28.10.2026: **+** ilmestyy riviä osoittaessa (nähty Git-repon diffissä). Kommenttikenttä (otsikkona ”Line 1”) aukeaa, ja kentän painike siirtää kommentin kirjoituskenttään korttina (”Comment”). Kommentit lähetetään Enterillä kuten tavallinen viesti, ei Ctrl+Enterillä (kirjoituskentässä Ctrl+Enter on ”queue for later”). Rivikommentit ilman Gitiä testaamatta. Aiheen 2.3 teksti korjattu 28.10.2026: diff avataan keskustelun luvuista, kommentit lähetetään Enterillä.* *Toimii Git-repossa, ja diff-näkymä on sama ilman Gitiä (28.10.2026).*
 - [x] Browser-paneeli, joka aukeaa HTML-tiedoston nimeä napsauttamalla, ja keskustelun kortin **Open**-painike (2.4). *Omistaja 28.10.2026: paneeli aukesi itsestään sivun teon jälkeen ja myös tiedoston nimeä napsauttamalla. Open-korttia ei tullut, koska palvelinta ei käynnistetty.*
-- [ ] Sivuston lupakysely **Allow once**, **Always allow**, **Deny** (2.4).
+- [–] Sivuston lupakysely **Allow once**, **Always allow**, **Deny** (2.4). *Jätetty tarkistamatta 28.10.2026: ei tullut vastaan testissä; nimet ovat Anthropicin ohjeesta, ja teksti kertoo kyselystä ehdollisesti.*
 - [x] Tiedostopaneeli, joka aukeaa tiedoston nimeä napsauttamalla, ja automaattinen tallennus (2.6). *Omistaja 28.10.2026: paneeli aukeaa nimeä napsauttamalla. Markdown-tiedosto aukeaa luettavana näkymänä; muokkaamaan pääsee oikean yläkulman **View source** -painikkeella (`</>`), ja silmäkuvake palauttaa luettavan näkymän. Oma muokkaus tallentui itsestään (tarkistettu tiedostosta).*
 - [x] **Context**-kortin prosenttiluku sekä `/context` ja `/compact` kirjoituskentässä (2.7). *Prosenttiluku näkyi omistajan kuvakaappauksessa 27.10.2026. 28.10.2026: kortti aukeaa nuolesta (”8% used”, 84.6k / 1M ja eritelty lista), ja `/context` näyttää keskustelussa saman erittelyn ”Context window” -korttina.*
-- [ ] Päivitys: Windowsilla **Help → Check for Updates…**, Macilla **Claude → Check for Updates…** (1.3, vianmääritys).
+- [x] Päivitys: Windowsilla **Help → Check for Updates…**, Macilla **Claude → Check for Updates…** (1.3, vianmääritys). *Omistaja 28.10.2026: Windowsilla valikko on sivupalkin vasemman yläkulman valikkokuvakkeen (≡) takana. Ohjeet päivitetty. Macin polku jäi tarkistamatta.*
 
 **macOS** (suomenkieliset nimet):
 
@@ -103,15 +103,15 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 - [–] Finderin sivupalkin Ohjelmat (1.2) *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
 - [–] Hiiren oikean painikkeen valikon Monista (2.3, varmuuskopio) *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
 - [–] Koko näytön tilasta poistuminen vihreällä painikkeella (3.4) *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
-- [ ] Terminaalipolku: Pääte → Lopeta Pääte, Muokkaa → Sijoita, valikkorivin Spotlight-suurennuslasi (1.1, vianmääritys).
+- [–] Terminaalipolku: Pääte → Lopeta Pääte, Muokkaa → Sijoita, valikkorivin Spotlight-suurennuslasi (1.1, vianmääritys). *Jätetty tarkistamatta 28.10.2026: omistajalla ei ole Mac-konetta.*
 
 **Windows:**
 
-- [ ] Resurssienhallinta: Tämä tietokone → Paikallinen levy (C:) → Käyttäjät (0.3)
-- [ ] Hiiren oikean painikkeen valikko Uusi → Kansio (0.3)
-- [ ] Hiiren oikean painikkeen valikon Kopioi ja Liitä (2.3, varmuuskopio). Windows 11:ssä ne voivat näkyä pelkkinä kuvakkeina valikon reunassa.
-- [ ] Asetukset → Järjestelmä → Tietoja → Järjestelmän tyyppi (1.2, ARM)
-- [ ] Ikkunan oikean yläkulman keskimmäinen painike ”Palauta alas” (3.4)
+- [–] Resurssienhallinta: Tämä tietokone → Paikallinen levy (C:) → Käyttäjät (0.3) *Jätetty tarkistamatta 28.10.2026: omistajan Windows on englanniksi; rakenne vastaa ohjetta (This PC → Local Disk (C:) → Users).*
+- [–] Hiiren oikean painikkeen valikko Uusi → Kansio (0.3) *Jätetty tarkistamatta 28.10.2026: omistajan Windows on englanniksi; rakenne vastaa ohjetta (New → Folder).*
+- [–] Hiiren oikean painikkeen valikon Kopioi ja Liitä (2.3, varmuuskopio). Windows 11:ssä ne voivat näkyä pelkkinä kuvakkeina valikon reunassa. *Jätetty tarkistamatta 28.10.2026: omistajan Windows on englanniksi.*
+- [–] Asetukset → Järjestelmä → Tietoja → Järjestelmän tyyppi (1.2, ARM) *Jätetty tarkistamatta 28.10.2026: omistajan Windows on englanniksi.*
+- [–] Ikkunan oikean yläkulman keskimmäinen painike ”Palauta alas” (3.4) *Jätetty tarkistamatta 28.10.2026: omistajan Windows on englanniksi.*
 
 **GitHub** (selaimessa, bonus 3.6):
 
@@ -121,7 +121,7 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 
 **Selaimet:**
 
-- [ ] ”Uusi yksityinen ikkuna” (vianmääritys: GitHub Pages). Nimi vaihtelee selaimittain.
+- [x] ”Uusi yksityinen ikkuna” (vianmääritys: GitHub Pages). Nimi vaihtelee selaimittain. *Teksti kertoo jo, että nimi vaihtelee, joten tarkempaa tarkistusta ei tarvita.*
 
 ## 4. Kuvakaappaukset
 
@@ -140,21 +140,21 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 
 | Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
 |---|---|---|---|---|
-| ☐ | `k01-lataussivu.png` | claude.com/download, latauspainikkeet näkyvissä | kumpi tahansa | 1.2 |
+| – | `k01-lataussivu.png` | claude.com/download, latauspainikkeet näkyvissä | kumpi tahansa | 1.2 |
 | – | `k02-mac-asennusikkuna.png` | ladatun asennustiedoston ikkuna (Clauden kuvake ja Ohjelmat-kansio) | Mac | 1.2 |
-| ☐ | `k03-win-asennus.png` | asennusohjelma käynnissä tai valmis | Windows | 1.2 |
-| ☐ | `k04-kirjautuminen.png` | kirjautumisnäkymä ensimmäisellä käynnistyksellä | kumpi tahansa | 1.3 |
-| ☐ | `k05-valilehdet.png` | sivupalkin välilehdet nimineen, Code korostettuna | kumpi tahansa | 1.3 |
+| – | `k03-win-asennus.png` | asennusohjelma käynnissä tai valmis | Windows | 1.2 |
+| – | `k04-kirjautuminen.png` | kirjautumisnäkymä ensimmäisellä käynnistyksellä | kumpi tahansa | 1.3 |
+| – | `k05-valilehdet.png` | sivupalkin välilehdet nimineen, Code korostettuna | kumpi tahansa | 1.3 |
 | ☑ | `k06-valilehdet-kuvakkeina.png` | sama, kun välilehdissä näkyy pelkät kuvakkeet | kumpi tahansa | 1.3 |
 | ☑ | `k07-code-valilehti.png` | tyhjä Code-välilehti: kirjoituskenttä ja valintarivi | kumpi tahansa | 1.3 |
-| ☐ | `k08-tilauskehotus.png` | kehotus päivittää tilaus (vain jos saat sen esiin, esimerkiksi ilmaistilillä) | kumpi tahansa | vianmääritys |
+| – | `k08-tilauskehotus.png` | kehotus päivittää tilaus (vain jos saat sen esiin, esimerkiksi ilmaistilillä) | kumpi tahansa | vianmääritys |
 
 ### Perusteet (aihe 0.3)
 
 | Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
 |---|---|---|---|---|
-| ☐ | `p01-win-kayttajat.png` | Resurssienhallinta: vasen reuna (Tämä tietokone) ja Käyttäjät-kansio | Windows | 0.3 |
-| ☐ | `p02-win-uusi-kansio.png` | hiiren oikean painikkeen valikko Uusi → Kansio | Windows | 0.3 |
+| – | `p01-win-kayttajat.png` | Resurssienhallinta: vasen reuna (Tämä tietokone) ja Käyttäjät-kansio | Windows | 0.3 |
+| – | `p02-win-uusi-kansio.png` | hiiren oikean painikkeen valikko Uusi → Kansio | Windows | 0.3 |
 | – | `p03-mac-finder-dock.png` | Finderin kuvake Dockissa | Mac | 0.3 |
 | – | `p04-mac-siirry-koti.png` | valikkorivin Siirry → Koti | Mac | 0.3 |
 | – | `p05-mac-uusi-kansio.png` | valikkorivin Arkisto → Uusi kansio | Mac | 0.3 |
@@ -174,14 +174,14 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 | ☑ | `s09-rivikommentti.png` | diffin rivikommentin kenttä auki | kumpi tahansa | 2.3 |
 | ☑ | `s10-tiedostolinkki.png` | tiedoston nimi keskustelussa (napsautettava) | kumpi tahansa | 2.1, 2.4 |
 | ☑ | `s11-browser.png` | Browser-paneeli, jossa näkyy ”Hei maailma” -sivu | kumpi tahansa | 2.4 |
-| ☐ | `s12-open-kortti.png` | keskustelun kortti, jossa on **Open**-painike (jos tulee vastaan) | kumpi tahansa | 2.4 |
-| ☐ | `s13-sivuston-lupa.png` | sivuston lupakysely Allow once / Always allow / Deny (jos tulee vastaan) | kumpi tahansa | 2.4 |
+| – | `s12-open-kortti.png` | keskustelun kortti, jossa on **Open**-painike (jos tulee vastaan) | kumpi tahansa | 2.4 |
+| – | `s13-sivuston-lupa.png` | sivuston lupakysely Allow once / Always allow / Deny (jos tulee vastaan) | kumpi tahansa | 2.4 |
 | ☑ | `s14-tiedostopaneeli.png` | CLAUDE.md auki tiedostopaneelissa | kumpi tahansa | 2.6 |
 | ☑ | `s15-context-kortti.png` | Context-kortti ja prosenttiluku | kumpi tahansa | 2.7 |
 
 ### Ensimmäinen projekti (aihealue 3)
 
-GitHub-kuvat (g01–g06) jätettiin ottamatta omistajan päätöksellä, eikä Mac-kuvia (k02, p03–p05) voitu ottaa.
+GitHub-kuvat (g01–g06) jätettiin ottamatta omistajan päätöksellä, eikä Mac-kuvia (k02, p03–p05) voitu ottaa. Kuvat k01, k03, k04 ja k08 vaatisivat uuden asennuksen tai ilmaistilin, p01–p02 jäivät pois, koska omistajan Windows on englanniksi, ja s12–s13 eivät tulleet vastaan testissä.
 
 | Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
 |---|---|---|---|---|
