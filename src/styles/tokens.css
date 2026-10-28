@@ -190,6 +190,7 @@
     --color-topic-1-bg: #423A24; --color-topic-1-border: #5E5232; --color-topic-1-ink: #EBD58A;
     --color-topic-2-bg: #45303A; --color-topic-2-border: #634452; --color-topic-2-ink: #F0B8CB;
     --color-topic-3-bg: #48322A; --color-topic-3-border: #66473B; --color-topic-3-ink: #F4B597;
+    --screenshot-filter: brightness(0.9); /* vaaleat kuvakaappaukset eivät häikäise */
   }
 }
 
@@ -244,6 +245,7 @@
   --color-topic-1-bg: #423A24; --color-topic-1-border: #5E5232; --color-topic-1-ink: #EBD58A;
   --color-topic-2-bg: #45303A; --color-topic-2-border: #634452; --color-topic-2-ink: #F0B8CB;
   --color-topic-3-bg: #48322A; --color-topic-3-border: #66473B; --color-topic-3-ink: #F4B597;
+  --screenshot-filter: brightness(0.9); /* vaaleat kuvakaappaukset eivät häikäise */
 }
 
 /* ---------- Sovelluksen lisäykset ----------
@@ -279,6 +281,10 @@
   --color-nuppu-cheek: #F6D6E0;
   --color-nuppu-accent: #C4461A;
   --color-nuppu-gold: #E8B530;     /* merkkisivun mitali */
+
+  --screenshot-icon-height: 1.4em; /* kuvake tekstin seassa (<Screenshot inline>) */
+  /* Kuvakaappaukset ovat vaaleasta teemasta. Tumma teema himmentää niitä (ks. yllä). */
+  --screenshot-filter: none;
 
   --duration-float: 2.4s;         /* Nupun pomppujen väli (merkit); itse pomppu vie jakson alusta noin 0,5 s */
   --duration-wave: 3.6s;          /* Nupun vilkutusten väli (etusivu); itse vilkutus vie jakson alusta noin 1 s */

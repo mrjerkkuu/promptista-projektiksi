@@ -14,6 +14,7 @@ import {
   parseModuleRef,
   pathSchema,
   quizSchema,
+  screenshotSizesSchema,
   troubleshootingFileSchema,
   verifyFileSchema,
   type LearningPathMeta,
@@ -24,7 +25,8 @@ import {
  *
  * Tarkistaa kaikki JSON-tiedostot zod-skeemoilla ja kaikki viittaukset
  * tiedostojen välillä: MDX-komponenttien id:t, visat, merkkien ehdot,
- * vianmääritys, polkujen kansiorakenne ja polkujen väliset viittaukset.
+ * vianmääritys, polkujen kansiorakenne, polkujen väliset viittaukset ja
+ * kuvakaappaukset (kuva on olemassa ja vaihtoehtoinen teksti kirjoitettu).
  * Palauttaa listan virheistä.
  */
 
@@ -84,13 +86,18 @@ export function findTags(mdxSource: string): TagUse[] {
   const tagRe = /<([A-Z][A-Za-z0-9]*)\b([^>]*)>/g
   for (const match of stripCode(mdxSource).matchAll(tagRe)) {
     const attrs: Record<string, string> = {}
-    for (const a of match[2].matchAll(/([a-zA-Z]+)="([^"]*)"/g)) attrs[a[1]] = a[2]
+    // Arvoton attribuutti (esim. <Screenshot … inline />) saa arvon "true".
+    for (const a of match[2].matchAll(/([a-zA-Z]+)(?:="([^"]*)")?/g)) attrs[a[1]] = a[2] ?? 'true'
     tags.push({ name: match[1], attrs })
   }
   return tags
 }
 
-export function validateContent(contentDir: string): ValidationResult {
+/**
+ * @param screenshotsDir kuvakaappausten kansio (optimoidut .webp-kuvat ja kuvat.json).
+ *   Oletuksena src/assets/kuvakaappaukset sisältökansion vieressä.
+ */
+export function validateContent(contentDir: string, screenshotsDir = path.join(contentDir, '../assets/kuvakaappaukset')): ValidationResult {
   const errors: string[] = []
   const warnings: string[] = []
   const rel = (f: string) => path.relative(contentDir, f).replaceAll('\\', '/')
@@ -102,6 +109,20 @@ export function validateContent(contentDir: string): ValidationResult {
   const troubleshooting = parseFile(troubleshootingFileSchema, file('troubleshooting.json'), errors) ?? {}
   const verify = parseFile(verifyFileSchema, file('verify.json'), errors) ?? {}
   const badges = parseFile(badgesFileSchema, file('badges.json'), errors) ?? {}
+
+  // Kuvakaappaukset: koko ilman kuvaa tai kuva ilman kokoa on virhe (optimointiskripti kirjoittaa molemmat).
+  const sizesFile = path.join(screenshotsDir, 'kuvat.json')
+  const screenshotSizes = fs.existsSync(sizesFile) ? (parseFile(screenshotSizesSchema, sizesFile, errors) ?? {}) : {}
+  const screenshotFiles = fs.existsSync(screenshotsDir)
+    ? fs.readdirSync(screenshotsDir).filter((f) => f.endsWith('.webp')).map((f) => path.basename(f, '.webp'))
+    : []
+  for (const id of Object.keys(screenshotSizes)) {
+    if (!screenshotFiles.includes(id)) errors.push(`kuvat.json: kuvaa "${id}.webp" ei löydy. Aja npm run screenshots.`)
+  }
+  for (const id of screenshotFiles) {
+    if (!screenshotSizes[id]) errors.push(`kuvat.json: kuvalta "${id}.webp" puuttuu koko. Aja npm run screenshots.`)
+  }
+  const usedScreenshots = new Set<string>()
 
   for (const [id, cmd] of Object.entries(commands)) {
     if (cmd.verifiedAt === 'TODO') warnings.push(`commands.json: komentoa "${id}" ei ole tarkistettu virallisesta lähteestä (verifiedAt: TODO)`)
@@ -205,6 +226,13 @@ export function validateContent(contentDir: string): ValidationResult {
               if (!tag.attrs.pose) errors.push(`${where} puuttuu pose`)
               else if (!(NUPPU_POSES as readonly string[]).includes(tag.attrs.pose)) errors.push(`${where} tuntematon Nupun asento "${tag.attrs.pose}"`)
               break
+            case 'Screenshot':
+              if (!tag.attrs.id) errors.push(`${where} puuttuu id`)
+              else if (!screenshotSizes[tag.attrs.id]) errors.push(`${where} tuntematon kuva "${tag.attrs.id}" (lisää se scripts/optimize-screenshots.mjs:ään ja aja npm run screenshots)`)
+              else usedScreenshots.add(tag.attrs.id)
+              if (!tag.attrs.alt?.trim()) errors.push(`${where} puuttuu vaihtoehtoinen teksti (alt)`)
+              if (!tag.attrs.inline && !tag.attrs.title?.trim()) errors.push(`${where} puuttuu title (avauspainikkeen teksti ”Näytä kuva: …”)`)
+              break
           }
         }
         if (quizTags > 0 && !hasQuiz) errors.push(`${rel(mdxFile)}: <Quiz /> on käytössä, mutta quiz.json puuttuu`)
@@ -302,6 +330,11 @@ export function validateContent(contentDir: string): ValidationResult {
       case 'commandsRun':
         break
     }
+  }
+
+  // Käyttämätön kuva päätyisi turhaan buildiin.
+  for (const id of Object.keys(screenshotSizes)) {
+    if (!usedScreenshots.has(id)) warnings.push(`kuvat.json: kuvaa "${id}" ei käytetä missään tietopaketissa`)
   }
 
   return { errors, warnings, usedTerms: [...usedTerms] }
