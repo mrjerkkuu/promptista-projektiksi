@@ -6,6 +6,7 @@ import { Os } from './Os'
 import { Path } from './Path'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
+import { Screenshot } from './Screenshot'
 import { TableWrap } from './TableWrap'
 import { Term } from './Term'
 import { Terminal } from './Terminal'
@@ -25,6 +26,7 @@ export const mdxComponents: MDXComponents = {
   Path,
   Quiz,
   ReadMore,
+  Screenshot,
   Term,
   Terminal,
   Tip,

@@ -8,6 +8,7 @@ import { Os } from './Os'
 import { Path } from './Path'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
+import { Screenshot } from './Screenshot'
 import { Term } from './Term'
 import { VerifyStep } from './VerifyStep'
 
@@ -198,6 +199,34 @@ describe('<NuppuSays>', () => {
     const note = screen.getByRole('note')
     expect(note).toHaveTextContent('Nuppu sanoo: Kokeile rohkeasti!')
     expect(container.querySelector('.nuppu--koodaa')).toHaveAttribute('aria-hidden', 'true')
+  })
+})
+
+describe('<Screenshot>', () => {
+  it('näyttää kuvan omana lohkonaan, laiskasti ladattuna ja tilan varaten', () => {
+    const { container } = renderWithProviders(<Screenshot id="s05-lupakysely" alt="Lupakysely, jossa on painikkeet Deny ja Always allow." />)
+    const img = screen.getByRole('img', { name: 'Lupakysely, jossa on painikkeet Deny ja Always allow.' })
+    expect(img.closest('figure')).toBe(container.querySelector('figure.screenshot'))
+    expect(img).toHaveAttribute('loading', 'lazy')
+    expect(img).toHaveAttribute('src', expect.stringMatching(/s05-lupakysely.webp/))
+    expect(Number(img.getAttribute('width'))).toBeGreaterThan(0)
+    expect(Number(img.getAttribute('height'))).toBeGreaterThan(0)
+  })
+
+  it('kuvake tekstin seassa on pelkkä kuva ilman lohkoa', () => {
+    const { container } = renderWithProviders(
+      <p>
+        Napsauta <Screenshot id="i03-pysaytys" alt="pysäytyspainike" inline />.
+      </p>,
+    )
+    const img = screen.getByRole('img', { name: 'pysäytyspainike' })
+    expect(img).toHaveClass('screenshot-icon')
+    expect(container.querySelector('figure')).toBeNull()
+  })
+
+  it('tuntematon kuva ei näytä mitään', () => {
+    const { container } = renderWithProviders(<Screenshot id="olematon" alt="x" />)
+    expect(container).toBeEmptyDOMElement()
   })
 })
 

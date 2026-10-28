@@ -1,0 +1,25 @@
+/* Kuvakaappaus omana lohkonaan. Kuvat ovat vaaleasta teemasta, joten reunus
+   erottaa ne sivusta molemmissa teemoissa, ja tummassa teemassa niitä himmennetään
+   hieman (--screenshot-filter), etteivät ne häikäise. */
+.screenshot {
+  margin: var(--space-5) 0;
+}
+
+.screenshot__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: var(--border-width) solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  filter: var(--screenshot-filter);
+}
+
+/* Kuvake tekstin seassa: rivin korkuinen, ei venytä riviväliä. */
+.screenshot-icon {
+  display: inline-block;
+  height: var(--screenshot-icon-height);
+  width: auto;
+  vertical-align: middle;
+  border-radius: var(--radius-sm);
+  filter: var(--screenshot-filter);
+}
