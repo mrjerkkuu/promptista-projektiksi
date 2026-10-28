@@ -1,0 +1,34 @@
+The <Term id="konteksti">context</Term> is everything Claude keeps in mind during a session: your messages, its own answers, the files it has read and the results of commands. It’s like a desk with papers spread out on it.
+
+The desk has a limited size. When a session goes on for a long time, the desk fills up. Then Claude summarizes older things, and something may get forgotten.
+
+## How to see how full the context is
+
+Next to the conversation there’s a **Context** card with a percentage in its title. The bigger the number, the fuller the desk. You can also type `/context` in the text box, and Claude shows a more detailed breakdown. The breakdown has a lot of technical words, but the percentage is all you need. If you don’t see the card, make the window wider or type `/context`.
+
+## Signs that it’s time to do something
+
+- Claude forgets something you agreed on earlier.
+- It repeats the same mistake or goes round in circles.
+- You’re moving on to a completely new task.
+
+<NuppuSays pose="lepaa">Sometimes it’s worth taking a break and starting with a clean slate. It helps Claude just like it helps me.</NuppuSays>
+
+## What do you do then?
+
+| Option | What it does |
+|---|---|
+| `/compact` | summarizes the session and frees up space, but continues the same session |
+| **+ New** in the sidebar | starts a new session from scratch |
+
+A new session isn’t a failure. It’s often the best way to continue when the topic changes. Everything important is saved in the files, and <Term id="claude-md">CLAUDE.md</Term> tells Claude the project’s basics again every time. Old sessions stay in the sidebar, so you can go back to them.
+
+Source: [The Claude desktop app: tracking context](https://code.claude.com/docs/en/desktop).
+
+<ReadMore title="What actually counts toward the context?">
+
+A language model reads text in small pieces called <Term id="tokeni">tokens</Term>. The size of the context is measured in tokens. Long files and long command output take up a lot of space. That’s why it’s worth asking Claude to focus only on the files it needs.
+
+</ReadMore>
+
+<Quiz />
