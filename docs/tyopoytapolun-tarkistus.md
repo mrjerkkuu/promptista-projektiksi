@@ -1,6 +1,6 @@
 # Työpöytäpolun tarkistus
 
-Tämä lista kokoaa sen, mitä polusta ”Claude Code työpöytäsovelluksessa” (`claude-code-desktop`) jää omistajan tarkistettavaksi ennen julkaisua. Rastita kohdat sitä mukaa, kun ne ovat valmiita (`- [x]`, taulukoissa ☐ → ☑). Kun jokin pitää korjata, kirjoita huomio kohdan perään tai kerro Claudelle.
+Tämä lista kokoaa sen, mitä polusta ”Claude Code työpöytäsovelluksessa” (`claude-code-desktop`) jää omistajan tarkistettavaksi ennen julkaisua. Rastita kohdat sitä mukaa, kun ne ovat valmiita (`- [x]`, taulukoissa ☐ → ☑). Merkintä `[–]` (taulukoissa –) tarkoittaa, että kohta jätettiin tarkistamatta. Syy on kohdan perässä. Kun jokin pitää korjata, kirjoita huomio kohdan perään tai kerro Claudelle.
 
 Tekstit näkee helpoimmin selaimessa: aja `npm run dev` ja avaa Oppimispolut → Claude Code työpöytäsovelluksessa.
 
@@ -75,8 +75,8 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 
 **Clauden työpöytäsovellus** (oppaassa englanniksi kuten Anthropicin ohjeissa):
 
-- [ ] Onko sovellus saatavilla suomeksi? Jos on, kirjoitetaanko nimet suomeksi?
-- [ ] Macin asennus: tuleeko näkyviin ikkuna, jossa Clauden kuvake vedetään Ohjelmat-kansioon (1.2)?
+- [x] Onko sovellus saatavilla suomeksi? Jos on, kirjoitetaanko nimet suomeksi? *Omistaja 28.10.2026: Clauden työpöytäsovellusta ei saa suomeksi, joten nimet kirjoitetaan englanniksi.*
+- [–] Macin asennus: tuleeko näkyviin ikkuna, jossa Clauden kuvake vedetään Ohjelmat-kansioon (1.2)? *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
 - [ ] Kirjautumisen kulku ensimmäisellä käynnistyksellä (1.3).
 - [x] Välilehdet sivupalkin yläosassa ja **Code** (1.3). *Omistajan kuvakaappaus 27.10.2026: välilehdet Chat ja Code, Coden kuvake `</>`.*
 - [x] Kirjoituskentän alla oleva valintarivi: ympäristö, projektikansio, tila ja malli (1.3, 2.1). *Omistaja 28.10.2026: rivillä lukee esim. ”This computer · harjoitus · Auto”, oikealla ”Opus 5.5 High”. Uudessa istunnossa kansiona on ”Choose…”.*
@@ -98,11 +98,11 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 
 **macOS** (suomenkieliset nimet):
 
-- [ ] omenavalikko → Tietoja tästä Macista (1.2)
-- [ ] Finderin Siirry → Koti, Arkisto → Uusi kansio ja Näytä → Näytä polkupalkki (0.3)
-- [ ] Finderin sivupalkin Ohjelmat (1.2)
-- [ ] Hiiren oikean painikkeen valikon Monista (2.3, varmuuskopio)
-- [ ] Koko näytön tilasta poistuminen vihreällä painikkeella (3.4)
+- [–] omenavalikko → Tietoja tästä Macista (1.2) *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
+- [–] Finderin Siirry → Koti, Arkisto → Uusi kansio ja Näytä → Näytä polkupalkki (0.3) *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
+- [–] Finderin sivupalkin Ohjelmat (1.2) *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
+- [–] Hiiren oikean painikkeen valikon Monista (2.3, varmuuskopio) *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
+- [–] Koko näytön tilasta poistuminen vihreällä painikkeella (3.4) *Jätetty tarkistamatta: omistajalla ei ole Mac-konetta (28.10.2026).*
 - [ ] Terminaalipolku: Pääte → Lopeta Pääte, Muokkaa → Sijoita, valikkorivin Spotlight-suurennuslasi (1.1, vianmääritys).
 
 **Windows:**
@@ -115,9 +115,9 @@ Näitä ei voitu tarkistaa ilman oikeaa konetta. Jos nimi on koneellasi erilaine
 
 **GitHub** (selaimessa, bonus 3.6):
 
-- [ ] Plusvalikko → **New repository**, nimi, **Public**, README-tiedoston lisääminen ja **Create repository**.
-- [ ] **Add file** → **Upload files**, kuvauskenttä, main-haaran valinta ja vahvistuspainike.
-- [ ] **Settings** → **Pages** → **Deploy from a branch** → **main**, **/ (root)** → **Save**.
+- [–] Plusvalikko → **New repository**, nimi, **Public**, README-tiedoston lisääminen ja **Create repository**. *Jätetty tarkistamatta omistajan päätöksellä (28.10.2026): ohjeet perustuvat GitHubin dokumentaatioon, johon aihe linkittää.*
+- [–] **Add file** → **Upload files**, kuvauskenttä, main-haaran valinta ja vahvistuspainike. *Jätetty tarkistamatta omistajan päätöksellä (28.10.2026): ohjeet perustuvat GitHubin dokumentaatioon, johon aihe linkittää.*
+- [–] **Settings** → **Pages** → **Deploy from a branch** → **main**, **/ (root)** → **Save**. *Jätetty tarkistamatta omistajan päätöksellä (28.10.2026): ohjeet perustuvat GitHubin dokumentaatioon, johon aihe linkittää.*
 
 **Selaimet:**
 
@@ -133,7 +133,7 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 - **Yksityisyys:** ennen kuvaamista piilota tai rajaa pois sähköpostiosoite, nimi, tilin tiedot, muiden istuntojen nimet ja polut, joissa näkyy käyttäjänimesi (esimerkiksi `C:\Users\nimi`). Kuvat päätyvät julkiselle sivulle.
 - **Ikkuna:** sovellus noin 1280 × 800 pikselin kokoisena, vaalea teema. Rajaa kuva niin, että olennainen kohta näkyy selvästi. Koko ikkunaa ei tarvita.
 - **Käyttöjärjestelmä:** kun sovellus näyttää samalta kummallakin koneella, yksi kuva riittää (merkintä *kumpi tahansa*). Resurssienhallinnasta ja Finderista tarvitaan omat kuvat.
-- **Tummasta muutetut kuvat:** `s04-tilat`, `s06-pysaytys`, `s07-changes-kortti`, `s08-diff`, `s09-rivikommentti`, `s09b-kommentti-kirjoituskentassa`, `s10-tiedostolinkki`, `s02-ymparisto`, `s11-browser` (vain paneelin yläpalkki), `s14-tiedostopaneeli`, `s14b-tiedostopaneeli-muokkaus`, `s15-context-kortti`, `r01-plan`, `r02-valmis-sivu` (vain selaimen yläpalkki), `r04-istunnot`, `s01-new`, `k06-valilehdet-kuvakkeina` ja `k07-code-valilehti` otettiin tummassa teemassa, ja Claude muutti ne vaaleiksi kääntämällä vaaleuden (sävyt säilyvät). Ne ovat arvio vaaleasta teemasta. Jos otat ne joskus uudelleen vaaleassa teemassa, korvaa nämä.
+- **Tummasta muutetut kuvat:** `s04-tilat`, `s06-pysaytys`, `s07-changes-kortti`, `s08-diff`, `s09-rivikommentti`, `s09b-kommentti-kirjoituskentassa`, `s10-tiedostolinkki`, `s02-ymparisto`, `s11-browser` (vain paneelin yläpalkki), `s14-tiedostopaneeli`, `s14b-tiedostopaneeli-muokkaus`, `s15-context-kortti`, `r01-plan`, `r02-valmis-sivu` (vain selaimen yläpalkki), `r04-istunnot`, `s01-new`, `k06-valilehdet-kuvakkeina`, `k07-code-valilehti` ja kuvakkeet `i01`–`i06` otettiin tummassa teemassa, ja Claude muutti ne vaaleiksi kääntämällä vaaleuden (sävyt säilyvät). Ne ovat arvio vaaleasta teemasta. Jos otat ne joskus uudelleen vaaleassa teemassa, korvaa nämä.
 - **Kuvaustapa:** Windowsilla Käynnistä → `Näyttökuvatyökalu`, Macilla Finder → Ohjelmat → Lisäohjelmat → Kuvakaappaus.
 
 ### Käyttöönotto (aihealue 1)
@@ -141,7 +141,7 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 | Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
 |---|---|---|---|---|
 | ☐ | `k01-lataussivu.png` | claude.com/download, latauspainikkeet näkyvissä | kumpi tahansa | 1.2 |
-| ☐ | `k02-mac-asennusikkuna.png` | ladatun asennustiedoston ikkuna (Clauden kuvake ja Ohjelmat-kansio) | Mac | 1.2 |
+| – | `k02-mac-asennusikkuna.png` | ladatun asennustiedoston ikkuna (Clauden kuvake ja Ohjelmat-kansio) | Mac | 1.2 |
 | ☐ | `k03-win-asennus.png` | asennusohjelma käynnissä tai valmis | Windows | 1.2 |
 | ☐ | `k04-kirjautuminen.png` | kirjautumisnäkymä ensimmäisellä käynnistyksellä | kumpi tahansa | 1.3 |
 | ☐ | `k05-valilehdet.png` | sivupalkin välilehdet nimineen, Code korostettuna | kumpi tahansa | 1.3 |
@@ -155,9 +155,9 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 |---|---|---|---|---|
 | ☐ | `p01-win-kayttajat.png` | Resurssienhallinta: vasen reuna (Tämä tietokone) ja Käyttäjät-kansio | Windows | 0.3 |
 | ☐ | `p02-win-uusi-kansio.png` | hiiren oikean painikkeen valikko Uusi → Kansio | Windows | 0.3 |
-| ☐ | `p03-mac-finder-dock.png` | Finderin kuvake Dockissa | Mac | 0.3 |
-| ☐ | `p04-mac-siirry-koti.png` | valikkorivin Siirry → Koti | Mac | 0.3 |
-| ☐ | `p05-mac-uusi-kansio.png` | valikkorivin Arkisto → Uusi kansio | Mac | 0.3 |
+| – | `p03-mac-finder-dock.png` | Finderin kuvake Dockissa | Mac | 0.3 |
+| – | `p04-mac-siirry-koti.png` | valikkorivin Siirry → Koti | Mac | 0.3 |
+| – | `p05-mac-uusi-kansio.png` | valikkorivin Arkisto → Uusi kansio | Mac | 0.3 |
 
 ### Sovellus tutuksi (aihealue 2)
 
@@ -181,18 +181,20 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 
 ### Ensimmäinen projekti (aihealue 3)
 
+GitHub-kuvat (g01–g06) jätettiin ottamatta omistajan päätöksellä, eikä Mac-kuvia (k02, p03–p05) voitu ottaa.
+
 | Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
 |---|---|---|---|---|
 | ☑ | `r01-plan.png` | Plan-tila valittuna ja Clauden suunnitelma keskustelussa | kumpi tahansa | 3.2 |
 | ☑ | `r02-valmis-sivu.png` | valmis esimerkkisivu Browser-paneelissa | kumpi tahansa | 3.3 |
 | ☑ | `r03-kapea-ikkuna.png` | sama sivu kavennetussa selainikkunassa | kumpi tahansa | 3.4 |
 | ☑ | `r04-istunnot.png` | sivupalkki, jossa on useampi istunto | kumpi tahansa | 3.4 |
-| ☐ | `g01-new-repository.png` | GitHubin plusvalikko → New repository | kumpi tahansa | 3.6 |
-| ☐ | `g02-repolomake.png` | uuden repon lomake: nimi, Public, README | kumpi tahansa | 3.6 |
-| ☐ | `g03-upload-files.png` | Add file → Upload files | kumpi tahansa | 3.6 |
-| ☐ | `g04-lataus.png` | lataussivu: tiedostot raahattuina, kuvaus ja main-haara | kumpi tahansa | 3.6 |
-| ☐ | `g05-pages-asetukset.png` | Settings → Pages: Deploy from a branch, main, / (root) | kumpi tahansa | 3.6 |
-| ☐ | `g06-pages-osoite.png` | Pages-sivu, jossa julkaistun sivun osoite näkyy | kumpi tahansa | 3.6 |
+| – | `g01-new-repository.png` | GitHubin plusvalikko → New repository | kumpi tahansa | 3.6 |
+| – | `g02-repolomake.png` | uuden repon lomake: nimi, Public, README | kumpi tahansa | 3.6 |
+| – | `g03-upload-files.png` | Add file → Upload files | kumpi tahansa | 3.6 |
+| – | `g04-lataus.png` | lataussivu: tiedostot raahattuina, kuvaus ja main-haara | kumpi tahansa | 3.6 |
+| – | `g05-pages-asetukset.png` | Settings → Pages: Deploy from a branch, main, / (root) | kumpi tahansa | 3.6 |
+| – | `g06-pages-osoite.png` | Pages-sivu, jossa julkaistun sivun osoite näkyy | kumpi tahansa | 3.6 |
 
 ### Kuvakkeet
 
@@ -200,9 +202,9 @@ Pienet, tiukasti rajatut kuvat yksittäisistä kuvakkeista. Niitä voi käyttä�
 
 | Tehty | Tiedostonimi | Kuvake | Aihe |
 |---|---|---|---|
-| ☐ | `i01-code.png` | Code-välilehden kuvake | 1.3 |
-| ☐ | `i02-new.png` | **+ New** | 2.1 |
-| ☐ | `i03-pysaytys.png` | pysäytyspainike | 2.1, 2.3 |
-| ☐ | `i04-tila.png` | tilan valinta (valintarivillä) | 2.2 |
-| ☐ | `i05-browser.png` | Browser-paneelin kuvake tai painike | 2.4 |
-| ☐ | `i06-paivitys.png` | selaimen päivityspainike (kaareva nuoli) | 2.4, 3.3 |
+| ☑ | `i01-code.png` | Code-välilehden kuvake | 1.3 |
+| ☑ | `i02-new.png` | **+ New** | 2.1 |
+| ☑ | `i03-pysaytys.png` | pysäytyspainike | 2.1, 2.3 |
+| ☑ | `i04-tila.png` | tilan valinta (valintarivillä) | 2.2 |
+| ☑ | `i05-browser.png` | Browser-paneelin kuvake tai painike | 2.4 |
+| ☑ | `i06-paivitys.png` | selaimen päivityspainike (kaareva nuoli) | 2.4, 3.3 |
