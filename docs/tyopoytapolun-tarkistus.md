@@ -131,7 +131,7 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 - **Yksityisyys:** ennen kuvaamista piilota tai rajaa pois sähköpostiosoite, nimi, tilin tiedot, muiden istuntojen nimet ja polut, joissa näkyy käyttäjänimesi (esimerkiksi `C:\Users\nimi`). Kuvat päätyvät julkiselle sivulle.
 - **Ikkuna:** sovellus noin 1280 × 800 pikselin kokoisena, vaalea teema. Rajaa kuva niin, että olennainen kohta näkyy selvästi. Koko ikkunaa ei tarvita.
 - **Käyttöjärjestelmä:** kun sovellus näyttää samalta kummallakin koneella, yksi kuva riittää (merkintä *kumpi tahansa*). Resurssienhallinnasta ja Finderista tarvitaan omat kuvat.
-- **Tummasta muutetut kuvat:** `s04-tilat`, `s06-pysaytys`, `s07-changes-kortti`, `s08-diff`, `s09-rivikommentti`, `s09b-kommentti-kirjoituskentassa`, `s10-tiedostolinkki`, `s02-ymparisto`, `s11-browser` (vain paneelin yläpalkki), `s14-tiedostopaneeli`, `s14b-tiedostopaneeli-muokkaus`, `s15-context-kortti` ja `k07-code-valilehti` otettiin tummassa teemassa, ja Claude muutti ne vaaleiksi kääntämällä vaaleuden (sävyt säilyvät). Ne ovat arvio vaaleasta teemasta. Jos otat ne joskus uudelleen vaaleassa teemassa, korvaa nämä.
+- **Tummasta muutetut kuvat:** `s04-tilat`, `s06-pysaytys`, `s07-changes-kortti`, `s08-diff`, `s09-rivikommentti`, `s09b-kommentti-kirjoituskentassa`, `s10-tiedostolinkki`, `s02-ymparisto`, `s11-browser` (vain paneelin yläpalkki), `s14-tiedostopaneeli`, `s14b-tiedostopaneeli-muokkaus`, `s15-context-kortti`, `r01-plan` ja `k07-code-valilehti` otettiin tummassa teemassa, ja Claude muutti ne vaaleiksi kääntämällä vaaleuden (sävyt säilyvät). Ne ovat arvio vaaleasta teemasta. Jos otat ne joskus uudelleen vaaleassa teemassa, korvaa nämä.
 - **Kuvaustapa:** Windowsilla Käynnistä → `Näyttökuvatyökalu`, Macilla Finder → Ohjelmat → Lisäohjelmat → Kuvakaappaus.
 
 ### Käyttöönotto (aihealue 1)
@@ -181,7 +181,7 @@ Tähän asti polulla on vain tekstiä. Kuvat helpottavat aloittelijaa löytämä
 
 | Tehty | Tiedostonimi | Mitä kuvaan | Kone | Aihe |
 |---|---|---|---|---|
-| ☐ | `r01-plan.png` | Plan-tila valittuna ja Clauden suunnitelma keskustelussa | kumpi tahansa | 3.2 |
+| ☑ | `r01-plan.png` | Plan-tila valittuna ja Clauden suunnitelma keskustelussa | kumpi tahansa | 3.2 |
 | ☐ | `r02-valmis-sivu.png` | valmis esimerkkisivu Browser-paneelissa | kumpi tahansa | 3.3 |
 | ☐ | `r03-kapea-ikkuna.png` | sama sivu kavennetussa selainikkunassa | kumpi tahansa | 3.4 |
 | ☐ | `r04-istunnot.png` | sivupalkki, jossa on useampi istunto | kumpi tahansa | 3.4 |
