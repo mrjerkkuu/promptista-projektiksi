@@ -5,6 +5,7 @@ import { renderWithProviders, storedProgress } from '../test/render'
 import { Command } from './Command'
 import { NuppuSays } from './NuppuSays'
 import { Os } from './Os'
+import { Path } from './Path'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
 import { Term } from './Term'
@@ -101,6 +102,20 @@ describe('<Os>', () => {
     )
     expect(screen.getByText('Vain Windows:')).toBeInTheDocument()
     expect(screen.getByText('Mac-ohje')).toBeInTheDocument()
+  })
+})
+
+describe('<Path>', () => {
+  it('näyttää sisällön vain polulla, jolla kävijä kulkee', () => {
+    renderWithProviders(
+      <>
+        <Path only="claude-code">Terminaalipolun teksti</Path>
+        <Path only="claude-code-desktop">Työpöytäpolun teksti</Path>
+      </>,
+      { moduleKey: 'claude-code-desktop/chat-vai-agentti' },
+    )
+    expect(screen.queryByText('Terminaalipolun teksti')).not.toBeInTheDocument()
+    expect(screen.getByText('Työpöytäpolun teksti')).toBeInTheDocument()
   })
 })
 

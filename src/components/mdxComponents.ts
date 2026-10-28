@@ -3,6 +3,7 @@ import { Command } from './Command'
 import { MdxLink } from './MdxLink'
 import { NuppuSays } from './NuppuSays'
 import { Os } from './Os'
+import { Path } from './Path'
 import { Quiz } from './Quiz'
 import { ReadMore } from './ReadMore'
 import { TableWrap } from './TableWrap'
@@ -21,6 +22,7 @@ export const mdxComponents: MDXComponents = {
   Command,
   NuppuSays,
   Os,
+  Path,
   Quiz,
   ReadMore,
   Term,

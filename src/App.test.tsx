@@ -104,7 +104,23 @@ describe('sivut', () => {
     expect(link()).not.toHaveAttribute('aria-current')
   })
 
+  it('tarkastettu polku ei näytä ilmoitusta', () => {
+    renderAt('/polku/claude-code-desktop')
+    expect(screen.queryAllByRole('complementary', { name: 'Ei vielä tarkastettu' })).toHaveLength(0)
+  })
+
   it('tarkastamaton polku näyttää ilmoituksen kortissa, polun sivulla ja ensimmäisessä aiheessa', async () => {
+    // Kaikki polut on tarkastettu, joten testi merkitsee työpöytäpolun tarkastamattomaksi itse.
+    const desktop = getPath('claude-code-desktop')!
+    desktop.reviewed = false
+    try {
+      await expectUnreviewedNotices()
+    } finally {
+      delete desktop.reviewed
+    }
+  })
+
+  async function expectUnreviewedNotices() {
     const notice = () => screen.queryAllByRole('complementary', { name: 'Ei vielä tarkastettu' })
     let view = renderAt('/polut')
     const desktopCard = screen.getByRole('link', { name: 'Claude Code työpöytäsovelluksessa' }).closest('article')!
@@ -127,7 +143,7 @@ describe('sivut', () => {
     view.unmount()
     renderAt('/polku/claude-code-desktop/chat-vai-agentti')
     expect(notice()).toHaveLength(0)
-  })
+  }
 
   it('polkusivu listaa aihealueet ja moduulit', () => {
     renderAt('/polku/claude-code')

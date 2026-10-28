@@ -76,6 +76,7 @@ Jos aihe sopii sellaisenaan toiselle polulle, älä kopioi sitä, vaan viittaa s
 - Yhteisessä aiheessa **ei saa olla linkkejä tietyn polun aiheisiin** (`#/polku/…`), koska ne veisivät toisen polun kävijän väärälle polulle. Build tarkistaa tämän.
 - Viittaus ei voi osoittaa toiseen viittaukseen eikä omalle polulle.
 - Jaa vain aihe, jonka sisältö pätee kaikilla poluilla. Jos aiheessa puhutaan esimerkiksi terminaalista, kirjoita toiselle polulle oma versio.
+- Jos vain kappale tai pari pätee eri tavalla eri poluilla, kirjoita ne `<Path only="<polku>">`-komponentin sisään (ks. taulukko alla). Silloin aihetta ei tarvitse kopioida, ja sen ID ja edistyminen säilyvät.
 
 ### Uusi moduuli olemassa olevaan polkuun
 
@@ -90,6 +91,7 @@ Tietopaketti on Markdownia, jonka sekaan voi kirjoittaa komponentteja. Otsikko t
 | Komponentti | Käyttö |
 |---|---|
 | `<Os only="windows">…</Os>` | Sisältö vain Windowsille (tai `mac`). Jätä tyhjä rivi tagien ja Markdown-sisällön väliin. |
+| `<Path only="claude-code-desktop">…</Path>` | Sisältö vain polulla, jolla kävijä kulkee. Yhteisiä aiheita varten. Build tarkistaa, että polku on olemassa. |
 | `<Command id="install-git" />` | Kopioitava komento `commands.json`:sta valitun käyttöjärjestelmän mukaan. |
 | `<Term id="git">Gitin</Term>` | Sanastotermi, jonka selitys näkyy osoittamalla tai napauttamalla. |
 | `<Quiz />` | Moduulin visa (`quiz.json` samassa kansiossa). |

@@ -2,7 +2,7 @@
   "questions": [
     {
       "id": "luvut",
-      "question": "Changes-kortissa lukee +12 -1. Mitä se tarkoittaa?",
+      "question": "Muutoksen kohdalla lukee +12 -1. Mitä se tarkoittaa?",
       "options": [
         { "id": "rivit", "text": "Kaksitoista riviä lisättiin ja yksi poistettiin", "correct": true, "explanation": "Oikein. Napsauttamalla lukuja näet muutokset tarkemmin diffissä." },
         { "id": "virheet", "text": "Koodissa on kaksitoista virhettä", "correct": false, "explanation": "Luvut eivät kerro virheistä. Ne kertovat, kuinka monta riviä lisättiin ja poistettiin." },

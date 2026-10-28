@@ -2,15 +2,15 @@ Claude voi muuttaa monta tiedostoa kerralla. Siksi on tärkeää nähdä, mitä 
 
 ## Katso muutokset
 
-Kun Claude on muuttanut tiedostoja, keskustelun viereen ilmestyy **Changes**-kortti. Siinä näkyy muuttuneiden rivien määrä, esimerkiksi `+12 -1`: kaksitoista riviä lisätty ja yksi poistettu. Napsauta lukuja, niin muutosnäkymä eli <Term id="diff">diff</Term> aukeaa. (Voit myös napsauttaa ikkunan yläreunasta **Changes**.)
+Kun Claude on muuttanut tiedostoa, keskustelussa näkyy tiedoston nimen vieressä muuttuneiden rivien määrä, esimerkiksi `+12 -1`: kaksitoista riviä lisätty ja yksi poistettu. Napsauta lukuja, niin muutosnäkymä eli <Term id="diff">diff</Term> aukeaa. (Jos projektikansiosi on Git-repo, samat luvut näkyvät myös keskustelun vieressä **Changes**-kortissa.)
 
 Diffissä näet tiedosto kerrallaan, mitkä rivit lisättiin ja mitkä poistettiin. Sinun ei tarvitse ymmärtää jokaista koodiriviä. Riittää, että katsot, muuttuiko oikea tiedosto ja näyttääkö muutos järkevältä.
 
-<NuppuSays pose="tutkii">Minä tutkin muutokset suurennuslasilla. Sinulle riittää, että katsot, muuttuiko oikea tiedosto.</NuppuSays>
+<NuppuSays pose="tutkii">Minä tutkin muutokset suurennuslasilla. Jos jokin näyttää oudolta, kysyn Claudelta: ”Mitä tämä muutos tekee?”</NuppuSays>
 
 ## Kommentoi rivejä
 
-Jos jokin rivi pitää muuttaa, napsauta sitä diffissä. Kommenttikenttä aukeaa: kirjoita palautteesi ja paina Enter. Kun olet kommentoinut kaikki rivit, lähetä kommentit Claudelle painamalla Windowsilla Ctrl+Enter tai Macilla Cmd+Enter. Claude tekee pyydetyt muutokset, ja näet ne uutena diffinä.
+Jos jokin rivi pitää muuttaa, vie hiiri rivin päälle diffissä ja napsauta rivinumeron viereen ilmestyvää **+**-merkkiä. Kirjoita palautteesi kenttään ja paina Enter. Kommentti siirtyy kirjoituskenttään. Kun olet kommentoinut kaikki haluamasi rivit, lähetä kommentit Claudelle painamalla kirjoituskentässä Enter. Claude tekee pyydetyt muutokset, ja näet ne uutena diffinä.
 
 ## Jos jokin menee pieleen
 
@@ -22,7 +22,21 @@ Manual-tilassa näet jokaisen muutoksen jo ennen kuin se tehdään, ja voit hyl�
 
 <Tip title="Varmuuskopio">
 
-Kun sivu on hyvässä vaiheessa, ota projektikansiosta kopio: kopioi koko kansio ja liitä se samaan paikkaan, jolloin syntyy esimerkiksi kansio `oma-sivu - kopio`. Bonustehtävässä opit tallentamaan versiot GitHubiin, joka säilyttää jokaisen version.
+Kun sivu on hyvässä vaiheessa, ota projektikansiosta kopio.
+
+<Os only="windows">
+
+Napsauta kansiota hiiren oikealla painikkeella ja valitse **Kopioi**. Napsauta sitten tyhjää kohtaa hiiren oikealla painikkeella ja valitse **Liitä**. (Voit myös painaa Ctrl+C ja Ctrl+V.)
+
+</Os>
+
+<Os only="mac">
+
+Napsauta kansiota hiiren oikealla painikkeella ja valitse **Monista**. (Voit myös painaa Cmd+D.)
+
+</Os>
+
+Kopion nimen perässä on sana kopio. Bonustehtävässä viet sivusi GitHubiin, joka säilyttää jokaisen sinne lataamasi version.
 
 </Tip>
 

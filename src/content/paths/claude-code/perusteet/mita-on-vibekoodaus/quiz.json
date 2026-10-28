@@ -22,7 +22,7 @@
       "id": "rooli",
       "question": "Mikä on vibekoodaajan tärkein taito?",
       "options": [
-        { "id": "konekieli", "text": "Konekielen ulkoa osaaminen", "correct": false, "explanation": "Sitä ei tarvita. Tekoäly hoitaa koodin kirjoittamisen." },
+        { "id": "konekieli", "text": "Ohjelmointikielen ulkoa osaaminen", "correct": false, "explanation": "Sitä ei tarvita. Tekoäly hoitaa koodin kirjoittamisen." },
         { "id": "kertominen", "text": "Selkeä kertominen: mitä, miksi ja millä rajoilla", "correct": true, "explanation": "Oikein! Hyvä ohje on puoli työtä." },
         { "id": "nopeus", "text": "Nopea kirjoittaminen näppäimistöllä", "correct": false, "explanation": "Nopeudesta ei ole haittaa, mutta ajatuksen selkeys on paljon tärkeämpää." }
       ]

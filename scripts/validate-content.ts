@@ -133,6 +133,8 @@ export function validateContent(contentDir: string): ValidationResult {
   const moduleRefs = new Set<string>()
   /** Polkujen viittaukset toisten polkujen aiheisiin. Tarkistetaan, kun kaikki polut on luettu. */
   const sharedRefs: { pathId: string; ref: string }[] = []
+  /** <Path only="…">-arvot. Tarkistetaan, kun kaikki polut on luettu. */
+  const pathTags: { where: string; only: string | undefined }[] = []
   const usedTerms = new Set<string>()
   for (const pathDirName of listDirs(pathsDir)) {
     const pathDir = path.join(pathsDir, pathDirName)
@@ -193,6 +195,9 @@ export function validateContent(contentDir: string): ValidationResult {
             case 'Os':
               if (!osSchema.safeParse(tag.attrs.only).success) errors.push(`${where} only-arvon pitää olla "windows" tai "mac"`)
               break
+            case 'Path':
+              pathTags.push({ where, only: tag.attrs.only })
+              break
             case 'Quiz':
               quizTags++
               break
@@ -224,6 +229,11 @@ export function validateContent(contentDir: string): ValidationResult {
     const other = pathsByOrder.get(p.order)
     if (other) errors.push(`paths/${p.id}/path.json: order ${p.order} on jo polulla "${other}"`)
     else pathsByOrder.set(p.order, p.id)
+  }
+
+  for (const { where, only } of pathTags) {
+    if (!only) errors.push(`${where} puuttuu only`)
+    else if (!paths.has(only)) errors.push(`${where} tuntematon polku "${only}"`)
   }
 
   // Yhteiset aiheet (SUUNNITELMA.md 15.3)

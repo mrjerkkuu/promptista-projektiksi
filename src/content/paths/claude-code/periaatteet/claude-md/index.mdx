@@ -1,8 +1,8 @@
-Claude ei muista edellisiä keskusteluja. Jokainen uusi keskustelu alkaa puhtaalta pöydältä. Miten Claude sitten tietää, millainen projektisi on? Vastaus on <Term id="claude-md">CLAUDE.md</Term>.
+Uusi keskustelu ei näe aiempien keskustelujen sisältöä. Miten Claude sitten tietää, millainen projektisi on? Vastaus on <Term id="claude-md">CLAUDE.md</Term>.
 
 CLAUDE.md on projektikansiossa oleva tekstitiedosto, jonka Claude Code lukee **jokaisen keskustelun alussa**. Se on kuin muistilappu jääkaapin ovessa: pysyvät ohjeet, joita ei tarvitse toistaa joka kerta.
 
-<NuppuSays pose="lukee">Minäkin vilkaisen kauppalistaa aina, ennen kuin lähden kauppaan. Claude lukee CLAUDE.md:n samalla tavalla joka kerta, kun keskustelu alkaa.</NuppuSays>
+<NuppuSays pose="lukee">Minäkin vilkaisen kauppalistaa aina, ennen kuin lähden kauppaan.</NuppuSays>
 
 ## Mitä sinne kirjoitetaan?
 
@@ -31,6 +31,12 @@ Tiedosto kirjoitetaan <Term id="markdown">Markdown</Term>-muodossa, mutta tavall
 - **Komennolla:** kirjoita Claude Codessa `/init`. Claude tutkii projektin ja tekee CLAUDE.md:n pohjan. Jos tiedosto on jo olemassa, Claude ehdottaa parannuksia.
 - **Pyytämällä:** ”Lisää CLAUDE.md:hen sääntö, että sivun pitää toimia puhelimella.”
 - **Itse:** avaa tiedosto VS Codessa ja muokkaa.
+
+<ReadMore title="Muistaako Claude jotain itsekin?">
+
+Kyllä. Claude voi kirjoittaa itselleen muistiinpanoja esimerkiksi korjauksistasi ja toiveistasi, ja se lukee ne seuraavissa keskusteluissa. Se päättää kuitenkin itse, mitä tallentaa. Kun haluat, että jokin ohje on varmasti voimassa, kirjoita se CLAUDE.md:hen.
+
+</ReadMore>
 
 Lähde: [Claude Coden muisti ja CLAUDE.md](https://code.claude.com/docs/en/memory).
 

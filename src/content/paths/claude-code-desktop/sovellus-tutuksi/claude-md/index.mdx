@@ -1,8 +1,8 @@
-Claude ei muista edellisiä istuntoja. Jokainen uusi istunto alkaa puhtaalta pöydältä. Miten Claude sitten tietää, millainen projektisi on? Vastaus on <Term id="claude-md">CLAUDE.md</Term>.
+Uusi istunto ei näe aiempien istuntojen keskusteluja. Miten Claude sitten tietää, millainen projektisi on? Vastaus on <Term id="claude-md">CLAUDE.md</Term>.
 
 CLAUDE.md on projektikansiossa oleva tekstitiedosto, jonka Claude Code lukee **jokaisen istunnon alussa**. Se on kuin muistilappu jääkaapin ovessa: pysyvät ohjeet, joita ei tarvitse toistaa joka kerta.
 
-<NuppuSays pose="lukee">Minäkin vilkaisen kauppalistaa aina, ennen kuin lähden kauppaan. Claude lukee CLAUDE.md:n samalla tavalla jokaisen istunnon alussa.</NuppuSays>
+<NuppuSays pose="lukee">Minäkin vilkaisen kauppalistaa aina, ennen kuin lähden kauppaan.</NuppuSays>
 
 ## Mitä sinne kirjoitetaan?
 
@@ -30,7 +30,13 @@ Tiedosto kirjoitetaan <Term id="markdown">Markdown</Term>-muodossa, mutta tavall
 
 - **Pyydä Claudea:** ”Tee projektille CLAUDE.md. Kerro siinä, että sivu on tehty vain HTML:llä, CSS:llä ja JavaScriptillä ja että vastaat minulle suomeksi.”
 - **Lisää myöhemmin:** ”Lisää CLAUDE.md:hen sääntö, että sivun pitää toimia puhelimella.”
-- **Muokkaa itse:** napsauta tiedoston nimeä keskustelussa, niin se aukeaa sovelluksen tiedostopaneeliin. Muutokset tallentuvat automaattisesti.
+- **Muokkaa itse:** napsauta tiedoston nimeä keskustelussa, niin se aukeaa sovelluksen tiedostopaneeliin luettavana näkymänä. Napsauta paneelin oikeasta yläkulmasta **View source** (merkit `</>`), niin pääset muokkaamaan tekstiä. Aloita uusi sääntö omalla rivillään viivalla (`- `). Muutokset tallentuvat automaattisesti, ja silmäkuvake palauttaa luettavan näkymän.
+
+<ReadMore title="Muistaako Claude jotain itsekin?">
+
+Kyllä. Claude voi kirjoittaa itselleen muistiinpanoja esimerkiksi korjauksistasi ja toiveistasi, ja se lukee ne seuraavissa istunnoissa. Se päättää kuitenkin itse, mitä tallentaa. Kun haluat, että jokin ohje on varmasti voimassa, kirjoita se CLAUDE.md:hen.
+
+</ReadMore>
 
 Lähde: [Claude Coden muisti ja CLAUDE.md](https://code.claude.com/docs/en/memory).
 
