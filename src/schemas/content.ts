@@ -341,6 +341,12 @@ export const screenshotSizesSchema = z.record(
 export type ScreenshotSizes = z.infer<typeof screenshotSizesSchema>
 
 /**
+ * Enintään näin korkea kuvakaappaus (CSS-pikseleinä) näkyy tekstissä suoraan.
+ * Korkeampi on piilossa ”Näytä kuva” -painikkeen takana, jotta ohje ei veny pitkäksi.
+ */
+export const SCREENSHOT_MAX_VISIBLE_HEIGHT = 120
+
+/**
  * Nupun asennot. Jokaisella on kuva src/assets/nuppu/nuppu-<asento>.svg.
  * Tietopaketin <NuppuSays pose="…"> saa käyttää vain näitä (tarkistetaan buildissa).
  */

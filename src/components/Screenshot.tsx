@@ -1,5 +1,5 @@
 import { useT } from '../i18n'
-import type { ScreenshotSizes } from '../schemas/content'
+import { SCREENSHOT_MAX_VISIBLE_HEIGHT, type ScreenshotSizes } from '../schemas/content'
 import sizes from '../assets/kuvakaappaukset/kuvat.json'
 import './Screenshot.css'
 
@@ -15,16 +15,17 @@ interface ScreenshotProps {
   id: string
   /** Vaihtoehtoinen teksti: mitä kuvassa on ja mihin kannattaa kiinnittää huomiota. */
   alt: string
-  /** Lyhyt nimi avauspainikkeeseen: ”Näytä kuva: <title>”. Pakollinen, ellei kuva ole inline. */
+  /** Lyhyt nimi avauspainikkeeseen: ”Näytä kuva: <title>”. Pakollinen korkealle kuvalle, jonka voi avata. */
   title?: string
   /** Pieni kuvake tekstin seassa (”napsauta [kuvake]”). Näkyy aina. */
   inline?: boolean
 }
 
 /**
- * Kuvakaappaus tietopaketissa. Kuva on piilossa, kunnes lukija avaa sen
- * painikkeesta ”Näytä kuva”: ohje ei veny pitkäksi, ja kuva latautuu vasta
- * avattaessa. width/height varaavat kuvalle tilan, joten teksti ei hypi.
+ * Kuvakaappaus tietopaketissa. Matala kuva (esim. valintarivi tai yksi painike)
+ * näkyy suoraan, koska se ei pidennä ohjetta. Korkea kuva on piilossa, kunnes
+ * lukija avaa sen painikkeesta ”Näytä kuva”, ja se latautuu vasta avattaessa.
+ * width/height varaavat kuvalle tilan, joten teksti ei hypi.
  * Build tarkistaa, että kuva on olemassa ja tekstit on kirjoitettu.
  */
 export function Screenshot({ id, alt, title, inline = false }: ScreenshotProps) {
@@ -44,6 +45,7 @@ export function Screenshot({ id, alt, title, inline = false }: ScreenshotProps) 
     />
   )
   if (inline) return img
+  if (size.height <= SCREENSHOT_MAX_VISIBLE_HEIGHT) return <figure className="screenshot">{img}</figure>
   return (
     <details className="screenshot">
       <summary className="screenshot__toggle">

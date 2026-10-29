@@ -100,10 +100,10 @@ Tietopaketti on Markdownia, jonka sekaan voi kirjoittaa komponentteja. Otsikko t
 | `<ReadMore title="Otsikko">…</ReadMore>` | Avattava syventävä osio. |
 | `<Tip title="Vinkki" type="warning">…</Tip>` | Vinkki- tai huomiolaatikko (`type` valinnainen). |
 | `<NuppuSays pose="koodaa">…</NuppuSays>` | Nupun lyhyt kommentti puhekuplassa. Kirjoita se omalle rivilleen väliotsikon tai kappaleen edelle; leveällä näytöllä se näkyy tekstin vieressä. Asennot: `NUPPU_POSES` (`src/schemas/content.ts`). Yksi kommentti aihetta kohden riittää. |
-| `<Screenshot id="s05-lupakysely" title="lupakysely" alt="…" />` | Kuvakaappaus, joka aukeaa painikkeesta ”Näytä kuva: lupakysely”. Kirjoita se omalle rivilleen sen kappaleen jälkeen, jota se havainnollistaa. `title` on lyhyt nimi painikkeeseen. `alt` on pakollinen: kerro, mitä kuvassa on ja mihin lukijan pitää kiinnittää huomiota. Kuva tukee tekstiä eikä korvaa sitä. |
+| `<Screenshot id="s05-lupakysely" title="lupakysely" alt="…" />` | Kuvakaappaus. Kirjoita se omalle rivilleen sen kappaleen jälkeen, jota se havainnollistaa. Matala kuva (enintään 120 px, `SCREENSHOT_MAX_VISIBLE_HEIGHT`) näkyy suoraan, eikä sille kirjoiteta `title`a. Korkeampi kuva aukeaa painikkeesta ”Näytä kuva: lupakysely”, ja `title` on lyhyt nimi painikkeeseen. `alt` on pakollinen: kerro, mitä kuvassa on ja mihin lukijan pitää kiinnittää huomiota. Kuva tukee tekstiä eikä korvaa sitä. |
 | `<Screenshot id="i03-pysaytys" alt="musta neliö" inline />` | Pieni kuvake tekstin seassa (”napsauta pysäytyspainiketta [kuvake]”). Näkyy aina, ei `title`a. |
 
-**Uusi kuvakaappaus:** tallenna PNG kansioon `kuvakaappaukset/tyopoyta/`, lisää sen nimi `scripts/optimize-screenshots.mjs`:n `SHOTS`-listaan (tarvittaessa rajaus `crop` tai näyttöleveys `displayWidth`) ja aja `npm run screenshots`. Skripti tekee kuvasta WebP-version kansioon `src/assets/kuvakaappaukset/` ja päivittää näyttökoot (`kuvat.json`). Build kaatuu, jos kuvaa ei löydy tai `alt` tai (lohkokuvalta) `title` puuttuu. Vältä `alt`-tekstissä merkkejä `>` ja `"`.
+**Uusi kuvakaappaus:** tallenna PNG kansioon `kuvakaappaukset/tyopoyta/`, lisää sen nimi `scripts/optimize-screenshots.mjs`:n `SHOTS`-listaan (tarvittaessa rajaus `crop` tai näyttöleveys `displayWidth`) ja aja `npm run screenshots`. Skripti tekee kuvasta WebP-version kansioon `src/assets/kuvakaappaukset/` ja päivittää näyttökoot (`kuvat.json`). Build kaatuu, jos kuvaa ei löydy tai `alt` tai (korkealta kuvalta) `title` puuttuu. Vältä `alt`-tekstissä merkkejä `>` ja `"`.
 
 Linkit:
 

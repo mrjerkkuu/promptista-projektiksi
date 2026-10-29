@@ -1,5 +1,5 @@
-/* Kuvakaappaus avattavana: painike ”Näytä kuva: …”, jonka alle kuva aukeaa.
-   Kuvat ovat vaaleasta teemasta, joten reunus erottaa ne sivusta molemmissa
+/* Kuvakaappaus: matala kuva suoraan tekstissä, korkea avattavana (painike
+   ”Näytä kuva: …”, jonka alle kuva aukeaa). Kuvat ovat vaaleasta teemasta, joten reunus erottaa ne sivusta molemmissa
    teemoissa, ja tummassa teemassa niitä himmennetään hieman
    (--screenshot-filter), etteivät ne häikäise. */
 .screenshot {
@@ -55,10 +55,13 @@
   display: block;
   max-width: 100%;
   height: auto;
-  margin-top: var(--space-3);
   border: var(--border-width) solid var(--color-border-subtle);
   border-radius: var(--radius-sm);
   filter: var(--screenshot-filter);
+}
+
+.screenshot__toggle + .screenshot__image {
+  margin-top: var(--space-3);
 }
 
 .screenshot[open] > .screenshot__image {

@@ -3,6 +3,7 @@ import path from 'node:path'
 import type { z } from 'zod'
 import {
   MDX_COMPONENTS,
+  SCREENSHOT_MAX_VISIBLE_HEIGHT,
   NUPPU_POSES,
   badgesFileSchema,
   commandsFileSchema,
@@ -272,7 +273,12 @@ export function validateContent(contentDir: string, screenshotsDir = path.join(c
           else if (!screenshotSizes[tag.attrs.id]) errors.push(`${where} tuntematon kuva "${tag.attrs.id}" (lisää se scripts/optimize-screenshots.mjs:ään ja aja npm run screenshots)`)
           else usedScreenshots.add(tag.attrs.id)
           if (!tag.attrs.alt?.trim()) errors.push(`${where} puuttuu vaihtoehtoinen teksti (alt)`)
-          if (!tag.attrs.inline && !tag.attrs.title?.trim()) errors.push(`${where} puuttuu title (avauspainikkeen teksti ”Näytä kuva: …”)`)
+          if (!tag.attrs.inline && tag.attrs.id && screenshotSizes[tag.attrs.id]) {
+            // Matala kuva näkyy suoraan, korkea aukeaa painikkeesta, jonka teksti tulee title-attribuutista.
+            const collapsed = screenshotSizes[tag.attrs.id].height > SCREENSHOT_MAX_VISIBLE_HEIGHT
+            if (collapsed && !tag.attrs.title?.trim()) errors.push(`${where} puuttuu title (avauspainikkeen teksti ”Näytä kuva: …”)`)
+            if (!collapsed && tag.attrs.title !== undefined) warnings.push(`${where} title on turha: kuva "${tag.attrs.id}" on matala ja näkyy suoraan`)
+          }
           break
       }
     }
