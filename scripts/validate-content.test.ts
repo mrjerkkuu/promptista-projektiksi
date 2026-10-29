@@ -383,6 +383,21 @@ describe('validateContent – rikkinäinen sisältö kaatuu', () => {
       expect(errors.match(/puuttuu title/g)).toHaveLength(1)
     })
 
+    it('matala kuva ei tarvitse titleä, ja turhasta titlestä tulee varoitus', () => {
+      const d = fixture()
+      const shots = addScreenshots(d)
+      fs.writeFileSync(path.join(shots, 'kuvat.json'), JSON.stringify({ kuva: { width: 300, height: 200 }, matala: { width: 600, height: 60 } }))
+      fs.writeFileSync(path.join(shots, 'matala.webp'), '')
+      replaceIn(
+        mdx(d),
+        '<Quiz />',
+        '<Screenshot id="kuva" alt="A" title="a" />\n<Screenshot id="matala" alt="B" />\n<Screenshot id="matala" alt="C" title="c" />\n<Quiz />',
+      )
+      const result = validateContent(d, shots)
+      expect(result.errors).toEqual([])
+      expect(result.warnings.join('\n').match(/title on turha: kuva "matala"/g)).toHaveLength(1)
+    })
+
     it('kuva ilman kokoa tai koko ilman kuvaa', () => {
       const d = fixture()
       const shots = addScreenshots(d)

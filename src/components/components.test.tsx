@@ -223,6 +223,14 @@ describe('<Screenshot>', () => {
     expect(Number(img.getAttribute('height'))).toBeGreaterThan(0)
   })
 
+  it('matala kuva näkyy suoraan ilman painiketta', () => {
+    const { container } = renderWithProviders(<Screenshot id="k07-code-valilehti" alt="Kirjoituskenttä ja valintarivi." />)
+    const img = screen.getByRole('img', { name: 'Kirjoituskenttä ja valintarivi.' })
+    expect(img).toBeVisible()
+    expect(img.closest('figure')).toHaveClass('screenshot')
+    expect(container.querySelector('details')).toBeNull()
+  })
+
   it('kuvake tekstin seassa näkyy aina eikä ole avattava', () => {
     const { container } = renderWithProviders(
       <p>
