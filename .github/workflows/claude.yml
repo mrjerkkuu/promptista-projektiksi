@@ -7,6 +7,9 @@
 #   2. `avaa-pr`: työnkulku (ei tekoäly) tekee haaran, commitin ja PR:n tai kommentoi issueen.
 # Näin Claude ei koskaan pääse kirjoitusoikeuksiin, eikä kirjoitusoikeuksilla ajeta repon koodia.
 #
+# Pienistä näkyvistä muutoksista PR:ään tulee kuvakaappaukset ennen ja jälkeen: Claude kertoo, mitkä sivut
+# kuvataan (`.claude-tulos/kuvat.json`), `toteuta` ottaa kuvat ja `avaa-pr` vie ne haaraan `pr-kuvat`.
+#
 # Pohjana claude-code-actionin virallinen dokumentaatio (tarkistettu 2026-10-25):
 # - https://github.com/anthropics/claude-code-action/blob/v1.0.262/action.yml (syötteet ja tulosteet)
 # - docs/setup.md (tunnistautuminen), docs/security.md (oikeudet, prompt-injektio),
@@ -114,7 +117,17 @@ jobs:
             4. Muuten toteuta pyyntö pienenä, rajattuna muutoksena. Lisää tai päivitä testit, jos muutos koskee toimintaa.
                Jos teet tulkinnan, kirjaa se PAATOKSET.md:hen.
             5. Aja `npm run check`. Korjaa, kunnes se menee läpi. Jos et saa sitä läpi, kerro se kuvauksessa.
-            6. Kirjoita tiedosto `.claude-tulos/pr-kuvaus.md` (PR:n kuvaus, suomeksi, Markdown, ei pääotsikkoa):
+            6. Jos muutos näkyy sivulla ja on pieni (esim. teksti, väri, painike tai asettelu yhdellä tai muutamalla sivulla),
+               kirjoita tiedosto `.claude-tulos/kuvat.json`. Työnkulku kuvaa sivut ennen muutosta ja sen jälkeen ja liittää kuvat PR:ään.
+               Muoto on JSON-taulukko, enintään 3 kohdetta:
+               [{"reitti": "/sanasto", "kohde": "h1", "kuvaus": "Sanaston otsikko", "nakyma": "tyopoyta", "kieli": "fi"}]
+               - `reitti`: sivun reitti ilman #-merkkiä (reitit: `src/AppShell.tsx`, esim. `/`, `/polut`, `/polku/claude-code/terminaali`).
+               - `kohde` (valinnainen): CSS-valitsin elementille, jonka kohdalle sivu vieritetään. Valitse mieluiten elementti,
+                 joka on sivulla jo ennen muutosta, jotta kuvat näyttävät saman kohdan.
+               - `kuvaus`: lyhyesti suomeksi, mitä kuvasta kannattaa katsoa (enintään 120 merkkiä).
+               - `nakyma`: `tyopoyta` (1280 px) tai `mobiili` (390 px). `kieli`: `fi` tai `en`.
+               Jos muutos ei näy sivulla (esim. testit, dokumentaatio, tallennus) tai muuttaa laajasti koko sivustoa, älä kirjoita tiedostoa.
+            7. Kirjoita tiedosto `.claude-tulos/pr-kuvaus.md` (PR:n kuvaus, suomeksi, Markdown, ei pääotsikkoa):
                - ## Mitä muutettiin (tiedostot ja muutos lyhyesti)
                - ## Miksi (miten muutos vastaa palautteeseen)
                - ## Miten tarkistettiin (`npm run check`)
@@ -151,6 +164,7 @@ jobs:
           git add -A
           git diff --cached --binary > "$RUNNER_TEMP/tulos/muutos.patch"
           git diff --cached --stat
+          echo "tiedostoja=$(git diff --cached --name-only | wc -l)" >> "$GITHUB_OUTPUT"
           if [ -s "$RUNNER_TEMP/tulos/muutos.patch" ]; then
             echo "muutoksia=true" >> "$GITHUB_OUTPUT"
           fi
@@ -161,6 +175,30 @@ jobs:
         if: steps.muutos.outputs.muutoksia == 'true'
         continue-on-error: true
         run: npm run check
+
+      # Kuvat ennen ja jälkeen, jos Claude pyysi niitä ja muutos on pieni. Jälkeen-build on tarkistuksen `dist`.
+      # Sen jälkeen muutos perutaan työtilasta (patch on jo tallessa) ja ennen-build tehdään mainin koodista.
+      # Molemmat kuvataan mainin skriptillä ja asetuksilla. Epäonnistuminen ei estä PR:ää: kuvat vain jäävät pois.
+      - name: Kuvakaappaukset ennen ja jälkeen
+        if: steps.check.outcome == 'success'
+        continue-on-error: true
+        env:
+          TIEDOSTOJA: ${{ steps.muutos.outputs.tiedostoja }}
+          MAX_TIEDOSTOJA: 10
+          VITE_CONFIG_NATIVE_IGNORE_WARNING: 'true'
+        run: |
+          T="$RUNNER_TEMP/tulos"
+          if [ ! -s "$T/kuvat.json" ]; then echo "Claude ei pyytänyt kuvia."; exit 0; fi
+          if [ "$TIEDOSTOJA" -gt "$MAX_TIEDOSTOJA" ]; then
+            echo "Muutos koskee $TIEDOSTOJA tiedostoa (raja $MAX_TIEDOSTOJA), joten kuvia ei oteta."
+            exit 0
+          fi
+          mv dist "$RUNNER_TEMP/dist-jalkeen"
+          git reset --hard --quiet
+          git clean -fdq
+          npx vite build --outDir "$RUNNER_TEMP/dist-ennen" --emptyOutDir --logLevel warn
+          CHROME_PATH="$(command -v google-chrome)" node scripts/pr-kuvakaappaukset.mjs \
+            "$T/kuvat.json" "$RUNNER_TEMP/dist-ennen" "$RUNNER_TEMP/dist-jalkeen" "$T/kuvat"
 
       - name: Tallenna tarkistuksen tulos
         if: always()
@@ -202,6 +240,108 @@ jobs:
           name: claude-tulos
           path: ${{ runner.temp }}/tulos
 
+      # Kuvat erilliseen haaraan `pr-kuvat`, jotta ne näkyvät PR:n kuvauksessa mutta eivät päädy mainiin.
+      # Edellinen työ ajoi Clauden muokkaamaa koodia, joten sen tuloksiin ei luoteta: mukaan otetaan vain
+      # luettelon kohteet, joiden reitti on kelvollinen ja joiden molemmat kuvat ovat oikeita PNG-tiedostoja.
+      # Kuvaus siistitään (vain kirjaimet, numerot ja välimerkit), jotta se ei voi lisätä linkkejä tai mainintoja.
+      - name: Julkaise kuvakaappaukset
+        continue-on-error: true
+        env:
+          KUVAHAARA: pr-kuvat
+        run: |
+          set -euo pipefail
+          T="$RUNNER_TEMP/tulos"
+          K="$T/kuvat"
+          if [ ! -s "$T/muutos.patch" ] || [ "$(cat "$T/check.txt" 2>/dev/null)" != "success" ] || [ ! -s "$K/kuvat.json" ]; then
+            echo "Ei kuvakaappauksia."
+            exit 0
+          fi
+
+          jq -r '.[:3][]
+            | select((.nro | type) == "string" and (.nro | test("^[0-9]{2}$")))
+            | select((.reitti | type) == "string" and (.reitti | test("^/[A-Za-z0-9/_-]{0,100}$")))
+            | [ .nro, .reitti,
+                ((.kuvaus // "") | tostring | gsub("[^\\p{L}\\p{N} .,:;!?()/-]"; "") | .[0:120]
+                  | if test("^ *$") then "Sivu" else . end),
+                (if .nakyma == "mobiili" then "mobiili" else "työpöytä" end),
+                (if .kieli == "en" then "en" else "fi" end) ]
+            | @tsv' "$K/kuvat.json" > "$RUNNER_TEMP/kuvat.tsv"
+
+          on_png() {
+            [ -f "$1" ] && [ ! -L "$1" ] && [ "$(stat -c %s "$1")" -le 3000000 ] &&
+              [ "$(head -c 8 "$1" | od -An -tx1 | tr -d ' \n')" = "89504e470d0a1a0a" ]
+          }
+          OK="$RUNNER_TEMP/kuvat-ok"
+          mkdir -p "$OK"
+          : > "$RUNNER_TEMP/kuvat-ok.tsv"
+          while IFS=$'\t' read -r NRO REITTI KUVAUS NAKYMA KIELI; do
+            if on_png "$K/$NRO-ennen.png" && on_png "$K/$NRO-jalkeen.png"; then
+              cp "$K/$NRO-ennen.png" "$K/$NRO-jalkeen.png" "$OK/"
+              printf '%s\t%s\t%s\t%s\t%s\n' "$NRO" "$REITTI" "$KUVAUS" "$NAKYMA" "$KIELI" >> "$RUNNER_TEMP/kuvat-ok.tsv"
+            else
+              echo "Ohitetaan kuva $NRO: tiedosto puuttuu tai ei ole PNG."
+            fi
+          done < "$RUNNER_TEMP/kuvat.tsv"
+          if [ ! -s "$RUNNER_TEMP/kuvat-ok.tsv" ]; then
+            echo "Ei kelvollisia kuvia."
+            exit 0
+          fi
+
+          # Jokainen ajo saa oman kansion. Jos toinen ajo ehti pushata väliin, yritetään uudelleen uusimman päälle.
+          KANSIO="issue-${ISSUE}-${GITHUB_RUN_ID}"
+          W="$RUNNER_TEMP/kuvahaara"
+          SHA=""
+          for YRITYS in 1 2 3; do
+            git worktree remove --force "$W" 2>/dev/null || rm -rf "$W"
+            git worktree prune
+            if git ls-remote --exit-code --heads origin "$KUVAHAARA" > /dev/null; then
+              git fetch -q --depth 1 origin "+refs/heads/$KUVAHAARA:refs/remotes/origin/$KUVAHAARA"
+              git worktree add -q --detach "$W" "origin/$KUVAHAARA"
+            else
+              git worktree add -q --detach "$W"
+              git -C "$W" checkout -q --orphan "kuvat-$GITHUB_RUN_ID-$YRITYS"
+              git -C "$W" rm -rfq .
+              {
+                echo "# PR-kuvakaappaukset"
+                echo
+                echo "Palauteautomaation (.github/workflows/claude.yml) kuvat ennen ja jälkeen muutoksen pull requestien kuvauksiin."
+                echo "Tätä haaraa ei yhdistetä mainiin. Vanhoja kansioita voi poistaa, mutta silloin niiden PR:ien kuvat katoavat."
+              } > "$W/README.md"
+              git -C "$W" add README.md
+            fi
+            mkdir -p "$W/$KANSIO"
+            cp "$OK"/*.png "$W/$KANSIO/"
+            git -C "$W" add "$KANSIO"
+            git -C "$W" -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Kuvakaappaukset: #${ISSUE}"
+            if git -C "$W" push -q origin "HEAD:refs/heads/$KUVAHAARA"; then
+              SHA="$(git -C "$W" rev-parse HEAD)"
+              break
+            fi
+          done
+          git worktree remove --force "$W" 2>/dev/null || true
+          if [ -z "$SHA" ]; then
+            echo "Kuvien push epäonnistui."
+            exit 1
+          fi
+
+          # Osoitteessa on commit-tunniste, joten kuva säilyy, vaikka haaraan tulee uusia committeja.
+          URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/raw/$SHA/$KANSIO"
+          {
+            echo "## Kuvakaappaukset"
+            echo
+            echo "Vasemmalla ennen muutosta (main), oikealla muutoksen jälkeen. Kuvat ovat haarassa \`$KUVAHAARA\`, eivät tässä PR:ssä."
+            while IFS=$'\t' read -r NRO REITTI KUVAUS NAKYMA KIELI; do
+              echo
+              echo "**$KUVAUS** (\`#$REITTI\`, $NAKYMA, $KIELI)"
+              echo
+              echo "| Ennen | Jälkeen |"
+              echo "| --- | --- |"
+              echo "| ![Ennen]($URL/$NRO-ennen.png) | ![Jälkeen]($URL/$NRO-jalkeen.png) |"
+            done < "$RUNNER_TEMP/kuvat-ok.tsv"
+          } > "$RUNNER_TEMP/kuvaosio.md"
+
       # Tässä työssä ei ajeta repon koodia (ei npm:ää), vain git ja gh.
       - name: Avaa PR tai kommentoi issueen
         run: |
@@ -238,6 +378,7 @@ jobs:
             echo "Closes #${ISSUE}"
             echo
             if [ -s "$T/pr-kuvaus.md" ]; then cat "$T/pr-kuvaus.md"; else echo "(Claude ei kirjoittanut kuvausta.)"; fi
+            if [ -s "$RUNNER_TEMP/kuvaosio.md" ]; then echo; cat "$RUNNER_TEMP/kuvaosio.md"; fi
             echo
             echo "---"
             echo "_Toteutettu automaattisesti ([ajo]($RUN_URL)). \`npm run check\` meni läpi. Tarkista muutos ennen yhdistämistä._"
