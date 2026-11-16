@@ -97,6 +97,10 @@
     "term": "repo",
     "definition": "Short for repository: a single project’s folder whose history Git keeps track of. On GitHub, every project has its own repo."
   },
+  "issue": {
+    "term": "issue",
+    "definition": "A task card on GitHub. It records a single thing to fix or a new idea, and it helps you keep track of what needs to be done in the project."
+  },
   "push": {
     "term": "push",
     "definition": "The command git push sends the commits you made on your computer to GitHub for safekeeping."

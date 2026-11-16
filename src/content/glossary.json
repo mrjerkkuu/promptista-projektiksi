@@ -132,6 +132,12 @@
     "category": "git",
     "definition": "Lyhenne sanasta repositorio: yhden projektin kansio, jonka historiaa Git seuraa. GitHubissa jokaisella projektilla on oma repo."
   },
+  "issue": {
+    "term": "issue",
+    "category": "git",
+    "definition": "Tehtäväkortti GitHubissa. Siihen kirjataan yksi korjattava asia tai uusi idea, ja sen avulla seurataan, mitä projektissa pitää tehdä. Suomeksi myös tehtäväkortti.",
+    "readMore": "https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues"
+  },
   "push": {
     "term": "push",
     "category": "git",
