@@ -51,6 +51,7 @@ export const en: UiStrings = {
     nuppuDoneAll: 'You walked every path all the way to the end.',
     nuppuDonePath: 'You walked the path all the way to the end.',
     nuppuProud: 'I’m so proud of you.',
+    nuppuMoreSoon: 'More material is coming soon!',
     nuppuHello: 'Hi, I’m Nuppu!',
     nuppuIntro: 'I’ll walk with you from the start of the path to the very end.',
     osPickerNote: 'We’ll only show instructions for the operating system you choose. You can change it later from the top bar.',

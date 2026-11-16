@@ -62,6 +62,7 @@ export const fi = {
     nuppuDoneAll: 'Kuljit kaikki polut loppuun asti.',
     nuppuDonePath: 'Kuljit polun loppuun asti.',
     nuppuProud: 'Olen tosi ylpeä sinusta.',
+    nuppuMoreSoon: 'Lisää materiaaleja tulossa pian!',
     nuppuHello: 'Moi, olen Nuppu!',
     nuppuIntro: 'Kuljen mukanasi koko polun alusta loppuun.',
     osPickerNote: 'Näytämme ohjeet vain valitsemallesi käyttöjärjestelmälle. Voit vaihtaa valintaa myöhemmin yläpalkista.',
