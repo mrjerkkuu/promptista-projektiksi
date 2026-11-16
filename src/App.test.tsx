@@ -257,13 +257,18 @@ describe('etusivu, kun polku on valmis', () => {
     // Nuppu juhlii eikä enää esittäydy kuin ensikäynnillä.
     expect(screen.getByText('Jee, teit sen!').closest('p')).toHaveTextContent('Kuljit polun loppuun asti.')
     expect(screen.queryByText('Moi, olen Nuppu!')).not.toBeInTheDocument()
+    // Lisämateriaalilupaus kuuluu vain silloin, kun kaikki polut on käyty.
+    expect(screen.getByText('Jee, teit sen!').closest('p')).not.toHaveTextContent('Lisää materiaaleja tulossa pian!')
   })
 
   it('kun kaikki polut on käyty, etusivu kertoo sen', () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...completed(allKeys(paths.map((p) => p.id))), activePath: 'claude-code' }))
     renderAt('/')
     expect(screen.getByText('Olet käynyt kaikki oppimispolut läpi. Mahtavaa työtä!')).toBeInTheDocument()
-    expect(screen.getByText('Jee, teit sen!').closest('p')).toHaveTextContent('Kuljit kaikki polut loppuun asti.')
+    // Lisämateriaalit mainitaan samassa puhekuplassa kuin kehu, ei omassa.
+    expect(screen.getByText('Jee, teit sen!').closest('p')).toHaveTextContent(
+      'Kuljit kaikki polut loppuun asti. Olen tosi ylpeä sinusta. Lisää materiaaleja tulossa pian!',
+    )
   })
 })
 

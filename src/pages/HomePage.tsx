@@ -75,6 +75,7 @@ export function HomePage() {
             {allDone ? (
               <>
                 <strong>{t.home.nuppuDoneTitle}</strong> {everyPathDone ? t.home.nuppuDoneAll : t.home.nuppuDonePath} {t.home.nuppuProud}
+                {everyPathDone && ` ${t.home.nuppuMoreSoon}`}
               </>
             ) : (
               <>
