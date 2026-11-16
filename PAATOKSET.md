@@ -369,3 +369,10 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset tehtiin omistajan kanssa.
     - **Kuvat tallennetaan erilliseen haaraan `pr-kuvat`** (kansio `issue-<n>-<ajo>`), ei PR:n haaraan, jotta ne eivät päädy mainiin. GitHubin rajapinnalla ei voi liittää kuvaa PR:n kuvaukseen, joten kuvaus linkittää kuviin commit-tunnisteella (`/raw/<sha>/…`), ja linkki säilyy, vaikka haaraan tulee uusia kuvia. Haara ei käynnistä julkaisua, koska `deploy.yml` reagoi vain mainiin. Vanhoja kansioita voi poistaa, mutta silloin niiden PR:ien kuvat katoavat.
     - **`avaa-pr` ei luota `toteuta`-työn tuloksiin**, koska siinä ajettiin Clauden muokkaamaa koodia: mukaan otetaan vain luettelon kohteet, joiden numero ja reitti ovat kelvollisia ja joiden molemmat kuvat ovat oikeita PNG-tiedostoja (tiedoston alku tarkistetaan, enintään 3 Mt). Kuvauksesta poistetaan kaikki paitsi kirjaimet, numerot ja välimerkit, jotta se ei voi lisätä PR:ään linkkejä, kuvia tai mainintoja. `avaa-pr` ei edelleenkään aja repon koodia.
     - Tallennukseen ei tehty muutoksia.
+
+164. **Visan vaihtoehdot näytetään sekoitettuina** (omistajan huomio: työpöytäpolun visoissa oikea vastaus oli aina ylimpänä). Visa näytti vaihtoehdot `quiz.json`in järjestyksessä, ja tiedostoissa oikea vastaus oli kirjoitettu lähes aina ensimmäiseksi.
+    - **Järjestys on pysyvä, ei satunnainen joka latauksella** (`src/lib/shuffle.ts`, `quizOptionOrder`). Siemen on `options:` + moduulin avain + kysymyksen tunniste, joten järjestys on sama latauksesta toiseen ja kaikilla kielillä. Kävijä löytää vastauksensa samasta kohdasta, kun palaa visaan.
+    - **Sisältötiedostoihin ei koskettu.** Tulevat visat sekoittuvat itsestään, eikä kirjoittajan tarvitse miettiä oikean vastauksen paikkaa.
+    - **Asennuksen tarkistusvaiheita (`VerifyStep`) ei sekoiteta**, koska niissä ”Jotain muuta” kuuluu viimeiseksi.
+    - Testi (`shuffle.test.ts`) varmistaa jokaiselta polulta, että oikea vastaus ei ole aina samassa kohdassa ja on ensimmäisenä alle 60 %:ssa kysymyksistä.
+    - Tallennukseen ei tehty muutoksia: vastaukset tallennetaan vaihtoehdon tunnisteella, ei paikalla, joten vanhat vastaukset säilyvät.

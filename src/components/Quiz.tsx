@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { quizOptionOrder } from '../lib/shuffle'
 import { isQuizPassed, useProgress } from '../features/progress'
 import { useContent, useT } from '../i18n'
 import type { QuizQuestion } from '../schemas/content'
@@ -56,7 +57,7 @@ function QuizQuestionView({ moduleKey, question, number }: QuestionProps) {
       </h3>
       <ChoiceList
         labelledBy={headingId}
-        options={question.options.map((o) => ({ id: o.id, label: o.text, correct: o.correct, explanation: o.explanation }))}
+        options={quizOptionOrder(moduleKey, question).map((o) => ({ id: o.id, label: o.text, correct: o.correct, explanation: o.explanation }))}
         selectedId={selectedId}
         revealAllWhenCorrect
         onSelect={(optionId) => dispatch({ type: 'answerQuiz', key: moduleKey, questionId: question.id, optionId })}
