@@ -373,3 +373,12 @@ Suunnitelma: `SUUNNITELMA.md`, luku 15. Päätökset tehtiin omistajan kanssa.
 ## Nuppu mainitsee lisää materiaalia (16.11.2026)
 
 164. **Kun kaikki polut on käyty, Nupun kehun perään tulee ”Lisää materiaaleja tulossa pian!”** (palaute: issue #25; omistajan ohje: lisää vanhaan tekstiin, ei uutta puhekuplaa). Lause on samassa kappaleessa (`hero__nuppu-intro`) kuin ”Jee, teit sen! … Olen tosi ylpeä sinusta.”. Palaute koski tilannetta, jossa kaikki aiheet on tehty, joten lause näkyy vain, kun `everyPathDone` on tosi (kohta 140). Kun vain valittu polku on valmis ja muita on kesken, kehun perään ei tule mitään, koska silloin materiaalia on vielä tekemättä. Teksti on sanakirjoissa (`home.nuppuMoreSoon`, suomi ja englanti). Lupaus lasketaan samasta tilasta kuin muukin etusivun teksti, joten kun uusi polku lisätään ja kävijä ei ole käynyt sitä, lause katoaa itsestään. Tallennukseen ei tehty muutoksia.
+
+## Visan vaihtoehtojen järjestys (16.11.2026)
+
+165. **Visan vaihtoehdot näytetään sekoitettuina** (omistajan huomio: työpöytäpolun visoissa oikea vastaus oli aina ylimpänä). Visa näytti vaihtoehdot `quiz.json`in järjestyksessä, ja tiedostoissa oikea vastaus oli kirjoitettu lähes aina ensimmäiseksi.
+    - **Järjestys on pysyvä, ei satunnainen joka latauksella** (`src/lib/shuffle.ts`, `quizOptionOrder`). Siemen on `options:` + moduulin avain + kysymyksen tunniste, joten järjestys on sama latauksesta toiseen ja kaikilla kielillä. Kävijä löytää vastauksensa samasta kohdasta, kun palaa visaan.
+    - **Sisältötiedostoihin ei koskettu.** Tulevat visat sekoittuvat itsestään, eikä kirjoittajan tarvitse miettiä oikean vastauksen paikkaa.
+    - **Asennuksen tarkistusvaiheita (`VerifyStep`) ei sekoiteta**, koska niissä ”Jotain muuta” kuuluu viimeiseksi.
+    - Testi (`shuffle.test.ts`) varmistaa jokaiselta polulta, että oikea vastaus ei ole aina samassa kohdassa ja on ensimmäisenä alle 60 %:ssa kysymyksistä.
+    - Tallennukseen ei tehty muutoksia: vastaukset tallennetaan vaihtoehdon tunnisteella, ei paikalla, joten vanhat vastaukset säilyvät.
