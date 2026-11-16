@@ -37,7 +37,7 @@ export const en: UiStrings = {
   },
 
   home: {
-    lead: 'Learn to build your own websites and apps with AI. You don’t need any prior experience: we start from the basics and finish with a project of your own on the web.',
+    lead: 'Learn to build your own websites and apps with AI. You don’t need any prior experience: we start from the basics and finish with a project of your own on the web. This site was itself built with the help of AI.',
     startHere: 'Start here',
     continue: 'Continue where you left off',
     choosePath: 'Choose a learning path',

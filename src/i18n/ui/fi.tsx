@@ -48,7 +48,7 @@ export const fi = {
   },
 
   home: {
-    lead: 'Opettele tekemään omia verkkosivuja ja sovelluksia tekoälyn kanssa. Et tarvitse aiempaa kokemusta: aloitetaan perusteista, ja päädytään siihen, että sinulla on oma projekti netissä.',
+    lead: 'Opettele tekemään omia verkkosivuja ja sovelluksia tekoälyn kanssa. Et tarvitse aiempaa kokemusta: aloitetaan perusteista, ja päädytään siihen, että sinulla on oma projekti netissä. Sivusto on itsekin tehty tekoälyn avulla.',
     startHere: 'Aloita tästä',
     continue: 'Jatka siitä mihin jäit',
     choosePath: 'Valitse oppimispolku',
